@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：宗教改革</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  .back-btn:hover{background:#1e2d6b}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#1a5276;border-left:4px solid #1a5276;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.6;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a5276;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a5276;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#c0d8f0;color:#0d2333;border-color:#1a5276}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#eaf2ff;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#1a5276;background:#ddeeff}
+  .word-chip.selected{border-color:#1a5276;background:#90bef5;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a5276;color:#fff;box-shadow:0 3px 0 #0d2d42}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#1a5276;color:#1a5276;background:#ddeeff}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代② 宗教改革</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">⛪ ルターの宗教改革</div>
+  <div class="question-text">
+    メディチ家出身の教皇<span class="blank" data-ans="レオ10世">レオ10世</span>は、<span class="blank" data-ans="サン＝ピエトロ大聖堂">サン＝ピエトロ大聖堂</span>の修築費用のため<span class="blank" data-ans="贖宥状（免罪符）">贖宥状（免罪符）</span>を大量に販売させました。<br><br>
+    ドイツの神学教授<span class="blank" data-ans="マルティン＝ルター">マルティン＝ルター</span>は1517年に「九十五カ条の論題」を発表し、人は<span class="blank" data-ans="信仰">信仰</span>のみによって救われ、その根拠は<span class="blank" data-ans="聖書">聖書</span>だと主張しました。論題は<span class="blank" data-ans="活版印刷術">活版印刷術</span>によって広まりました。神聖ローマ皇帝<span class="blank" data-ans="カール5世">カール5世</span>が撤回を求めましたが拒否し、聖書を<span class="blank" data-ans="ドイツ語">ドイツ語</span>に翻訳して<span class="blank" data-ans="ルター派">ルター派</span>教会を立てました。1555年の<span class="blank" data-ans="アウグスブルクの宗教和議">アウグスブルクの宗教和議</span>でルター派が公認されました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🇨🇭 カルヴァン・イギリスの宗教改革</div>
+  <div class="question-text">
+    <span class="blank" data-ans="カルヴァン">カルヴァン</span>は<span class="blank" data-ans="スイス">スイス</span>で「人の救済は神が予め決めている」とする<span class="blank" data-ans="予定説">予定説</span>を唱え、勤勉・貯蓄を奨励し<span class="blank" data-ans="資本主義">資本主義</span>の発達につながりました。カルヴァン派はフランスでは<span class="blank" data-ans="ユグノー">ユグノー</span>、イギリスでは<span class="blank" data-ans="ピューリタン">ピューリタン</span>と呼ばれました。<br><br>
+    イギリスでは<span class="blank" data-ans="ヘンリー8世">ヘンリー8世</span>が離婚問題でローマ教皇と対立し<span class="blank" data-ans="イギリス国教会">イギリス国教会</span>を設立、娘の<span class="blank" data-ans="エリザベス1世">エリザベス1世</span>が統一法でこれを確立しました。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">✝️ 反宗教改革</div>
+  <div class="question-text">
+    1545年の<span class="blank" data-ans="トリエント公会議">トリエント公会議</span>でカトリック教会は教皇の権威を再確認しました。<span class="blank" data-ans="イグナティウス＝ロヨラ">イグナティウス＝ロヨラ</span>と<span class="blank" data-ans="フランシスコ＝ザビエル">フランシスコ＝ザビエル</span>らが<span class="blank" data-ans="イエズス会">イエズス会</span>を設立し、アジアで布教しました。1549年、ザビエルは日本の<span class="blank" data-ans="鹿児島">鹿児島</span>に上陸しました。このカトリックの巻き返しを<span class="blank" data-ans="反宗教改革">反宗教改革</span>といいます。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai2.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">チャレンジ開始</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai2_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai2';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['レオ10世','サン＝ピエトロ大聖堂','贖宥状（免罪符）','マルティン＝ルター','信仰','聖書','活版印刷術','カール5世','ドイツ語','ルター派','アウグスブルクの宗教和議']);
+  buildBank('bank1',['カルヴァン','スイス','予定説','資本主義','ユグノー','ピューリタン','ヘンリー8世','イギリス国教会','エリザベス1世']);
+  buildBank('bank2',['トリエント公会議','イグナティウス＝ロヨラ','フランシスコ＝ザビエル','イエズス会','鹿児島','反宗教改革']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄をもう一度確認しましょう！`;}window.scrollTo(0,0);}
+</script>
+</body>
+</html>

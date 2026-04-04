@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：イスラーム帝国の繁栄</title>
+<style>
+  body { font-family: "Meiryo", sans-serif; max-width: 960px; margin: 20px auto; line-height: 1.9; background-color: #f4f4f9; font-size: 16px; padding-bottom: 300px; }
+  h1 { border-bottom: 3px solid #7d5a00; padding-bottom: 8px; font-size: 24px; color: #1a1a2e; }
+  h2 { margin-top: 20px; margin-bottom: 8px; font-size: 19px; border-left: 5px solid #7d5a00; padding-left: 10px; color: #1a1a2e; }
+  h3 { margin-top: 12px; margin-bottom: 6px; font-size: 16px; color: #4a3000; font-weight: bold; }
+  .back-to-index { display: inline-flex; align-items: center; gap: 6px; background: #2c3e8c; color: #fff !important; border: none; border-radius: 8px; padding: 8px 16px; font-size: 14px; font-weight: bold; cursor: pointer; margin-bottom: 12px; text-decoration: none; }
+  .back-to-index:hover { background: #1e2d6b; }
+  .word-bank-sticky-container { position: sticky; top: 0; z-index: 1001; background-color: #f4f4f9; padding: 10px 0; border-bottom: 2px solid #ccc; }
+  .word-bank { border: 2px solid #7d5a00; border-radius: 8px; padding: 12px; min-height: 60px; flex-wrap: wrap; gap: 8px; background-color: #fff; display: none; }
+  .word-chip { padding: 8px 12px; border-radius: 18px; border: 1px solid #888; background-color: #fff; cursor: pointer; font-size: 14px; position: relative; }
+  .word-chip.used { opacity: 0.3; }
+  .word-chip.selected-chip { border-color: #1976d2; background-color: #e3f2fd; box-shadow: 0 0 0 2px #bbdefb; }
+  .section { background-color: #fff; border-radius: 8px; padding: 20px; border: 1px solid #ccc; margin-bottom: 16px; }
+  .section-label { display: inline-block; color: #fff; font-size: 13px; font-weight: bold; padding: 3px 14px; border-radius: 12px; margin-bottom: 10px; }
+  .label-safavid { background: #6b1a1a; }
+  .label-ottoman { background: #b8320a; }
+  .label-mughal { background: #7d5a00; }
+  .blank { display: inline-block; min-width: 100px; min-height: 26px; border-bottom: 2px solid #7d5a00; margin: 0 4px; text-align: center; cursor: pointer; font-weight: bold; color: #7d5a00; vertical-align: middle; }
+  .blank.correct { background-color: #ffeb3b; }
+  .key-point { background: #fff8e6; border-left: 5px solid #7d5a00; padding: 10px 16px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 15px; }
+  .key-point strong { color: #7d5a00; }
+  .person-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 15px; }
+  .person-table th { background: #7d5a00; color: #fff; padding: 8px 10px; text-align: left; }
+  .person-table td { border: 1px solid #ddd; padding: 8px 10px; vertical-align: top; }
+  .person-table tr:nth-child(even) td { background: #fdf8ee; }
+  .fixed-footer-controls { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #fff; border-top: 2px solid #ccc; padding: 12px 0; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+  .footer-inner { max-width: 960px; margin: 0 auto; padding: 0 20px; text-align: center; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  button { padding: 10px 20px; border-radius: 8px; border: none; background-color: #7d5a00; color: #fff; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 3px 0 #4a3000; }
+  button.secondary { background-color: #6c757d; box-shadow: 0 3px 0 #495057; }
+  button#next-btn { background-color: #1976d2; box-shadow: 0 3px 0 #0d5aa7; }
+  button#next-btn:disabled { background-color: #90bef5; box-shadow: none; }
+  .timer-info { margin-top: 10px; padding: 6px 15px; font-size: 16px; border: 1px solid #7d5a00; background-color: #fff; display: inline-block; }
+  .explain-box { margin-top: 12px; padding: 14px; border-left: 5px solid #7d5a00; background-color: #fff8e6; display: none; text-align: left; font-size: 14px; line-height: 1.8; }
+
+  /* =============================================
+     ① 画像サムネイル（クリックで拡大ポップアップ）
+     ============================================= */
+  .img-thumb {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #f0e8d8; border: 1.5px solid #c8a870;
+    border-radius: 8px; padding: 4px 10px 4px 6px;
+    cursor: pointer; font-size: 13px; color: #5a3a00;
+    font-weight: bold; vertical-align: middle; margin: 0 4px;
+    transition: background 0.15s;
+  }
+  .img-thumb:hover { background: #e8d8b8; }
+  .img-thumb img { width: 36px; height: 36px; object-fit: cover; border-radius: 4px; }
+  .img-thumb .thumb-label { max-width: 80px; line-height: 1.3; }
+
+  /* =============================================
+     ② 人物名ポップアップ
+     ============================================= */
+  .person-pop {
+    display: inline-block; position: relative;
+    border-bottom: 2px dashed #7d5a00; cursor: pointer;
+    color: #4a2800; font-weight: bold;
+  }
+  .person-pop .pop-box {
+    display: none; position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%); width: 220px;
+    background: #fff; border: 2px solid #7d5a00; border-radius: 10px;
+    padding: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    z-index: 2000; text-align: center; font-weight: normal; font-size: 13px; color: #222;
+    pointer-events: none;
+  }
+  .person-pop .pop-box img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 8px; border: 2px solid #c8a870; }
+  .person-pop .pop-box .pop-name { font-weight: bold; font-size: 15px; color: #4a2800; margin-bottom: 4px; }
+  .person-pop .pop-box .pop-desc { font-size: 12px; color: #555; line-height: 1.6; text-align: left; }
+  .person-pop .pop-box::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent; border-top-color: #7d5a00;
+  }
+  .person-pop:hover .pop-box,
+  .person-pop.active .pop-box { display: block; }
+
+  /* =============================================
+     ③ 語群チップのポップアップ
+     ============================================= */
+  .word-chip[data-tip] { border-color: #7d5a00; }
+  .word-chip .chip-pop {
+    display: none; position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%); width: 200px;
+    background: #1a1a2e; color: #fff; border-radius: 8px;
+    padding: 8px 12px; font-size: 12px; line-height: 1.6;
+    z-index: 3000; pointer-events: none; text-align: left;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .word-chip .chip-pop::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent; border-top-color: #1a1a2e;
+  }
+  .word-chip:hover .chip-pop,
+  .word-chip.tip-active .chip-pop { display: block; }
+
+  /* =============================================
+     画像モーダル（フルサイズ表示）
+     ============================================= */
+  #img-modal {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75); z-index: 9999;
+    align-items: center; justify-content: center; flex-direction: column; gap: 12px;
+  }
+  #img-modal.open { display: flex; }
+  #img-modal img { max-width: 90vw; max-height: 75vh; border-radius: 10px; box-shadow: 0 8px 40px rgba(0,0,0,0.5); }
+  #img-modal .modal-caption { color: #fff; font-size: 16px; font-weight: bold; text-align: center; }
+  #img-modal .modal-close {
+    position: fixed; top: 20px; right: 24px; font-size: 32px;
+    color: #fff; cursor: pointer; line-height: 1; background: none; border: none; box-shadow: none; padding: 0;
+  }
+  #img-modal .modal-close:hover { color: #ffcc66; }
+</style>
+</head>
+<body>
+
+<!-- 画像モーダル -->
+<div id="img-modal" onclick="closeModal(event)">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🕌 イスラーム帝国の繁栄</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span style="font-size:12px;color:#888;margin-left:8px;">💡 語句にカーソルを乗せると説明が見られます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ───── 導入 ───── -->
+<div class="section">
+  <p>イスラーム教は7世紀に<span class="blank" data-id="A">ムハンマド</span>が開きました。信者は<span class="blank" data-id="B">ムスリム</span>と呼ばれ急速に増えました。16世紀には<span class="blank" data-id="C">オスマン帝国</span>・<span class="blank" data-id="D">サファヴィー朝</span>・<span class="blank" data-id="E">ムガル帝国</span>という3つのイスラーム帝国が繁栄しました。</p>
+</div>
+
+<!-- ───── サファヴィー朝 ───── -->
+<div class="section">
+  <span class="section-label label-safavid">① サファヴィー朝（1501〜1736年）</span>
+  <h2>サファヴィー朝</h2>
+  <p>スーフィー教から起こったサファヴィー教の指導者
+    <span class="person-pop" data-person="ismail">イスマーイール<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Shah_Ismail_I.jpg/200px-Shah_Ismail_I.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="イスマーイール">
+      <div class="pop-name">イスマーイール1世</div>
+      <div class="pop-desc">サファヴィー朝の初代シャー（王）。1501年に建国し、シーア派を国教として定めた。</div>
+    </div></span>
+    が建国しました。神秘主義教団でしたが、次第に<span class="blank" data-id="G">シーア派</span>となりました。イランの伝統的な王の称号<span class="blank" data-id="H">シャー</span>が生まれました。
+  </p>
+  <p>
+    <span class="person-pop">アッバース1世<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Abbas_I_of_Persia.jpg/200px-Abbas_I_of_Persia.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="アッバース1世">
+      <div class="pop-name">アッバース1世（在位1588〜1629）</div>
+      <div class="pop-desc">サファヴィー朝の最盛期を築いた君主。イスファハーンに遷都し「世界の半分」と称された都市を建設した。</div>
+    </div></span>
+    のときが最盛期で、「世界の半分」と称された<span class="blank" data-id="J">イスファハーン</span>へ遷都（1597年）し、
+    <!-- 画像サムネイル -->
+    <span class="img-thumb" onclick="openImgModal('https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Imam_mosque_esfahan.jpg/640px-Imam_mosque_esfahan.jpg','イマームのモスク（イスファハーン）')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Imam_mosque_esfahan.jpg/640px-Imam_mosque_esfahan.jpg" onerror="this.style.display='none'" alt="イマームのモスク">
+      <span class="thumb-label">🖼 イマームのモスク</span>
+    </span>
+    を建てました。高級な絹織物を生産し東西貿易が盛んでした。
+  </p>
+  <div class="key-point">⭐ <strong>覚え方</strong>：サファヴィー朝＝シーア派・イラン・アッバース1世・イスファハーン</div>
+</div>
+
+<!-- ───── オスマン帝国 ───── -->
+<div class="section">
+  <span class="section-label label-ottoman">② オスマン帝国（1299〜1922年）</span>
+  <h2>オスマン帝国の支配体制</h2>
+  <p>トルコ人の国で<span class="blank" data-id="K">スンニー派</span>が国教でした。</p>
+  <h3>ティマール制（軍事封土制）</h3>
+  <p>トルコ人騎士（<span class="blank" data-id="L">シパーヒー</span>）に土地を与え、その地の徴税権を与える制度を<span class="blank" data-id="M">ティマール制</span>といいます。</p>
+  <h3>ミッレト</h3>
+  <p>ムスリム以外のギリシア正教徒・アルメニア教会派・ユダヤ教徒は、宗教団体（<span class="blank" data-id="N">ミッレト</span>）を組織し、その長が納税する代わりに信仰と自治が認められました。</p>
+  <h3>イェニチェリ</h3>
+  <p>征服したトルコ人以外のキリスト教徒を徴用し軍事教練して、皇帝直属の常備歩兵軍団としました。これを<span class="blank" data-id="O">イェニチェリ</span>といいます。</p>
+
+  <h2>オスマン帝国の拡大</h2>
+  <table class="person-table">
+    <tr><th>年</th><th>できごと</th></tr>
+    <tr><td>1453年</td><td>
+      <span class="person-pop">メフメト2世<div class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Gentile_bellini_003.jpg/200px-Gentile_bellini_003.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="メフメト2世">
+        <div class="pop-name">メフメト2世（在位1444〜81）</div>
+        <div class="pop-desc">オスマン帝国の第7代スルタン。1453年にビザンツ帝国を滅ぼし、コンスタンティノープルをイスタンブールに改めた。</div>
+      </div></span>
+      がビザンツ帝国の首都<span class="blank" data-id="Q">コンスタンティノープル</span>（後のイスタンブール）を攻め滅ぼしました。</td></tr>
+    <tr><td>1529年</td><td>
+      <span class="person-pop">スレイマン1世<div class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Suleiman_the_Magnificent2.jpg/200px-Suleiman_the_Magnificent2.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="スレイマン1世">
+        <div class="pop-name">スレイマン1世（在位1520〜66）</div>
+        <div class="pop-desc">「壮麗者」と呼ばれたオスマン帝国最盛期の君主。第一次ウィーン包囲を行い帝国を最大版図に拡大した。</div>
+      </div></span>
+      のときに最盛期を迎えました。フランスと手を組み<span class="blank" data-id="S">第一次ウィーン包囲</span>を行いましたが、大砲が届かず冬が迫り撤退しました。</td></tr>
+    <tr><td>1683年</td><td><span class="blank" data-id="T">第二次ウィーン包囲</span>を行いましたが、ポーランド軍の支援により撤退しました。これ以後オスマン帝国は力を失いました。</td></tr>
+  </table>
+  <h3>カピチュレーション</h3>
+  <p>第一次ウィーン包囲のとき、スレイマン1世が帝国内の外国人に生命・信仰の安全を保障し、フランス人などには通商の自由と領事裁判権などの特権を与えました。これを<span class="blank" data-id="U">カピチュレーション</span>といいます。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：1453年ビザンツ滅亡→1529年第一次ウィーン包囲（スレイマン1世・最盛期）→1683年第二次ウィーン包囲→衰退</div>
+</div>
+
+<!-- ───── ムガル帝国 ───── -->
+<div class="section">
+  <span class="section-label label-mughal">③ ムガル帝国（1526〜1858年）</span>
+  <h2>ムガル帝国の皇帝たち</h2>
+  <p>ティムールの子孫の<span class="blank" data-id="V">バーブル</span>が建国しました。</p>
+  <table class="person-table">
+    <tr><th>代</th><th>皇帝</th><th>業績</th></tr>
+    <tr><td>3代</td><td>
+      <span class="person-pop">アクバル帝<div class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Akbar_Shah_I_after_1605.jpg/200px-Akbar_Shah_I_after_1605.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="アクバル">
+        <div class="pop-name">アクバル帝（在位1556〜1605）</div>
+        <div class="pop-desc">ムガル帝国3代皇帝。ヒンドゥー教徒との融和政策をとり、ジズヤ（非ムスリムへの人頭税）を廃止した。</div>
+      </div></span>
+    </td><td>全国を州・県・郡に分け中央集権体制を確立。ヒンドゥー教徒との融和のため非ムスリムへの人頭税<span class="blank" data-id="X">ジズヤ</span>を廃止しました。</td></tr>
+    <tr><td>5代</td><td>
+      <span class="person-pop">シャー＝ジャハーン<div class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Shah_Jahan_on_Globe.jpg/200px-Shah_Jahan_on_Globe.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="シャー＝ジャハーン">
+        <div class="pop-name">シャー＝ジャハーン（在位1628〜58）</div>
+        <div class="pop-desc">ムガル帝国5代皇帝。愛妻マハルの死を悼んでタージ＝マハルを建設した。インド＝イスラーム文化の最盛期。</div>
+      </div></span>
+    </td><td>妻マハルの死を悼んで
+      <span class="img-thumb" onclick="openImgModal('https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Taj_Mahal%2C_Agra%2C_India_edit3.jpg/1280px-Taj_Mahal%2C_Agra%2C_India_edit3.jpg','タージ＝マハル（インド・アーグラ）')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Taj_Mahal%2C_Agra%2C_India_edit3.jpg/1280px-Taj_Mahal%2C_Agra%2C_India_edit3.jpg" onerror="this.style.display='none'" alt="タージ＝マハル">
+        <span class="thumb-label">🖼 タージ＝マハル</span>
+      </span>
+      （1648年）を建てました。財政難に陥りましたが、<span class="blank" data-id="AA">インド＝イスラーム文化</span>が栄え、細密画<span class="blank" data-id="BB">ムガル絵画</span>が発達しました。</td></tr>
+    <tr><td>6代</td><td>
+      <span class="person-pop">アウラングゼーブ帝<div class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Aurangzeb_Medallion.jpg/200px-Aurangzeb_Medallion.jpg" onerror="this.src='https://via.placeholder.com/80x80?text=人物'" alt="アウラングゼーブ">
+        <div class="pop-name">アウラングゼーブ帝（在位1658〜1707）</div>
+        <div class="pop-desc">ムガル帝国6代皇帝。熱烈なスンニー派でジズヤを復活。シク教徒を弾圧したため帝国の混乱を招いた。</div>
+      </div></span>
+    </td><td>スンニー派の熱烈な信者でジズヤを復活させました。デカン高原を征服し最大領土を得ましたが、カースト制を否定した<span class="blank" data-id="DD">シク教</span>徒を弾圧したためマラータ王国やシク教徒の反乱を受けました。</td></tr>
+  </table>
+  <div class="key-point">⭐ <strong>ジズヤの流れ</strong>：アクバル帝が廃止 → アウラングゼーブ帝が復活（非ムスリムの反発へ）</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai4_quiz.html'" disabled>確認問題へ ▶</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①サファヴィー朝：シーア派・イスマーイール建国・アッバース1世最盛期・イスファハーン<br>
+      ②オスマン帝国：スンニー派・ティマール制・ミッレト・イェニチェリ<br>
+      ③1453年ビザンツ滅亡（メフメト2世）→1529年第一次ウィーン包囲（スレイマン1世）→1683年第二次ウィーン包囲→衰退<br>
+      ④ムガル帝国：アクバル（ジズヤ廃止）→シャー＝ジャハーン（タージ＝マハル）→アウラングゼーブ（ジズヤ復活・シク教弾圧）
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== 語句の説明データ ===== */
+const WORD_TIPS = {
+  "ムハンマド":   "イスラーム教の開祖。7世紀にアラビア半島で活躍し、アッラーの啓示を受け「コーラン」にまとめた。",
+  "ムスリム":     "イスラーム教の信者のこと。「神（アッラー）に帰依する者」の意味。",
+  "オスマン帝国": "1299〜1922年。トルコ人が建てた大帝国。スンニー派。最盛期はスレイマン1世のとき。",
+  "サファヴィー朝":"1501〜1736年。イランを中心に栄えたイスラーム帝国。シーア派を国教とした。",
+  "ムガル帝国":   "1526〜1858年。インドを支配したイスラーム帝国。バーブルが建国。",
+  "イスマーイール":"サファヴィー朝の初代シャー（王）。シーア派を国教に定めた。",
+  "シーア派":     "イスラーム教の二大宗派の一つ。預言者ムハンマドの子孫のみが指導者になれると主張。サファヴィー朝の国教。",
+  "シャー":       "イランの伝統的な王の称号。「王」を意味するペルシア語。",
+  "アッバース1世": "サファヴィー朝の最盛期の君主（在位1588〜1629）。イスファハーンに遷都し東西貿易を発展させた。",
+  "イスファハーン":"サファヴィー朝の首都。「世界の半分」と称された美しい都市。イマームのモスクが有名。",
+  "スンニー派":   "イスラーム教の二大宗派の一つ。「慣行に従う者」の意味。オスマン帝国・ムガル帝国の国教。",
+  "シパーヒー":   "オスマン帝国のトルコ人騎士。ティマール制のもとで土地と徴税権を与えられた。",
+  "ティマール制": "オスマン帝国の軍事封土制。シパーヒー（騎士）に土地を与え徴税権を認める支配体制。",
+  "ミッレト":     "オスマン帝国内の異教徒（ギリシア正教・アルメニア・ユダヤ）が組織した宗教自治団体。",
+  "イェニチェリ": "オスマン帝国の皇帝直属の常備歩兵軍団。征服したキリスト教徒の子どもを訓練して編成した。",
+  "メフメト2世":  "オスマン帝国第7代スルタン。1453年にビザンツ帝国を滅ぼした「征服王」。",
+  "コンスタンティノープル":"ビザンツ帝国の首都。1453年にメフメト2世に攻略され、イスタンブールと改称された。",
+  "スレイマン1世": "オスマン帝国の最盛期の君主（在位1520〜66）。「壮麗者」と呼ばれ第一次ウィーン包囲を行った。",
+  "第一次ウィーン包囲":"1529年。スレイマン1世がウィーンを包囲した戦い。大砲が届かず冬が近づき撤退した。",
+  "第二次ウィーン包囲":"1683年。オスマン帝国がウィーンを再び包囲したが、ポーランド軍の援護で失敗。以後衰退。",
+  "カピチュレーション":"オスマン帝国が外国人に与えた特権。通商の自由・領事裁判権など。後にオスマン帝国の弱体化につながった。",
+  "バーブル":     "ムガル帝国の建国者（在位1526〜30）。ティムールの子孫でインドに侵入し帝国を建てた。",
+  "アクバル":     "ムガル帝国3代皇帝（在位1556〜1605）。ヒンドゥー教徒との融和を進め、ジズヤを廃止した。",
+  "ジズヤ":       "非ムスリムに課せられた人頭税。アクバル帝が廃止したが、アウラングゼーブ帝が復活させた。",
+  "シャー＝ジャハーン":"ムガル帝国5代皇帝（在位1628〜58）。愛妻マハルの墓廟タージ＝マハルを建設した。",
+  "タージ＝マハル": "シャー＝ジャハーンが妻マハルのために建てた霊廟（1648年）。白大理石の美しい建築でインドのアーグラにある。",
+  "インド＝イスラーム文化":"ムガル帝国で発展した、インド文化とイスラーム文化が融合した文化。タージ＝マハルやムガル絵画が代表。",
+  "ムガル絵画":   "ムガル帝国の宮廷絵画。細密画（ミニアチュール）の技法を用いた、装飾的で精緻な絵画。",
+  "アウラングゼーブ":"ムガル帝国6代皇帝（在位1658〜1707）。ジズヤを復活させシク教徒を弾圧。帝国の混乱を招いた。",
+  "シク教":       "16世紀にインドで生まれた宗教。ヒンドゥー教とイスラーム教の融合を目指し、カースト制度を否定した。",
+};
+
+const answers = {
+  "A":"ムハンマド","B":"ムスリム","C":"オスマン帝国","D":"サファヴィー朝","E":"ムガル帝国",
+  "F":"イスマーイール","G":"シーア派","H":"シャー","I":"アッバース1世","J":"イスファハーン",
+  "K":"スンニー派","L":"シパーヒー","M":"ティマール制","N":"ミッレト","O":"イェニチェリ",
+  "P":"メフメト2世","Q":"コンスタンティノープル","R":"スレイマン1世","S":"第一次ウィーン包囲","T":"第二次ウィーン包囲","U":"カピチュレーション",
+  "V":"バーブル","W":"アクバル","X":"ジズヤ","Y":"シャー＝ジャハーン","Z":"タージ＝マハル","AA":"インド＝イスラーム文化","BB":"ムガル絵画","CC":"アウラングゼーブ","DD":"シク教"
+};
+
+/* ===== 画像モーダル ===== */
+function openImgModal(src, caption) {
+  document.getElementById('modal-img').src = src;
+  document.getElementById('modal-caption').textContent = caption;
+  document.getElementById('img-modal').classList.add('open');
+}
+function closeImgModal() {
+  document.getElementById('img-modal').classList.remove('open');
+}
+function closeModal(e) {
+  if (e.target === document.getElementById('img-modal')) closeImgModal();
+}
+
+/* ===== 人物ポップ（タップ対応） ===== */
+document.querySelectorAll('.person-pop').forEach(el => {
+  el.addEventListener('click', e => {
+    e.stopPropagation();
+    const isActive = el.classList.contains('active');
+    document.querySelectorAll('.person-pop.active').forEach(x => x.classList.remove('active'));
+    if (!isActive) el.classList.add('active');
+  });
+});
+document.addEventListener('click', () => {
+  document.querySelectorAll('.person-pop.active').forEach(x => x.classList.remove('active'));
+});
+
+/* ===== 語群レンダリング ===== */
+let startTime, timerId, selectedChip = null;
+
+function renderBank() {
+  const bank = document.getElementById('word-bank');
+  bank.style.display = "flex"; bank.innerHTML = "";
+  [...new Set(Object.values(answers))].sort(() => Math.random() - 0.5).forEach(word => {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.textContent = word;
+    const tip = WORD_TIPS[word];
+    if (tip) {
+      chip.setAttribute('data-tip', tip);
+      const pop = document.createElement('div');
+      pop.className = 'chip-pop';
+      pop.textContent = tip;
+      chip.appendChild(pop);
+      // タップ対応
+      chip.addEventListener('click', e => {
+        if (selectedChip === chip) return; // 選択中は普通のクリック動作
+        e.stopPropagation();
+        const isActive = chip.classList.contains('tip-active');
+        document.querySelectorAll('.word-chip.tip-active').forEach(x => x.classList.remove('tip-active'));
+        if (!isActive) chip.classList.add('tip-active');
+      });
+    }
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('selected-chip'));
+      selectedChip = chip;
+      chip.classList.add('selected-chip');
+    });
+    bank.appendChild(chip);
+  });
+}
+
+function startChallenge() {
+  document.querySelectorAll('.blank').forEach(b => { b.textContent = ""; b.classList.remove('correct'); });
+  renderBank();
+  startTime = Date.now(); if (timerId) clearInterval(timerId);
+  timerId = setInterval(() => { document.getElementById('timer-display').textContent = `経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`; }, 1000);
+}
+
+document.querySelectorAll('.blank').forEach(blank => {
+  blank.onclick = () => {
+    if (selectedChip) {
+      const old = blank.textContent;
+      if (old) document.querySelectorAll('.word-chip').forEach(c => { if (c.textContent === old || c.childNodes[0]?.textContent === old) c.classList.remove('used'); });
+      blank.textContent = selectedChip.childNodes[0]?.textContent?.trim() || selectedChip.textContent;
+      selectedChip.classList.add('used'); selectedChip.classList.remove('selected-chip'); selectedChip = null;
+    } else if (blank.textContent) {
+      const txt = blank.textContent;
+      document.querySelectorAll('.word-chip').forEach(c => { if ((c.childNodes[0]?.textContent?.trim()||c.textContent) === txt) c.classList.remove('used'); });
+      blank.textContent = "";
+    }
+  };
+});
+
+function checkAnswers() {
+  let ok = true;
+  document.querySelectorAll('.blank').forEach(b => {
+    if (b.textContent === answers[b.dataset.id]) b.classList.add('correct');
+    else { ok = false; b.classList.remove('correct'); }
+  });
+  if (ok) { clearInterval(timerId); document.getElementById('next-btn').disabled = false; }
+}
+function resetTimer() { clearInterval(timerId); document.getElementById('timer-display').textContent = "経過時間：---"; }
+function toggleExplain() { const box = document.getElementById('explain-box'); box.style.display = (box.style.display === 'block') ? 'none' : 'block'; }
+
+(function() {
+  try { var prog = JSON.parse(localStorage.getItem('gamba_progress')||'{}'); prog['kindai4']=prog['kindai4']||{}; prog['kindai4'].studyDone=true; localStorage.setItem('gamba_progress',JSON.stringify(prog)); } catch(e) {}
+})();
+</script>
+</body>
+</html>

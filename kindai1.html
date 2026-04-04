@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：十字軍の失敗・2つのR</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #6a0dad;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #6a0dad;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:14px;margin-bottom:6px;font-size:16px;color:#3d007a;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
+  .word-bank{border:2px solid #6a0dad;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-cross{background:#8b0000}
+  .label-renaissance{background:#6a0dad}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #6a0dad;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#6a0dad;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#f9f0ff;border-left:5px solid #6a0dad;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#6a0dad}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#6a0dad;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f9f4ff}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#6a0dad;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #3d007a}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #6a0dad;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #6a0dad;background-color:#f9f0ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+
+  /* ── 画像サムネイル ── */
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#f0e8ff;border:1.5px solid #9b59b6;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#4a0080;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#e0ccff}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+
+  /* ── 人物ポップ ── */
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #6a0dad;cursor:pointer;color:#3d007a;font-weight:bold}
+  .blank.person-pop{border-bottom:2px solid #6a0dad;color:#6a0dad;}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);width:230px;max-width:90vw;background:#fff;border:2px solid #6a0dad;border-radius:12px;padding:14px;box-shadow:0 6px 24px rgba(0,0,0,0.22);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none;white-space:normal;overflow:hidden;}
+  .person-pop .pop-box img{width:80px;height:80px;max-width:80px;max-height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #d4aaff;display:block;margin-left:auto;margin-right:auto;}
+  .person-pop .pop-name{display:block;font-weight:bold;font-size:15px;color:#3d007a;margin-bottom:6px}
+  .person-pop .pop-desc{display:block;font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#6a0dad}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+
+  /* ── 語群チップのポップ ── */
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+
+  /* ── 画像モーダル ── */
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  #img-modal .modal-close:hover{color:#ffcc66}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>✝️ 十字軍の失敗・2つのR</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 十字軍 -->
+<div class="section">
+  <span class="section-label label-cross">① 十字軍の遠征の失敗</span>
+  <h2>十字軍の遠征</h2>
+  <p>1096年、<span class="blank" data-id="A">セルジューク朝</span>がキリスト教の聖地<span class="blank" data-id="B">イェルサレム</span>を奪い、巡礼を妨げていたため、ローマ教皇<span class="blank person-pop" data-id="C" style="min-width:120px;">ウルバヌス2世<span class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pope_Urban_II.jpg/200px-Pope_Urban_II.jpg" onerror="this.style.display='none'" alt="ウルバヌス2世">
+      <span class="pop-name">ウルバヌス2世（在位1088〜1099）</span>
+      <span class="pop-desc">11世紀のローマ教皇。1095年にフランスのクレルモンで行った演説で、聖地エルサレム奪還のための遠征を呼びかけました。十字軍の出発点となった人物です。</span>
+    </span></span>は十字軍を派遣しました。
+    <span class="img-thumb" onclick="openImgModal('erusaremu.png','十字軍の遠征路（エルサレムへ）')">
+      <img src="erusaremu.png" alt="遠征路の地図" onerror="this.style.display='none'">
+      <span class="thumb-label">🗺 地図</span>
+    </span>
+  </p>
+  <p>約200年間に7回ほどの遠征を行いましたが、初回のみ勝利し、以後はことごとく敗れ撤退しました。その結果、<span class="blank" data-id="D">教皇</span>の権威は失墜し、カトリック教会への批判が高まりました。</p>
+  <p>一方、十字軍の遠征路沿いのイタリアでは経済が発展し、アジアとの<span class="blank" data-id="E">東方貿易</span>が盛んになりました。</p>
+  <div class="key-point">⭐ <strong>結果</strong>：①教皇権威の失墜　②イタリア経済の発展・東方貿易の活発化　→ ルネサンス・宗教改革・大航海時代へ</div>
+</div>
+
+<!-- ② ルネサンス -->
+<div class="section">
+  <span class="section-label label-renaissance">② ルネサンス（Renaissance・文芸復興）</span>
+  <h2>ルネサンスとは</h2>
+  <p>カトリック教会がこれまで抑えてきた人間性の自由を求めて、古代ローマ・ギリシャの古典文化を模範とする芸術や文化が復興しました。これを<span class="blank" data-id="F">ルネサンス</span>（文芸復興）といいます。</p>
+  <p>文学では、人間性の自由・解放を求め個人を尊重する<span class="blank" data-id="G">ヒューマニズム</span>（人文主義）が発達しました。</p>
+
+  <h3>📚 主な文学作品</h3>
+  <table class="person-table">
+    <tr><th>作者</th><th>作品</th><th>内容</th></tr>
+    <tr><td>
+      <span class="blank person-pop" data-id="H">ダンテ<span class="pop-box">
+        <img src="dante.png" onerror="this.style.display='none'" alt="ダンテ">
+        <span class="pop-name">ダンテ（1265〜1321）</span>
+        <span class="pop-desc">イタリアの詩人。代表作「神曲」は、暗い森に迷い込んだダンテが古代ローマの詩人に案内されて地獄・煉獄・天国を旅する壮大な詩です。イタリア語で書かれた初期の傑作です。</span>
+      </span></span>
+    </td><td>神曲</td><td>暗い森に迷い込んだダンテが古代ローマの詩人に導かれ地獄・天国を旅する話です。</td></tr>
+    <tr><td>
+      <span class="blank person-pop" data-id="I">エラスムス<span class="pop-box">
+        <img src="erasumusu.png" onerror="this.style.display='none'" alt="エラスムス">
+        <span class="pop-name">エラスムス（1466〜1536）</span>
+        <span class="pop-desc">オランダ出身の人文主義者。著書で当時のカトリック教会や聖職者の堕落を鋭く風刺しました。ルターの宗教改革にも大きな影響を与えた知識人です。</span>
+      </span></span>
+    </td><td>（随筆）</td><td>当時の教会や聖職者への痛烈な風刺批判を述べています。</td></tr>
+    <tr><td>
+      <span class="blank person-pop" data-id="J">セルバンテス<span class="pop-box">
+        <img src="serubantesu.png" onerror="this.style.display='none'" alt="セルバンテス">
+        <span class="pop-name">セルバンテス（1547〜1616）</span>
+        <span class="pop-desc">スペインの作家。「ドン＝キホーテ」は、騎士物語を読みすぎて自分が騎士だと思い込んだ男の冒険譚。近代小説の原点ともいわれる名作です。</span>
+      </span></span>
+    </td><td>
+      ドン＝キホーテ
+      <span class="img-thumb" onclick="openImgModal('donkihote.png','ドン＝キホーテ像（セルバンテス作）')">
+        <img src="donkihote.png" alt="ドン＝キホーテ" onerror="this.style.display='none'">
+        <span class="thumb-label">🖼 作品</span>
+      </span>
+    </td><td>騎士物語を読みすぎた男が自分を騎士と思い込み旅をする話です。</td></tr>
+    <tr><td>
+      <span class="blank person-pop" data-id="K">シェークスピア<span class="pop-box">
+        <img src="sheikuspia.png" onerror="this.style.display='none'" alt="シェークスピア">
+        <span class="pop-name">シェークスピア（1564〜1616）</span>
+        <span class="pop-desc">イギリスの劇作家・詩人。「ヴェニスの商人」「ハムレット」「ロミオとジュリエット」など多くの名作を残し、今も世界中で上演されています。英語文学最大の作家とされています。</span>
+      </span></span>
+    </td><td>ヴェニスの商人</td><td>イタリアの商人アントーニオを主人公とした喜劇です。</td></tr>
+  </table>
+
+  <h3>🎨 主な芸術家</h3>
+  <table class="person-table">
+    <tr><th>芸術家</th><th>主な作品</th></tr>
+    <tr><td>
+      <span class="blank person-pop" data-id="L">レオナルド＝ダ＝ヴィンチ<span class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Leonardo_self.jpg/200px-Leonardo_self.jpg" onerror="this.style.display='none'" alt="ダ＝ヴィンチ">
+        <span class="pop-name">レオナルド＝ダ＝ヴィンチ（1452〜1519）</span>
+        <span class="pop-desc">イタリアのルネサンスを代表する天才。画家・彫刻家・建築家・科学者・発明家など多才な分野で活躍しました。「モナ＝リザ」「最後の晩餐」が代表作です。</span>
+      </span></span>
+    </td><td>
+      <span class="img-thumb" onclick="openImgModal('monariza.png','モナ＝リザ（レオナルド＝ダ＝ヴィンチ）')">
+        <img src="monariza.png" alt="モナ＝リザ" onerror="this.style.display='none'">
+        <span class="thumb-label">🖼 モナ＝リザ</span>
+      </span>
+      <span class="img-thumb" onclick="openImgModal('saigonobansan1.png','最後の晩餐（レオナルド＝ダ＝ヴィンチ）')">
+        <img src="saigonobansan1.png" alt="最後の晩餐" onerror="this.style.display='none'">
+        <span class="thumb-label">🖼 最後の晩餐</span>
+      </span>
+    </td></tr>
+    <tr><td>
+      <span class="blank person-pop" data-id="M">ミケランジェロ<span class="pop-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Miguel_%C3%81ngel%2C_por_Daniele_da_Volterra_%28detalle%29.jpg/200px-Miguel_%C3%81ngel%2C_por_Daniele_da_Volterra_%28detalle%29.jpg" onerror="this.style.display='none'" alt="ミケランジェロ">
+        <span class="pop-name">ミケランジェロ（1475〜1564）</span>
+        <span class="pop-desc">イタリアの天才芸術家。彫刻「ダヴィデ像」やシスティーナ礼拝堂の天井画「最後の審判」が有名です。人体の美しさを徹底的に追求した彫刻は、今も見る人を圧倒します。</span>
+      </span></span>
+    </td><td>
+      <span class="img-thumb" onclick="openImgModal('davide.png','ダヴィデ像（ミケランジェロ）')">
+        <img src="davide.png" alt="ダヴィデ像" onerror="this.style.display='none'">
+        <span class="thumb-label">🖼 ダヴィデ像</span>
+      </span>
+      <span class="img-thumb" onclick="openImgModal('saigonobansan.png','最後の審判（ミケランジェロ）')">
+        <img src="saigonobansan.png" alt="最後の審判" onerror="this.style.display='none'">
+        <span class="thumb-label">🖼 最後の審判</span>
+      </span>
+    </td></tr>
+    <tr><td>ボッティチェリ</td><td>ヴィーナスの誕生</td></tr>
+    <tr><td>ラファエロ</td><td>小椅子の聖母</td></tr>
+  </table>
+  <p>これらの芸術家はイタリアの富豪<span class="blank" data-id="N">メディチ家</span>やローマ教皇・各国国王などに保護されました。</p>
+
+  <h3>🔬 三大技術改良と科学革命</h3>
+  <table class="person-table">
+    <tr><th>技術</th><th>内容</th></tr>
+    <tr><td><span class="blank" data-id="O">羅針盤</span>の改良</td><td>夜の星座を見ずに、昼夜通して帆船での航海が可能になりました。大航海時代を支えた重要な技術です。</td></tr>
+    <tr><td><span class="blank" data-id="P">火薬</span>の改良</td><td>10世紀ごろ中国で発明されました。ヨーロッパでは鉄砲・砲弾の発射用に使われ、戦争のやり方を大きく変えました。</td></tr>
+    <tr><td><span class="blank" data-id="Q">活版印刷術</span>の改良</td><td>ドイツ人の<span class="blank person-pop" data-id="R">グーテンベルク<span class="pop-box">
+      <img src="gutenberugu.png" onerror="this.style.display='none'" alt="グーテンベルク">
+      <span class="pop-name">グーテンベルク（1400頃〜1468）</span>
+      <span class="pop-desc">ドイツの発明家。活版印刷機を発明し、聖書を大量印刷することに成功しました。この技術のおかげで本が安く普及し、ルターの宗教改革の広がりにも大きく貢献しました。</span>
+    </span></span>が発明・発展させました。本が安く大量に作れるようになり、知識が広まりました。</td></tr>
+  </table>
+  <p>科学革命では、<span class="blank person-pop" data-id="S">コペルニクス<span class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Nikolaus_Kopernikus.jpg/200px-Nikolaus_Kopernikus.jpg" onerror="this.style.display='none'" alt="コペルニクス">
+      <span class="pop-name">コペルニクス（1473〜1543）</span>
+      <span class="pop-desc">ポーランドの天文学者。当時の常識だった「地球が宇宙の中心」という天動説を否定し、「太陽が中心」という地動説を唱えました。教会の反発を恐れ、死の直前まで出版をためらいました。</span>
+    </span></span>（ポーランド人）が地動説を唱え、<span class="blank person-pop" data-id="T">ガリレオ＝ガリレイ<span class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Justus_Sustermans_-_Portrait_of_Galileo_Galilei%2C_1636.jpg/200px-Justus_Sustermans_-_Portrait_of_Galileo_Galilei%2C_1636.jpg" onerror="this.style.display='none'" alt="ガリレオ">
+      <span class="pop-name">ガリレオ＝ガリレイ（1564〜1642）</span>
+      <span class="pop-desc">イタリアの物理学者・天文学者。自作の望遠鏡で天体を観測し地動説を証明しようとしましたが、ローマ教会の異端審問所に呼ばれ、自説を撤回させられました。「それでも地球は動く」という言葉が有名です。</span>
+    </span></span>（イタリア人）が望遠鏡で天体観測し地動説を主張しました。しかしローマ教会の異端審問所にかけられ、自説を放棄しました。</p>
+  <p>フィレンツェの政治家<span class="blank person-pop" data-id="U">マキアヴェリ<span class="pop-box">
+      <img src="makiaberi.png" onerror="this.style.display='none'" alt="マキアヴェリ">
+      <span class="pop-name">マキアヴェリ（1469〜1527）</span>
+      <span class="pop-desc">イタリア、フィレンツェの政治家・思想家。著書「君主論」では「国を守るためなら、君主は道徳に反することをしても構わない」と説き、宗教と政治の切り離しを主張しました。</span>
+    </span></span>は、宗教・道徳と政治の切り離しを説いた「君主論」を著しました。</p>
+  <div class="key-point">⭐ <strong>2つのR</strong>：Renaissance（ルネサンス）＝文芸復興　／　Religious Reform（宗教改革）＝次の単元へ！</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai1_quiz.html'" disabled>確認問題へ ▶</button>
+      <button id="test-btn" onclick="location.href='kindai1_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①十字軍の失敗 → 教皇権威失墜・東方貿易発展<br>
+      ②三大技術：羅針盤・火薬・活版印刷術（グーテンベルク）<br>
+      ③地動説：コペルニクス（ポーランド）、ガリレオ＝ガリレイ（イタリア）<br>
+      ④芸術：レオナルド＝ダ＝ヴィンチ（モナ＝リザ）・ミケランジェロ（ダヴィデ像）
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS = {
+  "セルジューク朝":"11世紀にトルコ系民族が建てたイスラーム帝国。エルサレムを支配したため、キリスト教徒との争いが起き十字軍派遣のきっかけとなりました。",
+  "イェルサレム":"ユダヤ教・キリスト教・イスラーム教の三大宗教にとっての聖地。現在のイスラエルにあります。この地をめぐって十字軍の遠征が起こりました。",
+  "ウルバヌス2世":"1095年、クレルモン公会議で聖地奪還を呼びかけ、第1回十字軍を組織したローマ教皇。",
+  "教皇":"カトリック教会のトップ（最高指導者）。ローマに住み、中世ヨーロッパで絶大な権威を持っていましたが、十字軍の失敗で影響力が低下しました。",
+  "東方貿易":"ヨーロッパとアジア（東方）の間で行われた貿易。香辛料・絹・宝石などがアジアから輸入され、イタリアの商人が大きな利益を得ました。",
+  "ルネサンス":"14〜16世紀にイタリアで始まった文化運動。「再生・復興」を意味し、古代ギリシャ・ローマの人間中心の文化を復活させようとしました。",
+  "ヒューマニズム":"人間の価値・尊厳・個性を大切にしようという考え方。神や教会中心の中世的価値観から脱し、人間を主役に据えたルネサンスの核心的な精神です。",
+  "ダンテ":"イタリアの詩人（1265〜1321）。「神曲」の作者。地獄・煉獄・天国を旅する壮大な詩を書き、イタリア語文学の基礎を作りました。",
+  "エラスムス":"オランダの人文主義者（1466〜1536）。教会の堕落を風刺した作品を書き、宗教改革に影響を与えました。",
+  "セルバンテス":"スペインの作家（1547〜1616）。「ドン＝キホーテ」の作者。近代小説の先駆けとされています。",
+  "シェークスピア":"イギリスの劇作家（1564〜1616）。「ハムレット」「ロミオとジュリエット」など多くの名作を書き、英語文学最大の作家とされています。",
+  "レオナルド＝ダ＝ヴィンチ":"イタリアの天才芸術家・科学者（1452〜1519）。「モナ＝リザ」「最後の晩餐」が代表作。絵画・解剖学・工学など多分野で業績を残しました。",
+  "ミケランジェロ":"イタリアの天才彫刻家・画家（1475〜1564）。「ダヴィデ像」や「最後の審判」で知られます。",
+  "メディチ家":"15〜16世紀のフィレンツェで活躍した大富豪の家柄。レオナルドやミケランジェロなどのルネサンス芸術家を経済的に支援しました。",
+  "羅針盤":"磁石を使って方角を知る道具。昼夜・天気に関係なく航海できるようになり、大航海時代を支えました。中国で発明され、ヨーロッパで改良されました。",
+  "火薬":"爆発エネルギーを使う物質。中国で発明され、ヨーロッパでは鉄砲・大砲に応用されました。戦争の形を大きく変えた革命的な発明です。",
+  "活版印刷術":"金属の活字を並べて印刷する技術。グーテンベルクが改良し、本を大量に安く作れるようになりました。知識の普及と宗教改革に大きく貢献しました。",
+  "グーテンベルク":"ドイツの発明家（1400頃〜1468）。活版印刷機を発明し、聖書を大量に印刷しました。この発明が知識の民主化を進めました。",
+  "コペルニクス":"ポーランドの天文学者（1473〜1543）。「地球が動いている（地動説）」を唱えた人物。教会の教えに反するため、死の直前まで出版をためらいました。",
+  "ガリレオ＝ガリレイ":"イタリアの科学者（1564〜1642）。望遠鏡で地動説を証明しようとしましたが、ローマ教会に自説を撤回させられました。「それでも地球は動く」という言葉が有名です。",
+  "マキアヴェリ":"イタリアの政治家・思想家（1469〜1527）。著書「君主論」で「政治は道徳から独立すべき」と主張し、近代政治学の先駆者とされています。",
+};
+
+const answers={
+  "A":"セルジューク朝","B":"イェルサレム","C":"ウルバヌス2世","D":"教皇","E":"東方貿易",
+  "F":"ルネサンス","G":"ヒューマニズム","H":"ダンテ","I":"エラスムス","J":"セルバンテス","K":"シェークスピア",
+  "L":"レオナルド＝ダ＝ヴィンチ","M":"ミケランジェロ","N":"メディチ家",
+  "O":"羅針盤","P":"火薬","Q":"活版印刷術","R":"グーテンベルク","S":"コペルニクス","T":"ガリレオ＝ガリレイ","U":"マキアヴェリ"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+
+document.querySelectorAll('.person-pop').forEach(el=>{
+  el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});
+});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+
+let startTime,timerId,selectedChip=null;
+function renderBank(){
+  const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";
+  [...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{
+    const chip=document.createElement('div');chip.className='word-chip';
+    const label=document.createElement('span');label.textContent=word;chip.appendChild(label);
+    const tip=WORD_TIPS[word];
+    if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);
+      chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}
+    chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});
+    bank.appendChild(chip);
+  });
+}
+function getBlankText(b){
+  // blank.person-pop の場合、pop-box の中身は除いてテキストだけ取得
+  if(b.classList.contains('person-pop')){
+    const clone=b.cloneNode(true);
+    const pb=clone.querySelector('.pop-box');if(pb)pb.remove();
+    return clone.textContent.trim();
+  }
+  return b.textContent.trim();
+}
+function setBlankText(b,txt){
+  if(b.classList.contains('person-pop')){
+    // pop-box は残し、直接のテキストノードだけ書き換え
+    for(const node of [...b.childNodes]){if(node.nodeType===3)node.textContent=txt;}
+  } else {
+    b.textContent=txt;
+  }
+}
+function clearBlankText(b){
+  if(b.classList.contains('person-pop')){
+    for(const node of [...b.childNodes]){if(node.nodeType===3)node.textContent="";}
+  } else {
+    b.textContent="";
+  }
+}
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});
+  renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);
+  timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);
+}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{
+  if(selectedChip){
+    const old=getBlankText(blank);
+    if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});
+    setBlankText(blank,getChipWord(selectedChip));
+    selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;
+  } else {
+    const txt=getBlankText(blank);
+    if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}
+  }
+};});
+function checkAnswers(){
+  let ok=true;
+  document.querySelectorAll('.blank').forEach(b=>{
+    if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');
+    else{ok=false;b.classList.remove('correct');}
+  });
+  if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}
+}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai1']=p['kindai1']||{};p['kindai1'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

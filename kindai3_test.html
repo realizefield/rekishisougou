@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：大航海時代</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .q-num{font-size:12px;color:#1e6b22;font-weight:bold;margin-bottom:8px}
+  .q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+  .choice:hover{border-color:#1e6b22;background:#f0fff0}
+  .choice.selected{border-color:#1e6b22;background:#c0f0c0;color:#0d3d10;font-weight:bold}
+  .choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+  .choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+  .choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+  .footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer}
+  .btn-primary{background:#1e6b22;color:#fff;box-shadow:0 3px 0 #0d3d10}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  #result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+  .result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+  .result-score{font-size:72px;font-weight:bold;margin:10px 0}
+  .result-score.pass{color:#1e6b22}.result-score.fail{color:#e67e22}
+  .result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+  .result-detail{font-size:15px;color:#888;margin-bottom:30px}
+  .confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+  @keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代③ 大航海時代</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai3.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai3_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-secondary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <a class="btn btn-secondary" href="kindai3_quiz.html">✏️ 確認問題へ</a>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID='kindai3',PASS=70;
+const questions=[
+  {q:'「東方見聞録」で黄金の島「ジパング（日本）」を紹介したイタリアの商人は誰ですか？',choices:['エンリケ航海王子','コロンブス','マルコ＝ポーロ','マゼラン'],ans:2},
+  {q:'アフリカ探検を積極的に支援し「大航海時代の父」と呼ばれるポルトガルの人物は誰ですか？',choices:['バルトロメウ＝ディアス','エンリケ航海王子','ヴァスコ＝ダ＝ガマ','コロンブス'],ans:1},
+  {q:'1488年にアフリカ最南端の喜望峰に到達したポルトガルの探検家は誰ですか？',choices:['ヴァスコ＝ダ＝ガマ','エンリケ航海王子','バルトロメウ＝ディアス','マゼラン'],ans:2},
+  {q:'1498年に喜望峰を回ってインドのカリカットに到達したポルトガルの航海者は誰ですか？',choices:['コロンブス','マゼラン','バルトロメウ＝ディアス','ヴァスコ＝ダ＝ガマ'],ans:3},
+  {q:'1492年、スペイン女王イサベルの支援を受け西回りでカリブ海に到達した航海者は誰ですか？',choices:['マゼラン','コルテス','コロンブス','アメリゴ＝ヴェスプッチ'],ans:2},
+  {q:'コロンブスが到達した土地を「新大陸」と命名し、「アメリカ」という地名の由来となった探検家は誰ですか？',choices:['ヴァスコ＝ダ＝ガマ','バルボア','マゼラン','アメリゴ＝ヴェスプッチ'],ans:3},
+  {q:'1494年にスペインとポルトガルの領有権を分割した条約は何ですか？',choices:['ウェストファリア条約','カトー＝カンブレジ条約','トルデシリャス条約','アウグスブルクの宗教和議'],ans:2},
+  {q:'1519〜22年に世界一周を試みたポルトガル出身の航海者は誰ですか？',choices:['コロンブス','コルテス','マゼラン','ピサロ'],ans:2},
+  {q:'スペイン人のコルテスが征服したメキシコの帝国はどれですか？',choices:['インカ帝国','マヤ文明','アステカ王国','オルメカ文明'],ans:2},
+  {q:'スペイン人のピサロが征服した南米ペルーの帝国はどれですか？',choices:['アステカ王国','インカ帝国','マヤ文明','チムー王国'],ans:1},
+  {q:'スペインが征服地の先住民（インディオ）に強制労働を課した制度を何といいますか？',choices:['ミッレト制','ティマール制','エンコミエンダ制','コンキスタドール制'],ans:2},
+  {q:'インディオへの残酷な扱いを批判してエンコミエンダ制の廃止を訴えたスペインの聖職者は誰ですか？',choices:['コルテス','ピサロ','ザビエル','ラス＝カサス'],ans:3},
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById('questions-area');area.innerHTML='';questions.forEach((q,qi)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${['①','②','③','④'][ci]}</span>${c}</div>`).join('')}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle('selected',i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add('show-correct');if(ua===ci&&ci!==q.ans)el.classList.add('wrong');if(ua===ci&&ci===q.ans){el.classList.add('correct');correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;p[UNIT_ID].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}document.getElementById('quiz-screen').style.display='none';const rs=document.getElementById('result-screen');rs.style.display='block';const se=document.getElementById('result-score');se.textContent=score+'点';se.className='result-score '+(pass?'pass':'fail');document.getElementById('result-msg').textContent=pass?'🎉 合格！':'😅 おしい！';document.getElementById('result-detail').textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=['#f43f5e','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899'];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+'s';el.style.width=(6+Math.random()*8)+'px';el.style.height=(6+Math.random()*8)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

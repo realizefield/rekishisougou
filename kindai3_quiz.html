@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：大航海時代</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  .back-btn:hover{background:#1e2d6b}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#1e6b22;border-left:4px solid #1e6b22;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.6;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #1e6b22;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1e6b22;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#c0f0c0;color:#0d3d10;border-color:#1e6b22}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f0fff0;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#1e6b22;background:#e0ffe0}
+  .word-chip.selected{border-color:#1e6b22;background:#90d890;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1e6b22;color:#fff;box-shadow:0 3px 0 #0d3d10}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#1e6b22;color:#1e6b22;background:#e0ffe0}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代③ 大航海時代</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">⚓ 大航海の背景・ポルトガルの航路開拓</div>
+  <div class="question-text">
+    「東方見聞録」で黄金の島<span class="blank" data-ans="ジパング（日本）">ジパング（日本）</span>を紹介したイタリアの商人は<span class="blank" data-ans="マルコ＝ポーロ">マルコ＝ポーロ</span>です。ヨーロッパでは肉の臭み消しに使う<span class="blank" data-ans="香辛料">香辛料</span>が求められましたが、陸路は<span class="blank" data-ans="オスマン帝国">オスマン帝国</span>に遮断されていました。<span class="blank" data-ans="羅針盤">羅針盤</span>の改良により新航路の探索が始まりました。<br><br>
+    ポルトガルの<span class="blank" data-ans="エンリケ航海王子">エンリケ航海王子</span>はアフリカ探検を支援し、1488年に<span class="blank" data-ans="バルトロメウ＝ディアス">バルトロメウ＝ディアス</span>がアフリカ最南端の<span class="blank" data-ans="喜望峰">喜望峰</span>に到達しました。1498年には<span class="blank" data-ans="ヴァスコ＝ダ＝ガマ">ヴァスコ＝ダ＝ガマ</span>がインドの<span class="blank" data-ans="カリカット">カリカット</span>に到達しました。後にポルトガルは中国の<span class="blank" data-ans="マカオ">マカオ</span>を拠点としました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">⛵ スペインの活躍・世界一周</div>
+  <div class="question-text">
+    1492年、<span class="blank" data-ans="コロンブス">コロンブス</span>は西回りでインドを目指し、カリブ海の<span class="blank" data-ans="サンサルバドル島">サンサルバドル島</span>に到達しました。住民を「<span class="blank" data-ans="インディオ">インディオ</span>」と呼びました。その後<span class="blank" data-ans="アメリゴ＝ヴェスプッチ">アメリゴ＝ヴェスプッチ</span>が「新大陸」と命名し「アメリカ」の名が付きました。1494年に<span class="blank" data-ans="トルデシリャス条約">トルデシリャス条約</span>でスペインとポルトガルの領有が分割されました。<br><br>
+    1519〜22年、<span class="blank" data-ans="マゼラン">マゼラン</span>が世界一周を試み、<span class="blank" data-ans="マゼラン海峡">マゼラン海峡</span>を通りましたが、フィリピンで戦死しました。部下が帰国し<span class="blank" data-ans="地球が球体">地球が球体</span>であることを証明しました。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">⚔️ スペインによるアメリカ征服</div>
+  <div class="question-text">
+    スペイン王<span class="blank" data-ans="カルロス1世">カルロス1世</span>は征服を命じました。<span class="blank" data-ans="コルテス">コルテス</span>がメキシコの<span class="blank" data-ans="アステカ王国">アステカ王国</span>を、<span class="blank" data-ans="ピサロ">ピサロ</span>がペルーの<span class="blank" data-ans="インカ帝国">インカ帝国</span>を征服しました。これらの征服者を<span class="blank" data-ans="コンキスタドール">コンキスタドール</span>といいます。征服後は先住民への強制労働を認める<span class="blank" data-ans="エンコミエンダ制">エンコミエンダ制</span>が敷かれ、聖職者の<span class="blank" data-ans="ラス＝カサス">ラス＝カサス</span>がその廃止を訴えました。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai3.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">チャレンジ開始</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai3_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai3';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['ジパング（日本）','マルコ＝ポーロ','香辛料','オスマン帝国','羅針盤','エンリケ航海王子','バルトロメウ＝ディアス','喜望峰','ヴァスコ＝ダ＝ガマ','カリカット','マカオ']);
+  buildBank('bank1',['コロンブス','サンサルバドル島','インディオ','アメリゴ＝ヴェスプッチ','トルデシリャス条約','マゼラン','マゼラン海峡','地球が球体']);
+  buildBank('bank2',['カルロス1世','コルテス','アステカ王国','ピサロ','インカ帝国','コンキスタドール','エンコミエンダ制','ラス＝カサス']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄をもう一度確認しましょう！`;}window.scrollTo(0,0);}
+</script>
+</body>
+</html>

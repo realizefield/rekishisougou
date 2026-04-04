@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：十字軍の失敗・2つのR</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  .back-btn:hover{background:#1e2d6b}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#6a0dad;border-left:4px solid #6a0dad;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.6;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #6a0dad;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#6a0dad;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#e8d5ff;color:#3d007a;border-color:#6a0dad}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f9f0ff;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#6a0dad;background:#f0e0ff}
+  .word-chip.selected{border-color:#6a0dad;background:#d4aaff;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#6a0dad;color:#fff;box-shadow:0 3px 0 #3d007a}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#6a0dad;color:#6a0dad;background:#f0e0ff}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代① 十字軍の失敗・2つのR</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">✝️ 十字軍の遠征</div>
+  <div class="question-text">
+    1096年、<span class="blank" data-ans="セルジューク朝">セルジューク朝</span>がキリスト教の聖地<span class="blank" data-ans="イェルサレム">イェルサレム</span>を奪ったため、ローマ教皇<span class="blank" data-ans="ウルバヌス2世">ウルバヌス2世</span>は十字軍を派遣しました。約200年の遠征は失敗し、<span class="blank" data-ans="教皇">教皇</span>の権威は失墜しました。一方、遠征路沿いのイタリアでは<span class="blank" data-ans="東方貿易">東方貿易</span>が盛んになりました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🎨 ルネサンス・文学・芸術</div>
+  <div class="question-text">
+    古代ローマ・ギリシャ文化を模範とする文化運動を<span class="blank" data-ans="ルネサンス">ルネサンス</span>（文芸復興）といいます。人間の尊厳・個性を重んじる<span class="blank" data-ans="ヒューマニズム">ヒューマニズム</span>（人文主義）が発達しました。<br><br>
+    「神曲」の詩人は<span class="blank" data-ans="ダンテ">ダンテ</span>、教会を風刺した随筆を書いたのは<span class="blank" data-ans="エラスムス">エラスムス</span>、「ドン＝キホーテ」の作者は<span class="blank" data-ans="セルバンテス">セルバンテス</span>、「ヴェニスの商人」の劇作家は<span class="blank" data-ans="シェークスピア">シェークスピア</span>です。<br><br>
+    「モナ＝リザ」「最後の晩餐」を描いたのは<span class="blank" data-ans="レオナルド＝ダ＝ヴィンチ">レオナルド＝ダ＝ヴィンチ</span>、「ダヴィデ像」「最後の審判」を制作したのは<span class="blank" data-ans="ミケランジェロ">ミケランジェロ</span>です。芸術家たちを支援したフィレンツェの富豪を<span class="blank" data-ans="メディチ家">メディチ家</span>といいます。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🔬 三大技術改良・科学革命</div>
+  <div class="question-text">
+    三大技術改良は<span class="blank" data-ans="羅針盤">羅針盤</span>・<span class="blank" data-ans="火薬">火薬</span>・<span class="blank" data-ans="活版印刷術">活版印刷術</span>の改良です。活版印刷術はドイツ人の<span class="blank" data-ans="グーテンベルク">グーテンベルク</span>が発展させました。<br><br>
+    地動説を唱えたポーランドの天文学者は<span class="blank" data-ans="コペルニクス">コペルニクス</span>、望遠鏡で地動説を証明しようとしたイタリアの科学者は<span class="blank" data-ans="ガリレオ＝ガリレイ">ガリレオ＝ガリレイ</span>です。「君主論」を著したフィレンツェの政治家は<span class="blank" data-ans="マキアヴェリ">マキアヴェリ</span>です。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai1.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">チャレンジ開始</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai1_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai1';
+let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['セルジューク朝','イェルサレム','ウルバヌス2世','教皇','東方貿易']);
+  buildBank('bank1',['ルネサンス','ヒューマニズム','ダンテ','エラスムス','セルバンテス','シェークスピア','レオナルド＝ダ＝ヴィンチ','ミケランジェロ','メディチ家']);
+  buildBank('bank2',['羅針盤','火薬','活版印刷術','グーテンベルク','コペルニクス','ガリレオ＝ガリレイ','マキアヴェリ']);
+}
+function buildBank(id,words){
+  const b=document.getElementById(id);b.innerHTML='';
+  [...words].sort(()=>Math.random()-0.5).forEach(w=>{
+    const c=document.createElement('div');c.className='word-chip';c.textContent=w;
+    c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};
+    b.appendChild(c);
+  });
+}
+function fillBlank(b){
+  if(!sel)return;
+  if(b.textContent!=='？'){
+    const old=b.textContent;
+    document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old){c.classList.remove('used');}});
+  }
+  b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;
+}
+function checkAnswers(){
+  let ok=0,total=0;
+  document.querySelectorAll('.blank').forEach(b=>{
+    total++;
+    if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}
+    else{b.classList.remove('correct');b.classList.add('wrong');}
+  });
+  const bar=document.getElementById('result-bar');bar.style.display='block';
+  if(ok===total){
+    bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;
+    try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}
+  }else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄をもう一度確認しましょう！`;}
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

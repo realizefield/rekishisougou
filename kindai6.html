@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：江戸幕府の外交と鎖国</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a3d5c;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a3d5c;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#0d2333;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
+  .word-bank{border:2px solid #1a3d5c;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-bakuhan{background:#1a3d5c}.label-sakoku{background:#0d2333}.label-trade{background:#2d6a3f}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a3d5c;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a3d5c;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eaf2ff;border-left:5px solid #1a3d5c;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a3d5c}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#1a3d5c;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f0f6ff}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a3d5c;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d2333}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a3d5c;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a3d5c;background-color:#eaf2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#ddeeff;border:1.5px solid #1a3d5c;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#0d2333;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#b8d0f0}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a3d5c;cursor:pointer;color:#0d2333;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #1a3d5c;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box img{width:80px;height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #90bef5}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d2333;margin-bottom:6px}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a3d5c}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🗾 江戸幕府の外交と鎖国</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- 幕藩体制 -->
+<div class="section">
+  <span class="section-label label-bakuhan">① 幕藩体制</span>
+  <h2>江戸幕府の成立</h2>
+  <p>1600年<span class="blank" data-id="A">関ヶ原の戦い</span>で
+    <span class="person-pop">徳川家康<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Tokugawa_Ieyasu2.jpg/200px-Tokugawa_Ieyasu2.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">徳川家康（1543〜1616）</div>
+      <div class="pop-desc">江戸幕府の初代将軍。豊臣秀吉の死後、1600年の関ヶ原の戦いで勝利し、1603年に征夷大将軍に任命されて江戸に幕府を開きました。その後260年以上続く江戸時代の基盤を作りました。</div>
+    </div></span>
+    が勝利し、1603年に征夷大将軍に任じられ<span class="blank" data-id="C">江戸幕府</span>を開きました。</p>
+  <p>将軍と約260の大名とが主従関係で結ばれた<span class="blank" data-id="D">幕藩体制</span>で成り立っていました。各大名は領地の支配を幕府に認めてもらう代わりに、将軍に対し土木工事などの<span class="blank" data-id="E">軍役</span>を負いました。</p>
+</div>
+
+<!-- 鎖国 -->
+<div class="section">
+  <span class="section-label label-sakoku">② 幕府の外交と鎖国</span>
+  <h2>朱印船貿易</h2>
+  <p>徳川家康は東南アジアとの貿易船に許可状である<span class="blank" data-id="F">朱印状</span>をもたせる<span class="blank" data-id="G">朱印船貿易</span>を行いました。東南アジアの各地に<span class="blank" data-id="H">日本町</span>が作られ、銀・銅・刀剣などを輸出し、生糸・絹織物などを輸入しました。</p>
+
+  <h2>鎖国の完成</h2>
+  <p>2代目将軍
+    <span class="person-pop">徳川秀忠<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tokugawa_Hidetada.jpg/200px-Tokugawa_Hidetada.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">徳川秀忠（1579〜1632）</div>
+      <div class="pop-desc">江戸幕府2代将軍。家康の3男。キリスト教の広まりを恐れ、禁教政策を強化しました。大名統制の「武家諸法度」も整備し、幕府の支配体制を固めました。</div>
+    </div></span>・3代目将軍
+    <span class="person-pop">徳川家光<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Tokugawa_Iemitsu.jpg/200px-Tokugawa_Iemitsu.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">徳川家光（1604〜1651）</div>
+      <div class="pop-desc">江戸幕府3代将軍。参勤交代を制度化し、1635年に鎖国令を出しました。1637年の島原の乱を鎮圧後、ポルトガル船の来港を禁止し、オランダ商館を出島に移して鎖国を完成させました。</div>
+    </div></span>
+    はキリスト教の拡大を恐れました。</p>
+  <table class="person-table">
+    <tr><th>年</th><th>できごと</th></tr>
+    <tr><td>1635年</td><td><span class="blank" data-id="K">鎖国令</span>…日本人の海外渡航と帰国を禁止しました。</td></tr>
+    <tr><td>1637年</td><td><span class="blank" data-id="L">島原の乱</span>…キリシタン農民の一揆を平定しました。
+      <span class="img-thumb" onclick="openImgModal('https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Amakusa_Shiro.jpg/400px-Amakusa_Shiro.jpg','天草四郎（島原の乱のリーダー）')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Amakusa_Shiro.jpg/400px-Amakusa_Shiro.jpg" alt="天草四郎" onerror="this.style.display='none'">
+        <span class="thumb-label">🖼 天草四郎</span>
+      </span>
+    </td></tr>
+    <tr><td>1639年</td><td><span class="blank" data-id="M">ポルトガル</span>船の来航を禁止しました。</td></tr>
+    <tr><td>1641年</td><td>オランダ商館を長崎の<span class="blank" data-id="N">出島</span>に移し、貿易相手国を中国と<span class="blank" data-id="O">オランダ</span>に限り<span class="blank" data-id="P">鎖国</span>が完成しました。</td></tr>
+  </table>
+  <p>島原の乱ののち、隠れキリシタンを見つけるため<span class="blank" data-id="Q">絵踏</span>を行い、すべての人をいずれかの仏教寺院の檀家に組み入れる<span class="blank" data-id="R">寺請制度</span>を実施しました。</p>
+  <div class="key-point">⭐ <strong>鎖国の流れ</strong>：鎖国令(1635)→島原の乱(1637)→ポルトガル禁止(1639)→出島(1641)→鎖国完成</div>
+</div>
+
+<!-- 各地との貿易 -->
+<div class="section">
+  <span class="section-label label-trade">③ 各地との貿易（4つの窓口）</span>
+  <h2>朝鮮・中国・琉球・蝦夷との貿易</h2>
+  <table class="person-table">
+    <tr><th>相手</th><th>窓口</th><th>内容</th></tr>
+    <tr><td>中国（清）</td><td>長崎（出島）</td><td>長崎の出島で中国の明、後に清と貿易をしました。</td></tr>
+    <tr><td>オランダ</td><td>長崎（出島）</td><td>唯一のヨーロッパ貿易相手国。ガラス・砂糖・織物などを輸入し、「蘭学」の窓口となりました。</td></tr>
+    <tr><td>朝鮮</td><td><span class="blank" data-id="S">対馬藩</span>（宗氏）</td><td>豊臣秀吉の朝鮮出兵ののち講和を実現し、<span class="blank" data-id="T">宗氏</span>に貿易の独占を認めました。朝鮮通信使が将軍の代替わりなどに来日しました。</td></tr>
+    <tr><td>琉球</td><td><span class="blank" data-id="V">薩摩藩</span>（島津氏）</td><td>15世紀に<span class="person-pop">尚巴志<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Sh%C5%8D_Hashi_Portrait.jpg/200px-Sh%C5%8D_Hashi_Portrait.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">尚巴志（1372〜1439）</div>
+      <div class="pop-desc">15世紀前半に沖縄島を統一した琉球王国の王。それまで南山・中山・北山の3つに分かれていた沖縄を統一し、琉球王国を建国しました。</div>
+    </div></span>が統一した琉球王国は中継貿易で栄えていましたが、1609年に<span class="blank" data-id="W">島津氏</span>に支配されました。薩摩藩向けに<span class="blank" data-id="X">砂糖（サトウキビ）</span>を輸出しました。</td></tr>
+    <tr><td>蝦夷（北海道）</td><td><span class="blank" data-id="Y">松前藩</span></td><td>徳川家康は蝦夷地のアイヌの人々との貿易独占権を松前藩に与えました。アイヌの人々からサケ・ニシン・昆布・ラッコの毛皮などを輸入しました。</td></tr>
+  </table>
+  <div class="key-point">⭐ <strong>4つの窓口</strong>：長崎（中国・オランダ）・対馬（朝鮮）・薩摩（琉球）・松前（蝦夷・アイヌ）</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai6_quiz.html'" disabled>確認問題へ ▶</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①幕藩体制：徳川家康→関ヶ原(1600)→江戸幕府(1603)<br>
+      ②朱印船貿易→鎖国令(1635)→島原の乱(1637)→ポルトガル禁止(1639)→出島(1641)→鎖国完成<br>
+      ③4つの窓口：長崎(中国・オランダ)・対馬(朝鮮/宗氏)・薩摩(琉球/島津氏)・松前(蝦夷/アイヌ)
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "関ヶ原の戦い":"1600年に美濃国（現在の岐阜県）関ヶ原で起きた天下分け目の大戦。徳川家康率いる東軍が石田三成率いる西軍を破り、江戸幕府成立への道を開きました。",
+  "徳川家康":"江戸幕府初代将軍（1543〜1616）。関ヶ原の戦いで勝利し、1603年に征夷大将軍に就任。江戸に幕府を開き、260年以上続く江戸時代の基盤を作りました。",
+  "江戸幕府":"徳川家康が1603年に江戸（現在の東京）に開いた武家政権。約260年続いた日本の政府で、幕藩体制という仕組みで全国を支配しました。",
+  "幕藩体制":"将軍と約260の大名（藩主）が主従関係で結ばれた江戸幕府の支配体制。幕府（将軍）が全体を支配し、各藩（大名）が自分の領地を治める仕組みです。",
+  "軍役":"大名が将軍に対して提供する兵役・労働奉仕のこと。土木工事・建設なども含まれました。参勤交代もその一形態で、大名の財力を削ぐ効果もありました。",
+  "朱印状":"徳川家康が東南アジア貿易の許可船に与えた赤い印のついた許可証。これを持った船が「朱印船」で、安全に外国と貿易ができました。",
+  "朱印船貿易":"徳川家康が東南アジアとの間で行った公認貿易。幕府が発行した朱印状を持った船が、東南アジア各地と取引しました。1635年の鎖国令で終わりました。",
+  "日本町":"東南アジア各地に形成された日本人居留地。朱印船貿易が盛んな17世紀初めに発展しました。シャム（タイ）のアユタヤの日本町が有名で、山田長政が活躍しました。",
+  "徳川秀忠":"江戸幕府2代将軍（1579〜1632）。禁教政策を強化し、武家諸法度を整備して大名統制を固めました。",
+  "徳川家光":"江戸幕府3代将軍（1604〜1651）。参勤交代の制度化、鎖国令、島原の乱の鎮圧など、幕府支配の基盤をより固めた将軍です。",
+  "鎖国令":"1635年に3代将軍家光が出した命令。日本人の海外渡航と帰国を禁止し、外国との貿易を幕府の管理下に置きました。",
+  "島原の乱":"1637〜38年に九州の島原・天草地方で起きたキリシタン農民の一揆。天草四郎を総大将とし、重い税とキリスト教弾圧に苦しんだ農民が武器を持って立ち上がりました。",
+  "ポルトガル":"大航海時代に活躍したヨーロッパの国。日本にキリスト教を伝え、南蛮貿易を行っていましたが、キリスト教を積極的に広めたため1639年に来港禁止となりました。",
+  "出島":"長崎港内の人工島。1634年に築かれ、オランダ商館をここに移すことで鎖国が完成しました。日本の外界への唯一の窓口として、西洋の文化・技術（蘭学）が入ってきました。",
+  "オランダ":"ヨーロッパの国。鎖国中も唯一ヨーロッパの国として貿易を許されました。理由は貿易優先でキリスト教布教に積極的でなかったからです。「蘭学」の源となりました。",
+  "鎖国":"江戸幕府が行った外国との交流を厳しく制限する政策（1639〜1854年）。貿易を長崎の出島に限定し、日本人の海外渡航・帰国も禁止しました。",
+  "絵踏":"隠れキリシタンを見つけるために幕府が行った宗教踏み絵の制度。キリスト・聖母マリアの像を踏ませ、踏めない者をキリシタンと判断しました。",
+  "寺請制度":"すべての人がいずれかの仏教寺院の檀家になることを義務付けた制度。寺院が戸籍管理を担い、キリシタンでないことの証明にも使われました。",
+  "対馬藩":"長崎県の対馬島を支配した藩。朝鮮との外交・貿易の窓口として機能しました。宗氏が代々藩主を務め、朝鮮通信使の接待なども担いました。",
+  "宗氏":"対馬藩の藩主の家柄。朝鮮との外交・貿易を独占し、江戸時代を通じて日朝関係の中継役を果たしました。",
+  "尚巴志":"15世紀に沖縄を統一して琉球王国を建国した王（1372〜1439）。中山・南山・北山の三国を統一しました。",
+  "薩摩藩":"現在の鹿児島県を支配した藩。1609年に琉球王国を征服し、琉球を通じた中国との貿易利益を得ました。西郷隆盛・大久保利通など明治維新の中心人物も輩出しました。",
+  "島津氏":"薩摩藩の藩主の家柄。1609年に琉球王国を征服し、中国（清）との貿易利益も間接的に手にしました。",
+  "砂糖（サトウキビ）":"琉球（沖縄）が薩摩藩向けに輸出した主要産品。江戸時代、砂糖は高級品で重要な交易品でした。",
+  "松前藩":"北海道南部（松前）を支配した藩。徳川家康から蝦夷地のアイヌとの貿易独占権を与えられました。アイヌとの不平等な交易が後の民族問題につながりました。",
+};
+const answers={"A":"関ヶ原の戦い","B":"徳川家康","C":"江戸幕府","D":"幕藩体制","E":"軍役","F":"朱印状","G":"朱印船貿易","H":"日本町","I":"徳川秀忠","J":"徳川家光","K":"鎖国令","L":"島原の乱","M":"ポルトガル","N":"出島","O":"オランダ","P":"鎖国","Q":"絵踏","R":"寺請制度","S":"対馬藩","T":"宗氏","U":"尚巴志","V":"薩摩藩","W":"島津氏","X":"砂糖（サトウキビ）","Y":"松前藩"};
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{b.textContent="";b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=blank.textContent;if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});blank.textContent=getChipWord(selectedChip);selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else if(blank.textContent){const txt=blank.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});blank.textContent="";}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(b.textContent===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai6']=p['kindai6']||{};p['kindai6'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

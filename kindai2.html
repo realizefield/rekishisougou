@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：宗教改革</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a5276;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a5276;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
+  .word-bank{border:2px solid #1a5276;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-luther{background:#1a5276}
+  .label-calvin{background:#1e6b22}
+  .label-england{background:#7d3c00}
+  .label-counter{background:#6e2c00}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a5276;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a5276;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eaf2ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a5276}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a5276;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d2d42}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a5276;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a5276;background-color:#eaf2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#ddeeff;border:1.5px solid #1a5276;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#0d2d42;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#c0d8f0}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a5276;cursor:pointer;color:#0d2d42;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #1a5276;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box img{width:80px;height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #90bef5}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d2d42;margin-bottom:6px}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a5276}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>⛪ 宗教改革（Religious Reform）</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① ルター -->
+<div class="section">
+  <span class="section-label label-luther">① ルターの宗教改革</span>
+  <h2>贖宥状（免罪符）の販売</h2>
+  <p>メディチ家出身の教皇
+    <span class="blank person-pop" data-id="A">レオ10世<span class="pop-box">
+      <img src="reo10sei.png" onerror="this.style.display='none'" alt="">
+      <span class="pop-name">レオ10世（在位1513〜1521）</span>
+      <span class="pop-desc">メディチ家出身のローマ教皇。豪華な生活を好み、サン＝ピエトロ大聖堂の工事費用を賄うために免罪符を大量に販売させました。これがルターの批判を招きました。</span>
+    </span></span>
+    は、ローマの<span class="blank" data-id="B">サン＝ピエトロ大聖堂</span><span class="img-thumb" onclick="openImgModal('sanpietoto.png','サン＝ピエトロ大聖堂（バチカン）')" style="margin-left:4px"><img src="sanpietoto.png" alt="サン＝ピエトロ大聖堂" onerror="this.style.display='none'"><span class="thumb-label">🖼 写真</span></span>の修築資金のため、ドイツの大商人フッガー家に<span class="blank" data-id="C">贖宥状（免罪符）</span>を大量に売らせました。</p>
+  <p>贖宥状（免罪符）とは、購入すれば一切の罪が消滅し必ず天国へいけるとされた証書のことです。当時ドイツは領邦に分裂していたため「ローマの牝牛」（ドイツはローマの資金源）と呼ばれていました。</p>
+
+  <h2>九十五カ条の論題（1517年）</h2>
+  <p>ドイツのヴィッテンベルク大学神学教授
+    <span class="blank person-pop" data-id="D">マルティン＝ルター<span class="pop-box">
+      <img src="rutaa.png" onerror="this.style.display='none'" alt="">
+      <span class="pop-name">マルティン＝ルター（1483〜1546）</span>
+      <span class="pop-desc">ドイツの神学者。1517年に免罪符批判の「九十五カ条の論題」を教会の扉に貼り出し、宗教改革を起こしました。聖書をドイツ語に翻訳し、誰もが聖書を読めるようにしました。</span>
+    </span></span>
+    は、1517年にヴィッテンベルク城教会に「九十五カ条の論題」を貼り出しました。</p>
+  <p>「人は善行ではなく、神への<span class="blank" data-id="E">信仰</span>のみによって救われる。信仰とは<span class="blank" data-id="F">聖書</span>に従って生きることだ」と主張しました。</p>
+  <p><span class="blank" data-id="G">活版印刷術</span>の改良により、論題はまたたく間にドイツ各地に広まりました。神聖ローマ皇帝<span class="blank person-pop" data-id="H">カール5世<span class="pop-box"><img src="kaaru5sei.png" onerror="this.style.display='none'" alt="カール5世"><span class="pop-name">カール5世（在位1519〜1556）</span><span class="pop-desc">神聖ローマ帝国の皇帝でスペイン国王。ルターに自説の撤回を迫りましたが拒否されたため帝国追放にしました。第一次ウィーン包囲でオスマン帝国と対立しました。</span></span></span>は自説の撤回を要求しましたが、ルターは拒否し帝国追放となりました。ルターはザクセン選帝侯にかくまわれ、新約聖書を<span class="blank" data-id="I">ドイツ語</span>に翻訳し、<span class="blank" data-id="J">ルター派</span>教会を立てました。</p>
+  <p>1555年の<span class="blank" data-id="K">アウグスブルクの宗教和議</span>でドイツ国内のルター派が公認されました。ただし個人の信仰の自由は認められず、領主の宗派に従わされました。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：免罪符批判 → 九十五カ条の論題(1517) → 聖書のドイツ語訳 → アウグスブルクの宗教和議(1555)</div>
+</div>
+
+<!-- ② カルヴァン -->
+<div class="section">
+  <span class="section-label label-calvin">② カルヴァンの宗教改革</span>
+  <h2>予定説と資本主義</h2>
+  <p>
+    <span class="person-pop">カルヴァン<span class="pop-box">
+      <img src="karuban.png" onerror="this.style.display='none'" alt="">
+      <span class="pop-name">カルヴァン（1509〜1564）</span>
+      <span class="pop-desc">フランス出身の宗教改革者。スイスのジュネーヴで活動し「予定説」を唱えました。「社会で成功することが神に選ばれた証し」という考えが、資本主義の精神に結びついたと言われます。</span>
+    </span></span>
+    は迫害を恐れ<span class="blank" data-id="L">スイス</span>に移住し、「人が救済されるかは神がすでに予定している」とする<span class="blank" data-id="M">予定説</span>を発表しました。社会的成功を救済の証しとし、貯蓄・勤勉を奨励したことで市民の支持を得て、<span class="blank" data-id="N">資本主義</span>経済の発達につながりました。</p>
+  <p>カルヴァン派はヨーロッパ各地に広がり、フランスでは<span class="blank" data-id="O">ユグノー</span>、イギリスでは<span class="blank" data-id="P">ピューリタン</span>と呼ばれました。</p>
+  <div class="key-point">⭐ <strong>覚え方</strong>：フランス → ユグノー　／　イギリス → ピューリタン</div>
+</div>
+
+<!-- ③ イギリス -->
+<div class="section">
+  <span class="section-label label-england">③ イギリスの宗教改革</span>
+  <h2>ヘンリー8世とイギリス国教会</h2>
+  <p>
+    <span class="blank person-pop" data-id="Q">ヘンリー8世<span class="pop-box">
+      <img src="henri8sei.png" onerror="this.style.display='none'" alt="">
+      <span class="pop-name">ヘンリー8世（在位1509〜1547）</span>
+      <span class="pop-desc">イギリス国王。6回結婚したことで有名。離婚を認めないローマ教皇と対立し、ローマ教会から独立してイギリス国教会を設立しました。</span>
+    </span></span>
+    は侍女アン＝ブーリンと結婚しようとしましたが、カトリックは離婚を認めなかったためローマ教皇と対立しました。ローマ教会から独立して<span class="blank" data-id="R">イギリス国教会</span>を設立し、修道院の廃止・財産没収を行いました。</p>
+  <p>後にヘンリー8世とアン＝ブーリンの娘
+    <span class="blank person-pop" data-id="S">エリザベス1世<span class="pop-box">
+      <img src="erizabesu1sei.png" onerror="this.style.display='none'" alt="">
+      <span class="pop-name">エリザベス1世（在位1558〜1603）</span>
+      <span class="pop-desc">イギリス女王。統一法を制定してイギリス国教会を確立し、スペインの無敵艦隊を撃破するなど、イギリスを強国にした名君。ルネサンス文化（シェークスピアなど）も彼女の時代に栄えました。</span>
+    </span></span>
+    が統一法を制定し、国王が長を兼ねるイギリス国教会を確立させました。</p>
+</div>
+
+<!-- ④ 反宗教改革 -->
+<div class="section">
+  <span class="section-label label-counter">④ 反宗教改革</span>
+  <h2>カトリックの巻き返し</h2>
+  <p>1545年、<span class="blank" data-id="T">トリエント公会議</span>でカトリック教会は教皇の至上主義を確認し、宗教裁判所の設置を決議しました。</p>
+  <p>1534年、スペイン貴族出身の元軍人
+    <span class="blank person-pop" data-id="U">イグナティウス＝ロヨラ<span class="pop-box">
+      <img src="igunatiusuroyora.png" onerror="this.style.display='none'" alt="">
+      <span class="pop-name">イグナティウス＝ロヨラ（1491〜1556）</span>
+      <span class="pop-desc">スペイン貴族出身の元軍人。ザビエルとともにイエズス会を設立しました。軍隊式の厳しい組織を作り、アジアやラテンアメリカで積極的に布教しました。</span>
+    </span></span>
+    と
+    <span class="blank person-pop" data-id="V">フランシスコ＝ザビエル<span class="pop-box">
+      <img src="furansisukozabieru.png" onerror="this.style.display='none'" alt="フランシスコ＝ザビエル">
+      <span class="pop-name">フランシスコ＝ザビエル（1506〜1552）</span>
+      <span class="pop-desc">スペイン貴族出身のイエズス会士。アジア布教の先駆者。1549年に日本の鹿児島に上陸してキリスト教を伝えました。中国布教を目指しましたが、マラッカで病死しました。</span>
+    </span></span>
+    ら6人が<span class="blank" data-id="W">イエズス会</span>を設立しました。教皇への絶対服従・軍隊式組織を特色とし、アジアやラテンアメリカで布教しました。</p>
+  <p>1549年、ザビエルは日本の<span class="blank" data-id="X">鹿児島</span>に上陸してキリスト教を布教しました。このようなカトリック勢力の巻き返しを<span class="blank" data-id="Y">反宗教改革</span>といいます。</p>
+  <div class="key-point">⭐ <strong>イエズス会の特色</strong>：①教皇への無条件の絶対服従　②軍隊式の鉄の規律</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai2_quiz.html'" disabled>確認問題へ ▶</button>
+      <button id="test-btn" onclick="location.href='kindai2_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①ルター：九十五カ条(1517)→聖書ドイツ語訳→アウグスブルク宗教和議(1555)<br>
+      ②カルヴァン派：フランス→ユグノー、イギリス→ピューリタン<br>
+      ③イギリス：ヘンリー8世がイギリス国教会設立、エリザベス1世が確立<br>
+      ④反宗教改革：トリエント公会議(1545)・イエズス会(1534)・ザビエル来日(1549)
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "レオ10世":"メディチ家出身のローマ教皇。豪華な生活を好み、サン＝ピエトロ大聖堂の建築費のため免罪符を大量販売させました。これがルターの批判を招きました。",
+  "サン＝ピエトロ大聖堂":"ローマにあるカトリック教会の総本山。世界最大級の教会建築で、今もバチカン市国にあります。この建設費用を賄うために免罪符が販売されました。",
+  "贖宥状（免罪符）":"購入すれば罪が消えて天国に行けると教会が発行した証書。信仰とは関係なくお金で許しを得られるという考え方にルターが激しく反発しました。",
+  "マルティン＝ルター":"ドイツの神学者・宗教改革者（1483〜1546）。「信仰のみ・聖書のみ」を主張し、免罪符販売を批判。聖書をドイツ語に翻訳し、誰もが読めるようにしました。",
+  "信仰":"神を信じ、心から従うこと。ルターは「人が救われるのは行いではなく、神への信仰だけだ」と主張し、お金で許しを買うという免罪符を否定しました。",
+  "聖書":"キリスト教の聖典。ルターは「信仰の根拠は聖書だけだ」と主張し、ラテン語の聖書をドイツ語に翻訳して、一般の人々が読めるようにしました。",
+  "活版印刷術":"金属の活字で本を大量・安価に印刷する技術。グーテンベルクが改良。ルターの「九十五カ条の論題」がこの技術でドイツ全土に広まりました。",
+  "カール5世":"神聖ローマ帝国の皇帝でスペイン王（在位1519〜56）。ルターに自説撤回を求めましたが拒否されたため帝国追放にしました。第一次ウィーン包囲でオスマン帝国と対立しました。",
+  "ドイツ語":"ルターが聖書を翻訳した言語。それまで聖書はラテン語のみで一般人は読めませんでしたが、ドイツ語訳によって民衆が直接聖書に触れられるようになりました。",
+  "ルター派":"ルターの教えに基づくプロテスタントの宗派。北ドイツ・スカンジナビア諸国に広まりました。",
+  "アウグスブルクの宗教和議":"1555年にドイツで結ばれた宗教的な和解。ルター派が公式に認められましたが、個人の信仰の自由は認められず、領主が宗派を決める形でした。",
+  "スイス":"アルプス山脈に囲まれた中立国。カルヴァンがジュネーヴで活動し、プロテスタントの重要な拠点となりました。",
+  "予定説":"「誰が救われるかは神がはじめから決めている」というカルヴァンの教え。「成功することが救われている証し」という考えが、勤勉・貯蓄を促し資本主義につながりました。",
+  "資本主義":"利益を追求して経済活動を行う仕組み。カルヴァンの予定説が「勤勉に働いて利益を得ることは神の意志」という考えを広め、近代資本主義の発展に貢献したとされています。",
+  "ユグノー":"フランスのカルヴァン派プロテスタントの呼び名。フランスではカトリックとの対立が激しく、1572年の「サン・バルテルミの虐殺」など多くの迫害を受けました。",
+  "ピューリタン":"イギリスのカルヴァン派プロテスタントの呼び名。「清教徒」とも訳されます。後にチャールズ1世の絶対王政に反発してピューリタン革命を起こしました。",
+  "ヘンリー8世":"イギリス国王（在位1509〜1547）。6回結婚で有名。離婚問題でローマ教皇と対立し、1534年にローマ教会から独立してイギリス国教会を設立しました。",
+  "イギリス国教会":"ヘンリー8世がローマ教会から独立して設立したイギリスの国教。カトリックとプロテスタントの中間的な性格を持ち、国王が最高権威です。",
+  "エリザベス1世":"イギリス女王（在位1558〜1603）。統一法を制定しイギリス国教会を確立。スペインの無敵艦隊を破り、イギリスを海洋大国にした名君です。",
+  "トリエント公会議":"1545〜63年に開かれたカトリック教会の会議。宗教改革に対抗して、教皇の権威を再確認し、聖職者の生活規律を厳しくしました。",
+  "イグナティウス＝ロヨラ":"スペイン貴族出身の元軍人（1491〜1556）。イエズス会を創設し、教皇への絶対服従・軍隊式組織でカトリックの巻き返しを図りました。",
+  "フランシスコ＝ザビエル":"スペイン出身のイエズス会士（1506〜1552）。アジア布教の先駆者。1549年に日本の鹿児島に上陸し、日本初のキリスト教布教を行いました。",
+  "イエズス会":"1534年にロヨラとザビエルらが設立したカトリックの修道会。教皇への絶対服従と軍隊式組織で、アジア・ラテンアメリカで積極的に布教しました。",
+  "鹿児島":"ザビエルが1549年に日本で最初に上陸した地。九州南部に位置し、当時の薩摩藩領でした。",
+  "反宗教改革":"プロテスタントの台頭に対抗したカトリック教会の巻き返し運動。トリエント公会議・イエズス会の設立などが代表的な動きです。",
+};
+const answers={"A":"レオ10世","B":"サン＝ピエトロ大聖堂","C":"贖宥状（免罪符）","D":"マルティン＝ルター","E":"信仰","F":"聖書","G":"活版印刷術","H":"カール5世","I":"ドイツ語","J":"ルター派","K":"アウグスブルクの宗教和議","L":"スイス","M":"予定説","N":"資本主義","O":"ユグノー","P":"ピューリタン","Q":"ヘンリー8世","R":"イギリス国教会","S":"エリザベス1世","T":"トリエント公会議","U":"イグナティウス＝ロヨラ","V":"フランシスコ＝ザビエル","W":"イエズス会","X":"鹿児島","Y":"反宗教改革"};
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{b.textContent="";b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=blank.textContent;if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});blank.textContent=getChipWord(selectedChip);selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else if(blank.textContent){const txt=blank.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});blank.textContent="";} };});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(b.textContent===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai2']=p['kindai2']||{};p['kindai2'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

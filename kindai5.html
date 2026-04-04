@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：中国の明・清</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #8b0000;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #8b0000;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#5a0000;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
+  .word-bank{border:2px solid #8b0000;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-ming{background:#8b0000}.label-qing{background:#3d0000}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #8b0000;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#8b0000;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#fff0f0;border-left:5px solid #8b0000;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#8b0000}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#8b0000;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#fff5f5}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#8b0000;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #5a0000}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #8b0000;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #8b0000;background-color:#fff0f0;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#ffe0e0;border:1.5px solid #8b0000;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#5a0000;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#ffb8b8}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #8b0000;cursor:pointer;color:#5a0000;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #8b0000;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box img{width:80px;height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #ffb8b8}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#5a0000;margin-bottom:6px}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#8b0000}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🐉 中国の明・清</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- 明 -->
+<div class="section">
+  <span class="section-label label-ming">① 明（1368〜1644年）</span>
+  <h2>明の建国と海禁政策</h2>
+  <p>1351年、元の末期に<span class="blank" data-id="A">紅巾の乱</span>（白蓮教徒の乱）が起こり元は北方に退きました。乱で頭角を現した貧しい農民出身の
+    <span class="person-pop">朱元璋<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Hongwu_Emperor_2.jpg/200px-Hongwu_Emperor_2.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">朱元璋（洪武帝・在位1368〜98）</div>
+      <div class="pop-desc">貧しい農民の出身から皇帝にまで昇りつめた人物。1368年に明を建国し洪武帝として即位しました。皇帝に権力を集中させる中央集権を強化し、民間の貿易を禁止する「海禁政策」をとりました。</div>
+    </div></span>
+    が<span class="blank" data-id="C">洪武帝</span>として即位し、1368年に<span class="blank" data-id="D">明</span>を建国しました。</p>
+  <p>貿易においては、朝鮮・日本・東南アジアに<span class="blank" data-id="E">朝貢貿易</span>を求め、民間人の自由貿易を禁止しすべての貿易を明王朝の管理下に置きました。これを<span class="blank" data-id="F">海禁政策</span>といいます。</p>
+
+  <h2>永楽帝と南海遠征</h2>
+  <p>3代目皇帝
+    <span class="person-pop">永楽帝<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yongle_Emperor.jpg/200px-Yongle_Emperor.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">永楽帝（在位1402〜24）</div>
+      <div class="pop-desc">明の3代皇帝。2代皇帝建文帝にクーデターを起こして帝位を奪いました。積極的に外交を進め、鄭和に大艦隊を率いての南海遠征を命じました。首都を北京に移したことでも知られます。</div>
+    </div></span>
+    は2代目建文帝にクーデターを起こして即位し、積極的に対外遠征を行いました。イスラーム教徒の宦官
+    <span class="person-pop">鄭和<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/ZhengHe.jpg/200px-ZhengHe.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">鄭和（1371〜1433）</div>
+      <div class="pop-desc">明の宦官・航海者。永楽帝の命令で7回にわたる南海遠征を指揮しました。最大の艦隊は約60隻の大型船と2万人以上の乗組員を擁しました。アフリカ東岸まで到達したとされます。</div>
+    </div></span>
+    に<span class="blank" data-id="I">南海遠征</span>を命じ、インド洋方面へ大艦隊を派遣しました。</p>
+  <p>海禁政策の一方、民間では東南アジアに移住する中国人が増えました。これら中国からの移民を<span class="blank" data-id="J">華僑・華人</span>といいます。</p>
+
+  <h2>明の衰退</h2>
+  <p>明は<span class="blank" data-id="K">北虜南倭</span>と呼ばれる外国勢力に苦しめられました。北虜とは北方からのオイラト・タタールの侵入、南倭とは南方からの<span class="blank" data-id="L">倭寇</span>の侵入です。</p>
+  <p>倭寇とは朝鮮・中国沿岸で活躍した海賊で、日本人が主体の前期倭寇と、日本人の格好をした中国人の後期倭寇に分けられます。</p>
+  <p>1404年、室町幕府3代将軍
+    <span class="person-pop">足利義満<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ashikaga_Yoshimitsu.jpg/200px-Ashikaga_Yoshimitsu.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">足利義満（1358〜1408）</div>
+      <div class="pop-desc">室町幕府3代将軍。永楽帝と君臣関係を結んで勘合貿易を始めました。金閣を建てたことでも有名で、南北朝の統一も達成した力強い将軍です。</div>
+    </div></span>
+    は永楽帝と君臣関係を結び<span class="blank" data-id="N">勘合貿易</span>を行いました。日本の船と倭寇を区別するため<span class="blank" data-id="O">勘合符</span>（割符）が与えられました。</p>
+  <p>1592年・1597年、
+    <span class="person-pop">豊臣秀吉<div class="pop-box">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Toyotomi_Hideyoshi_portrait.jpg/200px-Toyotomi_Hideyoshi_portrait.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+      <div class="pop-name">豊臣秀吉（1537〜1598）</div>
+      <div class="pop-desc">織田信長の後継者として天下統一を果たした武将。1592年・1597年に朝鮮に大軍を送りましたが（文禄・慶長の役）失敗。この出兵が明を疲弊させ、清（後金）台頭のきっかけとなりました。</div>
+    </div></span>
+    が朝鮮に出兵しました（壬辰・丁酉の倭乱＝文禄・慶長の役）。明は宗主国として援軍を送り多額の出費をしました。この間、満州では女真族の<span class="blank" data-id="Q">ヌルハチ</span>が後金を建国し、後に国号を<span class="blank" data-id="R">清</span>に改めました。</p>
+  <div class="key-point">⭐ <strong>明の流れ</strong>：洪武帝（建国・海禁）→永楽帝（南海遠征・鄭和）→北虜南倭→勘合貿易（足利義満）→文禄・慶長の役→清の台頭</div>
+</div>
+
+<!-- 清 -->
+<div class="section">
+  <span class="section-label label-qing">② 清（1644〜1912年）</span>
+  <h2>清の建国と支配体制</h2>
+  <p>1644年、清が中国を支配しました。清は<span class="blank" data-id="S">満州人</span>によってつくられた政府で、大部分の<span class="blank" data-id="T">漢民族</span>（中国人）を支配していました。</p>
+  <p>清の最盛期の皇帝は4代目<span class="blank" data-id="U">康熙帝</span>・5代目<span class="blank" data-id="V">雍正帝</span>・6代目<span class="blank" data-id="W">乾隆帝</span>です。</p>
+  <h3>支配体制の特徴</h3>
+  <table class="person-table">
+    <tr><th>制度・政策</th><th>内容</th></tr>
+    <tr><td><span class="blank" data-id="X">辮髪</span></td><td>漢民族の男性に満州人の髪型（辮髪）を強制しました。従わない者は死刑とされました。</td></tr>
+    <tr><td><span class="blank" data-id="Y">科挙</span></td><td>優秀な役人を登用するための試験制度。当初は満州人が独占していましたが、後に漢民族にも開かれました。</td></tr>
+    <tr><td><span class="blank" data-id="Z">満漢併用制</span></td><td>中央要職に満州人と同数の漢人を採用する制度。漢民族の反発を和らげるための政策です。</td></tr>
+  </table>
+  <h3>宗教政策</h3>
+  <p>中央アジア（東トルキスタン）ではムスリムの首長による自治を認め、チベットでは<span class="blank" data-id="AA">ダライ＝ラマ</span>を教主とするチベット仏教を保護しました。支配地域の文化・宗教を柔軟に尊重する政策をとりました。</p>
+  <h3>貿易政策</h3>
+  <p>清の貿易政策は明より自由で、商人どうしの自由な貿易（互市）も認める<span class="blank" data-id="BB">自由放任主義</span>でした。ヨーロッパに茶・絹・陶磁器などを輸出し、メキシコ産・日本産の銀などを手に入れました。しかし18世紀に<span class="person-pop">乾隆帝<div class="pop-box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Qianlong_Emperor_in_Court_Dress.jpg/200px-Qianlong_Emperor_in_Court_Dress.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
+    <div class="pop-name">乾隆帝（在位1735〜96）</div>
+    <div class="pop-desc">清の6代皇帝。清の最盛期を代表する皇帝の一人。領土を最大に拡大しましたが、治安上の理由でヨーロッパとの貿易港を広州1港に制限しました。後にこれがアヘン戦争の遠因となります。</div>
+  </div></span>は、治安上の危険性から貿易港を<span class="blank" data-id="CC">広州</span>1港と定めました。</p>
+  <div class="key-point">⭐ <strong>清の特徴</strong>：満州人支配・辮髪強制・科挙・満漢併用制・自由放任主義→乾隆帝が広州1港に制限</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai5_quiz.html'" disabled>確認問題へ ▶</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①明：洪武帝（朱元璋）建国・海禁政策→永楽帝（南海遠征・鄭和）→北虜南倭・倭寇→足利義満との勘合貿易<br>
+      ②文禄・慶長の役→清（ヌルハチ→後金→清）が1644年中国支配<br>
+      ③清：満州人支配・漢民族に辮髪強制・科挙・満漢併用制<br>
+      ④貿易：自由放任主義→乾隆帝が広州1港に制限
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "紅巾の乱":"1351年に元（モンゴル帝国）の支配に苦しむ農民が起こした反乱。白蓮教という民間宗教の信者が中心で、赤い頭巾をつけていたことからこの名がつきました。この乱が明の建国につながりました。",
+  "朱元璋":"明の建国者（在位1368〜98）。もともと貧しい農民の出身で、紅巾の乱で頭角を現し、洪武帝として即位しました。皇帝独裁を強化し海禁政策をとりました。",
+  "洪武帝":"明の初代皇帝の称号（在位1368〜98）。本名は朱元璋。六部を皇帝直属にして中央集権を強化し、民間の自由貿易を禁止する海禁政策をとりました。",
+  "明":"1368〜1644年の中国の王朝。モンゴル人の元を倒して建国されました。鄭和の南海遠征や朝貢貿易で知られましたが、北虜南倭に苦しみ、最終的に清に滅ぼされました。",
+  "朝貢貿易":"周辺国が中国の皇帝に贈り物（朝貢）を持ってきて、皇帝がその返礼として品物を与える貿易の形式。明は日本・東南アジア各国にこの形式を求めました。",
+  "海禁政策":"民間人の自由な海外貿易を禁止し、すべての貿易を国家管理にする政策。明の洪武帝が始めました。これにより非公式な貿易が増え、倭寇問題が深刻化しました。",
+  "永楽帝":"明の3代皇帝（在位1402〜24）。クーデターで即位し、北京遷都・鄭和の南海遠征など積極的な外交政策を展開しました。",
+  "鄭和":"明の宦官・航海者（1371〜1433）。永楽帝の命で7回の南海遠征を指揮。インド洋方面まで大艦隊を率いて航海しました。",
+  "南海遠征":"永楽帝が宦官の鄭和に命じたインド洋・東南アジア方面への大規模な航海。朝貢関係の拡大と貿易促進が目的でした。7回にわたって行われました。",
+  "華僑・華人":"海外に移住した中国人のこと。明の海禁政策の一方、民間では東南アジアへの移住が増えました。現在も東南アジアでは重要な経済的役割を担っています。",
+  "北虜南倭":"明を悩ませた2つの外敵。北虜＝北方からのモンゴル系騎馬民族（オイラト・タタール）の侵入、南倭＝南方からの倭寇（海賊）の侵入を指します。",
+  "倭寇":"14〜16世紀に朝鮮・中国沿岸で活躍した海賊集団。日本人が主体の前期倭寇と、日本人の格好をした中国人が中心の後期倭寇に分けられます。",
+  "足利義満":"室町幕府3代将軍（1358〜1408）。明の永楽帝と君臣関係を結んで勘合貿易を始め、倭寇の取り締まりを引き受けました。金閣の建立でも有名です。",
+  "勘合貿易":"明と日本が行った公式貿易（1404〜1547）。勘合符という証明書で正規の貿易船と倭寇を区別しました。足利義満が始め、博多の商人らが利益を得ました。",
+  "勘合符":"明が日本に与えた貿易許可証（割符）。正規の貿易船は勘合符を持参し、倭寇と区別されました。",
+  "豊臣秀吉":"戦国時代の武将（1537〜1598）。天下統一後、1592年と1597年の2度にわたり朝鮮に出兵（文禄・慶長の役）しましたが失敗しました。",
+  "ヌルハチ":"女真族（満州族）の指導者（1559〜1626）。女真族を統一して後金を建国しました。後に後金は息子のホンタイジによって「清」と改名されました。",
+  "清":"1644〜1912年の中国の王朝。満州人（女真族）が建国し中国を支配しました。康熙帝・雍正帝・乾隆帝の時代に最盛期を迎え、東アジアに広大な領土を持ちました。",
+  "満州人":"現在の中国東北部（満州）出身のツングース系民族。清を建国して中国を支配しました。漢民族の反発を抑えるため辮髪を強制する一方、満漢併用制で融和も図りました。",
+  "漢民族":"中国の人口の大部分を占める民族。清の支配下では、満州人の習慣（辮髪）を強制される一方、満漢併用制で政治参加の機会も与えられました。",
+  "康熙帝":"清の4代皇帝（在位1661〜1722）。60年以上在位し、ロシアとのネルチンスク条約締結など外交でも活躍。清の最盛期を築いた一人です。",
+  "雍正帝":"清の5代皇帝（在位1722〜35）。政治批判を厳しく取り締まり、皇帝の独裁を強化しました。",
+  "乾隆帝":"清の6代皇帝（在位1735〜96）。清の最大領土を達成しましたが、貿易港を広州1港に制限しました。後のアヘン戦争のきっかけをつくった皇帝とも言えます。",
+  "辮髪":"頭頂部だけ残して残りを剃り、後ろに長く垂らした満州人の髪型。清は漢民族男性にこれを強制しました。従わない者は処刑されるほど厳しく強制されました。",
+  "科挙":"試験によって官僚を選ぶ制度。隋の時代に始まり清まで続きました。学問の才能があれば身分に関係なく官僚になれるため、中国社会の流動性を高めました。",
+  "満漢併用制":"清が漢民族の反発を和らげるため、中央の重要ポストに満州人と同数の漢人を採用した制度。民族融和を図った政策です。",
+  "ダライ＝ラマ":"チベット仏教の最高指導者の称号。清はチベットのダライ＝ラマを保護することで、チベット・モンゴルの人々の支持を得ました。",
+  "自由放任主義":"経済活動に対して政府が干渉せず、自由な取引に任せるという考え方。清の貿易政策は明より自由で、商人どうしの貿易（互市）も認めていました。",
+  "広州":"中国南部の港湾都市。乾隆帝がヨーロッパとの貿易をここ1港に制限しました。後にアヘン戦争のきっかけとなるイギリスとの貿易摩擦の舞台となりました。",
+};
+const answers={"A":"紅巾の乱","B":"朱元璋","C":"洪武帝","D":"明","E":"朝貢貿易","F":"海禁政策","G":"永楽帝","H":"鄭和","I":"南海遠征","J":"華僑・華人","K":"北虜南倭","L":"倭寇","M":"足利義満","N":"勘合貿易","O":"勘合符","P":"豊臣秀吉","Q":"ヌルハチ","R":"清","S":"満州人","T":"漢民族","U":"康熙帝","V":"雍正帝","W":"乾隆帝","X":"辮髪","Y":"科挙","Z":"満漢併用制","AA":"ダライ＝ラマ","BB":"自由放任主義","CC":"広州"};
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{b.textContent="";b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=blank.textContent;if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});blank.textContent=getChipWord(selectedChip);selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else if(blank.textContent){const txt=blank.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});blank.textContent="";}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(b.textContent===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai5']=p['kindai5']||{};p['kindai5'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>
