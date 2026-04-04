@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史総合 GAMBA — 単元一覧</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:24px 16px 60px}
+  h1{text-align:center;font-size:26px;color:#1a1a2e;margin-bottom:4px}
+  .subtitle{text-align:center;color:#666;font-size:14px;margin-bottom:24px}
+
+  /* 進捗バー */
+  .progress-wrap{max-width:860px;margin:0 auto 24px;background:#fff;border-radius:10px;padding:16px 20px;border:1px solid #dde}
+  .progress-label{font-size:13px;color:#555;margin-bottom:8px;display:flex;justify-content:space-between}
+  .progress-bar{background:#eee;border-radius:99px;height:10px;overflow:hidden}
+  .progress-fill{background:linear-gradient(90deg,#2c3e8c,#27ae60);height:100%;border-radius:99px;transition:width 0.5s ease}
+
+  /* 単元カード */
+  .era-block{max-width:860px;margin:0 auto 28px}
+  .era-title{font-size:18px;font-weight:bold;color:#fff;padding:10px 18px;border-radius:10px 10px 0 0;display:flex;align-items:center;gap:10px}
+  .era-icon{font-size:20px}
+  .unit-grid{background:#fff;border:1px solid #dde;border-top:none;border-radius:0 0 10px 10px;padding:16px}
+  .unit-card{border:1.5px solid #dde;border-radius:10px;padding:16px;background:#fafafa;transition:all 0.2s;margin-bottom:0}
+  .unit-card:hover{border-color:#2c3e8c;background:#f0f4ff;transform:translateY(-1px);box-shadow:0 3px 10px rgba(44,62,140,0.1)}
+  .unit-card.done{border-color:#27ae60;background:#f0fff5}
+  .unit-card.test-pass{border-color:#e67e22;background:#fffaf0}
+  .unit-top{display:flex;align-items:flex-start;gap:12px}
+  .unit-number{font-size:26px;font-weight:bold;opacity:0.18;line-height:1;min-width:36px}
+  .unit-info{flex:1}
+  .unit-title{font-size:16px;font-weight:bold;color:#1a1a2e;margin-bottom:4px}
+  .unit-sub{font-size:12px;color:#888;line-height:1.5;margin-bottom:10px}
+  .unit-keywords{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+  .kw{font-size:11px;background:#eef;color:#2c3e8c;border-radius:20px;padding:2px 9px;border:1px solid #ccd}
+  .badge-area{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+  .badge{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:bold}
+  .badge-done{background:#27ae60;color:#fff}
+  .badge-test{background:#e67e22;color:#fff}
+  .unit-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .btn-s{padding:7px 14px;border-radius:7px;border:none;font-size:13px;font-weight:bold;cursor:pointer;transition:0.15s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+  .btn-study{background:#2c3e8c;color:#fff}
+  .btn-study:hover{background:#1e2d6b}
+  .btn-quiz{background:#27ae60;color:#fff}
+  .btn-quiz:hover{background:#1e8a4d}
+  .btn-test{background:#e67e22;color:#fff}
+  .btn-test:hover{background:#c96a10}
+
+  /* 画像一覧 */
+  .img-list-wrap{max-width:860px;margin:32px auto 0;background:#fff;border-radius:10px;border:1px solid #dde;overflow:hidden}
+  .img-list-title{background:#2c3e8c;color:#fff;padding:12px 20px;font-size:15px;font-weight:bold}
+  .img-list{padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px}
+  .img-item{font-size:12px;background:#f0f4ff;border:1px solid #ccd;border-radius:6px;padding:4px 10px;color:#2c3e8c}
+</style>
+</head>
+<body>
+
+<h1>📚 歴史総合 GAMBA</h1>
+<p class="subtitle">単元を選んで学習しよう！</p>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>🎯 学習進捗</span>
+    <span id="progress-text">0 / 6 単元完了</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+
+<div id="unit-list"></div>
+
+<script>
+const UNITS = [
+  {
+    id: "kindai1",
+    era: "近代①　十字軍の失敗・2つのR",
+    icon: "✝️",
+    color: "#4a0080",
+    num: "①",
+    title: "十字軍の失敗・2つのR",
+    sub: "十字軍の遠征とその失敗、ルネサンス・宗教改革へ",
+    keywords: ["ルネサンス","ヒューマニズム","活版印刷術","地動説","コペルニクス","ガリレオ"],
+    study: "kindai1.html", quiz: "kindai1_quiz.html", test: "kindai1_test.html"
+  },
+  {
+    id: "kindai2",
+    era: "近代②　宗教改革",
+    icon: "⛪",
+    color: "#1a5276",
+    num: "②",
+    title: "宗教改革",
+    sub: "ルター・カルヴァン・イギリス国教会・イエズス会",
+    keywords: ["マルティン＝ルター","免罪符","予定説","ピューリタン","ユグノー","イエズス会"],
+    study: "kindai2.html", quiz: "kindai2_quiz.html", test: "kindai2_test.html"
+  },
+  {
+    id: "kindai3",
+    era: "近代③　大航海時代",
+    icon: "⛵",
+    color: "#0d3d10",
+    num: "③",
+    title: "大航海時代",
+    sub: "コロンブス・マゼラン・コンキスタドール・エンコミエンダ制",
+    keywords: ["コロンブス","マゼラン","ヴァスコ＝ダ＝ガマ","コンキスタドール","エンコミエンダ制"],
+    study: "kindai3.html", quiz: "kindai3_quiz.html", test: "kindai3_test.html"
+  },
+  {
+    id: "kindai4",
+    era: "近代④　イスラーム帝国の繁栄",
+    icon: "🕌",
+    color: "#7d5a00",
+    num: "④",
+    title: "イスラーム帝国の繁栄",
+    sub: "サファヴィー朝・オスマン帝国・ムガル帝国",
+    keywords: ["オスマン帝国","サファヴィー朝","ムガル帝国","スレイマン1世","タージ＝マハル","ジズヤ"],
+    study: "kindai4.html", quiz: "kindai4_quiz.html", test: "kindai4_test.html",
+    comingSoon: true
+  },
+  {
+    id: "kindai5",
+    era: "近代⑤　中国の明・清",
+    icon: "🐉",
+    color: "#8b0000",
+    num: "⑤",
+    title: "中国の明・清",
+    sub: "海禁政策・南海遠征・倭寇・勘合貿易・清の支配体制",
+    keywords: ["洪武帝","永楽帝","鄭和","海禁政策","勘合貿易","満漢併用制","辮髪"],
+    study: "kindai5.html", quiz: "kindai5_quiz.html", test: "kindai5_test.html",
+    comingSoon: true
+  },
+  {
+    id: "kindai6",
+    era: "近代⑥　江戸幕府の外交と鎖国",
+    icon: "🏯",
+    color: "#1a3d5c",
+    num: "⑥",
+    title: "江戸幕府の外交と鎖国",
+    sub: "幕藩体制・朱印船貿易・鎖国・琉球・蝦夷",
+    keywords: ["徳川家康","幕藩体制","朱印船貿易","鎖国","島原の乱","出島","対馬藩","松前藩"],
+    study: "kindai6.html", quiz: "kindai6_quiz.html", test: "kindai6_test.html",
+    comingSoon: true
+  },
+];
+
+function getProgress(){
+  try{return JSON.parse(localStorage.getItem('gamba_progress')||'{}');}catch(e){return {};}
+}
+
+function renderUnits(){
+  const prog = getProgress();
+  const container = document.getElementById('unit-list');
+  container.innerHTML = '';
+  let done = 0;
+
+  UNITS.forEach(unit => {
+    const p = prog[unit.id] || {};
+    const studyDone = !!p.studyDone;
+    const testScore = p.testScore;
+    const pass = testScore !== undefined && testScore >= 70;
+    if(studyDone) done++;
+
+    const block = document.createElement('div');
+    block.className = 'era-block';
+
+    if(unit.comingSoon){
+      block.innerHTML = `
+        <div class="era-title" style="background:#aaa">
+          <span class="era-icon">${unit.icon}</span>${unit.era}
+        </div>
+        <div class="unit-grid">
+          <div class="unit-card" style="opacity:0.55;background:#f5f5f5;border-color:#ccc;">
+            <div class="unit-top">
+              <div class="unit-number" style="opacity:0.3">${unit.num}</div>
+              <div class="unit-info">
+                <div class="unit-title" style="color:#888">${unit.title}</div>
+                <div class="unit-sub">${unit.sub}</div>
+                <div style="margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:#e8e8e8;border-radius:20px;padding:6px 16px;color:#888;font-size:14px;font-weight:bold;">
+                  🔒 近日公開
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    } else {
+      block.innerHTML = `
+        <div class="era-title" style="background:${unit.color}">
+          <span class="era-icon">${unit.icon}</span>${unit.era}
+        </div>
+        <div class="unit-grid">
+          <div class="unit-card${studyDone?' done':''}${pass?' test-pass':''}">
+            <div class="unit-top">
+              <div class="unit-number">${unit.num}</div>
+              <div class="unit-info">
+                <div class="badge-area">
+                  ${studyDone?'<span class="badge badge-done">✓ 学習完了</span>':''}
+                  ${testScore!==undefined?`<span class="badge badge-test">テスト ${testScore}点</span>`:''}
+                </div>
+                <div class="unit-title">${unit.title}</div>
+                <div class="unit-sub">${unit.sub}</div>
+                <div class="unit-keywords">${unit.keywords.map(k=>`<span class="kw">${k}</span>`).join('')}</div>
+                <div class="unit-actions">
+                  <a class="btn-s btn-study" href="${unit.study}">📖 学習する</a>
+                  <a class="btn-s btn-quiz" href="${unit.quiz}">✏️ 確認問題</a>
+                  <a class="btn-s btn-test" href="${unit.test}">🎯 テスト</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    }
+    container.appendChild(block);
+  });
+
+  const pct = Math.round(done / UNITS.length * 100);
+  document.getElementById('progress-text').textContent = `${done} / ${UNITS.length} 単元完了`;
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+renderUnits();
+window.addEventListener('focus', renderUnits);
+</script>
+</body>
+</html>
