@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：産業革命・アメリカ独立・フランス革命</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #7b1a00;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #7b1a00;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#4a0d00;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
+  .word-bank{border:2px solid #7b1a00;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-sangyo{background:#7b1a00}.label-america{background:#1a3d6b}.label-france{background:#1a6b1a}.label-napoleon{background:#3d1a6b}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #7b1a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#7b1a00;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#fff0eb;border-left:5px solid #7b1a00;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#7b1a00}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#7b1a00;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#fff8f5}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#7b1a00;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #4a0d00}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  button#test-btn{background:#e67e22;box-shadow:0 3px 0 #c96a10}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #7b1a00;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #7b1a00;background-color:#fff0eb;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#ffe8e0;border:1.5px solid #7b1a00;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#4a0d00;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#ffc8b0}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #7b1a00;cursor:pointer;color:#4a0d00;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #7b1a00;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none;white-space:normal;overflow:hidden}
+  .person-pop .pop-box img{width:80px;height:80px;max-width:80px;max-height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #ffb090;display:block;margin-left:auto;margin-right:auto}
+  .person-pop .pop-name{display:block;font-weight:bold;font-size:15px;color:#4a0d00;margin-bottom:6px}
+  .person-pop .pop-desc{display:block;font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#7b1a00}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .blank.person-pop{border-bottom:2px solid #7b1a00;color:#7b1a00}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🔥 産業革命・アメリカ独立・フランス革命</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 産業革命 -->
+<div class="section">
+  <span class="section-label label-sangyo">① 産業革命（18世紀・イギリス）</span>
+  <h2>工場制手工業から工場制機械工業へ</h2>
+  <p>18世紀後半まで、イギリスでは人の手による分業制の<span class="blank" data-id="A">工場制手工業（マニュファクチュア）</span>が行われていました。
+    <span class="blank person-pop" data-id="B">ワット<span class="pop-box">
+      <img src="watto.png" onerror="this.style.display='none'" alt="ワット">
+      <span class="pop-name">ワット（1736〜1819）</span>
+      <span class="pop-desc">スコットランド出身の発明家。1769年に蒸気機関を大幅に改良し、工場の動力源として実用化しました。この発明が産業革命を加速させ、イギリスを「世界の工場」にする原動力となりました。</span>
+    </span></span>
+    の蒸気機関の改良により工場制機械工業に変わり、綿製品が大量生産されました。18世紀のイギリスを「世界の工場」と呼びます。これを<span class="blank" data-id="C">産業革命</span>といいます。</p>
+
+  <table class="person-table">
+    <tr><th>年</th><th>人物</th><th>発明・業績</th></tr>
+    <tr><td>1733年</td><td><span class="blank" data-id="D">ジョン＝ケイ</span></td><td>飛び杼（ひ）の発明。一人で二人分の布が織れるようになりました。</td></tr>
+    <tr><td>1769年</td><td>ワット</td><td>蒸気機関の改良</td></tr>
+    <tr><td>1807年</td><td><span class="blank" data-id="E">フルトン</span>（米）</td><td>蒸気船を実用化</td></tr>
+    <tr><td>1814年</td><td><span class="blank" data-id="F">スティーブンソン</span></td><td>蒸気機関車を実用化</td></tr>
+  </table>
+
+  <p>農産物の需要増大から大土地所有者が農地を買い取り、大規模農場経営を行う<span class="blank" data-id="G">第二次囲い込み</span>が行われました。土地を失った農民は都市の工場労働者となりました。</p>
+
+  <h2>社会主義の登場</h2>
+  <p>劣悪な環境・低賃金で働く労働者問題が深刻化しました。ドイツの
+    <span class="blank person-pop" data-id="H">マルクス<span class="pop-box">
+      <img src="marukusu.png" onerror="this.style.display='none'" alt="マルクス">
+      <span class="pop-name">マルクス（1818〜1883）</span>
+      <span class="pop-desc">ドイツの思想家・経済学者。エンゲルスとともに「共産党宣言」を著し、国が生産手段を所有して利益を社会全体で共有する社会主義を主張しました。「労働者よ、団結せよ」という言葉が有名です。</span>
+    </span></span>
+    と<span class="blank" data-id="I">エンゲルス</span>は著書<span class="blank" data-id="J">共産党宣言</span>で国が工場・土地を所有して利益を社会全体で共有する<span class="blank" data-id="K">社会主義</span>を唱えました。</p>
+  <div class="key-point">⭐ <strong>産業革命の流れ</strong>：マニュファクチュア→ワットの蒸気機関改良→工場制機械工業→「世界の工場」→労働問題→社会主義</div>
+</div>
+
+<!-- ② アメリカ独立 -->
+<div class="section">
+  <span class="section-label label-america">② アメリカ独立戦争（1775〜1783年）</span>
+  <h2>独立の背景</h2>
+  <p>1620年、迫害を逃れた102人のピューリタンが<span class="blank" data-id="L">メイフラワー号</span>でアメリカに移住し、イギリスの東部13州の植民地が形成されました。1756〜1763年の<span class="blank" data-id="M">七年戦争</span>でイギリスは財政難となり、1765年に植民地に<span class="blank" data-id="N">印紙税</span>を課しました。</p>
+  <p>13州の人々は「<span class="blank" data-id="O">代表なければ課税なし</span>」と反発。1773年、東インド会社の茶を海に捨てる<span class="blank" data-id="P">ボストン茶会事件</span>が起きました。1774年に<span class="blank" data-id="Q">大陸会議</span>が開かれ、1775年のレキシントンでの衝突からアメリカ独立戦争が始まりました。</p>
+
+  <h2>独立宣言と独立の達成</h2>
+  <p>1776年、
+    <span class="blank person-pop" data-id="R">ジェファーソン<span class="pop-box">
+      <img src="jefaason.png" onerror="this.style.display='none'" alt="ジェファーソン">
+      <span class="pop-name">ジェファーソン（1743〜1826）</span>
+      <span class="pop-desc">アメリカ独立宣言の起草者。「すべての人間は平等に作られ、生命・自由・幸福追求の権利を持つ」という思想を宣言に盛り込みました。後に第3代大統領となりました。</span>
+    </span></span>
+    の起草した<span class="blank" data-id="S">独立宣言</span>が発表されました。総司令官<span class="blank" data-id="T">ワシントン</span>率いる植民地軍がヨークタウンの戦いで勝利し、1783年の<span class="blank" data-id="U">パリ条約</span>でアメリカの独立が認められ、1789年に<span class="blank" data-id="V">アメリカ合衆国</span>が成立しました。ワシントンが初代大統領となりました。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：印紙税(1765)→ボストン茶会事件(1773)→独立戦争(1775)→独立宣言(1776)→パリ条約(1783)→アメリカ合衆国成立(1789)</div>
+</div>
+
+<!-- ③ フランス革命 -->
+<div class="section">
+  <span class="section-label label-france">③ フランス革命（1789年）</span>
+  <h2>革命の背景</h2>
+  <p>「太陽王」<span class="blank" data-id="W">ルイ14世</span>が絶対王政を確立、ヴェルサイユ宮殿を建設しました。<span class="blank" data-id="X">ルイ16世</span>はアメリカ独立戦争への支援で財政破綻し、第一身分（僧侶）・第二身分（貴族）・第三身分（平民）の代表による<span class="blank" data-id="Y">三部会</span>を召集しました。平民は「国民議会」を独立して設立し「<span class="blank" data-id="Z">テニスコートの誓い</span>（球戯場の誓い）」を行いました。</p>
+
+  <h2>革命の勃発と人権宣言</h2>
+  <p>1789年、市民が弾薬庫のある<span class="blank" data-id="AA">バスチーユ牢獄</span>を襲いフランス革命が起きました。ルイ16世は処刑され、<span class="blank" data-id="BB">ラファイエット</span>が起草した<span class="blank" data-id="CC">フランス人権宣言</span>が発表されました。絶対王政が廃止され<span class="blank" data-id="DD">共和政</span>となりました。</p>
+
+  <p>ジャコバン派の
+    <span class="blank person-pop" data-id="EE">ロベスピエール<span class="pop-box">
+      <img src="robesupieru.png" onerror="this.style.display='none'" alt="ロベスピエール">
+      <span class="pop-name">ロベスピエール（1758〜1794）</span>
+      <span class="pop-desc">フランス革命期のジャコバン派指導者。男子普通選挙・封建的特権廃止など急進的な改革を断行しましたが、反対派をギロチンで処刑する恐怖政治を行い、最終的には自らもギロチンで処刑されました。</span>
+    </span></span>
+    が実権を握り急進的改革を行いましたが、反対派をギロチン台へ送る<span class="blank" data-id="FF">恐怖政治</span>を行い、1年で処刑されました。</p>
+  <div class="key-point">⭐ <strong>アンシャンレジーム</strong>（旧体制）：第一身分＝僧侶、第二身分＝貴族、第三身分＝平民</div>
+</div>
+
+<!-- ④ ナポレオン -->
+<div class="section">
+  <span class="section-label label-napoleon">④ ナポレオンの登場と没落</span>
+  <h2>ナポレオンの台頭</h2>
+  <p>1799年、エジプト遠征で人気を得た
+    <span class="blank person-pop" data-id="GG">ナポレオン<span class="pop-box">
+      <img src="naporeon.png" onerror="this.style.display='none'" alt="ナポレオン">
+      <span class="pop-name">ナポレオン（1769〜1821）</span>
+      <span class="pop-desc">フランスの軍人・皇帝。革命後の混乱を収拾してクーデターで政権を握り、1804年に皇帝ナポレオン1世として即位しました。ヨーロッパ全域を征服しましたが、ロシア遠征の失敗後に没落しました。</span>
+    </span></span>
+    がクーデターを起こし新政府を樹立しました。1804年、国民投票により<span class="blank" data-id="HH">ナポレオン1世</span>として皇帝に即位しました。神聖ローマ帝国を滅ぼしヨーロッパ全域を支配しました。</p>
+  <p>イギリスへの<span class="blank" data-id="II">大陸封鎖令</span>（イギリスとの海上貿易禁止）を出しましたが、ロシアはこれを守らずナポレオンはロシア遠征で敗れました。1815年<span class="blank" data-id="JJ">ワーテルローの戦い</span>で敗れ、セントヘレナ島に流されて1821年に没しました。</p>
+  <div class="key-point">⭐ <strong>ナポレオンの流れ</strong>：クーデター(1799)→皇帝即位(1804)→ヨーロッパ制覇→ロシア遠征失敗→ワーテルロー(1815)→セントヘレナ島流罪</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai8_quiz.html'" disabled>確認問題へ ▶</button>
+      <button id="test-btn" onclick="location.href='kindai8_test.html'">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①産業革命：ワット→蒸気機関→綿製品大量生産→「世界の工場」→社会主義（マルクス・エンゲルス「共産党宣言」）<br>
+      ②アメリカ独立：印紙税→ボストン茶会事件→独立宣言(1776/ジェファーソン)→パリ条約(1783)→初代大統領ワシントン<br>
+      ③フランス革命：三部会→テニスコートの誓い→バスチーユ牢獄襲撃(1789)→人権宣言→恐怖政治(ロベスピエール)<br>
+      ④ナポレオン：クーデター(1799)→皇帝(1804)→ワーテルロー(1815)
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "工場制手工業（マニュファクチュア）":"人の手作業による分業制の工場生産。機械を使わず、専門の職人が分業で製品を作る方式。産業革命前のイギリスで主流でした。",
+  "ワット":"スコットランドの発明家（1736〜1819）。1769年に蒸気機関を改良し産業革命を加速させました。蒸気機関の出力単位「ワット（W）」は彼の名前に由来しています。",
+  "産業革命":"18世紀後半にイギリスで起きた、手工業から機械工業への大変革。綿工業から始まり、蒸気機関・鉄道・製鉄などに広がりました。現代の工業社会の出発点です。",
+  "ジョン＝ケイ":"イギリスの発明家。1733年に飛び杼（ひ）を発明し、一人で二人分の布が織れるようにしました。これが産業革命の発端となりました。",
+  "フルトン":"アメリカの発明家（1765〜1815）。1807年に蒸気船を実用化しました。",
+  "スティーブンソン":"イギリスの発明家（1781〜1848）。1814年に蒸気機関車を実用化しました。鉄道の普及で物流が大きく変わりました。",
+  "第二次囲い込み":"18〜19世紀、イギリスで大地主が農民の土地を囲い込み大規模農場経営を行ったこと。農民は土地を失い都市の工場労働者となりました。（第一次：15〜16世紀の牧羊のための囲い込み）",
+  "マルクス":"ドイツの思想家・経済学者（1818〜1883）。エンゲルスと「共産党宣言」を著し社会主義を唱えました。「労働者よ、団結せよ」は彼の言葉です。",
+  "エンゲルス":"ドイツの思想家（1820〜1895）。マルクスの協力者で「共産党宣言」を共同執筆しました。",
+  "共産党宣言":"1848年にマルクスとエンゲルスが著した書物。国が生産手段を所有し、利益を社会全体で共有する社会主義・共産主義を理論化しました。",
+  "社会主義":"国や社会が生産手段を所有し、利益を平等に分配する経済体制。資本主義の格差・労働問題への批判から生まれました。",
+  "メイフラワー号":"1620年にピューリタン102人がイギリスからアメリカへ渡った船。彼らがアメリカ東部に植民地を建設したことが、後のアメリカ独立の背景となりました。",
+  "七年戦争":"1756〜1763年に起きたヨーロッパを中心とした国際戦争。プロイセン＆イギリス vs オーストリア＆フランスの対立でもあり、イギリスの財政難のきっかけとなりました。",
+  "印紙税":"1765年にイギリスが北アメリカ植民地に課した税。新聞・証書などに印紙の貼付を義務付けました。植民地の人々の猛反発を招き、廃止されました。",
+  "代表なければ課税なし":"アメリカ植民地の人々のスローガン。「植民地の代表が議会にいないのに一方的に課税するのは不当だ」という主張です。民主主義の原則となりました。",
+  "ボストン茶会事件":"1773年、ボストン港で植民地の人々がインディアンに変装し、東インド会社の茶を海に捨てた事件。アメリカ独立運動の直接のきっかけとなりました。",
+  "大陸会議":"1774年・1775年に13植民地代表が集まった会議。独立戦争の方針と独立宣言を決めました。",
+  "ジェファーソン":"アメリカの政治家（1743〜1826）。独立宣言の起草者。第3代大統領。「すべての人間は平等」という思想を宣言に記しました。",
+  "独立宣言":"1776年7月4日に採択されたアメリカの独立宣言。ジェファーソンが起草し、「生命・自由・幸福追求の権利」を宣言しました。現在の7月4日がアメリカの独立記念日です。",
+  "ワシントン":"アメリカ独立戦争の総司令官（1732〜1799）。独立後に初代大統領（在任1789〜1797）となりました。首都ワシントンは彼の名前にちなんでいます。",
+  "パリ条約":"1783年にイギリスとアメリカが結んだ条約。アメリカの独立が正式に認められました。",
+  "アメリカ合衆国":"1789年に成立した世界初の近代民主主義共和国。合衆国憲法のもと、ワシントンが初代大統領に就任しました。",
+  "ルイ14世":"フランスの「太陽王」（在位1643〜1715）。絶対王政の象徴。ヴェルサイユ宮殿を建設しました。",
+  "ルイ16世":"フランス国王（在位1774〜1792）。アメリカ独立戦争への巨額支援で財政破綻し、フランス革命のきっかけを作りました。革命により処刑されました。",
+  "三部会":"フランスの身分制議会。第一身分（僧侶）・第二身分（貴族）・第三身分（平民）の代表による会議。ルイ16世が財政再建のために1789年に召集しました。",
+  "テニスコートの誓い":"1789年、第三身分の平民代表が国民議会を独立して設立し、「憲法が制定されるまで解散しない」と誓った出来事。球戯場（テニスコート）で行われました。",
+  "バスチーユ牢獄":"パリにあった政治犯を収容した監獄。1789年7月14日に市民が襲撃し、フランス革命の始まりとなりました。この日が現在のフランス革命記念日（バスティーユの日）です。",
+  "ラファイエット":"フランスの革命貴族（1757〜1834）。アメリカ独立戦争にも参加。フランス人権宣言を起草しました。",
+  "フランス人権宣言":"1789年にフランス国民議会が採択した宣言。「自由・平等・人民主権・所有権の不可侵」などを宣言し、近代民主主義の基礎となりました。",
+  "共和政":"国民の選挙で選ばれた代表者が政治を行う政治体制。フランス革命後、絶対王政に代わって共和政（第一共和政）が成立しました。",
+  "ロベスピエール":"フランス革命期の政治家（1758〜1794）。ジャコバン派の指導者で急進的な改革を行いましたが、恐怖政治で反対派を多数処刑し、最終的には自らもギロチンで処刑されました。",
+  "恐怖政治":"ロベスピエールが行った、反革命的とみなした人々を容赦なくギロチンで処刑した独裁的な支配。1793〜1794年の約1年間続きました。",
+  "ナポレオン":"フランスの軍人・皇帝（1769〜1821）。革命の混乱を収拾してクーデターで政権を握り、ヨーロッパを制覇しました。ワーテルローの戦いで敗れ、セントヘレナ島で没しました。",
+  "ナポレオン1世":"ナポレオンが1804年に国民投票で選ばれた皇帝としての称号。第一帝政とも呼ばれます。",
+  "大陸封鎖令":"ナポレオンが1806年に出した命令。ヨーロッパ大陸のすべての国に対してイギリスとの貿易を禁止しました。ロシアがこれを守らなかったことがロシア遠征のきっかけとなりました。",
+  "ワーテルローの戦い":"1815年にベルギーのワーテルロー（現・ウーテルロー）で起きた戦い。ナポレオンがイギリス・プロイセン連合軍に大敗し、最終的に失脚するきっかけとなりました。",
+};
+
+const answers={
+  "A":"工場制手工業（マニュファクチュア）","B":"ワット","C":"産業革命","D":"ジョン＝ケイ","E":"フルトン","F":"スティーブンソン","G":"第二次囲い込み",
+  "H":"マルクス","I":"エンゲルス","J":"共産党宣言","K":"社会主義",
+  "L":"メイフラワー号","M":"七年戦争","N":"印紙税","O":"代表なければ課税なし","P":"ボストン茶会事件","Q":"大陸会議",
+  "R":"ジェファーソン","S":"独立宣言","T":"ワシントン","U":"パリ条約","V":"アメリカ合衆国",
+  "W":"ルイ14世","X":"ルイ16世","Y":"三部会","Z":"テニスコートの誓い","AA":"バスチーユ牢獄","BB":"ラファイエット","CC":"フランス人権宣言","DD":"共和政",
+  "EE":"ロベスピエール","FF":"恐怖政治",
+  "GG":"ナポレオン","HH":"ナポレオン1世","II":"大陸封鎖令","JJ":"ワーテルローの戦い"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai8']=p['kindai8']||{};p['kindai8'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

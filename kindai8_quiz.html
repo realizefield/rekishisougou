@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：産業革命・アメリカ独立・フランス革命</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#7b1a00;border-left:4px solid #7b1a00;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.6;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #7b1a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#7b1a00;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#ffe0d0;color:#4a0d00;border-color:#7b1a00}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#fff8f5;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#7b1a00;background:#ffe8e0}
+  .word-chip.selected{border-color:#7b1a00;background:#ffb090;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#7b1a00;color:#fff;box-shadow:0 3px 0 #4a0d00}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#7b1a00;color:#7b1a00;background:#ffe8e0}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑧ 産業革命・アメリカ独立・フランス革命</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🏭 産業革命・社会主義</div>
+  <div class="question-text">
+    イギリスで人の手による分業制の<span class="blank" data-ans="工場制手工業（マニュファクチュア）">工場制手工業（マニュファクチュア）</span>が行われていたが、<span class="blank" data-ans="ワット">ワット</span>の蒸気機関の改良により工場制機械工業に変化した。これを<span class="blank" data-ans="産業革命">産業革命</span>という。<br><br>
+    飛び杼を発明した<span class="blank" data-ans="ジョン＝ケイ">ジョン＝ケイ</span>、蒸気船を実用化した<span class="blank" data-ans="フルトン">フルトン</span>、蒸気機関車を実用化した<span class="blank" data-ans="スティーブンソン">スティーブンソン</span>が活躍した。<br><br>
+    労働問題が深刻化する中、<span class="blank" data-ans="マルクス">マルクス</span>と<span class="blank" data-ans="エンゲルス">エンゲルス</span>は著書<span class="blank" data-ans="共産党宣言">共産党宣言</span>で<span class="blank" data-ans="社会主義">社会主義</span>を唱えた。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🦅 アメリカ独立戦争</div>
+  <div class="question-text">
+    1620年、ピューリタン102人が<span class="blank" data-ans="メイフラワー号">メイフラワー号</span>でアメリカに移住した。七年戦争後、イギリスは植民地に<span class="blank" data-ans="印紙税">印紙税</span>を課し、植民地の人々は「<span class="blank" data-ans="代表なければ課税なし">代表なければ課税なし</span>」と反発。1773年に<span class="blank" data-ans="ボストン茶会事件">ボストン茶会事件</span>が起きた。<br><br>
+    1776年、<span class="blank" data-ans="ジェファーソン">ジェファーソン</span>の起草した<span class="blank" data-ans="独立宣言">独立宣言</span>が発表され、総司令官<span class="blank" data-ans="ワシントン">ワシントン</span>が率いる軍が勝利。1783年の<span class="blank" data-ans="パリ条約">パリ条約</span>でアメリカの独立が認められ<span class="blank" data-ans="アメリカ合衆国">アメリカ合衆国</span>が成立した。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🇫🇷 フランス革命・ナポレオン</div>
+  <div class="question-text">
+    ルイ16世が第一・第二・第三身分の代表を集める<span class="blank" data-ans="三部会">三部会</span>を開くと、平民は独自に「国民議会」を作り「<span class="blank" data-ans="テニスコートの誓い">テニスコートの誓い</span>」をした。1789年市民が<span class="blank" data-ans="バスチーユ牢獄">バスチーユ牢獄</span>を襲いフランス革命が起きた。<span class="blank" data-ans="フランス人権宣言">フランス人権宣言</span>が発表され<span class="blank" data-ans="共和政">共和政</span>となった。ジャコバン派の<span class="blank" data-ans="ロベスピエール">ロベスピエール</span>が<span class="blank" data-ans="恐怖政治">恐怖政治</span>を行い処刑された。<br><br>
+    1799年<span class="blank" data-ans="ナポレオン">ナポレオン</span>がクーデターで政権を握り、1804年<span class="blank" data-ans="ナポレオン1世">ナポレオン1世</span>として皇帝に即位した。1815年の<span class="blank" data-ans="ワーテルローの戦い">ワーテルローの戦い</span>で敗れ島流しとなった。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai8.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai8_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai8';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['工場制手工業（マニュファクチュア）','ワット','産業革命','ジョン＝ケイ','フルトン','スティーブンソン','マルクス','エンゲルス','共産党宣言','社会主義']);
+  buildBank('bank1',['メイフラワー号','印紙税','代表なければ課税なし','ボストン茶会事件','ジェファーソン','独立宣言','ワシントン','パリ条約','アメリカ合衆国']);
+  buildBank('bank2',['三部会','テニスコートの誓い','バスチーユ牢獄','フランス人権宣言','共和政','ロベスピエール','恐怖政治','ナポレオン','ナポレオン1世','ワーテルローの戦い']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}b.onclick=null;b.style.cursor='default';});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

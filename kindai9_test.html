@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：ウィーン体制・イタリア・ドイツの統一</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .q-num{font-size:12px;color:#1a4a2a;font-weight:bold;margin-bottom:8px}
+  .q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+  .choice:hover{border-color:#1a4a2a;background:#eaf5ee}
+  .choice.selected{border-color:#1a4a2a;background:#c8f0d8;color:#0d2d18;font-weight:bold}
+  .choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+  .choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+  .choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+  .footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a4a2a;color:#fff;box-shadow:0 3px 0 #0d2d18}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  #result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+  .result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+  .result-score{font-size:72px;font-weight:bold;margin:10px 0}
+  .result-score.pass{color:#1a4a2a}.result-score.fail{color:#e67e22}
+  .result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+  .result-detail{font-size:15px;color:#888;margin-bottom:30px}
+  .confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+  @keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑨ ウィーン体制・イタリア・ドイツの統一</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai9.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai9_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <a class="btn btn-secondary" href="kindai9_quiz.html">✏️ 確認問題へ</a>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID='kindai9',PASS=70;
+const questions=[
+  {q:'ナポレオン没落後、ウィーン会議を主導してウィーン体制を確立したオーストリアの外務大臣は誰ですか？',choices:['ビスマルク','カヴール','タレーラン','メッテルニヒ'],ans:3},
+  {q:'ウィーン会議について、各国の利害が対立して議論が進まなかった様子を皮肉った言葉は何ですか？',choices:['会議は踊る、されど進まず','会議は動く、されど決まらず','会議は語る、されど何もせず','会議は来る、されど去らず'],ans:0},
+  {q:'1830年のフランスの七月革命の影響を受けてオランダから独立した国はどこですか？',choices:['スイス','ルクセンブルク','ベルギー','オランダ領インド'],ans:2},
+  {q:'1848年のフランスの二月革命の影響でオーストリアで起きた革命と、これを主導したことで失脚した人物の組み合わせで正しいのはどれですか？',choices:['七月革命・ルイ＝フィリップ','ウィーン三月革命・メッテルニヒ','二月革命・ナポレオン3世','ベルリン革命・ビスマルク'],ans:1},
+  {q:'イタリア統一を外交面で推進したサルデーニャ王国の首相は誰ですか？',choices:['ガリバルディ','マッツィーニ','カヴール','ヴィットーリオ＝エマヌエーレ2世'],ans:2},
+  {q:'「赤シャツ隊」約1000人を率いてイタリア南部を征服し、占領地を国王に献上した人物は誰ですか？',choices:['カヴール','ガリバルディ','マッツィーニ','ビスマルク'],ans:1},
+  {q:'プロイセンの首相ビスマルクが議会の反対を押し切って軍備を拡張した政策を何といいますか？',choices:['富国強兵','鉄血政策','重商主義','大陸封鎖令'],ans:1},
+  {q:'1866年にプロイセンがオーストリアを破った戦争を何といいますか？',choices:['普仏戦争','クリミア戦争','普墺戦争','七年戦争'],ans:2},
+  {q:'ビスマルクがナポレオン3世を挑発して起こした1870年の戦争を何といいますか？',choices:['普墺戦争','普仏戦争','クリミア戦争','アロー戦争'],ans:1},
+  {q:'1871年にドイツ帝国成立を宣言した場所はどこですか？',choices:['ベルリン宮殿','ブランデンブルク門','ヴェルサイユ宮殿','ウィーン宮殿'],ans:2},
+  {q:'1823年にヨーロッパとアメリカ大陸の相互不干渉を求める「モンロー宣言」を発表したアメリカ大統領は誰ですか？',choices:['リンカーン','ワシントン','ジェファーソン','モンロー'],ans:3},
+  {q:'ベネズエラ・コロンビア・ボリビアの独立に活躍し「ラテンアメリカ独立の父」と呼ばれた人物は誰ですか？',choices:['サン＝マルティン','シモン＝ボリバル','ワシントン','ガリバルディ'],ans:1},
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById('questions-area');area.innerHTML='';questions.forEach((q,qi)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${['①','②','③','④'][ci]}</span>${c}</div>`).join('')}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle('selected',i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add('show-correct');if(ua===ci&&ci!==q.ans)el.classList.add('wrong');if(ua===ci&&ci===q.ans){el.classList.add('correct');correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;p[UNIT_ID].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}document.getElementById('quiz-screen').style.display='none';const rs=document.getElementById('result-screen');rs.style.display='block';const se=document.getElementById('result-score');se.textContent=score+'点';se.className='result-score '+(pass?'pass':'fail');document.getElementById('result-msg').textContent=pass?'🎉 合格！':'😅 おしい！';document.getElementById('result-detail').textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=['#f43f5e','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899'];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+'s';el.style.width=(6+Math.random()*8)+'px';el.style.height=(6+Math.random()*8)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

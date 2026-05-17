@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：ウィーン体制・イタリア・ドイツの統一</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#1a4a2a;border-left:4px solid #1a4a2a;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.6;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a4a2a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a2a;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#c8f0d8;color:#0d2d18;border-color:#1a4a2a}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#eaf5ee;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#1a4a2a;background:#d0f0da}
+  .word-chip.selected{border-color:#1a4a2a;background:#90d890;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a4a2a;color:#fff;box-shadow:0 3px 0 #0d2d18}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#1a4a2a;color:#1a4a2a;background:#d0f0da}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑨ ウィーン体制・イタリア・ドイツの統一</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🏰 ウィーン体制</div>
+  <div class="question-text">
+    ナポレオン没落後、オーストリア外相<span class="blank" data-ans="メッテルニヒ">メッテルニヒ</span>の提唱で<span class="blank" data-ans="ウィーン会議">ウィーン会議</span>が開かれました。各国の利害が対立し「<span class="blank" data-ans="会議は踊る、されど進まず">会議は踊る、されど進まず</span>」と皮肉られ、自由主義革命を弾圧する<span class="blank" data-ans="ウィーン体制">ウィーン体制</span>が確立されました。<br><br>
+    1830年<span class="blank" data-ans="七月革命">七月革命</span>でシャルル10世が追放され<span class="blank" data-ans="ルイ＝フィリップ">ルイ＝フィリップ</span>が国王となり、隣国<span class="blank" data-ans="ベルギー">ベルギー</span>が独立しました。1848年<span class="blank" data-ans="二月革命">二月革命</span>でその影響が各国に広がり、オーストリアでも<span class="blank" data-ans="ウィーン三月革命">ウィーン三月革命</span>が起きてウィーン体制は崩壊しました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🇮🇹 イタリアの統一・🇩🇪 ドイツの統一</div>
+  <div class="question-text">
+    イタリアではサルデーニャ王国の首相<span class="blank" data-ans="カヴール">カヴール</span>が近代化を進め、1859年の<span class="blank" data-ans="イタリア統一戦争">イタリア統一戦争</span>で北部を統一。南部では「赤シャツ隊」の<span class="blank" data-ans="ガリバルディ">ガリバルディ</span>が制圧し、1861年<span class="blank" data-ans="イタリア王国">イタリア王国</span>が成立しました。<br><br>
+    ドイツではプロイセンの首相<span class="blank" data-ans="ビスマルク">ビスマルク</span>が軍備拡張の<span class="blank" data-ans="鉄血政策">鉄血政策</span>を実行。1866年<span class="blank" data-ans="普墺（ふおう）戦争">普墺（ふおう）戦争</span>でオーストリアを破り、1870年<span class="blank" data-ans="普仏（ふふつ）戦争">普仏（ふふつ）戦争</span>でフランスを破り、1871年<span class="blank" data-ans="ドイツ帝国">ドイツ帝国</span>が成立しました。<br><br>
+    1823年、アメリカ大統領<span class="blank" data-ans="モンロー">モンロー</span>が<span class="blank" data-ans="モンロー宣言">モンロー宣言</span>を発表しラテンアメリカ諸国が独立。<span class="blank" data-ans="シモン＝ボリバル">シモン＝ボリバル</span>は「ラテンアメリカ独立の父」と呼ばれました。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai9.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai9_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai9';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['メッテルニヒ','ウィーン会議','会議は踊る、されど進まず','ウィーン体制','七月革命','ルイ＝フィリップ','ベルギー','二月革命','ウィーン三月革命']);
+  buildBank('bank1',['カヴール','イタリア統一戦争','ガリバルディ','イタリア王国','ビスマルク','鉄血政策','普墺（ふおう）戦争','普仏（ふふつ）戦争','ドイツ帝国','モンロー','モンロー宣言','シモン＝ボリバル']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}b.onclick=null;b.style.cursor='default';});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>
