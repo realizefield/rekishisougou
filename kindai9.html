@@ -11,8 +11,8 @@
   h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#0d2d18;font-weight:bold}
   .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
   .back-to-index:hover{background:#1e2d6b}
-  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
-  .word-bank{border:2px solid #1a4a2a;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a4a2a;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
   .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
   .word-chip.used{opacity:0.3}
   .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
@@ -42,7 +42,7 @@
   .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
   .img-thumb .thumb-label{max-width:90px;line-height:1.3}
   .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a4a2a;cursor:pointer;color:#0d2d18;font-weight:bold}
-  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #1a4a2a;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none;white-space:normal;overflow:hidden}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #1a4a2a;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none;white-space:normal}
   .person-pop .pop-box img{width:80px;height:80px;max-width:80px;max-height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #90d890;display:block;margin-left:auto;margin-right:auto}
   .person-pop .pop-name{display:block;font-weight:bold;font-size:15px;color:#0d2d18;margin-bottom:6px}
   .person-pop .pop-desc{display:block;font-size:12px;color:#444;line-height:1.7;text-align:left}
@@ -85,11 +85,11 @@
       <span class="pop-name">メッテルニヒ（1773〜1859）</span>
       <span class="pop-desc">オーストリアの外務大臣・首相。ウィーン会議を主導し、ナポレオン後のヨーロッパを旧体制に戻す「ウィーン体制」を構築しました。革命運動を徹底的に弾圧しましたが、1848年の革命で失脚しました。</span>
     </span></span>
-    の提唱で<span class="blank" data-id="B">ウィーン会議</span>が開かれました。各国の利害が対立し、毎晩舞踏会が開かれたことから「<span class="blank" data-id="C">会議は踊る、されど進まず</span>」と皮肉られました。自由主義革命を弾圧する<span class="blank" data-id="D">ウィーン体制</span>が確立されました。</p>
+    の提唱で<span class="blank person-pop" data-id="B">ウィーン会議<span class="pop-box"><span class="pop-name">ウィーン会議（1814〜15年）</span><span class="pop-desc">ナポレオン後のヨーロッパ秩序を再建するための国際会議。各国の利害対立で議論が進まず「会議は踊る、されど進まず」と皮肉られました。</span></span></span>が開かれました。各国の利害が対立し、毎晩舞踏会が開かれたことから「<span class="blank person-pop" data-id="C">会議は踊る、されど進まず<span class="pop-box"><span class="pop-name">「会議は踊る、されど進まず」</span><span class="pop-desc">ウィーン会議の様子を皮肉った言葉。各国代表が連日舞踏会を楽しみながら、議論が一向に進まない状況を表しました。</span></span></span>」と皮肉られました。自由主義革命を弾圧する<span class="blank person-pop" data-id="D">ウィーン体制<span class="pop-box"><span class="pop-name">ウィーン体制（1815〜1848年）</span><span class="pop-desc">メッテルニヒが主導したヨーロッパの旧体制回復政策。自由主義・ナショナリズムを弾圧しましたが、七月革命・二月革命で崩壊しました。</span></span></span>が確立されました。</p>
 
   <h2>フランスの革命と各国への影響</h2>
-  <p>1830年<span class="blank" data-id="E">七月革命</span>でシャルル10世が追放され、オルレアン家の<span class="blank" data-id="F">ルイ＝フィリップ</span>が国王となりました。七月革命の影響でオランダから<span class="blank" data-id="G">ベルギー</span>が独立しました。</p>
-  <p>1848年<span class="blank" data-id="H">二月革命</span>でルイ＝フィリップが追放され、第二共和政となりました。その影響でオーストリアでも民衆が蜂起してメッテルニヒが亡命（<span class="blank" data-id="I">ウィーン三月革命</span>）し、ウィーン体制は崩壊しました。</p>
+  <p>1830年<span class="blank person-pop" data-id="E">七月革命<span class="pop-box"><span class="pop-name">七月革命（1830年）</span><span class="pop-desc">フランスのシャルル10世の反動政治に対しパリ市民が蜂起した革命。国王を追放しルイ＝フィリップが新国王となりました。</span></span></span>でシャルル10世が追放され、オルレアン家の<span class="blank person-pop" data-id="F">ルイ＝フィリップ<span class="pop-box"><span class="pop-name">ルイ＝フィリップ（在位1830〜1848）</span><span class="pop-desc">七月革命後のフランス国王。最初は「市民の王」と呼ばれましたが後に「銀行家の王」と批判され、二月革命で退位しました。</span></span></span>が国王となりました。七月革命の影響でオランダから<span class="blank person-pop" data-id="G">ベルギー<span class="pop-box"><span class="pop-name">ベルギー</span><span class="pop-desc">七月革命の影響を受け1830年にオランダから独立した国。現在もEUの中心的な国家のひとつです。</span></span></span>が独立しました。</p>
+  <p>1848年<span class="blank person-pop" data-id="H">二月革命<span class="pop-box"><span class="pop-name">二月革命（1848年）</span><span class="pop-desc">フランスで起きた革命。労働者の普通選挙要求などが背景で、ルイ＝フィリップが退位し第二共和政となりました。ヨーロッパ各地の革命に連鎖しました。</span></span></span>でルイ＝フィリップが追放され、第二共和政となりました。その影響でオーストリアでも民衆が蜂起してメッテルニヒが亡命（<span class="blank person-pop" data-id="I">ウィーン三月革命<span class="pop-box"><span class="pop-name">ウィーン三月革命（1848年）</span><span class="pop-desc">二月革命の影響でオーストリアで起きた民衆蜂起。メッテルニヒが失脚・亡命しウィーン体制が崩壊しました。</span></span></span>）し、ウィーン体制は崩壊しました。</p>
   <p>画家ドラクロワは七月革命を
     <span class="img-thumb" onclick="openImgModal('jiyu_no_megami.png','民衆を率いる自由の女神（ドラクロワ）')">
       <img src="jiyu_no_megami.png" onerror="this.style.display='none'" alt="自由の女神">
@@ -110,13 +110,13 @@
       <span class="pop-desc">サルデーニャ王国の首相。外交手腕でフランス・ナポレオン3世と同盟を結び、オーストリアとの戦争でイタリア北部を統一しました。「イタリア統一の父」と呼ばれます。</span>
     </span></span>
     が近代化を進め、1853年のクリミア戦争に参加してナポレオン3世との同盟に成功しました。</p>
-  <p>1859年<span class="blank" data-id="K">イタリア統一戦争</span>でオーストリアを破り北部イタリアを統一しました。一方、南部では青年イタリア党の
+  <p>1859年<span class="blank person-pop" data-id="K">イタリア統一戦争<span class="pop-box"><span class="pop-name">イタリア統一戦争（1859年）</span><span class="pop-desc">サルデーニャとフランスがオーストリアと戦った戦争。サルデーニャはロンバルディアを獲得し北イタリアを統一しました。</span></span></span>でオーストリアを破り北部イタリアを統一しました。一方、南部では青年イタリア党の
     <span class="blank person-pop" data-id="L">ガリバルディ<span class="pop-box">
       <img src="garubardi.png" onerror="this.style.display='none'" alt="ガリバルディ">
       <span class="pop-name">ガリバルディ（1807〜1882）</span>
       <span class="pop-desc">イタリアの革命家・愛国者。「赤シャツ隊」約1000人を率いてシチリア島から北上し、イタリア南部を征服しました。占領地を国王に献上した後、褒美を断り農民として生涯を終えました。</span>
     </span></span>
-    が「赤シャツ隊」約1000人でシチリア島に上陸し南部を制圧、国王に献上しました。1861年に<span class="blank" data-id="M">イタリア王国</span>が成立しました。</p>
+    が「赤シャツ隊」約1000人でシチリア島に上陸し南部を制圧、国王に献上しました。1861年に<span class="blank person-pop" data-id="M">イタリア王国<span class="pop-box"><span class="pop-name">イタリア王国（1861年成立）</span><span class="pop-desc">サルデーニャを中心に成立したイタリアの統一国家。ヴィットーリオ＝エマヌエーレ2世が初代国王に即位しました。</span></span></span>が成立しました。</p>
   <div class="key-point">⭐ <strong>覚え方</strong>：カヴール（北）＋ガリバルディ（南）→イタリア王国(1861)</div>
 </div>
 
@@ -130,12 +130,12 @@
       <span class="pop-name">ビスマルク（1815〜1898）</span>
       <span class="pop-desc">プロイセン（ドイツ）の首相。「鉄血宰相」の異名を持ち、「鉄（武器）と血（兵士）」による軍事力でドイツを統一しました。外交の天才で、普墺・普仏戦争を勝利に導き1871年のドイツ帝国成立を実現しました。</span>
     </span></span>
-    を任命し、議会の反対を押し切って軍備を拡張する<span class="blank" data-id="O">鉄血政策</span>を行いました。</p>
+    を任命し、議会の反対を押し切って軍備を拡張する<span class="blank person-pop" data-id="O">鉄血政策<span class="pop-box"><span class="pop-name">鉄血政策</span><span class="pop-desc">ビスマルクがプロイセンで進めた軍備拡張政策。「鉄（武器）と血（兵士）によってのみ問題は解決される」という演説からこう呼ばれます。</span></span></span>を行いました。</p>
   <table class="person-table">
     <tr><th>年</th><th>できごと</th><th>結果</th></tr>
-    <tr><td>1866年</td><td><span class="blank" data-id="P">普墺（ふおう）戦争</span></td><td>プロイセンがオーストリアを破り、ドイツ統一からオーストリアを排除しました。</td></tr>
-    <tr><td>1870年</td><td><span class="blank" data-id="Q">普仏（ふふつ）戦争</span></td><td>ビスマルクの挑発でナポレオン3世が戦争を起こしましたが、フランスが敗れナポレオン3世は捕虜となりました。</td></tr>
-    <tr><td>1871年</td><td><span class="blank" data-id="R">ドイツ帝国</span>の成立</td><td>ヴェルサイユ宮殿でヴィルヘルム1世が皇帝に即位し、ドイツが統一されました。</td></tr>
+    <tr><td>1866年</td><td><span class="blank person-pop" data-id="P">普墺（ふおう）戦争<span class="pop-box"><span class="pop-name">普墺戦争（1866年）</span><span class="pop-desc">プロイセンとオーストリアの戦争。プロイセンが勝ちオーストリアをドイツ統一から排除しました。</span></span></span></td><td>プロイセンがオーストリアを破り、ドイツ統一からオーストリアを排除しました。</td></tr>
+    <tr><td>1870年</td><td><span class="blank person-pop" data-id="Q">普仏（ふふつ）戦争<span class="pop-box"><span class="pop-name">普仏戦争（1870〜71年）</span><span class="pop-desc">プロイセンとフランスの戦争。ビスマルクの挑発にナポレオン3世が乗り開戦しましたが、フランスが敗れナポレオン3世は捕虜となりました。</span></span></span></td><td>ビスマルクの挑発でナポレオン3世が戦争を起こしましたが、フランスが敗れナポレオン3世は捕虜となりました。</td></tr>
+    <tr><td>1871年</td><td><span class="blank person-pop" data-id="R">ドイツ帝国<span class="pop-box"><span class="pop-name">ドイツ帝国（1871年成立）</span><span class="pop-desc">プロイセンを中心に成立したドイツの統一国家。ヴィルヘルム1世がフランスのヴェルサイユ宮殿の鏡の間で皇帝に即位しました。</span></span></span>の成立</td><td>ヴェルサイユ宮殿でヴィルヘルム1世が皇帝に即位し、ドイツが統一されました。</td></tr>
   </table>
 
   <h2>ラテンアメリカの独立とモンロー宣言</h2>
@@ -145,7 +145,7 @@
       <span class="pop-name">モンロー（1758〜1831）</span>
       <span class="pop-desc">アメリカ第5代大統領。1823年にヨーロッパとアメリカ大陸の相互不干渉を求める「モンロー宣言」を発表しました。ラテンアメリカ諸国の独立を側面支援し、アメリカの影響力拡大につながりました。</span>
     </span></span>
-    が<span class="blank" data-id="T">モンロー宣言</span>でヨーロッパとアメリカ大陸の相互不干渉を求め、ラテンアメリカ諸国が独立しました。クリオーリョ（スペイン・ポルトガル人を親に持つ植民地生まれの白人）の<span class="blank" data-id="U">シモン＝ボリバル</span>はベネズエラ・コロンビア・ボリビアの独立に活躍し、「ラテンアメリカ独立の父」と呼ばれました。</p>
+    が<span class="blank person-pop" data-id="T">モンロー宣言<span class="pop-box"><span class="pop-name">モンロー宣言（1823年）</span><span class="pop-desc">アメリカ大統領モンローが発表した外交方針。「ヨーロッパはアメリカ大陸に干渉するな」「アメリカもヨーロッパに干渉しない」という孤立主義の原則です。</span></span></span>でヨーロッパとアメリカ大陸の相互不干渉を求め、ラテンアメリカ諸国が独立しました。クリオーリョ（スペイン・ポルトガル人を親に持つ植民地生まれの白人）の<span class="blank person-pop" data-id="U">シモン＝ボリバル<span class="pop-box"><span class="pop-name">シモン＝ボリバル（1783〜1830）</span><span class="pop-desc">南米の独立運動の指導者。ベネズエラ・コロンビア・ボリビアの独立に貢献し「ラテンアメリカ独立の父」と呼ばれます。ボリビアは彼の名前に由来します。</span></span></span>はベネズエラ・コロンビア・ボリビアの独立に活躍し、「ラテンアメリカ独立の父」と呼ばれました。</p>
   <div class="key-point">⭐ <strong>ドイツ統一の流れ</strong>：鉄血政策→普墺戦争(1866)→普仏戦争(1870)→ドイツ帝国成立(1871/ヴェルサイユ宮殿)</div>
 </div>
 

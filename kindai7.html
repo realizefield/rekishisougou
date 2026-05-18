@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：主権国家体制・イギリスの革命</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #4a1a6b;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #4a1a6b;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#2d0d42;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #4a1a6b;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-shuken{background:#4a1a6b}.label-puritan{background:#7b1a1a}.label-meiyo{background:#1a4a2a}.label-sangyo{background:#1a3d6b}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #4a1a6b;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#4a1a6b;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#f3eaff;border-left:5px solid #4a1a6b;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#4a1a6b}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#4a1a6b;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f8f4ff}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#4a1a6b;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #2d0d42}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  button#test-btn{background:#e67e22;box-shadow:0 3px 0 #c96a10}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #4a1a6b;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #4a1a6b;background-color:#f3eaff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#ede0ff;border:1.5px solid #4a1a6b;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#2d0d42;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#d4b8ff}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #4a1a6b;cursor:pointer;color:#2d0d42;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #4a1a6b;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none;white-space:normal}
+  .person-pop .pop-box img{width:80px;height:80px;max-width:80px;max-height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #c8a0ff;display:block;margin-left:auto;margin-right:auto}
+  .person-pop .pop-name{display:block;font-weight:bold;font-size:15px;color:#2d0d42;margin-bottom:6px}
+  .person-pop .pop-desc{display:block;font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#4a1a6b}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .blank.person-pop{border-bottom:2px solid #4a1a6b;color:#4a1a6b}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>👑 主権国家体制・イギリスの革命</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 主権国家体制 -->
+<div class="section">
+  <span class="section-label label-shuken">① ヨーロッパ主権国家体制の成立</span>
+  <h2>主権国家体制とは</h2>
+  <p>16〜18世紀、ヨーロッパでは神聖ローマ帝国が弱体化し、イギリス・フランス・スペインなどが力をつけてきました。これらの国々は君主が主権者となり、各諸侯の力を抑える<span class="blank person-pop" data-id="A">中央集権化<span class="pop-box"><span class="pop-name">中央集権化</span><span class="pop-desc">君主が地方の諸侯・領主の力を抑えて国王のもとに権力を集める政治体制。16〜17世紀のヨーロッパで進みました。</span></span></span>を進めました。</p>
+  <p>中国のように周辺諸国に朝貢を求めるのではなく、他国と対等な外交関係を保つ体制を<span class="blank person-pop" data-id="B">主権国家体制<span class="pop-box"><span class="pop-name">主権国家体制</span><span class="pop-desc">各国が他国と対等な立場で外交を行う国際秩序。ウェストファリア条約（1648）で確立されました。</span></span></span>といいます。</p>
+
+  <h2>フランスの絶対王政</h2>
+  <p>「太陽王」と呼ばれた
+    <span class="blank person-pop" data-id="C">ルイ14世<span class="pop-box">
+      <img src="lui14sei.png" onerror="this.style.display='none'" alt="ルイ14世">
+      <span class="pop-name">ルイ14世（在位1643〜1715）</span>
+      <span class="pop-desc">フランスの絶対王政の象徴。「朕は国家なり」という言葉で有名。ヴェルサイユ宮殿を建設し、貴族を宮廷に集めて支配しました。ヨーロッパ最強の常備軍を持ち、絶対王政の最盛期を築きました。</span>
+    </span></span>
+    は、国王が直接政治を行う親政を行い<span class="blank person-pop" data-id="D">絶対王政<span class="pop-box"><span class="pop-name">絶対王政</span><span class="pop-desc">国王が議会の制限なしに絶対的な権力を持つ政治体制。17〜18世紀のヨーロッパで広く見られました。</span></span></span>の絶頂期を迎えました。ヨーロッパ最大の宮殿
+    <span class="img-thumb" onclick="openImgModal('verusaiyu.png','ヴェルサイユ宮殿（フランス）')">
+      <img src="verusaiyu.png" onerror="this.style.display='none'" alt="ヴェルサイユ宮殿">
+      <span class="thumb-label">🖼 ヴェルサイユ宮殿</span>
+    </span>
+    <span class="blank person-pop" data-id="E">ヴェルサイユ宮殿<span class="pop-box"><span class="pop-name">ヴェルサイユ宮殿</span><span class="pop-desc">ルイ14世がパリ郊外に建てたフランスの宮殿。ヨーロッパ最大規模で、貴族を宮廷に集めて反乱を防ぐ目的もありました。</span></span></span>を建設し、貴族をその敷地内に住まわせました。</p>
+
+  <h2>三十年戦争とウェストファリア条約</h2>
+  <p>1618年、ドイツでカトリックとプロテスタントの宗教対立から<span class="blank person-pop" data-id="F">三十年戦争<span class="pop-box"><span class="pop-name">三十年戦争（1618〜1648）</span><span class="pop-desc">ドイツを中心に起きた宗教・政治戦争。カトリックとプロテスタントの対立が発端でしたが、やがて国際戦争となりました。</span></span></span>が起きました。内乱がスペイン・オランダ・フランスなどの介入を招き国際戦争となりました。</p>
+  <p>1648年の<span class="blank person-pop" data-id="G">ウェストファリア条約<span class="pop-box"><span class="pop-name">ウェストファリア条約（1648年）</span><span class="pop-desc">三十年戦争を終結させた条約。主権国家間の最初の国際条約とされ、神聖ローマ帝国の解体とスイス・オランダの独立が認められました。</span></span></span>で神聖ローマ帝国は解体され、約300の小国家（<span class="blank person-pop" data-id="H">領邦国家<span class="pop-box"><span class="pop-name">領邦国家</span><span class="pop-desc">神聖ローマ帝国解体後にあらわれた、諸侯が独立して治める小国家群。ドイツは約300の領邦国家に分裂しました。</span></span></span>）が生まれました。スイスとオランダの独立が認められました。この条約は「神聖ローマ帝国の死亡証明書」とも呼ばれ、<span class="blank person-pop" data-id="I">主権国家<span class="pop-box"><span class="pop-name">主権国家</span><span class="pop-desc">自国の領域内で最高権力（主権）を持ち、他国から干渉されない独立した国家のこと。</span></span></span>間の最初の国際条約でした。</p>
+  <div class="key-point">⭐ <strong>重要</strong>：ウェストファリア条約（1648年）＝主権国家間の最初の国際条約</div>
+</div>
+
+<!-- ② ピューリタン革命 -->
+<div class="section">
+  <span class="section-label label-puritan">② 清教徒（ピューリタン）革命（1642年）</span>
+  <h2>ピューリタン革命の流れ</h2>
+  <p>
+    <span class="blank person-pop" data-id="J">チャールズ1世<span class="pop-box">
+      <img src="charuzu1sei.png" onerror="this.style.display='none'" alt="チャールズ1世">
+      <span class="pop-name">チャールズ1世（在位1625〜1649）</span>
+      <span class="pop-desc">イギリス国王。議会の承認なしに課税を行い絶対王政を進めました。イギリス国教会をプロテスタント（ピューリタン）に強制したため議会と対立し、内乱となりました。処刑された唯一のイギリス国王です。</span>
+    </span></span>
+    の絶対王政によるイギリス国教会の強制に反発した<span class="blank person-pop" data-id="K">ピューリタン<span class="pop-box"><span class="pop-name">ピューリタン（清教徒）</span><span class="pop-desc">イギリスのカルヴァン派プロテスタントの呼び名。チャールズ1世の国教会強制に反発して革命を起こしました。</span></span></span>（カルヴァン派プロテスタント）が信仰の自由を求め、議会と国王が対立して内乱が起きました。</p>
+  <p>ピューリタンの
+    <span class="blank person-pop" data-id="L">クロムウェル<span class="pop-box">
+      <img src="kuromuweru.png" onerror="this.style.display='none'" alt="クロムウェル">
+      <span class="pop-name">クロムウェル（1599〜1658）</span>
+      <span class="pop-desc">ピューリタン革命の指導者。国王軍を破りチャールズ1世を処刑しました。その後、護国卿として独裁的な政治を行いましたが、死後に王政が復古しました。</span>
+    </span></span>
+    が国王軍を破り、チャールズ1世は処刑されました。しかしクロムウェルは次第に独裁化し、その死後チャールズ1世の子<span class="blank person-pop" data-id="M">チャールズ2世<span class="pop-box"><span class="pop-name">チャールズ2世（在位1660〜1685）</span><span class="pop-desc">チャールズ1世の子。クロムウェルの死後、王政復古でイギリス国王に即位しました。</span></span></span>が<span class="blank person-pop" data-id="N">王政復古<span class="pop-box"><span class="pop-name">王政復古（1660年）</span><span class="pop-desc">クロムウェルの死後、廃止されていた王制が復活すること。チャールズ2世がイギリス国王に即位しました。</span></span></span>をしました。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：チャールズ1世の絶対王政 → ピューリタン革命(1642) → クロムウェルの独裁 → 王政復古</div>
+</div>
+
+<!-- ③ 名誉革命 -->
+<div class="section">
+  <span class="section-label label-meiyo">③ 名誉革命（1688年）・立憲君主政の成立</span>
+  <h2>名誉革命と権利の章典</h2>
+  <p>王政復古後、ジェームズ2世がカトリックを強制し絶対王政を続けたため、議会はジェームズ2世を追放しました。ジェームズ2世の娘
+    <span class="blank person-pop" data-id="O">メアリ2世<span class="pop-box">
+      <img src="meari2sei.png" onerror="this.style.display='none'" alt="メアリ2世">
+      <span class="pop-name">メアリ2世（在位1689〜1694）</span>
+      <span class="pop-desc">名誉革命後にイギリス女王となりました。夫のウィリアム3世とともに権利の章典に署名し、世界初の立憲君主政を始めました。</span>
+    </span></span>
+    と夫のオランダ総督<span class="blank person-pop" data-id="P">ウィリアム3世<span class="pop-box"><span class="pop-name">ウィリアム3世（在位1689〜1702）</span><span class="pop-desc">オランダ総督でメアリ2世の夫。名誉革命でイギリス国王に即位し、権利の章典を認めて立憲君主政を確立しました。</span></span></span>を国王として迎え、「議会の承認なく法律をつくったり課税できない」とする<span class="blank person-pop" data-id="Q">権利の章典<span class="pop-box"><span class="pop-name">権利の章典（1689年）</span><span class="pop-desc">イギリス議会が制定した文書。「議会の承認なく課税・立法はできない」などを定め、議会が国王より優位に立つ立憲主義の根拠となりました。</span></span></span>を認めさせました。これを<span class="blank person-pop" data-id="R">名誉革命<span class="pop-box"><span class="pop-name">名誉革命（1688年）</span><span class="pop-desc">ジェームズ2世が追放され、血を流さずに政権交代したイギリスの革命。「名誉」とは血が流れなかったことを指します。</span></span></span>といいます。</p>
+  <p>これにより憲法で国王の権力が制限される世界初の<span class="blank person-pop" data-id="S">立憲君主政<span class="pop-box"><span class="pop-name">立憲君主政</span><span class="pop-desc">憲法で国王の権力が制限される政治体制。名誉革命後のイギリスで世界初の立憲君主政が成立しました。</span></span></span>が始まりました。</p>
+
+  <h2>議院内閣制の確立</h2>
+  <p>メアリ2世・ウィリアム3世に子がなく、ドイツのハノーヴァー選帝侯が<span class="blank person-pop" data-id="T">ジョージ1世<span class="pop-box"><span class="pop-name">ジョージ1世（在位1714〜1727）</span><span class="pop-desc">ドイツのハノーヴァー選帝侯出身のイギリス国王。英語が話せなかったため首相に政治を委ね、議院内閣制確立のきっかけとなりました。</span></span></span>として即位しました。英語が話せなかったため、首相<span class="blank person-pop" data-id="U">ウォルポール<span class="pop-box"><span class="pop-name">ウォルポール（在任1721〜1742）</span><span class="pop-desc">イギリス初の首相。ジョージ1世が英語を話せなかったため実質的な政治を担い、内閣が議会に責任を負う議院内閣制の先例を作りました。</span></span></span>に国政を委ねたことから、内閣が議会に対して責任を負う<span class="blank person-pop" data-id="V">議院内閣制<span class="pop-box"><span class="pop-name">議院内閣制</span><span class="pop-desc">首相を中心とする内閣が議会の信任に基づいて政治を行う制度。現在の日本でも採用されています。</span></span></span>が確立されました。「<span class="blank person-pop" data-id="W">国王は君臨すれども統治せず<span class="pop-box"><span class="pop-name">「国王は君臨すれども統治せず」</span><span class="pop-desc">イギリスの立憲君主政を表す原則。国王は存在するが実際の政治は議会・内閣が担うことを意味します。</span></span></span>」という形が作られました。</p>
+  <div class="key-point">⭐ <strong>2つの革命</strong>：ピューリタン革命(1642) → クロムウェルの独裁 → 王政復古 → 名誉革命(1688) → 権利の章典 → 立憲君主政 → 議院内閣制</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai7_quiz.html'" disabled>確認問題へ ▶</button>
+      <button id="test-btn" onclick="location.href='kindai7_test.html'">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①主権国家体制：ウェストファリア条約(1648)＝主権国家間の最初の国際条約<br>
+      ②ピューリタン革命(1642)：チャールズ1世処刑→クロムウェル独裁→王政復古<br>
+      ③名誉革命(1688)：権利の章典→立憲君主政→議院内閣制（国王は君臨すれども統治せず）
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "中央集権化":"君主が国内の諸侯や地方領主の力を抑えて、国王のもとに権力を集中させる政治体制のこと。イギリス・フランス・スペインなどが16〜17世紀に進めました。",
+  "主権国家体制":"各国が他国と対等な立場で外交を行う国際秩序のこと。中国の朝貢体制とは異なり、国家間の平等を原則とします。ウェストファリア条約(1648)で確立されました。",
+  "ルイ14世":"フランスの絶対王政の象徴（在位1643〜1715）。「太陽王」と呼ばれ、「朕は国家なり」という言葉で有名。ヴェルサイユ宮殿を建てました。",
+  "絶対王政":"国王が絶対的な権力を持ち、議会の制限なしに政治を行う体制。17〜18世紀のヨーロッパで広く見られ、フランスのルイ14世が典型例です。",
+  "ヴェルサイユ宮殿":"ルイ14世がパリ郊外に建てたフランスの宮殿。ヨーロッパ最大規模で、貴族たちを宮廷に集めることで反乱を防ぐ目的もありました。",
+  "三十年戦争":"1618〜1648年にドイツを中心に起きた宗教・政治戦争。カトリックとプロテスタントの対立が発端でしたが、フランス・スペイン・オランダなどが介入し国際戦争となりました。",
+  "ウェストファリア条約":"1648年に三十年戦争を終結させた条約。神聖ローマ帝国が解体され、スイスとオランダの独立が認められました。主権国家間の最初の国際条約として歴史上重要です。",
+  "領邦国家":"神聖ローマ帝国解体後にあらわれた、諸侯が独立して治める小国家群のこと。ドイツは約300の領邦国家に分裂し、統一は19世紀まで待つことになります。",
+  "主権国家":"自国の領域内で最高の権力（主権）を持ち、他国から干渉されない独立した国家のこと。ウェストファリア条約によってこの概念が国際的に確立されました。",
+  "チャールズ1世":"イギリス国王（在位1625〜1649）。議会の承認なしに課税を行い絶対王政を進めましたが、ピューリタン革命で処刑された唯一のイギリス国王です。",
+  "ピューリタン":"イギリスのカルヴァン派プロテスタントの呼び名。「清教徒」とも訳されます。チャールズ1世のイギリス国教会強制に反発して革命を起こしました。",
+  "クロムウェル":"ピューリタン革命の指導者（1599〜1658）。国王軍を破りチャールズ1世を処刑後、護国卿として独裁的な政治を行いました。",
+  "チャールズ2世":"チャールズ1世の子。クロムウェルの死後、王政復古でイギリス国王に即位しました（在位1660〜1685）。",
+  "王政復古":"一度廃止された王制が再び復活すること。イギリスではクロムウェルの死後、1660年にチャールズ2世が即位して王政が復活しました。",
+  "メアリ2世":"名誉革命後のイギリス女王（在位1689〜1694）。夫ウィリアム3世とともに権利の章典を承認し、立憲君主政の基礎を築きました。",
+  "ウィリアム3世":"オランダ総督でメアリ2世の夫。名誉革命でイギリス国王に即位し（在位1689〜1702）、権利の章典を認めて立憲君主政を確立しました。",
+  "権利の章典":"1689年にイギリス議会が制定した文書。「議会の承認なく課税・法律制定はできない」などを定め、議会が国王より優位に立つ立憲主義の根拠となりました。",
+  "名誉革命":"1688年にイギリスで起きた無血革命。ジェームズ2世が追放され、メアリ2世・ウィリアム3世が即位しました。「名誉」とは血が流れなかったことを指します。",
+  "立憲君主政":"憲法（または議会の定める法律）によって国王の権力が制限される政治体制。名誉革命後のイギリスで世界初の立憲君主政が成立しました。",
+  "ジョージ1世":"ドイツのハノーヴァー選帝侯出身のイギリス国王（在位1714〜1727）。英語が話せなかったため首相に政治を委ね、議院内閣制確立のきっかけとなりました。",
+  "ウォルポール":"イギリス初の首相（在任1721〜1742）。ジョージ1世が英語を話せなかったため実質的な政治を担い、内閣が議会に責任を負う議院内閣制の先例を作りました。",
+  "議院内閣制":"首相を中心とする内閣が議会の信任に基づいて政治を行う制度。「国王は君臨すれども統治せず」というイギリスの政治原則から生まれ、現在の日本でも採用されています。",
+  "国王は君臨すれども統治せず":"イギリスの立憲君主政を表す言葉。国王は存在するが実際の政治は議会・内閣が担うという原則を意味します。名誉革命後のイギリスで確立されました。",
+};
+
+const answers={
+  "A":"中央集権化","B":"主権国家体制","C":"ルイ14世","D":"絶対王政","E":"ヴェルサイユ宮殿",
+  "F":"三十年戦争","G":"ウェストファリア条約","H":"領邦国家","I":"主権国家",
+  "J":"チャールズ1世","K":"ピューリタン","L":"クロムウェル","M":"チャールズ2世","N":"王政復古",
+  "O":"メアリ2世","P":"ウィリアム3世","Q":"権利の章典","R":"名誉革命","S":"立憲君主政",
+  "T":"ジョージ1世","U":"ウォルポール","V":"議院内閣制","W":"国王は君臨すれども統治せず"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+
+document.querySelectorAll('.person-pop').forEach(el=>{
+  el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});
+});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+
+let startTime,timerId,selectedChip=null;
+function renderBank(){
+  const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";
+  [...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{
+    const chip=document.createElement('div');chip.className='word-chip';
+    const label=document.createElement('span');label.textContent=word;chip.appendChild(label);
+    const tip=WORD_TIPS[word];
+    if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);
+      chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}
+    chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});
+    bank.appendChild(chip);
+  });
+}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{
+  if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}
+  else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}
+};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai7']=p['kindai7']||{};p['kindai7'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>
