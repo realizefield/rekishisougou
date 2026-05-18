@@ -58,6 +58,11 @@
   #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
   #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
   .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
 </style>
 </head>
 <body>
@@ -75,70 +80,34 @@
   <div class="word-bank" id="word-bank"></div>
 </div>
 
-<!-- ① 主権国家体制 -->
+
+
 <div class="section">
-  <span class="section-label label-shuken">① ヨーロッパ主権国家体制の成立</span>
-  <h2>主権国家体制とは</h2>
-  <p>16〜18世紀、ヨーロッパでは神聖ローマ帝国が弱体化し、イギリス・フランス・スペインなどが力をつけてきました。これらの国々は君主が主権者となり、各諸侯の力を抑える<span class="blank person-pop" data-id="A">中央集権化<span class="pop-box"><span class="pop-name">中央集権化</span><span class="pop-desc">君主が地方の諸侯・領主の力を抑えて国王のもとに権力を集める政治体制。16〜17世紀のヨーロッパで進みました。</span></span></span>を進めました。</p>
-  <p>中国のように周辺諸国に朝貢を求めるのではなく、他国と対等な外交関係を保つ体制を<span class="blank person-pop" data-id="B">主権国家体制<span class="pop-box"><span class="pop-name">主権国家体制</span><span class="pop-desc">各国が他国と対等な立場で外交を行う国際秩序。ウェストファリア条約（1648）で確立されました。</span></span></span>といいます。</p>
-
-  <h2>フランスの絶対王政</h2>
-  <p>「太陽王」と呼ばれた
-    <span class="blank person-pop" data-id="C">ルイ14世<span class="pop-box">
-      <img src="lui14sei.png" onerror="this.style.display='none'" alt="ルイ14世">
-      <span class="pop-name">ルイ14世（在位1643〜1715）</span>
-      <span class="pop-desc">フランスの絶対王政の象徴。「朕は国家なり」という言葉で有名。ヴェルサイユ宮殿を建設し、貴族を宮廷に集めて支配しました。ヨーロッパ最強の常備軍を持ち、絶対王政の最盛期を築きました。</span>
-    </span></span>
-    は、国王が直接政治を行う親政を行い<span class="blank person-pop" data-id="D">絶対王政<span class="pop-box"><span class="pop-name">絶対王政</span><span class="pop-desc">国王が議会の制限なしに絶対的な権力を持つ政治体制。17〜18世紀のヨーロッパで広く見られました。</span></span></span>の絶頂期を迎えました。ヨーロッパ最大の宮殿
-    <span class="img-thumb" onclick="openImgModal('verusaiyu.png','ヴェルサイユ宮殿（フランス）')">
-      <img src="verusaiyu.png" onerror="this.style.display='none'" alt="ヴェルサイユ宮殿">
-      <span class="thumb-label">🖼 ヴェルサイユ宮殿</span>
-    </span>
-    <span class="blank person-pop" data-id="E">ヴェルサイユ宮殿<span class="pop-box"><span class="pop-name">ヴェルサイユ宮殿</span><span class="pop-desc">ルイ14世がパリ郊外に建てたフランスの宮殿。ヨーロッパ最大規模で、貴族を宮廷に集めて反乱を防ぐ目的もありました。</span></span></span>を建設し、貴族をその敷地内に住まわせました。</p>
-
-  <h2>三十年戦争とウェストファリア条約</h2>
-  <p>1618年、ドイツでカトリックとプロテスタントの宗教対立から<span class="blank person-pop" data-id="F">三十年戦争<span class="pop-box"><span class="pop-name">三十年戦争（1618〜1648）</span><span class="pop-desc">ドイツを中心に起きた宗教・政治戦争。カトリックとプロテスタントの対立が発端でしたが、やがて国際戦争となりました。</span></span></span>が起きました。内乱がスペイン・オランダ・フランスなどの介入を招き国際戦争となりました。</p>
-  <p>1648年の<span class="blank person-pop" data-id="G">ウェストファリア条約<span class="pop-box"><span class="pop-name">ウェストファリア条約（1648年）</span><span class="pop-desc">三十年戦争を終結させた条約。主権国家間の最初の国際条約とされ、神聖ローマ帝国の解体とスイス・オランダの独立が認められました。</span></span></span>で神聖ローマ帝国は解体され、約300の小国家（<span class="blank person-pop" data-id="H">領邦国家<span class="pop-box"><span class="pop-name">領邦国家</span><span class="pop-desc">神聖ローマ帝国解体後にあらわれた、諸侯が独立して治める小国家群。ドイツは約300の領邦国家に分裂しました。</span></span></span>）が生まれました。スイスとオランダの独立が認められました。この条約は「神聖ローマ帝国の死亡証明書」とも呼ばれ、<span class="blank person-pop" data-id="I">主権国家<span class="pop-box"><span class="pop-name">主権国家</span><span class="pop-desc">自国の領域内で最高権力（主権）を持ち、他国から干渉されない独立した国家のこと。</span></span></span>間の最初の国際条約でした。</p>
-  <div class="key-point">⭐ <strong>重要</strong>：ウェストファリア条約（1648年）＝主権国家間の最初の国際条約</div>
+  <span class="section-label label-sovereign">① ヨーロッパ主権国家体制の成立</span>
+  <h2>なぜ「主権国家体制」が生まれたのか？</h2>
+  <p>16〜17世紀のヨーロッパでは、神聖ローマ帝国の力が弱まり、イギリス・フランス・スペインなどの国々が独自の力をつけてきました。これらの国々では君主（国王）が諸侯の力を抑えて国内をまとめる<span class="blank" data-id="A">中央集権化</span>が進み、「自国の領土内では自分が最高権力者だ」という考えが広まりました。</p>
+  <p>こうして他国と対等な外交関係を保つ体制を<span class="blank" data-id="B">主権国家体制</span>といいます。フランスでは「太陽王」と呼ばれた<span class="blank person-pop" data-id="C">ルイ14世<span class="pop-box"><span class="pop-name">ルイ14世（在位1643〜1715）</span><span class="pop-desc">フランスの「太陽王」。「朕は国家なり」という言葉で有名。絶対王政の象徴として、ヴェルサイユ宮殿を建設し貴族を宮廷に集めて反乱を防ぎました。</span></span></span>が<span class="blank" data-id="D">絶対王政</span>の絶頂期を迎え、ヨーロッパ最大の<span class="blank" data-id="E">ヴェルサイユ宮殿</span>を建てました。</p>
+  <p>一方、ドイツでは1618年から<span class="blank" data-id="F">三十年戦争</span>が起きました。カトリックとプロテスタントの宗教対立が発端でしたが、やがてフランス・スウェーデンなども介入する国際戦争となりました。1648年の<span class="blank" data-id="G">ウェストファリア条約</span>で終結した結果、神聖ローマ帝国は解体され、約300の<span class="blank" data-id="H">領邦国家</span>に分裂しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>ウェストファリア条約は「<span class="blank" data-id="I">主権国家</span>間の最初の国際条約」として歴史上極めて重要な意味を持ちます。この条約以後、各国が互いの主権を尊重するという原則が国際社会の基本ルールとなり、現在の国際法の出発点となりました。</div>
 </div>
 
-<!-- ② ピューリタン革命 -->
 <div class="section">
-  <span class="section-label label-puritan">② 清教徒（ピューリタン）革命（1642年）</span>
-  <h2>ピューリタン革命の流れ</h2>
-  <p>
-    <span class="blank person-pop" data-id="J">チャールズ1世<span class="pop-box">
-      <img src="charuzu1sei.png" onerror="this.style.display='none'" alt="チャールズ1世">
-      <span class="pop-name">チャールズ1世（在位1625〜1649）</span>
-      <span class="pop-desc">イギリス国王。議会の承認なしに課税を行い絶対王政を進めました。イギリス国教会をプロテスタント（ピューリタン）に強制したため議会と対立し、内乱となりました。処刑された唯一のイギリス国王です。</span>
-    </span></span>
-    の絶対王政によるイギリス国教会の強制に反発した<span class="blank person-pop" data-id="K">ピューリタン<span class="pop-box"><span class="pop-name">ピューリタン（清教徒）</span><span class="pop-desc">イギリスのカルヴァン派プロテスタントの呼び名。チャールズ1世の国教会強制に反発して革命を起こしました。</span></span></span>（カルヴァン派プロテスタント）が信仰の自由を求め、議会と国王が対立して内乱が起きました。</p>
-  <p>ピューリタンの
-    <span class="blank person-pop" data-id="L">クロムウェル<span class="pop-box">
-      <img src="kuromuweru.png" onerror="this.style.display='none'" alt="クロムウェル">
-      <span class="pop-name">クロムウェル（1599〜1658）</span>
-      <span class="pop-desc">ピューリタン革命の指導者。国王軍を破りチャールズ1世を処刑しました。その後、護国卿として独裁的な政治を行いましたが、死後に王政が復古しました。</span>
-    </span></span>
-    が国王軍を破り、チャールズ1世は処刑されました。しかしクロムウェルは次第に独裁化し、その死後チャールズ1世の子<span class="blank person-pop" data-id="M">チャールズ2世<span class="pop-box"><span class="pop-name">チャールズ2世（在位1660〜1685）</span><span class="pop-desc">チャールズ1世の子。クロムウェルの死後、王政復古でイギリス国王に即位しました。</span></span></span>が<span class="blank person-pop" data-id="N">王政復古<span class="pop-box"><span class="pop-name">王政復古（1660年）</span><span class="pop-desc">クロムウェルの死後、廃止されていた王制が復活すること。チャールズ2世がイギリス国王に即位しました。</span></span></span>をしました。</p>
-  <div class="key-point">⭐ <strong>流れ</strong>：チャールズ1世の絶対王政 → ピューリタン革命(1642) → クロムウェルの独裁 → 王政復古</div>
+  <span class="section-label label-puritan">② ピューリタン革命（1642年）</span>
+  <h2>なぜイギリスで国王が処刑されたのか？</h2>
+  <p>イギリス国王<span class="blank person-pop" data-id="J">チャールズ1世<span class="pop-box"><span class="pop-name">チャールズ1世（在位1625〜1649）</span><span class="pop-desc">イギリス国王。議会の承認なしに課税を行い絶対王政を進めました。ピューリタン革命で議会軍に敗れ、「国王は議会より上だ」という考えを守り最後まで譲らず処刑されました。</span></span></span>は「議会の承認なしに税をかける」という絶対王政を進め、<span class="blank" data-id="K">ピューリタン</span>（カルヴァン派プロテスタント）たちが信じるイギリス国教会改革も拒否しました。これに怒ったピューリタンたちが議会と手を結び、内乱が起きました。</p>
+  <div class="why-box"><span class="label">❓ なぜ国王が処刑されたのか？</span>議会側の指導者<span class="blank person-pop" data-id="L">クロムウェル<span class="pop-box"><span class="pop-name">クロムウェル（1599〜1658）</span><span class="pop-desc">ピューリタン革命の指導者。議会派の軍を率いてチャールズ1世を破り、処刑しました。その後護国卿として独裁的な政治を行いましたが、死後に王政が復古しました。</span></span></span>が国王軍を打ち破り、チャールズ1世は裁判にかけられ処刑されました。「国王といえども法の上に立てない」という原則を示すためでした。ヨーロッパで国王が公開処刑されるのは史上初めての出来事で、全ヨーロッパに大きな衝撃を与えました。</div>
+  <p>しかしクロムウェルは次第に独裁化し、その死後に<span class="blank person-pop" data-id="M">チャールズ2世<span class="pop-box"><span class="pop-name">チャールズ2世（在位1660〜1685）</span><span class="pop-desc">チャールズ1世の子。クロムウェルの死後に王政復古でイギリス国王に即位しました。</span></span></span>が<span class="blank" data-id="N">王政復古</span>しました。</p>
 </div>
 
-<!-- ③ 名誉革命 -->
 <div class="section">
-  <span class="section-label label-meiyo">③ 名誉革命（1688年）・立憲君主政の成立</span>
-  <h2>名誉革命と権利の章典</h2>
-  <p>王政復古後、ジェームズ2世がカトリックを強制し絶対王政を続けたため、議会はジェームズ2世を追放しました。ジェームズ2世の娘
-    <span class="blank person-pop" data-id="O">メアリ2世<span class="pop-box">
-      <img src="meari2sei.png" onerror="this.style.display='none'" alt="メアリ2世">
-      <span class="pop-name">メアリ2世（在位1689〜1694）</span>
-      <span class="pop-desc">名誉革命後にイギリス女王となりました。夫のウィリアム3世とともに権利の章典に署名し、世界初の立憲君主政を始めました。</span>
-    </span></span>
-    と夫のオランダ総督<span class="blank person-pop" data-id="P">ウィリアム3世<span class="pop-box"><span class="pop-name">ウィリアム3世（在位1689〜1702）</span><span class="pop-desc">オランダ総督でメアリ2世の夫。名誉革命でイギリス国王に即位し、権利の章典を認めて立憲君主政を確立しました。</span></span></span>を国王として迎え、「議会の承認なく法律をつくったり課税できない」とする<span class="blank person-pop" data-id="Q">権利の章典<span class="pop-box"><span class="pop-name">権利の章典（1689年）</span><span class="pop-desc">イギリス議会が制定した文書。「議会の承認なく課税・立法はできない」などを定め、議会が国王より優位に立つ立憲主義の根拠となりました。</span></span></span>を認めさせました。これを<span class="blank person-pop" data-id="R">名誉革命<span class="pop-box"><span class="pop-name">名誉革命（1688年）</span><span class="pop-desc">ジェームズ2世が追放され、血を流さずに政権交代したイギリスの革命。「名誉」とは血が流れなかったことを指します。</span></span></span>といいます。</p>
-  <p>これにより憲法で国王の権力が制限される世界初の<span class="blank person-pop" data-id="S">立憲君主政<span class="pop-box"><span class="pop-name">立憲君主政</span><span class="pop-desc">憲法で国王の権力が制限される政治体制。名誉革命後のイギリスで世界初の立憲君主政が成立しました。</span></span></span>が始まりました。</p>
-
+  <span class="section-label label-glorious">③ 名誉革命（1688年）と立憲君主政</span>
+  <h2>なぜ「名誉」革命と呼ばれるのか？</h2>
+  <p>王政復古後のジェームズ2世が再びカトリックを推進し絶対王政に戻ろうとしたため、議会はジェームズ2世を追放しました。そしてジェームズ2世の娘<span class="blank person-pop" data-id="O">メアリ2世<span class="pop-box"><span class="pop-name">メアリ2世（在位1689〜1694）</span><span class="pop-desc">名誉革命後のイギリス女王。夫ウィリアム3世とともに権利の章典を承認し、立憲君主政の基礎を築きました。</span></span></span>と夫の<span class="blank person-pop" data-id="P">ウィリアム3世<span class="pop-box"><span class="pop-name">ウィリアム3世（在位1689〜1702）</span><span class="pop-desc">オランダ総督でメアリ2世の夫。名誉革命でイギリス国王に即位し、権利の章典を認めて立憲君主政を確立しました。</span></span></span>を新国王として迎えました。</p>
+  <div class="why-box"><span class="label">❓ なぜ「名誉」なのか？</span>この政権交代は流血なしに（blood = 血を流さずに）行われたため「名誉革命」と呼ばれます。ピューリタン革命のような内乱・処刑に比べて、議会と国王が話し合いで解決したことが「名誉（honor）」あるやり方とされたのです。</div>
+  <p>新国王は「議会の承認なく課税・立法できない」とする<span class="blank" data-id="Q">権利の章典</span>を認めました。これを<span class="blank" data-id="R">名誉革命</span>といい、憲法で国王の権力が制限される世界初の<span class="blank" data-id="S">立憲君主政</span>が成立しました。</p>
   <h2>議院内閣制の確立</h2>
-  <p>メアリ2世・ウィリアム3世に子がなく、ドイツのハノーヴァー選帝侯が<span class="blank person-pop" data-id="T">ジョージ1世<span class="pop-box"><span class="pop-name">ジョージ1世（在位1714〜1727）</span><span class="pop-desc">ドイツのハノーヴァー選帝侯出身のイギリス国王。英語が話せなかったため首相に政治を委ね、議院内閣制確立のきっかけとなりました。</span></span></span>として即位しました。英語が話せなかったため、首相<span class="blank person-pop" data-id="U">ウォルポール<span class="pop-box"><span class="pop-name">ウォルポール（在任1721〜1742）</span><span class="pop-desc">イギリス初の首相。ジョージ1世が英語を話せなかったため実質的な政治を担い、内閣が議会に責任を負う議院内閣制の先例を作りました。</span></span></span>に国政を委ねたことから、内閣が議会に対して責任を負う<span class="blank person-pop" data-id="V">議院内閣制<span class="pop-box"><span class="pop-name">議院内閣制</span><span class="pop-desc">首相を中心とする内閣が議会の信任に基づいて政治を行う制度。現在の日本でも採用されています。</span></span></span>が確立されました。「<span class="blank person-pop" data-id="W">国王は君臨すれども統治せず<span class="pop-box"><span class="pop-name">「国王は君臨すれども統治せず」</span><span class="pop-desc">イギリスの立憲君主政を表す原則。国王は存在するが実際の政治は議会・内閣が担うことを意味します。</span></span></span>」という形が作られました。</p>
-  <div class="key-point">⭐ <strong>2つの革命</strong>：ピューリタン革命(1642) → クロムウェルの独裁 → 王政復古 → 名誉革命(1688) → 権利の章典 → 立憲君主政 → 議院内閣制</div>
+  <p>その後、英語が話せないドイツ出身の<span class="blank person-pop" data-id="T">ジョージ1世<span class="pop-box"><span class="pop-name">ジョージ1世（在位1714〜1727）</span><span class="pop-desc">ドイツのハノーヴァー選帝侯出身のイギリス国王。英語が話せなかったため首相に政治を委ね、議院内閣制確立のきっかけとなりました。</span></span></span>が即位すると、実際の政治は首相の<span class="blank person-pop" data-id="U">ウォルポール<span class="pop-box"><span class="pop-name">ウォルポール（在任1721〜1742）</span><span class="pop-desc">イギリス初の首相。実質的な政治を担い、内閣が議会に責任を負う議院内閣制の先例を作りました。</span></span></span>が担いました。これにより内閣が議会に責任を負う<span class="blank" data-id="V">議院内閣制</span>が確立し、「<span class="blank" data-id="W">国王は君臨すれども統治せず</span>」という原則が生まれました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>イギリスが確立した「議会主権・立憲君主政・議院内閣制」という仕組みは、後にフランス革命やアメリカ独立に影響を与え、近代民主主義の模範となりました。現在の日本の政治制度もイギリスをモデルとしています。</div>
 </div>
 
 <div class="fixed-footer-controls">

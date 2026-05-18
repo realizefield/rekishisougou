@@ -58,6 +58,11 @@
   #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
   #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
   .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
 </style>
 </head>
 <body>
@@ -75,89 +80,43 @@
   <div class="word-bank" id="word-bank"></div>
 </div>
 
-<!-- ① 産業革命 -->
+
+
 <div class="section">
-  <span class="section-label label-sangyo">① 産業革命（18世紀・イギリス）</span>
-  <h2>工場制手工業から工場制機械工業へ</h2>
-  <p>18世紀後半まで、イギリスでは人の手による分業制の<span class="blank person-pop" data-id="A">工場制手工業（マニュファクチュア）<span class="pop-box"><span class="pop-name">工場制手工業（マニュファクチュア）</span><span class="pop-desc">人の手作業による分業制の工場生産。機械を使わず職人が分業で製品を作る方式で、産業革命前のイギリスで主流でした。</span></span></span>が行われていました。
-    <span class="blank person-pop" data-id="B">ワット<span class="pop-box">
-      <img src="watto.png" onerror="this.style.display='none'" alt="ワット">
-      <span class="pop-name">ワット（1736〜1819）</span>
-      <span class="pop-desc">スコットランド出身の発明家。1769年に蒸気機関を大幅に改良し、工場の動力源として実用化しました。この発明が産業革命を加速させ、イギリスを「世界の工場」にする原動力となりました。</span>
-    </span></span>
-    の蒸気機関の改良により工場制機械工業に変わり、綿製品が大量生産されました。18世紀のイギリスを「世界の工場」と呼びます。これを<span class="blank person-pop" data-id="C">産業革命<span class="pop-box"><span class="pop-name">産業革命（18世紀後半〜）</span><span class="pop-desc">イギリスで起きた手工業から機械工業への大変革。綿工業から始まり鉄道・製鉄などに広がり、現代の工業社会の出発点となりました。</span></span></span>といいます。</p>
-
-  <table class="person-table">
-    <tr><th>年</th><th>人物</th><th>発明・業績</th></tr>
-    <tr><td>1733年</td><td><span class="blank person-pop" data-id="D">ジョン＝ケイ<span class="pop-box"><span class="pop-name">ジョン＝ケイ（1704〜1780）</span><span class="pop-desc">イギリスの発明家。1733年に飛び杼を発明し、一人で二人分の布を織れるようにしました。産業革命の発端となりました。</span></span></span></td><td>飛び杼（ひ）の発明。一人で二人分の布が織れるようになりました。</td></tr>
-    <tr><td>1769年</td><td>ワット</td><td>蒸気機関の改良</td></tr>
-    <tr><td>1807年</td><td><span class="blank person-pop" data-id="E">フルトン<span class="pop-box"><span class="pop-name">フルトン（1765〜1815）</span><span class="pop-desc">アメリカの発明家。1807年に蒸気船を実用化しました。</span></span></span>（米）</td><td>蒸気船を実用化</td></tr>
-    <tr><td>1814年</td><td><span class="blank person-pop" data-id="F">スティーブンソン<span class="pop-box"><span class="pop-name">スティーブンソン（1781〜1848）</span><span class="pop-desc">イギリスの発明家。1814年に蒸気機関車を実用化しました。鉄道の普及で物流が大きく変わりました。</span></span></span></td><td>蒸気機関車を実用化</td></tr>
-  </table>
-
-  <p>農産物の需要増大から大土地所有者が農地を買い取り、大規模農場経営を行う<span class="blank person-pop" data-id="G">第二次囲い込み<span class="pop-box"><span class="pop-name">第二次囲い込み（18〜19世紀）</span><span class="pop-desc">イギリスで大地主が農民の土地を囲い込み大規模農場を経営したこと。農民は土地を失い都市の工場労働者となりました。</span></span></span>が行われました。土地を失った農民は都市の工場労働者となりました。</p>
-
-  <h2>社会主義の登場</h2>
-  <p>劣悪な環境・低賃金で働く労働者問題が深刻化しました。ドイツの
-    <span class="blank person-pop" data-id="H">マルクス<span class="pop-box">
-      <img src="marukusu.png" onerror="this.style.display='none'" alt="マルクス">
-      <span class="pop-name">マルクス（1818〜1883）</span>
-      <span class="pop-desc">ドイツの思想家・経済学者。エンゲルスとともに「共産党宣言」を著し、国が生産手段を所有して利益を社会全体で共有する社会主義を主張しました。「労働者よ、団結せよ」という言葉が有名です。</span>
-    </span></span>
-    と<span class="blank person-pop" data-id="I">エンゲルス<span class="pop-box"><span class="pop-name">エンゲルス（1820〜1895）</span><span class="pop-desc">ドイツの思想家。マルクスの協力者で「共産党宣言」を共同執筆しました。</span></span></span>は著書<span class="blank person-pop" data-id="J">共産党宣言<span class="pop-box"><span class="pop-name">共産党宣言（1848年）</span><span class="pop-desc">マルクスとエンゲルスが著した書物。資本主義の格差を批判し、生産手段を社会で共有する社会主義・共産主義を理論化しました。</span></span></span>で国が工場・土地を所有して利益を社会全体で共有する<span class="blank person-pop" data-id="K">社会主義<span class="pop-box"><span class="pop-name">社会主義</span><span class="pop-desc">国や社会が生産手段を所有し、利益を平等に分配する経済体制。資本主義の格差・労働問題への批判から生まれました。</span></span></span>を唱えました。</p>
-  <div class="key-point">⭐ <strong>産業革命の流れ</strong>：マニュファクチュア→ワットの蒸気機関改良→工場制機械工業→「世界の工場」→労働問題→社会主義</div>
+  <span class="section-label label-industry">① 産業革命（18世紀・イギリス）</span>
+  <h2>なぜイギリスで産業革命が起きたのか？</h2>
+  <p>18世紀後半まで、イギリスでは人の手による分業制の<span class="blank" data-id="A">工場制手工業（マニュファクチュア）</span>が行われていました。ところが1769年、<span class="blank person-pop" data-id="B">ワット<span class="pop-box"><span class="pop-name">ワット（1736〜1819）</span><span class="pop-desc">スコットランドの発明家。蒸気機関を大幅に改良し、工場の動力源として実用化しました。この発明が産業革命を加速させ、イギリスを「世界の工場」にする原動力となりました。</span></span></span>が蒸気機関を大幅に改良し、機械で大量生産できるようになりました。これを<span class="blank" data-id="C">産業革命</span>といいます。</p>
+  <div class="why-box"><span class="label">❓ なぜイギリスが最初だったのか？</span>イギリスは世界中に植民地を持つ「世界最大の市場」を抱えており、大量生産した製品を売る場所があったこと、石炭・鉄などの資源が豊富だったこと、そして農地を囲い込んで農民を都市に追い出す（<span class="blank" data-id="G">第二次囲い込み</span>）ことで安価な労働力が都市に集まったことが重なり、産業革命の「発火点」となりました。</div>
+  <p>繊維産業では1733年に<span class="blank person-pop" data-id="D">ジョン＝ケイ<span class="pop-box"><span class="pop-name">ジョン＝ケイ（1704〜1780）</span><span class="pop-desc">イギリスの発明家。1733年に飛び杼を発明し、一人で二人分の布が織れるようになりました。産業革命の発端となった発明です。</span></span></span>が飛び杼を発明し、交通では<span class="blank person-pop" data-id="E">フルトン<span class="pop-box"><span class="pop-name">フルトン（1765〜1815）</span><span class="pop-desc">アメリカの発明家。1807年に蒸気船を実用化し、海上輸送を革命的に変えました。</span></span></span>が蒸気船（1807年）、<span class="blank person-pop" data-id="F">スティーブンソン<span class="pop-box"><span class="pop-name">スティーブンソン（1781〜1848）</span><span class="pop-desc">イギリスの発明家。1814年に蒸気機関車を実用化しました。鉄道の普及で物流・旅行が根本から変わりました。</span></span></span>が蒸気機関車（1814年）を実用化しました。</p>
+  <p>産業革命は豊かさをもたらした一方、長時間労働・児童労働・劣悪な環境など深刻な労働問題を生み出しました。これへの批判から<span class="blank person-pop" data-id="H">マルクス<span class="pop-box"><span class="pop-name">マルクス（1818〜1883）</span><span class="pop-desc">ドイツの思想家・経済学者。「資本家が労働者を搾取する」という資本主義批判を展開し、エンゲルスとともに「共産党宣言」を著しました。</span></span></span>と<span class="blank person-pop" data-id="I">エンゲルス<span class="pop-box"><span class="pop-name">エンゲルス（1820〜1895）</span><span class="pop-desc">ドイツの思想家。マルクスの協力者で「共産党宣言」を共同執筆しました。</span></span></span>は1848年に<span class="blank" data-id="J">共産党宣言</span>を発表し、<span class="blank" data-id="K">社会主義</span>を唱えました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>産業革命によってイギリスは「世界の工場」となり、圧倒的な経済力・軍事力でアジア・アフリカに進出する帝国主義の時代が始まります。また社会主義思想は20世紀のロシア革命・中国革命に大きな影響を与えることになります。</div>
 </div>
 
-<!-- ② アメリカ独立 -->
 <div class="section">
   <span class="section-label label-america">② アメリカ独立戦争（1775〜1783年）</span>
-  <h2>独立の背景</h2>
-  <p>1620年、迫害を逃れた102人のピューリタンが<span class="blank person-pop" data-id="L">メイフラワー号<span class="pop-box"><span class="pop-name">メイフラワー号</span><span class="pop-desc">1620年にピューリタン102人がイギリスからアメリカへ渡った船。彼らが建設した植民地が後のアメリカ独立の背景となりました。</span></span></span>でアメリカに移住し、イギリスの東部13州の植民地が形成されました。1756〜1763年の<span class="blank person-pop" data-id="M">七年戦争<span class="pop-box"><span class="pop-name">七年戦争（1756〜1763）</span><span class="pop-desc">ヨーロッパを中心とした国際戦争。イギリスの植民地政策を拡大させ、財政難からアメリカ植民地への課税を強化するきっかけとなりました。</span></span></span>でイギリスは財政難となり、1765年に植民地に<span class="blank person-pop" data-id="N">印紙税<span class="pop-box"><span class="pop-name">印紙税（1765年）</span><span class="pop-desc">イギリスが北アメリカ植民地に課した税。新聞・証書などに印紙の貼付を義務付け、植民地の猛反発を招き廃止されました。</span></span></span>を課しました。</p>
-  <p>13州の人々は「<span class="blank person-pop" data-id="O">代表なければ課税なし<span class="pop-box"><span class="pop-name">「代表なければ課税なし」</span><span class="pop-desc">アメリカ植民地のスローガン。「議会に代表を送れないのに一方的に課税するのは不当だ」という主張で、民主主義の原則となりました。</span></span></span>」と反発。1773年、東インド会社の茶を海に捨てる<span class="blank person-pop" data-id="P">ボストン茶会事件<span class="pop-box"><span class="pop-name">ボストン茶会事件（1773年）</span><span class="pop-desc">ボストン港で植民地の人々がインディアンに変装し、東インド会社の茶を海に捨てた事件。アメリカ独立運動の直接のきっかけとなりました。</span></span></span>が起きました。1774年に<span class="blank person-pop" data-id="Q">大陸会議<span class="pop-box"><span class="pop-name">大陸会議（1774・1775年）</span><span class="pop-desc">13植民地代表が集まった会議。独立戦争の方針と独立宣言を決めました。</span></span></span>が開かれ、1775年のレキシントンでの衝突からアメリカ独立戦争が始まりました。</p>
-
-  <h2>独立宣言と独立の達成</h2>
-  <p>1776年、
-    <span class="blank person-pop" data-id="R">ジェファーソン<span class="pop-box">
-      <img src="jefaason.png" onerror="this.style.display='none'" alt="ジェファーソン">
-      <span class="pop-name">ジェファーソン（1743〜1826）</span>
-      <span class="pop-desc">アメリカ独立宣言の起草者。「すべての人間は平等に作られ、生命・自由・幸福追求の権利を持つ」という思想を宣言に盛り込みました。後に第3代大統領となりました。</span>
-    </span></span>
-    の起草した<span class="blank person-pop" data-id="S">独立宣言<span class="pop-box"><span class="pop-name">独立宣言（1776年7月4日）</span><span class="pop-desc">ジェファーソンが起草したアメリカの独立宣言。「生命・自由・幸福追求の権利」を宣言しました。現在の7月4日がアメリカ独立記念日です。</span></span></span>が発表されました。総司令官<span class="blank person-pop" data-id="T">ワシントン<span class="pop-box"><span class="pop-name">ワシントン（1732〜1799）</span><span class="pop-desc">アメリカ独立戦争の総司令官。独立後に初代大統領（在任1789〜97）となりました。首都ワシントンは彼の名前に由来します。</span></span></span>率いる植民地軍がヨークタウンの戦いで勝利し、1783年の<span class="blank person-pop" data-id="U">パリ条約<span class="pop-box"><span class="pop-name">パリ条約（1783年）</span><span class="pop-desc">イギリスとアメリカが結んだ条約。アメリカの独立が正式に認められました。</span></span></span>でアメリカの独立が認められ、1789年に<span class="blank person-pop" data-id="V">アメリカ合衆国<span class="pop-box"><span class="pop-name">アメリカ合衆国（1789年成立）</span><span class="pop-desc">世界初の近代民主主義共和国。合衆国憲法のもと、ワシントンが初代大統領に就任しました。</span></span></span>が成立しました。ワシントンが初代大統領となりました。</p>
-  <div class="key-point">⭐ <strong>流れ</strong>：印紙税(1765)→ボストン茶会事件(1773)→独立戦争(1775)→独立宣言(1776)→パリ条約(1783)→アメリカ合衆国成立(1789)</div>
+  <h2>なぜアメリカはイギリスから独立したのか？</h2>
+  <p>1620年、迫害を逃れた102人のピューリタンが<span class="blank" data-id="L">メイフラワー号</span>でアメリカに渡り、イギリスの東部に13の植民地が形成されていました。ところが1756〜63年の<span class="blank" data-id="M">七年戦争</span>でイギリスは多額の借金を背負い、植民地に<span class="blank" data-id="N">印紙税</span>をかけて穴埋めしようとしました。</p>
+  <div class="why-box"><span class="label">❓ なぜ植民地の人々はそんなに怒ったのか？</span>植民地の人々はイギリス本国の議会に代表を送れませんでした。「議会で発言もできないのに、なぜ税金だけ払わなければいけないのか」—これが「<span class="blank" data-id="O">代表なければ課税なし</span>」という反発スローガンになりました。1773年の<span class="blank" data-id="P">ボストン茶会事件</span>では、怒った市民が東インド会社の茶を海に投げ捨てました。</div>
+  <p>1774年に<span class="blank" data-id="Q">大陸会議</span>が開かれ、1776年に<span class="blank person-pop" data-id="R">ジェファーソン<span class="pop-box"><span class="pop-name">ジェファーソン（1743〜1826）</span><span class="pop-desc">アメリカの政治家・独立宣言の起草者。「すべての人間は平等に作られ、生命・自由・幸福追求の権利を持つ」という思想を宣言に盛り込みました。後に第3代大統領となりました。</span></span></span>の起草した<span class="blank" data-id="S">独立宣言</span>が発表されました。総司令官<span class="blank person-pop" data-id="T">ワシントン<span class="pop-box"><span class="pop-name">ワシントン（1732〜1799）</span><span class="pop-desc">アメリカ独立戦争の総司令官。独立後に初代大統領（在任1789〜97）となりました。</span></span></span>が率いる軍がイギリスに勝利し、1783年の<span class="blank" data-id="U">パリ条約</span>でアメリカの独立が認められ<span class="blank" data-id="V">アメリカ合衆国</span>が成立しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>アメリカ独立宣言の「すべての人間は平等に作られている」という思想は、その後のフランス革命・人権宣言・さらには現代の人権思想に至るまで世界中に多大な影響を与えました。</div>
 </div>
 
-<!-- ③ フランス革命 -->
 <div class="section">
   <span class="section-label label-france">③ フランス革命（1789年）</span>
-  <h2>革命の背景</h2>
-  <p>「太陽王」<span class="blank person-pop" data-id="W">ルイ14世<span class="pop-box"><span class="pop-name">ルイ14世（在位1643〜1715）</span><span class="pop-desc">フランスの「太陽王」。絶対王政の象徴で、ヴェルサイユ宮殿を建設し「朕は国家なり」という言葉で有名です。</span></span></span>が絶対王政を確立、ヴェルサイユ宮殿を建設しました。<span class="blank person-pop" data-id="X">ルイ16世<span class="pop-box"><span class="pop-name">ルイ16世（在位1774〜1792）</span><span class="pop-desc">フランス国王。アメリカ独立戦争への支援で財政破綻し、フランス革命のきっかけを作りました。革命後に処刑されました。</span></span></span>はアメリカ独立戦争への支援で財政破綻し、第一身分（僧侶）・第二身分（貴族）・第三身分（平民）の代表による<span class="blank person-pop" data-id="Y">三部会<span class="pop-box"><span class="pop-name">三部会</span><span class="pop-desc">フランスの身分制議会。第一身分（僧侶）・第二身分（貴族）・第三身分（平民）の代表が出席。ルイ16世が財政再建のため1789年に召集しました。</span></span></span>を召集しました。平民は「国民議会」を独立して設立し「<span class="blank person-pop" data-id="Z">テニスコートの誓い<span class="pop-box"><span class="pop-name">テニスコートの誓い（1789年）</span><span class="pop-desc">第三身分の平民代表が国民議会を独立して設立し、「憲法が制定されるまで解散しない」と誓った出来事。球戯場で行われました。</span></span></span>（球戯場の誓い）」を行いました。</p>
-
-  <h2>革命の勃発と人権宣言</h2>
-  <p>1789年、市民が弾薬庫のある<span class="blank person-pop" data-id="AA">バスチーユ牢獄<span class="pop-box"><span class="pop-name">バスチーユ牢獄</span><span class="pop-desc">パリにあった政治犯を収容した監獄。1789年7月14日に市民が襲撃し、フランス革命の始まりとなりました。この日がフランス革命記念日です。</span></span></span>を襲いフランス革命が起きました。ルイ16世は処刑され、<span class="blank person-pop" data-id="BB">ラファイエット<span class="pop-box"><span class="pop-name">ラファイエット（1757〜1834）</span><span class="pop-desc">フランスの革命貴族。アメリカ独立戦争にも参加。フランス人権宣言を起草しました。</span></span></span>が起草した<span class="blank person-pop" data-id="CC">フランス人権宣言<span class="pop-box"><span class="pop-name">フランス人権宣言（1789年）</span><span class="pop-desc">フランス国民議会が採択した宣言。「自由・平等・人民主権・所有権の不可侵」などを宣言し、近代民主主義の基礎となりました。</span></span></span>が発表されました。絶対王政が廃止され<span class="blank person-pop" data-id="DD">共和政<span class="pop-box"><span class="pop-name">共和政</span><span class="pop-desc">国民の選挙で選ばれた代表者が政治を行う政治体制。フランス革命後、絶対王政に代わって共和政が成立しました。</span></span></span>となりました。</p>
-
-  <p>ジャコバン派の
-    <span class="blank person-pop" data-id="EE">ロベスピエール<span class="pop-box">
-      <img src="robesupieru.png" onerror="this.style.display='none'" alt="ロベスピエール">
-      <span class="pop-name">ロベスピエール（1758〜1794）</span>
-      <span class="pop-desc">フランス革命期のジャコバン派指導者。男子普通選挙・封建的特権廃止など急進的な改革を断行しましたが、反対派をギロチンで処刑する恐怖政治を行い、最終的には自らもギロチンで処刑されました。</span>
-    </span></span>
-    が実権を握り急進的改革を行いましたが、反対派をギロチン台へ送る<span class="blank person-pop" data-id="FF">恐怖政治<span class="pop-box"><span class="pop-name">恐怖政治（1793〜94年）</span><span class="pop-desc">ロベスピエールが行った、反革命的とみなした人々をギロチンで処刑した独裁的な支配。約1年間続きました。</span></span></span>を行い、1年で処刑されました。</p>
-  <div class="key-point">⭐ <strong>アンシャンレジーム</strong>（旧体制）：第一身分＝僧侶、第二身分＝貴族、第三身分＝平民</div>
+  <h2>なぜフランスで革命が起きたのか？</h2>
+  <p>ルイ14世が絶対王政を確立してヴェルサイユ宮殿を建設しましたが、その浪費とアメリカ独立戦争への支援で国家財政は破綻寸前でした。<span class="blank person-pop" data-id="W">ルイ16世<span class="pop-box"><span class="pop-name">ルイ16世（在位1774〜1792）</span><span class="pop-desc">フランス国王。財政破綻を乗り越えようと貴族・聖職者への課税を試みましたが失敗。三部会召集からフランス革命が起きました。革命後に処刑されました。</span></span></span>は第一（僧侶）・第二（貴族）・第三身分（平民）の代表による<span class="blank" data-id="Y">三部会</span>を開きましたが、平民は差別的な扱いに反発して独自の「国民議会」を設立し「<span class="blank" data-id="Z">テニスコートの誓い</span>」を行いました。</p>
+  <p>1789年7月14日、パリ市民が弾薬庫のある<span class="blank" data-id="AA">バスチーユ牢獄</span>を襲撃し、フランス革命が始まりました。ルイ16世は処刑され、<span class="blank person-pop" data-id="BB">ラファイエット<span class="pop-box"><span class="pop-name">ラファイエット（1757〜1834）</span><span class="pop-desc">フランスの革命貴族。アメリカ独立戦争にも参加し、フランス人権宣言を起草しました。</span></span></span>が起草した<span class="blank" data-id="CC">フランス人権宣言</span>が発表され、絶対王政が廃止されて<span class="blank" data-id="DD">共和政</span>となりました。</p>
+  <p>しかしジャコバン派の<span class="blank person-pop" data-id="EE">ロベスピエール<span class="pop-box"><span class="pop-name">ロベスピエール（1758〜1794）</span><span class="pop-desc">フランス革命期のジャコバン派指導者。急進的な改革を断行しましたが、反対派をギロチンで次々と処刑する恐怖政治を行い、最終的に自らもギロチンで処刑されました。</span></span></span>が反対派をギロチンで次々と処刑する<span class="blank" data-id="FF">恐怖政治</span>を行い、混乱は続きました。</p>
 </div>
 
-<!-- ④ ナポレオン -->
 <div class="section">
   <span class="section-label label-napoleon">④ ナポレオンの登場と没落</span>
-  <h2>ナポレオンの台頭</h2>
-  <p>1799年、エジプト遠征で人気を得た
-    <span class="blank person-pop" data-id="GG">ナポレオン<span class="pop-box">
-      <img src="naporeon.png" onerror="this.style.display='none'" alt="ナポレオン">
-      <span class="pop-name">ナポレオン（1769〜1821）</span>
-      <span class="pop-desc">フランスの軍人・皇帝。革命後の混乱を収拾してクーデターで政権を握り、1804年に皇帝ナポレオン1世として即位しました。ヨーロッパ全域を征服しましたが、ロシア遠征の失敗後に没落しました。</span>
-    </span></span>
-    がクーデターを起こし新政府を樹立しました。1804年、国民投票により<span class="blank person-pop" data-id="HH">ナポレオン1世<span class="pop-box"><span class="pop-name">ナポレオン1世</span><span class="pop-desc">ナポレオンが1804年に国民投票で選ばれた皇帝としての称号。第一帝政とも呼ばれます。</span></span></span>として皇帝に即位しました。神聖ローマ帝国を滅ぼしヨーロッパ全域を支配しました。</p>
-  <p>イギリスへの<span class="blank person-pop" data-id="II">大陸封鎖令<span class="pop-box"><span class="pop-name">大陸封鎖令（1806年）</span><span class="pop-desc">ナポレオンが出した命令。ヨーロッパ大陸の全ての国にイギリスとの貿易を禁止しました。ロシアがこれを無視したことがロシア遠征のきっかけとなりました。</span></span></span>（イギリスとの海上貿易禁止）を出しましたが、ロシアはこれを守らずナポレオンはロシア遠征で敗れました。1815年<span class="blank person-pop" data-id="JJ">ワーテルローの戦い<span class="pop-box"><span class="pop-name">ワーテルローの戦い（1815年）</span><span class="pop-desc">ベルギーで起きた戦い。ナポレオンがイギリス・プロイセン連合軍に大敗し最終的に失脚しました。</span></span></span>で敗れ、セントヘレナ島に流されて1821年に没しました。</p>
-  <div class="key-point">⭐ <strong>ナポレオンの流れ</strong>：クーデター(1799)→皇帝即位(1804)→ヨーロッパ制覇→ロシア遠征失敗→ワーテルロー(1815)→セントヘレナ島流罪</div>
+  <h2>なぜナポレオンは「英雄」から「独裁者」になったのか？</h2>
+  <p>革命後の混乱を収拾する「強いリーダー」を求めるフランス国民の期待を背に、エジプト遠征で人気を得た<span class="blank person-pop" data-id="GG">ナポレオン<span class="pop-box"><span class="pop-name">ナポレオン（1769〜1821）</span><span class="pop-desc">フランスの軍人・皇帝。革命の混乱を収拾してクーデターで政権を握り、ヨーロッパ全域を征服しました。法典（ナポレオン法典）の制定など改革も行いましたが、最終的には失脚してセントヘレナ島で没しました。</span></span></span>が1799年にクーデターで政権を握りました。1804年には国民投票で<span class="blank" data-id="HH">ナポレオン1世</span>として皇帝に即位しました。</p>
+  <div class="why-box"><span class="label">❓ なぜヨーロッパ全土が敵になったのか？</span>ナポレオンはイギリスを封じ込めるために<span class="blank" data-id="II">大陸封鎖令</span>（ヨーロッパ全土にイギリスとの貿易禁止）を出しました。しかし経済的打撃を受けたロシアがこれを無視したため、ナポレオンはロシア遠征を決断。極寒のロシアで60万の大軍が壊滅し、これが転落の始まりとなりました。</div>
+  <p>1815年の<span class="blank" data-id="JJ">ワーテルローの戦い</span>でイギリス・プロイセン連合軍に大敗し、ナポレオンはセントヘレナ島に流されて1821年に没しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>ナポレオンが各地に持ち込んだ「自由・平等・国民国家」という革命の理念は、征服された各国の人々に「私たちも自分の国を持つべきだ」というナショナリズムを目覚めさせ、後のイタリア・ドイツ統一運動の原動力となりました。</div>
+  <div class="key-point">⭐ <strong>ナポレオンの流れ</strong>：クーデター(1799)→皇帝即位(1804)→大陸封鎖令→ロシア遠征失敗→ワーテルロー(1815)→失脚</div>
 </div>
 
 <div class="fixed-footer-controls">

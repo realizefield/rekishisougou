@@ -11,7 +11,7 @@
   h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#5a0000;font-weight:bold}
   .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
   .back-to-index:hover{background:#1e2d6b}
-  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
   .word-bank{border:2px solid #8b0000;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
   .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
   .word-chip.used{opacity:0.3}
@@ -56,6 +56,11 @@
   #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
   #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
   .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
 </style>
 </head>
 <body>
@@ -64,84 +69,38 @@
   <img id="modal-img" src="" alt="">
   <div id="modal-caption" class="modal-caption"></div>
 </div>
+
 <a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
 <h1>🐉 中国の明・清</h1>
+
 <div class="word-bank-sticky-container">
   <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
   <div class="word-bank" id="word-bank"></div>
 </div>
 
-<!-- 明 -->
+
+
 <div class="section">
   <span class="section-label label-ming">① 明（1368〜1644年）</span>
-  <h2>明の建国と海禁政策</h2>
-  <p>1351年、元の末期に<span class="blank person-pop" data-id="A">紅巾の乱<span class="pop-box"><span class="pop-name">紅巾の乱（1351〜66年）</span><span class="pop-desc">元末期に起きた農民反乱。白蓮教徒が中心となり、この乱の中から朱元璋が台頭して明を建国しました。</span></span></span>（白蓮教徒の乱）が起こり元は北方に退きました。乱で頭角を現した貧しい農民出身の
-    <span class="person-pop">朱元璋<div class="pop-box">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Hongwu_Emperor_2.jpg/200px-Hongwu_Emperor_2.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
-      <div class="pop-name">朱元璋（洪武帝・在位1368〜98）</div>
-      <div class="pop-desc">貧しい農民の出身から皇帝にまで昇りつめた人物。1368年に明を建国し洪武帝として即位しました。皇帝に権力を集中させる中央集権を強化し、民間の貿易を禁止する「海禁政策」をとりました。</div>
-    </div></span>
-    が<span class="blank person-pop" data-id="C">洪武帝<span class="pop-box"><span class="pop-name">洪武帝（在位1368〜98）</span><span class="pop-desc">明の初代皇帝・朱元璋。元を倒して明を建国し、独裁的な中央集権体制を確立しました。農民出身の皇帝として有名です。</span></span></span>として即位し、1368年に<span class="blank person-pop" data-id="D">明<span class="pop-box"><span class="pop-name">明（1368〜1644年）</span><span class="pop-desc">中国の王朝。洪武帝が元を倒して建国。永楽帝の時代に鄭和の南海遠征など対外進出が盛んでした。</span></span></span>を建国しました。</p>
-  <p>貿易においては、朝鮮・日本・東南アジアに<span class="blank person-pop" data-id="E">朝貢貿易<span class="pop-box"><span class="pop-name">朝貢貿易</span><span class="pop-desc">周辺国が中国に貢ぎ物を持参し、中国皇帝が返礼品を与える貿易形式。日本・朝鮮・琉球などが行いました。</span></span></span>を求め、民間人の自由貿易を禁止しすべての貿易を明王朝の管理下に置きました。これを<span class="blank person-pop" data-id="F">海禁政策<span class="pop-box"><span class="pop-name">海禁政策</span><span class="pop-desc">中国の民間人の海外渡航と外国との貿易を禁止した政策。明が行い、密貿易（倭寇）の原因にもなりました。</span></span></span>といいます。</p>
-
-  <h2>永楽帝と南海遠征</h2>
-  <p>3代目皇帝
-    <span class="person-pop">永楽帝<div class="pop-box">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Yongle_Emperor.jpg/200px-Yongle_Emperor.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
-      <div class="pop-name">永楽帝（在位1402〜24）</div>
-      <div class="pop-desc">明の3代皇帝。2代皇帝建文帝にクーデターを起こして帝位を奪いました。積極的に外交を進め、鄭和に大艦隊を率いての南海遠征を命じました。首都を北京に移したことでも知られます。</div>
-    </div></span>
-    は2代目建文帝にクーデターを起こして即位し、積極的に対外遠征を行いました。イスラーム教徒の宦官
-    <span class="person-pop">鄭和<div class="pop-box">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/ZhengHe.jpg/200px-ZhengHe.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
-      <div class="pop-name">鄭和（1371〜1433）</div>
-      <div class="pop-desc">明の宦官・航海者。永楽帝の命令で7回にわたる南海遠征を指揮しました。最大の艦隊は約60隻の大型船と2万人以上の乗組員を擁しました。アフリカ東岸まで到達したとされます。</div>
-    </div></span>
-    に<span class="blank person-pop" data-id="I">南海遠征<span class="pop-box"><span class="pop-name">南海遠征（鄭和の航海）</span><span class="pop-desc">永楽帝の命で鄭和が行った大航海（1405〜33年）。大艦隊でインド・アラビア・アフリカ東岸まで7回遠征し、朝貢関係を広めました。</span></span></span>を命じ、インド洋方面へ大艦隊を派遣しました。</p>
-  <p>海禁政策の一方、民間では東南アジアに移住する中国人が増えました。これら中国からの移民を<span class="blank person-pop" data-id="J">華僑・華人<span class="pop-box"><span class="pop-name">華僑・華人</span><span class="pop-desc">海外に移住した中国系の人々。東南アジアを中心に世界各地に広がり、商業ネットワークを形成しました。</span></span></span>といいます。</p>
-
-  <h2>明の衰退</h2>
-  <p>明は<span class="blank person-pop" data-id="K">北虜南倭<span class="pop-box"><span class="pop-name">北虜南倭</span><span class="pop-desc">明が抱えた2つの脅威。「北虜」はモンゴルの脅威、「南倭」は倭寇（海賊）の脅威を指します。</span></span></span>と呼ばれる外国勢力に苦しめられました。北虜とは北方からのオイラト・タタールの侵入、南倭とは南方からの<span class="blank person-pop" data-id="L">倭寇<span class="pop-box"><span class="pop-name">倭寇</span><span class="pop-desc">14〜16世紀に中国・朝鮮の沿岸を荒らした海賊集団。前期は日本人が中心でしたが、後期は中国人が多くなりました。</span></span></span>の侵入です。</p>
-  <p>倭寇とは朝鮮・中国沿岸で活躍した海賊で、日本人が主体の前期倭寇と、日本人の格好をした中国人の後期倭寇に分けられます。</p>
-  <p>1404年、室町幕府3代将軍
-    <span class="person-pop">足利義満<div class="pop-box">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Ashikaga_Yoshimitsu.jpg/200px-Ashikaga_Yoshimitsu.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
-      <div class="pop-name">足利義満（1358〜1408）</div>
-      <div class="pop-desc">室町幕府3代将軍。永楽帝と君臣関係を結んで勘合貿易を始めました。金閣を建てたことでも有名で、南北朝の統一も達成した力強い将軍です。</div>
-    </div></span>
-    は永楽帝と君臣関係を結び<span class="blank person-pop" data-id="N">勘合貿易<span class="pop-box"><span class="pop-name">勘合貿易（日明貿易）</span><span class="pop-desc">足利義満が始めた日本と明の公式貿易（1404〜1547年）。勘合符を使って管理され、日本は銅・硫黄・刀剣を輸出し、銅銭・生糸を輸入しました。</span></span></span>を行いました。日本の船と倭寇を区別するため<span class="blank person-pop" data-id="O">勘合符<span class="pop-box"><span class="pop-name">勘合符</span><span class="pop-desc">明と正式な貿易船を区別するための割り符。これを持つ船だけが明との貿易を許可され、倭寇と区別しました。</span></span></span>（割符）が与えられました。</p>
-  <p>1592年・1597年、
-    <span class="person-pop">豊臣秀吉<div class="pop-box">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Toyotomi_Hideyoshi_portrait.jpg/200px-Toyotomi_Hideyoshi_portrait.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
-      <div class="pop-name">豊臣秀吉（1537〜1598）</div>
-      <div class="pop-desc">織田信長の後継者として天下統一を果たした武将。1592年・1597年に朝鮮に大軍を送りましたが（文禄・慶長の役）失敗。この出兵が明を疲弊させ、清（後金）台頭のきっかけとなりました。</div>
-    </div></span>
-    が朝鮮に出兵しました（壬辰・丁酉の倭乱＝文禄・慶長の役）。明は宗主国として援軍を送り多額の出費をしました。この間、満州では女真族の<span class="blank person-pop" data-id="Q">ヌルハチ<span class="pop-box"><span class="pop-name">ヌルハチ（1559〜1626）</span><span class="pop-desc">後金（後の清）の建国者。女真族を統一し独自の文字（満州文字）と軍事組織（八旗）を作りました。</span></span></span>が後金を建国し、後に国号を<span class="blank person-pop" data-id="R">清<span class="pop-box"><span class="pop-name">清（1616〜1912年）</span><span class="pop-desc">満州人が建てた中国王朝。中国史上最大領域を支配し、康熙帝・雍正帝・乾隆帝の時代に最盛期を迎えました。</span></span></span>に改めました。</p>
-  <div class="key-point">⭐ <strong>明の流れ</strong>：洪武帝（建国・海禁）→永楽帝（南海遠征・鄭和）→北虜南倭→勘合貿易（足利義満）→文禄・慶長の役→清の台頭</div>
+  <h2>なぜ農民出身の皇帝が中国を統一できたのか？</h2>
+  <p>14世紀、モンゴル人が支配する元（中国）では、重税と差別に苦しむ漢民族の農民が各地で反乱を起こしていました（<span class="blank" data-id="A">紅巾の乱</span>）。その中から頭角を現した貧しい農民出身の<span class="blank person-pop" data-id="B">洪武帝<span class="pop-box"><span class="pop-name">洪武帝（朱元璋・在位1368〜98）</span><span class="pop-desc">貧しい農民の出身から皇帝にまで昇りつめた人物。1368年に明を建国しました。皇帝に権力を集中させる中央集権を強化し、民間の自由貿易を禁止する「海禁政策」をとりました。</span></span></span>（朱元璋）が元を北に追い払い、1368年に<span class="blank" data-id="C">明</span>を建国しました。</p>
+  <p>洪武帝は貿易においては周辺国に<span class="blank" data-id="D">朝貢貿易</span>（貢ぎ物を持ってきた国だけと取引する）を求め、民間人の自由な貿易を禁止する<span class="blank" data-id="E">海禁政策</span>を実施しました。役人登用には<span class="blank" data-id="F">科挙</span>（試験制度）を整備し、実力による人材確保を進めました。</p>
+  <div class="why-box"><span class="label">❓ なぜ貿易を禁止したのか？</span>自由貿易が広まると、海賊（後の倭寇）が跋扈したり、皇帝のコントロール外で豊かになる者が出てくる恐れがありました。「すべての交流を国家管理下に置く」という考え方が、海禁政策の根底にありました。</div>
+  <h2>永楽帝の時代と南海遠征</h2>
+  <p>3代目皇帝<span class="blank person-pop" data-id="G">永楽帝<span class="pop-box"><span class="pop-name">永楽帝（在位1402〜24）</span><span class="pop-desc">明の3代皇帝。鄭和に大艦隊を率いての南海遠征を命じ、周辺国を朝貢体制に組み込みました。北京に遷都し、紫禁城を建設しました。</span></span></span>は積極的な外交政策をとり、宦官の<span class="blank person-pop" data-id="H">鄭和<span class="pop-box"><span class="pop-name">鄭和（1371〜1433）</span><span class="pop-desc">明の宦官・航海者。永楽帝の命で1405年から7回の大航海を行い、東南アジア・インド・アラビア・アフリカ東岸まで達しました。コロンブスより80年以上前の出来事です。</span></span></span>に大艦隊を率いさせた<span class="blank" data-id="I">南海遠征</span>を行わせました。7回の航海でインド・アラビア・アフリカ東岸にまで達し、周辺国を朝貢体制に組み込みました。また日本の室町幕府将軍<span class="person-pop">足利義満<span class="pop-box"><span class="pop-name">足利義満（1358〜1408）</span><span class="pop-desc">室町幕府3代将軍。明からの「日本国王」の称号を受け入れ、明との朝貢貿易（<span class="blank" data-id="J">勘合貿易</span>）を始めました。</span></span></span>は明から<span class="blank" data-id="J">勘合符</span>（証明書）を受け取って<span class="blank" data-id="K">勘合貿易</span>を行いました。</p>
+  <h2>明の衰退：倭寇の脅威</h2>
+  <p>北方のモンゴルの脅威（北虜）と南方の海賊・密貿易業者である<span class="blank" data-id="L">倭寇</span>（南倭）の脅威に悩まされた明は、この「<span class="blank" data-id="M">北虜南倭</span>」問題を解決できないまま衰退していきました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>明の海禁政策は結果的に密貿易（倭寇）を生み出すという皮肉な結果をもたらしました。また後に鎖国をした江戸幕府はこの明の海禁政策を参考にしたといわれています。</div>
 </div>
 
-<!-- 清 -->
 <div class="section">
   <span class="section-label label-qing">② 清（1644〜1912年）</span>
-  <h2>清の建国と支配体制</h2>
-  <p>1644年、清が中国を支配しました。清は<span class="blank person-pop" data-id="S">満州人<span class="pop-box"><span class="pop-name">満州人（女真族）</span><span class="pop-desc">中国東北部（満州）出身の民族。ヌルハチが統一し後金を建国、後に清と改称して中国全土を支配しました。</span></span></span>によってつくられた政府で、大部分の<span class="blank" data-id="T">漢民族</span>（中国人）を支配していました。</p>
-  <p>清の最盛期の皇帝は4代目<span class="blank person-pop" data-id="U">康熙帝<span class="pop-box"><span class="pop-name">康熙帝（在位1661〜1722）</span><span class="pop-desc">清の第4代皇帝。61年の長期在位で台湾征服・ロシアとのネルチンスク条約締結など清の領土を大きく広げました。</span></span></span>・5代目<span class="blank person-pop" data-id="V">雍正帝<span class="pop-box"><span class="pop-name">雍正帝（在位1722〜35）</span><span class="pop-desc">清の第5代皇帝。キリスト教を禁止し、軍機処を設けて皇帝独裁を強化しました。</span></span></span>・6代目<span class="blank person-pop" data-id="W">乾隆帝<span class="pop-box"><span class="pop-name">乾隆帝（在位1735〜95）</span><span class="pop-desc">清の第6代皇帝。チベット・新疆を支配下に収め、清の最大版図を実現しました。</span></span></span>です。</p>
-  <h3>支配体制の特徴</h3>
-  <table class="person-table">
-    <tr><th>制度・政策</th><th>内容</th></tr>
-    <tr><td><span class="blank person-pop" data-id="X">辮髪<span class="pop-box"><span class="pop-name">辮髪（べんぱつ）</span><span class="pop-desc">満州族の男性の髪型で、頭の前部を剃り後ろを編んで垂らすスタイル。清は征服した漢民族にこれを強制しました。</span></span></span></td><td>漢民族の男性に満州人の髪型（辮髪）を強制しました。従わない者は死刑とされました。</td></tr>
-    <tr><td><span class="blank person-pop" data-id="Y">科挙<span class="pop-box"><span class="pop-name">科挙</span><span class="pop-desc">官僚登用のための試験制度。隋代に始まり明・清で整備。身分を問わず試験に合格すれば官僚になれる制度で、優秀な人材を集める役割を果たしました。</span></span></span></td><td>優秀な役人を登用するための試験制度。当初は満州人が独占していましたが、後に漢民族にも開かれました。</td></tr>
-    <tr><td><span class="blank person-pop" data-id="Z">満漢併用制<span class="pop-box"><span class="pop-name">満漢併用制</span><span class="pop-desc">清が採用した統治制度。重要な官職に満州人と漢人を同数任命し、両民族の融和と支配を図りました。</span></span></span></td><td>中央要職に満州人と同数の漢人を採用する制度。漢民族の反発を和らげるための政策です。</td></tr>
-  </table>
-  <h3>宗教政策</h3>
-  <p>中央アジア（東トルキスタン）ではムスリムの首長による自治を認め、チベットでは<span class="blank person-pop" data-id="AA">ダライ＝ラマ<span class="pop-box"><span class="pop-name">ダライ＝ラマ</span><span class="pop-desc">チベット仏教の最高指導者の称号。清はチベットを支配下に置き、ダライ＝ラマと協力関係を築きました。</span></span></span>を教主とするチベット仏教を保護しました。支配地域の文化・宗教を柔軟に尊重する政策をとりました。</p>
-  <h3>貿易政策</h3>
-  <p>清の貿易政策は明より自由で、商人どうしの自由な貿易（互市）も認める<span class="blank person-pop" data-id="BB">自由放任主義<span class="pop-box"><span class="pop-name">自由放任主義（レッセ＝フェール）</span><span class="pop-desc">政府が経済に介入せず、個人の自由な経済活動に任せる考え方。清末・中国の経済開放とも関わります。</span></span></span>でした。ヨーロッパに茶・絹・陶磁器などを輸出し、メキシコ産・日本産の銀などを手に入れました。しかし18世紀に<span class="person-pop">乾隆帝<div class="pop-box">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Qianlong_Emperor_in_Court_Dress.jpg/200px-Qianlong_Emperor_in_Court_Dress.jpg" onerror="this.src='https://placehold.co/80x80?text=人物'" alt="">
-    <div class="pop-name">乾隆帝（在位1735〜96）</div>
-    <div class="pop-desc">清の6代皇帝。清の最盛期を代表する皇帝の一人。領土を最大に拡大しましたが、治安上の理由でヨーロッパとの貿易港を広州1港に制限しました。後にこれがアヘン戦争の遠因となります。</div>
-  </div></span>は、治安上の危険性から貿易港を<span class="blank person-pop" data-id="CC">広州<span class="pop-box"><span class="pop-name">広州（グアンジョウ）</span><span class="pop-desc">中国南部の港湾都市。清代には外国との貿易を広州一港に制限する「広州システム」が取られました。</span></span></span>1港と定めました。</p>
-  <div class="key-point">⭐ <strong>清の特徴</strong>：満州人支配・辮髪強制・科挙・満漢併用制・自由放任主義→乾隆帝が広州1港に制限</div>
+  <h2>なぜ少数民族が多数の漢民族を支配できたのか？</h2>
+  <p>中国東北部（満州）出身の<span class="blank" data-id="N">ヌルハチ</span>が女真族を統一して後金（後の清）を建国し、1644年についに北京を占領して中国全土を支配しました。清は<span class="blank" data-id="O">満州人</span>による政府でしたが、支配される側の<span class="blank" data-id="P">漢民族</span>（中国人）は圧倒的な多数派でした。</p>
+  <div class="why-box"><span class="label">❓ なぜ少数が多数を支配できたのか？</span>清はアメとムチの両方を使いました。「ムチ」として男性漢民族に満州式の髪型（<span class="blank" data-id="Q">辮髪</span>）を強制し、従わなければ死刑にしました。「アメ」として重要な官職に満州人と漢人を同数登用する<span class="blank" data-id="R">満漢併用制</span>を採用し、漢民族の知識層を取り込みました。</div>
+  <p>清の最盛期は4代目<span class="blank person-pop" data-id="S">康熙帝<span class="pop-box"><span class="pop-name">康熙帝（在位1661〜1722）</span><span class="pop-desc">清の4代皇帝。台湾征服・ロシアとのネルチンスク条約締結など、61年の長期在位で帝国の基礎を固めました。</span></span></span>・5代目<span class="blank person-pop" data-id="T">雍正帝<span class="pop-box"><span class="pop-name">雍正帝（在位1722〜35）</span><span class="pop-desc">清の5代皇帝。キリスト教を禁止し、軍機処を設置して皇帝独裁を強化しました。</span></span></span>・6代目<span class="blank person-pop" data-id="U">乾隆帝<span class="pop-box"><span class="pop-name">乾隆帝（在位1735〜95）</span><span class="pop-desc">清の6代皇帝。チベット・新疆を支配下に収め、清の最大版図を実現しました。</span></span></span>の時代です。チベット仏教（<span class="blank" data-id="V">ダライ＝ラマ</span>）を保護し、支配地域の文化・宗教を柔軟に尊重することで広大な多民族国家を安定させました。</p>
+  <p>貿易は海禁政策を維持し、外国との取引は<span class="blank" data-id="W">広州</span>一港に限定しました。しかし海外に移住した中国人（<span class="blank" data-id="X">華僑・華人</span>）は東南アジアで商業ネットワークを築き、交易を通じて「柔軟な経済的進出」を進めました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>清は約270年間にわたって中国を支配しました。しかし19世紀になると、イギリスなど西洋列強が開国を迫るようになります。長年の海禁政策で軍事技術が遅れた清は、アヘン戦争（1840年）でイギリスに敗れ、急速に弱体化していきます。</div>
 </div>
 
 <div class="fixed-footer-controls">

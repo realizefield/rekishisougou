@@ -54,6 +54,11 @@
   #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
   #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
   .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
 </style>
 </head>
 <body>
@@ -71,88 +76,45 @@
   <div class="word-bank" id="word-bank"></div>
 </div>
 
-<!-- ① ルター -->
+
+
 <div class="section">
   <span class="section-label label-luther">① ルターの宗教改革</span>
-  <h2>贖宥状（免罪符）の販売</h2>
-  <p>メディチ家出身の教皇
-    <span class="blank person-pop" data-id="A">レオ10世<span class="pop-box">
-      <img src="reo10sei.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">レオ10世（在位1513〜1521）</span>
-      <span class="pop-desc">メディチ家出身のローマ教皇。豪華な生活を好み、サン＝ピエトロ大聖堂の工事費用を賄うために免罪符を大量に販売させました。これがルターの批判を招きました。</span>
-    </span></span>
-    は、ローマの<span class="blank" data-id="B">サン＝ピエトロ大聖堂</span><span class="img-thumb" onclick="openImgModal('sanpietoto.png','サン＝ピエトロ大聖堂（バチカン）')" style="margin-left:4px"><img src="sanpietoto.png" alt="サン＝ピエトロ大聖堂" onerror="this.style.display='none'"><span class="thumb-label">🖼 写真</span></span>の修築資金のため、ドイツの大商人フッガー家に<span class="blank" data-id="C">贖宥状（免罪符）</span>を大量に売らせました。</p>
-  <p>贖宥状（免罪符）とは、購入すれば一切の罪が消滅し必ず天国へいけるとされた証書のことです。当時ドイツは領邦に分裂していたため「ローマの牝牛」（ドイツはローマの資金源）と呼ばれていました。</p>
-
-  <h2>九十五カ条の論題（1517年）</h2>
-  <p>ドイツのヴィッテンベルク大学神学教授
-    <span class="blank person-pop" data-id="D">マルティン＝ルター<span class="pop-box">
-      <img src="rutaa.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">マルティン＝ルター（1483〜1546）</span>
-      <span class="pop-desc">ドイツの神学者。1517年に免罪符批判の「九十五カ条の論題」を教会の扉に貼り出し、宗教改革を起こしました。聖書をドイツ語に翻訳し、誰もが聖書を読めるようにしました。</span>
-    </span></span>
-    は、1517年にヴィッテンベルク城教会に「九十五カ条の論題」を貼り出しました。</p>
-  <p>「人は善行ではなく、神への<span class="blank" data-id="E">信仰</span>のみによって救われる。信仰とは<span class="blank" data-id="F">聖書</span>に従って生きることだ」と主張しました。</p>
-  <p><span class="blank" data-id="G">活版印刷術</span>の改良により、論題はまたたく間にドイツ各地に広まりました。神聖ローマ皇帝<span class="blank person-pop" data-id="H">カール5世<span class="pop-box"><img src="kaaru5sei.png" onerror="this.style.display='none'" alt="カール5世"><span class="pop-name">カール5世（在位1519〜1556）</span><span class="pop-desc">神聖ローマ帝国の皇帝でスペイン国王。ルターに自説の撤回を迫りましたが拒否されたため帝国追放にしました。第一次ウィーン包囲でオスマン帝国と対立しました。</span></span></span>は自説の撤回を要求しましたが、ルターは拒否し帝国追放となりました。ルターはザクセン選帝侯にかくまわれ、新約聖書を<span class="blank" data-id="I">ドイツ語</span>に翻訳し、<span class="blank" data-id="J">ルター派</span>教会を立てました。</p>
-  <p>1555年の<span class="blank" data-id="K">アウグスブルクの宗教和議</span>でドイツ国内のルター派が公認されました。ただし個人の信仰の自由は認められず、領主の宗派に従わされました。</p>
-  <div class="key-point">⭐ <strong>流れ</strong>：免罪符批判 → 九十五カ条の論題(1517) → 聖書のドイツ語訳 → アウグスブルクの宗教和議(1555)</div>
+  <h2>なぜ宗教改革が起きたのか？</h2>
+  <p>16世紀のローマ教皇庁は、壮大な建築事業のために多額のお金を必要としていました。メディチ家出身の教皇<span class="blank person-pop" data-id="A">レオ10世<span class="pop-box"><span class="pop-name">レオ10世（在位1513〜1521）</span><span class="pop-desc">メディチ家出身のローマ教皇。豪華な生活を好み、サン＝ピエトロ大聖堂の工事費用のために免罪符を大量販売させました。これがルターの批判を招きました。</span></span></span>はローマの<span class="blank" data-id="B">サン＝ピエトロ大聖堂</span>の修築資金を集めるため、「購入すれば罪が消えて天国へ行ける」という<span class="blank" data-id="C">贖宥状（免罪符）</span>を大量に売り出しました。</p>
+  <div class="why-box"><span class="label">❓ なぜドイツで問題になったのか？</span>当時のドイツは約300の小国家（領邦国家）に分裂しており、「ローマの牝牛」と呼ばれるほどローマ教皇庁に多くのお金を吸い上げられていました。貧しい農民まで免罪符を買わされており、民衆の不満は爆発寸前でした。</div>
+  <h2>ルターの抗議とその広がり</h2>
+  <p>ヴィッテンベルク大学の神学教授<span class="blank person-pop" data-id="D">マルティン＝ルター<span class="pop-box"><span class="pop-name">マルティン＝ルター（1483〜1546）</span><span class="pop-desc">ドイツの神学者・宗教改革者。1517年に「九十五カ条の論題」を発表し、免罪符を批判しました。聖書をドイツ語に翻訳して民衆が読めるようにしました。</span></span></span>は1517年、「免罪符を買っても罪は消えない。人は<span class="blank" data-id="E">信仰</span>のみによって、そして<span class="blank" data-id="F">聖書</span>に従うことによって救われる」と書いた「九十五カ条の論題」を教会に貼り出し、教皇を公に批判しました。</p>
+  <p>この論題は<span class="blank" data-id="G">活版印刷術</span>の普及によってまたたく間にドイツ全土に広まりました。神聖ローマ皇帝<span class="blank person-pop" data-id="H">カール5世<span class="pop-box"><span class="pop-name">カール5世（在位1519〜1556）</span><span class="pop-desc">神聖ローマ帝国皇帝兼スペイン国王。ルターに撤回を求めましたが拒否されたため帝国追放にしました。</span></span></span>はルターに撤回を求めましたが、ルターは拒否し帝国追放となりました。かくまわれた先でルターは聖書をドイツ語に翻訳し、<span class="blank" data-id="I">ルター派</span>教会を立てました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>1555年の<span class="blank" data-id="K">アウグスブルクの宗教和議</span>でドイツ国内のルター派が正式に認められました。「各領主が自分の領地の宗教を決める」という原則で、ローマ教皇の絶対的な権威が初めて公式に否定された歴史的転換点となりました。</div>
+  <div class="key-point">⭐ <strong>流れ</strong>：免罪符の販売 → 九十五カ条の論題(1517) → 活版印刷で拡散 → ドイツ語訳聖書 → ルター派公認(1555)</div>
 </div>
 
-<!-- ② カルヴァン -->
 <div class="section">
   <span class="section-label label-calvin">② カルヴァンの宗教改革</span>
-  <h2>予定説と資本主義</h2>
-  <p>
-    <span class="person-pop">カルヴァン<span class="pop-box">
-      <img src="karuban.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">カルヴァン（1509〜1564）</span>
-      <span class="pop-desc">フランス出身の宗教改革者。スイスのジュネーヴで活動し「予定説」を唱えました。「社会で成功することが神に選ばれた証し」という考えが、資本主義の精神に結びついたと言われます。</span>
-    </span></span>
-    は迫害を恐れ<span class="blank" data-id="L">スイス</span>に移住し、「人が救済されるかは神がすでに予定している」とする<span class="blank" data-id="M">予定説</span>を発表しました。社会的成功を救済の証しとし、貯蓄・勤勉を奨励したことで市民の支持を得て、<span class="blank" data-id="N">資本主義</span>経済の発達につながりました。</p>
-  <p>カルヴァン派はヨーロッパ各地に広がり、フランスでは<span class="blank" data-id="O">ユグノー</span>、イギリスでは<span class="blank" data-id="P">ピューリタン</span>と呼ばれました。</p>
-  <div class="key-point">⭐ <strong>覚え方</strong>：フランス → ユグノー　／　イギリス → ピューリタン</div>
+  <h2>なぜカルヴァンの教えは広まったのか？</h2>
+  <p>フランス出身の<span class="blank person-pop" data-id="L">カルヴァン<span class="pop-box"><span class="pop-name">カルヴァン（1509〜1564）</span><span class="pop-desc">フランス出身の宗教改革者。スイスのジュネーヴで活動し「予定説」を唱えました。勤勉・節制・蓄財を奨励する教えが商工業者に歓迎され、資本主義の精神と結びつきました。</span></span></span>は迫害を避けて<span class="blank" data-id="M">スイス</span>に逃れ、「人が救われるかどうかは神がすでに決めている」という<span class="blank" data-id="N">予定説</span>を説きました。</p>
+  <div class="why-box"><span class="label">❓ なぜ商人・職人に受け入れられたのか？</span>「社会で成功して財産を積むことが、神に選ばれている証しだ」という解釈が生まれ、勤勉に働いてお金を貯めることが「神への奉仕」とされました。これが後の<span class="blank" data-id="O">資本主義</span>経済の精神的な土台になったといわれています。</div>
+  <p>カルヴァン派はヨーロッパ各地に広まりました。フランスでは<span class="blank" data-id="P">ユグノー</span>、イギリスでは<span class="blank" data-id="Q">ピューリタン</span>と呼ばれました。このピューリタンが後にイギリスで革命を起こすことになります。</p>
+  <div class="key-point">⭐ <strong>覚え方</strong>：フランス → ユグノー ／ イギリス → ピューリタン</div>
 </div>
 
-<!-- ③ イギリス -->
 <div class="section">
   <span class="section-label label-england">③ イギリスの宗教改革</span>
-  <h2>ヘンリー8世とイギリス国教会</h2>
-  <p>
-    <span class="blank person-pop" data-id="Q">ヘンリー8世<span class="pop-box">
-      <img src="henri8sei.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">ヘンリー8世（在位1509〜1547）</span>
-      <span class="pop-desc">イギリス国王。6回結婚したことで有名。離婚を認めないローマ教皇と対立し、ローマ教会から独立してイギリス国教会を設立しました。</span>
-    </span></span>
-    は侍女アン＝ブーリンと結婚しようとしましたが、カトリックは離婚を認めなかったためローマ教皇と対立しました。ローマ教会から独立して<span class="blank" data-id="R">イギリス国教会</span>を設立し、修道院の廃止・財産没収を行いました。</p>
-  <p>後にヘンリー8世とアン＝ブーリンの娘
-    <span class="blank person-pop" data-id="S">エリザベス1世<span class="pop-box">
-      <img src="erizabesu1sei.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">エリザベス1世（在位1558〜1603）</span>
-      <span class="pop-desc">イギリス女王。統一法を制定してイギリス国教会を確立し、スペインの無敵艦隊を撃破するなど、イギリスを強国にした名君。ルネサンス文化（シェークスピアなど）も彼女の時代に栄えました。</span>
-    </span></span>
-    が統一法を制定し、国王が長を兼ねるイギリス国教会を確立させました。</p>
+  <h2>なぜイギリスは独自の国教会を作ったのか？</h2>
+  <p>イギリス国王<span class="blank person-pop" data-id="R">ヘンリー8世<span class="pop-box"><span class="pop-name">ヘンリー8世（在位1509〜1547）</span><span class="pop-desc">イギリス国王。6回結婚したことで有名。離婚を認めないローマ教皇と対立し、ローマ教会から独立してイギリス国教会を設立しました。</span></span></span>は侍女アン＝ブーリンと結婚しようとしましたが、カトリック教会は離婚を認めませんでした。教皇と対立したヘンリー8世は、ローマ教会から独立して<span class="blank" data-id="S">イギリス国教会</span>を設立し、自らその長となりました。</p>
+  <div class="why-box"><span class="label">📌 ポイント</span>イギリスの宗教改革は、ルターやカルヴァンのような「信仰上の理由」ではなく、国王の「政治的・個人的な都合」から始まったという点が特徴的です。それでも結果的にカトリックからの独立につながり、後の政治改革の土台となりました。</div>
+  <p>後にヘンリー8世の娘<span class="blank person-pop" data-id="T">エリザベス1世<span class="pop-box"><span class="pop-name">エリザベス1世（在位1558〜1603）</span><span class="pop-desc">イギリス女王。統一法を制定してイギリス国教会を確立しました。スペインの無敵艦隊を撃破し、イギリスを強国にした名君です。</span></span></span>が統一法を制定し、国王が長を兼ねるイギリス国教会を正式に確立させました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>イギリス国教会の成立によりイギリスはローマ教皇の支配から独立しました。しかしカルヴァン派（ピューリタン）はイギリス国教会をまだカトリック的すぎると批判し、この対立が後のピューリタン革命の火種となっていきます。</div>
 </div>
 
-<!-- ④ 反宗教改革 -->
 <div class="section">
-  <span class="section-label label-counter">④ 反宗教改革</span>
-  <h2>カトリックの巻き返し</h2>
-  <p>1545年、<span class="blank" data-id="T">トリエント公会議</span>でカトリック教会は教皇の至上主義を確認し、宗教裁判所の設置を決議しました。</p>
-  <p>1534年、スペイン貴族出身の元軍人
-    <span class="blank person-pop" data-id="U">イグナティウス＝ロヨラ<span class="pop-box">
-      <img src="igunatiusuroyora.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">イグナティウス＝ロヨラ（1491〜1556）</span>
-      <span class="pop-desc">スペイン貴族出身の元軍人。ザビエルとともにイエズス会を設立しました。軍隊式の厳しい組織を作り、アジアやラテンアメリカで積極的に布教しました。</span>
-    </span></span>
-    と
-    <span class="blank person-pop" data-id="V">フランシスコ＝ザビエル<span class="pop-box">
-      <img src="furansisukozabieru.png" onerror="this.style.display='none'" alt="フランシスコ＝ザビエル">
-      <span class="pop-name">フランシスコ＝ザビエル（1506〜1552）</span>
-      <span class="pop-desc">スペイン貴族出身のイエズス会士。アジア布教の先駆者。1549年に日本の鹿児島に上陸してキリスト教を伝えました。中国布教を目指しましたが、マラッカで病死しました。</span>
-    </span></span>
-    ら6人が<span class="blank" data-id="W">イエズス会</span>を設立しました。教皇への絶対服従・軍隊式組織を特色とし、アジアやラテンアメリカで布教しました。</p>
-  <p>1549年、ザビエルは日本の<span class="blank" data-id="X">鹿児島</span>に上陸してキリスト教を布教しました。このようなカトリック勢力の巻き返しを<span class="blank" data-id="Y">反宗教改革</span>といいます。</p>
-  <div class="key-point">⭐ <strong>イエズス会の特色</strong>：①教皇への無条件の絶対服従　②軍隊式の鉄の規律</div>
+  <span class="section-label label-counter">④ 反宗教改革（カトリックの巻き返し）</span>
+  <h2>カトリック教会はどのように反撃したのか？</h2>
+  <p>プロテスタントの拡大に危機感を持ったカトリック教会は1545年の<span class="blank" data-id="U">トリエント公会議</span>で教皇の権威を再確認し、宗教裁判所の設置を決めました。そして強力な布教組織として<span class="blank" data-id="W">イエズス会</span>が設立されました。</p>
+  <p>1534年、スペイン貴族出身の元軍人<span class="blank person-pop" data-id="V">イグナティウス＝ロヨラ<span class="pop-box"><span class="pop-name">イグナティウス＝ロヨラ（1491〜1556）</span><span class="pop-desc">スペイン貴族出身の元軍人。ザビエルとともにイエズス会を設立。軍隊式の厳しい組織でアジア・ラテンアメリカの布教を推進しました。</span></span></span>と<span class="blank person-pop" data-id="X">フランシスコ＝ザビエル<span class="pop-box"><span class="pop-name">フランシスコ＝ザビエル（1506〜1552）</span><span class="pop-desc">スペイン貴族出身のイエズス会士。アジア布教の先駆者。1549年に日本の鹿児島に上陸してキリスト教を伝えました。</span></span></span>らがイエズス会を設立し、教皇への絶対服従と軍隊式の組織で、アジアやラテンアメリカで積極的に布教しました。1549年にはザビエルが日本の<span class="blank" data-id="Y">鹿児島</span>に上陸し、日本に初めてキリスト教を伝えました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>このカトリック教会の巻き返しを<span class="blank" data-id="Z">反宗教改革</span>といいます。プロテスタントがヨーロッパ北部に広まる一方で、南ヨーロッパ・ラテンアメリカ・アジアではカトリックが勢力を保ちました。こうしてキリスト教は「カトリック」と「プロテスタント」の2大勢力に分かれることになります。</div>
+  <div class="key-point">⭐ <strong>イエズス会の特色</strong>：①教皇への無条件の絶対服従 ②軍隊式の鉄の規律 ③アジア・ラテンアメリカへの積極的布教</div>
 </div>
 
 <div class="fixed-footer-controls">

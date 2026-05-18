@@ -10,7 +10,7 @@
   h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1e6b22;padding-left:10px;color:#1a1a2e}
   .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
   .back-to-index:hover{background:#1e2d6b}
-  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc}
   .word-bank{border:2px solid #1e6b22;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none}
   .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
   .word-chip.used{opacity:0.3}
@@ -55,6 +55,11 @@
   #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
   #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
   .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
 </style>
 </head>
 <body>
@@ -63,113 +68,48 @@
   <img id="modal-img" src="" alt="">
   <div id="modal-caption" class="modal-caption"></div>
 </div>
+
 <a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
 <h1>⛵ 大航海時代（15〜17世紀）</h1>
+
 <div class="word-bank-sticky-container">
   <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
   <div class="word-bank" id="word-bank"></div>
 </div>
 
+
+
 <div class="section">
-  <span class="section-label label-bg">① 大航海の背景</span>
-  <h2>なぜ大航海時代が始まったのか</h2>
-  <p>スペイン・ポルトガルは山がちな地形で耕作地が少なく、早くから海外貿易によって活路を開こうとしていました。</p>
-  <p>ヴェネツィアの商人<span class="blank person-pop" data-id="A">マルコ＝ポーロ<span class="pop-box">
-    <img src="marukopouro.png" onerror="this.style.display='none'" alt="">
-    <span class="pop-name">マルコ＝ポーロ（1254〜1324）</span>
-    <span class="pop-desc">イタリア、ヴェネツィア出身の商人・冒険家。17年間中国（元）に滞在し、フビライ＝ハンに仕えました。帰国後に著した「東方見聞録」でアジアの富と黄金の島「ジパング（日本）」を紹介し、ヨーロッパ人の東洋への憧れを高めました。</span>
-  </span></span>の書いた「東方見聞録」に黄金の島<span class="blank person-pop" data-id="B">ジパング（日本）<span class="pop-box"><span class="pop-name">ジパング（日本）</span><span class="pop-desc">マルコ＝ポーロが「東方見聞録」で紹介した黄金の島。これがヨーロッパ人の東方への憧れを掻き立てました。</span></span></span>の紹介があり、黄金をアジアに求めました。</p>
-  <p>14世紀ごろから肉食が流行し始め、肉の臭みを消すため、インドやインドネシアでとれる<span class="blank person-pop" data-id="C">香辛料<span class="pop-box"><span class="pop-name">香辛料</span><span class="pop-desc">コショウ・シナモン・ナツメグなど。肉の保存や臭み消しに使われ、当時は黄金と同等の価値を持つ貴重品でした。</span></span></span>（コショウなど）が必要とされました。しかし陸路は<span class="blank person-pop" data-id="D">オスマン帝国<span class="pop-box"><span class="pop-name">オスマン帝国（1299〜1922）</span><span class="pop-desc">トルコ人のイスラーム帝国。アジアとヨーロッパをつなぐ陸路を支配し、ヨーロッパに海の新航路を探させる原因となりました。</span></span></span>が支配していたため通行が困難でした。<span class="blank person-pop" data-id="E">羅針盤<span class="pop-box"><span class="pop-name">羅針盤</span><span class="pop-desc">磁石で方角を知る道具。昼夜・天候に関わらず方向がわかるため、大洋航海を可能にした重要な発明です。</span></span></span>の改良により新航路の発見を目指すようになりました。</p>
-  <div class="key-point">⭐ <strong>背景</strong>：①黄金への憧れ　②香辛料の需要　③オスマン帝国による陸路の遮断　④羅針盤の改良</div>
+  <span class="section-label label-bg">① 大航海時代が始まった理由</span>
+  <h2>なぜヨーロッパ人は海に乗り出したのか？</h2>
+  <p>15世紀のヨーロッパ人がアジアに向けて大海原に乗り出したのには、いくつかの理由がありました。まず、イタリアの商人<span class="blank person-pop" data-id="A">マルコ＝ポーロ<span class="pop-box"><span class="pop-name">マルコ＝ポーロ（1254〜1324）</span><span class="pop-desc">ヴェネツィア出身の商人・冒険家。中国（元）に17年間滞在しフビライ＝ハンに仕えました。帰国後に著した「東方見聞録」で黄金の島「ジパング（日本）」を紹介し、ヨーロッパ人の東洋への憧れを高めました。</span></span></span>が著した「東方見聞録」に、黄金の島<span class="blank" data-id="B">ジパング（日本）</span>の記述があり、「東に行けば莫大な富が手に入る」というイメージがヨーロッパに広まっていました。</p>
+  <p>また、当時ヨーロッパでは肉食が広まり、肉の臭み消しや保存に欠かせない<span class="blank" data-id="C">香辛料</span>（コショウなど）の需要が急増していました。しかし香辛料の産地インドやインドネシアへの陸路は<span class="blank" data-id="D">オスマン帝国</span>が支配しており、通行料を取られて非常に高くつきました。</p>
+  <div class="why-box"><span class="label">❓ なぜ海の新航路が必要だったのか？</span>「オスマン帝国を通らずに、直接アジアと貿易できる海の道を見つければ、莫大な利益が得られる」—これがヨーロッパ人を大航海へと駆り立てた最大の動機でした。さらに<span class="blank" data-id="E">羅針盤</span>（方位磁石）の改良により、昼夜・天候を問わず方角がわかるようになり、大洋を渡る航海が技術的に可能になりました。</div>
 </div>
 
 <div class="section">
-  <span class="section-label label-pt">② ポルトガルの活躍</span>
-  <h2>アフリカ・インドへの航路開拓</h2>
-  <p>ポルトガルの<span class="blank person-pop" data-id="F">エンリケ航海王子<span class="pop-box">
-    <img src="enrike.png" onerror="this.style.display='none'" alt="">
-    <span class="pop-name">エンリケ航海王子（1394〜1460）</span>
-    <span class="pop-desc">ポルトガルの王子。自らは航海しませんでしたが、航海学校を設立して多くの探検家を育て、アフリカ西岸の探検を積極的に支援しました。「大航海時代の父」とも呼ばれます。</span>
-  </span></span>は西アフリカ探検を積極的に支援しました。</p>
-  <table class="person-table">
-    <tr><th>年</th><th>人物</th><th>到達地・業績</th></tr>
-    <tr><td>1488年</td><td><span class="blank person-pop" data-id="G">バルトロメウ＝ディアス<span class="pop-box">
-      <img src="barutoromeudeiasu.png" onerror="this.style.display='none'" alt="バルトロメウ＝ディアス">
-      <span class="pop-name">バルトロメウ＝ディアス（1450〜1500）</span>
-      <span class="pop-desc">ポルトガルの探検家。1488年、アフリカ最南端の岬に到達しました。「嵐の岬」と名付けましたが、後にポルトガル王が「喜望峰（希望の岬）」と改名しました。</span>
-    </span></span></td><td>アフリカ大陸最南端の<span class="blank person-pop" data-id="H">喜望峰<span class="pop-box"><span class="pop-name">喜望峰</span><span class="pop-desc">アフリカ大陸最南端の岬。ディアスが1488年に到達。「希望の岬」の意味で、インド航路開拓の希望を象徴しています。</span></span></span>に到達しました。</td></tr>
-    <tr><td>1498年</td><td><span class="blank person-pop" data-id="I">ヴァスコ＝ダ＝ガマ<span class="pop-box">
-      <img src="basukodagama.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">ヴァスコ＝ダ＝ガマ（1469〜1524）</span>
-      <span class="pop-desc">ポルトガルの航海者。喜望峰を回ってアフリカ東岸を北上し、1498年にインドのカリカットに到達。香辛料を現地の60倍の値段で売って大きな利益を得ました。</span>
-    </span></span></td><td>喜望峰を回ってインドの<span class="blank person-pop" data-id="J">カリカット<span class="pop-box"><span class="pop-name">カリカット（現コーリコード）</span><span class="pop-desc">インド南西部の港町。ヴァスコ＝ダ＝ガマが1498年に到達した目的地で、香辛料貿易の拠点でした。</span></span></span>に到達しました。香辛料は現地の60倍の金額で売れました。</td></tr>
-  </table>
-  <p>後にポルトガルは中国の<span class="blank person-pop" data-id="K">マカオ<span class="pop-box"><span class="pop-name">マカオ</span><span class="pop-desc">中国南部の港。ポルトガルが対中国貿易の拠点として使用。1999年まで400年以上ポルトガルの支配下にありました。</span></span></span>を拠点に貿易を行い、マラッカ王国を滅ぼして東南アジアにも進出しました。</p>
+  <span class="section-label label-portugal">② ポルトガルの活躍</span>
+  <h2>ポルトガルはどのようにインドへの道を開いたのか？</h2>
+  <p>最初に動いたのはポルトガルでした。王子の<span class="blank person-pop" data-id="F">エンリケ航海王子<span class="pop-box"><span class="pop-name">エンリケ航海王子（1394〜1460）</span><span class="pop-desc">ポルトガルの王子。自らは航海しませんでしたが、航海学校を設立して探検家を育て、アフリカ西岸の探検を積極的に支援しました。「大航海時代の父」と呼ばれます。</span></span></span>が航海学校を設立し、アフリカ西岸の探検を積極的に支援しました。その成果として1488年に<span class="blank person-pop" data-id="G">バルトロメウ＝ディアス<span class="pop-box"><span class="pop-name">バルトロメウ＝ディアス（1450〜1500）</span><span class="pop-desc">ポルトガルの探検家。1488年にアフリカ最南端の岬に到達しました。「嵐の岬」と名付けましたが、後にポルトガル王が「喜望峰（希望の岬）」と改名しました。</span></span></span>がアフリカ最南端の<span class="blank" data-id="H">喜望峰</span>に到達し、インドへの道がつながった証明となりました。</p>
+  <p>そして1498年、<span class="blank person-pop" data-id="I">ヴァスコ＝ダ＝ガマ<span class="pop-box"><span class="pop-name">ヴァスコ＝ダ＝ガマ（1469〜1524）</span><span class="pop-desc">ポルトガルの航海者。喜望峰を回ってアフリカ東岸を北上し、1498年にインドのカリカットに到達しました。ヨーロッパからアジアへの直接の海の道を初めて開きました。</span></span></span>がついにインドの<span class="blank" data-id="J">カリカット</span>に到達しました。これによりポルトガルはアジアとの直接貿易を実現し、巨大な利益を得ることになりました。後にポルトガルは中国の<span class="blank" data-id="K">マカオ</span>も貿易拠点として使用しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>ポルトガルはアジア各地に拠点を築き、香辛料貿易で莫大な富を手にしました。アジアとヨーロッパが海でつながったことで、世界の貿易構造が根本から変わっていきました。</div>
 </div>
 
 <div class="section">
-  <span class="section-label label-sp">③ スペインの活躍・世界一周</span>
-  <h2>西回り航路とアメリカ到達</h2>
-
-  <div style="text-align:center;margin:10px 0 16px;">
-    <span class="img-thumb" onclick="openImgModal('shinkouro.png','大航海時代の航路（A=マゼラン・B=コロンブス・C=ヴァスコ＝ダ＝ガマ）')" style="display:inline-flex;">
-      <img src="shinkouro.png" alt="新航路の地図" onerror="this.style.display='none'">
-      <span class="thumb-label">🗺 大航海時代の航路図</span>
-    </span>
-  </div>
-
-  <p style="margin-bottom:8px;">地図中の航路A・B・Cを語群から選んで入れましょう。</p>
-  <div style="background:#f0fff0;border:1.5px solid #1e6b22;border-radius:8px;padding:12px 16px;margin-bottom:14px;line-height:2.4;">
-    A（世界一周）＝<span class="blank person-pop" data-id="AB">マゼラン<span class="pop-box"><span class="pop-name">マゼラン（1480〜1521）</span><span class="pop-desc">ポルトガル出身の航海者。スペイン王の命で世界一周を試み、フィリピンで死亡しましたが、部下が初の世界一周を達成しました。</span></span></span>　
-    B（西回り・カリブ海）＝<span class="blank person-pop" data-id="BB">コロンブス<span class="pop-box"><span class="pop-name">コロンブス（1451〜1506）</span><span class="pop-desc">イタリア出身の航海者。地球球体説をもとに西回りでインドを目指し、1492年にカリブ海の島（西インド諸島）に到達しました。</span></span></span>　
-    C（東回り・インド）＝<span class="blank person-pop" data-id="CB">ヴァスコ＝ダ＝ガマ<span class="pop-box"><span class="pop-name">ヴァスコ＝ダ＝ガマ（1469〜1524）</span><span class="pop-desc">ポルトガルの航海者。1498年に喜望峰を回ってインドのカリカットに到達。ヨーロッパからアジアへの直接海路を初めて開きました。</span></span></span>
-  </div>
-
-  <p>1492年、<span class="blank person-pop" data-id="L">コロンブス<span class="pop-box">
-    <img src="koronbusu.png" onerror="this.style.display='none'" alt="コロンブス">
-    <span class="pop-name">コロンブス（1451〜1506）</span>
-    <span class="pop-desc">イタリア、ジェノヴァ出身の航海者。「地球は丸い」という地球球体説をもとに、西回りでインドへ行こうとスペイン女王<img src="isaberu.png" style="width:36px;height:36px;object-fit:cover;border-radius:50%;vertical-align:middle;margin:0 4px;" onerror="this.style.display='none'" alt="イサベル">イサベルに支援を求めました。1492年にカリブ海の島に到達しましたが、死ぬまでここがアジアだと信じていました。</span>
-  </span></span>はスペイン女王イサベルの支援を受け、西回りでインドを目指して大西洋を渡り、カリブ海の<span class="blank person-pop" data-id="M">サンサルバドル島<span class="pop-box"><span class="pop-name">サンサルバドル島</span><span class="pop-desc">コロンブスが1492年に最初に上陸したカリブ海の島。コロンブスはここをアジアと思い込みました。</span></span></span>に到達しました。当初インドと誤解し住民を「<span class="blank person-pop" data-id="N">インディオ<span class="pop-box"><span class="pop-name">インディオ</span><span class="pop-desc">コロンブスがカリブ海の住民を「インドの人」と誤解して呼んだ言葉。アメリカ先住民の呼び名になりました。</span></span></span>」と名付けました。</p>
-  <p>その後<span class="blank person-pop" data-id="O">アメリゴ＝ヴェスプッチ<span class="pop-box">
-    <img src="amerigobesupuchi.png" onerror="this.style.display='none'" alt="アメリゴ＝ヴェスプッチ">
-    <span class="pop-name">アメリゴ＝ヴェスプッチ（1454〜1512）</span>
-    <span class="pop-desc">イタリア出身の探検家。コロンブスが到達した土地がアジアではなく「新大陸」であることを主張しました。彼の名前「アメリゴ」がラテン語化され、「アメリカ」という地名の由来となりました。</span>
-  </span></span>が「新大陸」と命名し「アメリカ」の名が付きました。</p>
-  <p>1494年、スペインとポルトガルの領有権を分割した<span class="blank person-pop" data-id="P">トルデシリャス条約<span class="pop-box"><span class="pop-name">トルデシリャス条約（1494年）</span><span class="pop-desc">スペインとポルトガルが結んだ条約。大西洋に南北の境界線を引き、西はスペイン領、東はポルトガル領と分けました。</span></span></span>が結ばれ、ブラジルはポルトガル領、アメリカ大陸の大半はスペイン領となりました。</p>
-  <p>1519〜22年、スペイン王の命を受けたポルトガル人
-    <span class="blank person-pop" data-id="Q">マゼラン<span class="pop-box">
-      <img src="mazeran.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">マゼラン（1480〜1521）</span>
-      <span class="pop-desc">ポルトガル出身の航海者。スペイン王カルロス1世の命を受け、西回りで世界一周を目指しました。南アメリカを回り太平洋を渡りましたが、フィリピンの戦闘で命を落としました。残った部下19人が帰国し、地球が丸いことを証明しました。</span>
-    </span></span>
-    が世界一周を試みました。<span class="blank person-pop" data-id="R">マゼラン海峡<span class="pop-box"><span class="pop-name">マゼラン海峡</span><span class="pop-desc">南アメリカ最南端にある海峡。マゼランが発見・命名し、大西洋と太平洋をつなぐ航路です。</span></span></span>を通り太平洋を渡りましたが、フィリピンで戦死しました。部下19人が帰国し、<span class="blank person-pop" data-id="S">地球が球体<span class="pop-box"><span class="pop-name">地球球体説の実証</span><span class="pop-desc">マゼランの部下が世界一周を達成したことで、地球が球体であることが実証されました。</span></span></span>であることを証明しました。</p>
-  <div class="key-point">⭐ <strong>航路の覚え方</strong>：A＝マゼラン（世界一周）、B＝コロンブス（西回り・カリブ海）、C＝ヴァスコ＝ダ＝ガマ（東回り・インド）</div>
+  <span class="section-label label-spain">③ スペインの活躍と世界一周</span>
+  <h2>コロンブスはなぜアメリカに「気づかなかった」のか？</h2>
+  <p>スペインはポルトガルのライバルとして、別の方向からアジアを目指しました。「地球は丸い」という地球球体説を信じていた<span class="blank person-pop" data-id="L">コロンブス<span class="pop-box"><span class="pop-name">コロンブス（1451〜1506）</span><span class="pop-desc">イタリア、ジェノヴァ出身の航海者。「地球は丸い」という説をもとに西回りでインドを目指しスペイン女王イサベルの支援を受けました。1492年にカリブ海の島に到達しましたが、死ぬまでここをアジアだと信じていました。</span></span></span>は、「西に向かって大西洋を渡ればインドに着ける」と考え、スペイン女王イサベルの支援を受けて1492年に出航しました。</p>
+  <p>コロンブスが到達したのはカリブ海の<span class="blank" data-id="M">サンサルバドル島</span>でした。「ここはインドだ」と誤解した彼は、島の住民を<span class="blank" data-id="N">インディオ</span>（インドの人）と呼びました。後に<span class="blank person-pop" data-id="O">アメリゴ＝ヴェスプッチ<span class="pop-box"><span class="pop-name">アメリゴ＝ヴェスプッチ（1454〜1512）</span><span class="pop-desc">イタリア出身の探検家。コロンブスの到達地が「新大陸」であることを明らかにしました。「アメリカ」という地名は彼の名前に由来します。</span></span></span>がここが「新大陸」であることを証明し、その名から「アメリカ」と名付けられました。</p>
+  <p>1494年の<span class="blank" data-id="P">トルデシリャス条約</span>でスペインとポルトガルは世界を東西に分割し、それぞれの勢力圏を決めました。そして<span class="blank person-pop" data-id="Q">マゼラン<span class="pop-box"><span class="pop-name">マゼラン（1480〜1521）</span><span class="pop-desc">ポルトガル出身でスペイン王に仕えた航海者。世界一周を企て、フィリピンで死亡しましたが、残った部下が1522年に初の世界一周を達成しました。</span></span></span>の艦隊が<span class="blank" data-id="R">マゼラン海峡</span>を発見・通過し、部下が1522年に初の世界一周を達成。<span class="blank" data-id="S">地球が球体</span>であることが実際に証明されました。</p>
 </div>
 
 <div class="section">
-  <span class="section-label label-conquest">④ スペインによるアメリカ征服</span>
-  <h2>コンキスタドール（征服者）</h2>
-  <p>スペイン王<span class="blank person-pop" data-id="T">カルロス1世<span class="pop-box"><span class="pop-name">カルロス1世（在位1516〜56）</span><span class="pop-desc">スペイン王（神聖ローマ皇帝としてはカール5世）。コルテスにアステカ征服を、ピサロにインカ征服を命じました。</span></span></span>（神聖ローマ皇帝カール5世）は征服を命じました。</p>
-  <table class="person-table">
-    <tr><th>征服者</th><th>年</th><th>征服した国・帝国</th></tr>
-    <tr><td><span class="blank person-pop" data-id="U">コルテス<span class="pop-box">
-      <img src="korutesu.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">コルテス（1485〜1547）</span>
-      <span class="pop-desc">スペインの征服者。わずか400人の部下でメキシコのアステカ王国を征服しました。鉄砲・馬・疫病（天然痘）を武器に、数百万人の帝国を倒しました。</span>
-    </span></span></td><td>1521年</td><td>メキシコの<span class="blank person-pop" data-id="V">アステカ王国<span class="pop-box"><span class="pop-name">アステカ王国</span><span class="pop-desc">メキシコ中央高原に栄えた文明国家。首都テノチティトランを中心に高度な文明を誇りましたが、1521年にコルテスに滅ぼされました。</span></span></span>を400人の部下を率いて征服しました。</td></tr>
-    <tr><td><span class="blank person-pop" data-id="W">ピサロ<span class="pop-box">
-      <img src="pisaro.png" onerror="this.style.display='none'" alt="">
-      <span class="pop-name">ピサロ（1478〜1541）</span>
-      <span class="pop-desc">スペインの征服者。わずか180人の兵士でペルーのインカ帝国を征服しました。インカ皇帝アタワルパを騙し討ちで捕まえ、膨大な金銀を奪いました。</span>
-    </span></span></td><td>1533年</td><td>現在のペルーの<span class="blank person-pop" data-id="X">インカ帝国<span class="pop-box"><span class="pop-name">インカ帝国</span><span class="pop-desc">現在のペルーを中心とした南米の大帝国。精巧な石造建築や道路網で知られましたが、1533年にピサロに滅ぼされました。</span></span></span>を180人の兵で征服しました。</td></tr>
-  </table>
-  <p>これらの征服者を<span class="blank person-pop" data-id="Y">コンキスタドール<span class="pop-box"><span class="pop-name">コンキスタドール</span><span class="pop-desc">スペイン語で「征服者」の意味。コルテス・ピサロのように、アメリカ大陸の先住民の国を征服したスペイン人を指します。</span></span></span>（征服者）といいます。征服後、インディオへの強制労働・年貢取り立てを認める<span class="blank person-pop" data-id="Z">エンコミエンダ制<span class="pop-box"><span class="pop-name">エンコミエンダ制</span><span class="pop-desc">スペインが征服地で行った制度。インディオへの強制労働と年貢取り立てを征服者に認めるもので、過酷な搾取が行われました。</span></span></span>が敷かれました。</p>
-  <p>聖職者の<span class="blank person-pop" data-id="AA">ラス＝カサス<span class="pop-box">
-    <img src="rasukasasu.png" onerror="this.style.display='none'" alt="">
-    <span class="pop-name">ラス＝カサス（1484〜1566）</span>
-    <span class="pop-desc">スペインの聖職者。インディオへの残酷な扱いを目の当たりにして、スペイン国王に「インディオも神のもとで平等な人間だ」と訴え続けました。「インディオの使徒」とも呼ばれ、人権を守った先駆者です。</span>
-  </span></span>はインディオ虐待を批判してエンコミエンダ制の撤廃を訴えましたが、実現できませんでした。</p>
-  <div class="key-point">⭐ <strong>征服の覚え方</strong>：コルテス → アステカ（メキシコ）　／　ピサロ → インカ（ペルー）</div>
+  <span class="section-label label-conq">④ スペインによるアメリカ征服</span>
+  <h2>なぜ少人数でアメリカの巨大帝国が滅ぼされたのか？</h2>
+  <p>スペイン王<span class="blank person-pop" data-id="T">カルロス1世<span class="pop-box"><span class="pop-name">カルロス1世（在位1516〜1556）</span><span class="pop-desc">スペイン王、神聖ローマ帝国皇帝カール5世としても知られます。コルテスとピサロにアメリカ大陸の征服を命じました。</span></span></span>の命を受けた征服者（<span class="blank" data-id="Y">コンキスタドール</span>）たちが次々とアメリカの文明を征服しました。<span class="blank person-pop" data-id="U">コルテス<span class="pop-box"><span class="pop-name">コルテス（1485〜1547）</span><span class="pop-desc">スペインの征服者。わずか400人の兵でメキシコのアステカ王国を征服しました。鉄砲・馬・疫病（天然痘）を武器にしました。</span></span></span>はわずか400人でメキシコの<span class="blank" data-id="V">アステカ王国</span>を、<span class="blank person-pop" data-id="W">ピサロ<span class="pop-box"><span class="pop-name">ピサロ（1478〜1541）</span><span class="pop-desc">スペインの征服者。わずか180人の兵でペルーのインカ帝国を征服し、膨大な金銀を奪いました。</span></span></span>はわずか180人でペルーの<span class="blank" data-id="X">インカ帝国</span>を滅ぼしました。</p>
+  <div class="why-box"><span class="label">❓ なぜ少人数で征服できたのか？</span>鉄砲・馬・金属の鎧というヨーロッパの軍事技術が圧倒的に優れていたことに加え、ヨーロッパ人が持ち込んだ天然痘などの疫病が先住民の間に広まり、人口が激減してしまいました。当時の先住民にはヨーロッパの病気に対する免疫がなかったのです。</div>
+  <p>征服後、スペインはインディオへの強制労働と年貢取り立てを征服者に認める<span class="blank" data-id="Z">エンコミエンダ制</span>を実施しました。聖職者の<span class="blank person-pop" data-id="AA">ラス＝カサス<span class="pop-box"><span class="pop-name">ラス＝カサス（1484〜1566）</span><span class="pop-desc">スペインの聖職者。インディオへの残虐な扱いを厳しく批判し、「インディオの使徒」と呼ばれます。インディオを守るために生涯を捧げました。</span></span></span>はインディオへの残虐な扱いを激しく批判しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>大航海時代によってヨーロッパ・アジア・アフリカ・アメリカが初めて一つの貿易ネットワークで結ばれました（「世界の一体化」）。しかし先住民の人口は激減し、その労働力不足を補うためにアフリカから黒人奴隷が連れてこられる「大西洋奴隷貿易」が始まりました。ヨーロッパの繁栄は多くの人々の犠牲の上に成り立っていたのです。</div>
 </div>
 
 <div class="fixed-footer-controls">

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：フランス第二帝政・第三共和政</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a3050;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a3050;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#0d1e36;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a3050;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-2nd{background:#1a3050}
+  .label-war{background:#5a1a1a}
+  .label-commune{background:#2d4a1a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a3050;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a3050;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eaf0ff;border-left:5px solid #1a3050;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a3050}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#1a3050;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f0f4ff}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a3050;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d1e36}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a3050;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a3050;background-color:#eaf0ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a3050;cursor:pointer;color:#0d1e36;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a3050;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box img{width:80px;height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #90bef5}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d1e36;margin-bottom:6px}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a3050}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🇫🇷 フランス第二帝政・第三共和政</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 第二共和政から第二帝政へ -->
+<div class="section">
+  <span class="section-label label-2nd">① 第二共和政から第二帝政へ</span>
+  <h2>ルイ＝ナポレオンの台頭</h2>
+  <p>1848年、<span class="blank person-pop" data-id="A">二月革命<span class="pop-box"><span class="pop-name">二月革命（1848年）</span><span class="pop-desc">フランスで労働者・学生が蜂起し、ルイ＝フィリップが退位した革命。第二共和政が成立し、普通選挙が実施されました。</span></span></span>で
+    <span class="blank person-pop" data-id="B">ルイ＝フィリップ<span class="pop-box"><span class="pop-name">ルイ＝フィリップ（在位1830〜1848）</span><span class="pop-desc">七月革命後のフランス国王。最初は「市民の王」と呼ばれましたが「銀行家の王」と批判され、二月革命で退位しました。</span></span></span>
+    が退位し、第二共和政が成立しました。普通選挙で大統領に選ばれたのがナポレオン1世の甥
+    <span class="person-pop">ルイ＝ナポレオン<span class="pop-box"><img src="" onerror="this.style.display='none'" alt=""><span class="pop-name">ルイ＝ナポレオン（1808〜1873）</span><span class="pop-desc">ナポレオン1世の甥。1848年の大統領選に当選後、1851年にクーデターを起こし議会を解散。翌年「ナポレオン3世」として皇帝に即位し第二帝政を始めました。</span></span></span>
+    です。</p>
+  <p>1851年、ルイ＝ナポレオンはクーデターを起こし議会を解散。1852年、国民投票で
+    <span class="blank person-pop" data-id="C">ナポレオン3世<span class="pop-box"><span class="pop-name">ナポレオン3世（在位1852〜1870）</span><span class="pop-desc">フランス皇帝。これを<b>第二帝政</b>といいます。農民・軍の支持を得て独裁的に権力を握り、パリの大改造や経済発展を推進しましたが、普仏戦争の敗北で失脚しました。</span></span></span>
+    として皇帝に即位しました。これを<span class="blank person-pop" data-id="D">第二帝政<span class="pop-box"><span class="pop-name">第二帝政（1852〜1870）</span><span class="pop-desc">ナポレオン3世によるフランスの帝政。産業・鉄道の発展やパリの都市改造を進めました。普仏戦争の敗北で崩壊しました。</span></span></span>といいます。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：二月革命(1848) → 第二共和政 → ルイ＝ナポレオン大統領 → クーデター(1851) → ナポレオン3世即位(1852) → 第二帝政</div>
+</div>
+
+<!-- ② 対外政策 -->
+<div class="section">
+  <span class="section-label label-war">② ナポレオン3世の対外政策</span>
+  <h2>クリミア戦争（1853〜1856年）</h2>
+  <p>ロシアがオスマン帝国に進出しようとしたため、フランス・イギリスはオスマン帝国側で参戦しました。これが
+    <span class="blank person-pop" data-id="E">クリミア戦争<span class="pop-box"><span class="pop-name">クリミア戦争（1853〜1856年）</span><span class="pop-desc">ロシア対オスマン帝国・フランス・イギリスの戦争。クリミア半島が主な戦場。ロシアが敗北し南下政策が阻まれました。看護師ナイチンゲールが野戦病院で活躍したことでも有名です。</span></span></span>
+    です。</p>
+  <p>イギリス人看護師
+    <span class="blank person-pop" data-id="F">ナイチンゲール<span class="pop-box"><img src="" onerror="this.style.display='none'" alt=""><span class="pop-name">ナイチンゲール（1820〜1910）</span><span class="pop-desc">イギリスの看護師。クリミア戦争の野戦病院で献身的に看護を行い、近代看護制度を確立しました。「白衣の天使」「ランプを持つ貴婦人」として知られます。</span></span></span>
+    が野戦病院で看護を行い、後に近代看護制度を創始しました。</p>
+
+  <h2>アロー戦争（1856〜1860年）</h2>
+  <p>イギリスとフランスは、広州でイギリス船が拿捕された事件をきっかけとした
+    <span class="blank person-pop" data-id="G">アロー戦争<span class="pop-box"><span class="pop-name">アロー戦争（1856〜1860年）</span><span class="pop-desc">イギリス・フランスが清（中国）に起こした戦争。清は敗北し、天津条約・北京条約で多くの港を開港させられ、フランスはベトナムに進出する権利を得ました。</span></span></span>
+    を起こしました。清（中国）はこれに敗れ、フランスは中国での権益を拡大しました。</p>
+
+  <h2>インドシナ出兵（1858〜1867年）</h2>
+  <p>フランスはベトナムへの
+    <span class="blank person-pop" data-id="H">インドシナ<span class="pop-box"><span class="pop-name">インドシナ（仏領インドシナ）</span><span class="pop-desc">現在のベトナム・カンボジア・ラオスにあたる地域。フランスは1858年から軍事介入を開始し、1887年に仏領インドシナ連邦を成立させました。</span></span></span>
+    出兵を行い、南部ベトナムを支配下に置き
+    <span class="blank person-pop" data-id="I">仏領インドシナ<span class="pop-box"><span class="pop-name">仏領インドシナ（1887年〜）</span><span class="pop-desc">フランスが東南アジアに築いた植民地。現在のベトナム・カンボジア・ラオスを含む地域を支配しました。</span></span></span>
+    植民地化を進めました。</p>
+
+  <table class="person-table">
+    <tr><th>戦争・出来事</th><th>時期</th><th>内容</th></tr>
+    <tr><td><strong>クリミア戦争</strong></td><td>1853〜56</td><td>オスマン帝国側で参戦・ロシアの南下を阻止。ナイチンゲール活躍</td></tr>
+    <tr><td><strong>アロー戦争</strong></td><td>1856〜60</td><td>英仏で清を攻撃。中国での権益拡大</td></tr>
+    <tr><td><strong>インドシナ出兵</strong></td><td>1858〜67</td><td>ベトナム南部を植民地化。仏領インドシナへ</td></tr>
+  </table>
+</div>
+
+<!-- ③ 普仏戦争と第三共和政 -->
+<div class="section">
+  <span class="section-label label-2nd">③ 普仏戦争と第三共和政</span>
+  <h2>普仏戦争（1870〜1871年）</h2>
+  <p>プロイセンの宰相ビスマルクはナポレオン3世を巧みに挑発し、
+    <span class="person-pop">普仏（ふふつ）戦争<span class="pop-box"><span class="pop-name">普仏戦争（1870〜71年）</span><span class="pop-desc">プロイセンとフランスの戦争。ビスマルクの挑発でナポレオン3世が開戦しましたが、フランスは大敗。ナポレオン3世が捕虜となり第二帝政が崩壊しました。</span></span></span>
+    が勃発しました。フランスは大敗し、ナポレオン3世は捕虜となって第二帝政は崩壊しました。</p>
+
+  <h2>臨時政府と第三共和政</h2>
+  <p>普仏戦争の敗北後、フランスに臨時政府が成立しました。国民議会は
+    <span class="blank person-pop" data-id="J">ティエール<span class="pop-box"><img src="" onerror="this.style.display='none'" alt=""><span class="pop-name">ティエール（1797〜1877）</span><span class="pop-desc">フランスの政治家。普仏戦争後の臨時政府首班。プロイセンとの講和条約を締結し、①150億フランの賠償金、②アルザス・ロレーヌのドイツへの割譲を認めました。後にパリ＝コミューンを鎮圧しました。</span></span></span>
+    を首班とし、プロイセンと講和を結びました。</p>
+  <p>その条件は厳しく：</p>
+  <ul style="margin:0 0 12px 24px;line-height:2.2">
+    <li>① 150億フランの賠償金を支払う</li>
+    <li>② <span class="blank person-pop" data-id="K">アルザス・ロレーヌ<span class="pop-box"><span class="pop-name">アルザス・ロレーヌ地方</span><span class="pop-desc">フランス東部の地方。豊富な石炭・鉄鉱石を産出する工業地帯。普仏戦争後にドイツへ割譲され、フランスのドイツへの復讐心（復讐戦争）の原因となりました。第一次世界大戦後にフランスへ返還されました。</span></span></span>地方をドイツに割譲する</li>
+  </ul>
+  <p>この後、フランスは議会政治の<span class="blank person-pop" data-id="L">第三共和政<span class="pop-box"><span class="pop-name">第三共和政（1870〜1940年）</span><span class="pop-desc">フランスの共和政府。普仏戦争後から第二次世界大戦まで続いた。パリ＝コミューン鎮圧後にティエールが初代大統領となりました。</span></span></span>に移行しました。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：普仏戦争敗北(1870) → ナポレオン3世失脚 → 臨時政府(ティエール) → 講和（賠償金・アルザス＝ロレーヌ割譲） → 第三共和政</div>
+</div>
+
+<!-- ④ パリ＝コミューン -->
+<div class="section">
+  <span class="section-label label-commune">④ パリ＝コミューン（1871年）</span>
+  <h2>パリ＝コミューンの成立と崩壊</h2>
+  <p>1870年、プロイセン軍がパリを包囲すると、パリ市民は自治組織を作り政府に抵抗しました。1871年3月、臨時政府の武装解除命令をきっかけに市民が蜂起し、
+    <span class="blank person-pop" data-id="M">パリ＝コミューン<span class="pop-box"><span class="pop-name">パリ＝コミューン（1871年3〜5月）</span><span class="pop-desc">普仏戦争後のパリで労働者・市民が樹立した自治政府。世界初の労働者自治政府とされます。ティエール率いる臨時政府軍に鎮圧され、約1万人が犠牲となりました。</span></span></span>
+    という自治政府が誕生しました。</p>
+  <p>これは世界初の労働者による自治政府とされます。しかし、ティエール率いる臨時政府軍がパリに侵攻し、1871年5月に「血の週」と呼ばれる激しい市街戦の末に鎮圧されました。約3万人が犠牲となったといわれています。</p>
+  <div class="key-point">⭐ <strong>パリ＝コミューン</strong>：1871年3〜5月 → 世界初の労働者自治政府 → ティエールに鎮圧 → 第三共和政が安定</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai10_quiz.html'" disabled>確認問題へ ▶</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①第二帝政：二月革命(1848)→ルイ＝ナポレオン大統領→クーデター(1851)→ナポレオン3世(1852)→第二帝政<br>
+      ②対外政策：クリミア戦争(1853〜56)→アロー戦争(1856〜60)→インドシナ出兵(1858〜67)→仏領インドシナ<br>
+      ③普仏戦争(1870)→ナポレオン3世失脚→ティエール臨時政府→賠償金・アルザス＝ロレーヌ割譲→第三共和政<br>
+      ④パリ＝コミューン(1871)→世界初の労働者自治政府→ティエールに鎮圧
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "二月革命":"1848年にフランスで起きた革命。労働者・学生が蜂起しルイ＝フィリップが退位。第二共和政が成立し普通選挙が実施されました。",
+  "ルイ＝フィリップ":"七月革命後のフランス国王（在位1830〜1848）。最初は「市民の王」と呼ばれましたが「銀行家の王」と批判され、二月革命で退位しました。",
+  "ナポレオン3世":"フランス皇帝（在位1852〜1870）。ルイ＝ナポレオンがクーデター後に即位。第二帝政の君主として産業・鉄道の発展やパリ大改造を推進しましたが、普仏戦争の敗北で失脚しました。",
+  "第二帝政":"ナポレオン3世によるフランスの帝政（1852〜1870年）。産業・鉄道の発展やパリの都市改造を進めましたが、普仏戦争の敗北で崩壊しました。",
+  "クリミア戦争":"1853〜56年の戦争。ロシアの南下を防ぐためフランス・イギリスがオスマン帝国側で参戦。ロシアが敗北しました。ナイチンゲールが野戦病院で活躍しました。",
+  "ナイチンゲール":"イギリスの看護師（1820〜1910）。クリミア戦争の野戦病院で献身的に看護を行い、近代看護制度を確立しました。「白衣の天使」として知られます。",
+  "アロー戦争":"1856〜60年にイギリス・フランスが清（中国）を攻撃した戦争。清は敗北し多くの港を開港させられました。",
+  "インドシナ":"フランスが侵略した東南アジアの地域（現在のベトナム・カンボジア・ラオス）。1858年から軍事介入が始まりました。",
+  "仏領インドシナ":"フランスが東南アジアに築いた植民地。現在のベトナム・カンボジア・ラオスを含む地域で、1887年に仏領インドシナ連邦が成立しました。",
+  "ティエール":"フランスの政治家（1797〜1877）。普仏戦争後の臨時政府首班。厳しい講和条件を受け入れ、パリ＝コミューンを鎮圧しました。",
+  "アルザス・ロレーヌ":"フランス東部の工業地帯。普仏戦争後にドイツへ割譲され、フランス人の復讐心の原因となりました。第一次世界大戦後にフランスへ返還されました。",
+  "第三共和政":"普仏戦争後から第二次世界大戦まで続いたフランスの共和政（1870〜1940年）。パリ＝コミューン鎮圧後にティエールが初代大統領となりました。",
+  "パリ＝コミューン":"1871年3〜5月にパリで成立した労働者自治政府。世界初の労働者政府とされます。ティエール率いる臨時政府軍に鎮圧されました。",
+};
+
+const answers={
+  "A":"二月革命","B":"ルイ＝フィリップ","C":"ナポレオン3世","D":"第二帝政",
+  "E":"クリミア戦争","F":"ナイチンゲール","G":"アロー戦争",
+  "H":"インドシナ","I":"仏領インドシナ",
+  "J":"ティエール","K":"アルザス・ロレーヌ","L":"第三共和政",
+  "M":"パリ＝コミューン"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai10']=p['kindai10']||{};p['kindai10'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>
