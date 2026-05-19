@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：日本の開国・幕末の動乱</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a3050;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a3050;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a3050;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-open{background:#1a3050}
+  .label-treaty{background:#5a1a1a}
+  .label-bakumatsu{background:#1a5a1a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a3050;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a3050;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #1a3050;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a3050}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a3050;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d1a30}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a3050;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a3050;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a3050;cursor:pointer;color:#0d1a30;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a3050;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d1a30;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a3050}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>⛵ 日本の開国・幕末の動乱</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label label-open">① ロシアの接近と幕府の対応</span>
+  <h2>なぜロシアは日本に繰り返し通商を求めたのか？</h2>
+  <p>1792年、ロシアの使節<span class="blank person-pop" data-id="A">ラクスマン<span class="pop-box"><span class="pop-name">ラクスマン（1766〜不明）</span><span class="pop-desc">ロシアの使節。日本人漂流民・大黒屋光太夫を連れて根室に来航し、通商を求めました。幕府は通行許可証（信牌）を与えましたが通商は拒否しました。</span></span></span>が漂流民・大黒屋光太夫を連れて根室に来航し通商を求めましたが、幕府は拒否しました。1804年には<span class="blank person-pop" data-id="B">レザノフ<span class="pop-box"><span class="pop-name">レザノフ（1764〜1807）</span><span class="pop-desc">ロシアの外交官。長崎に来航し通商を求めましたが半年も待たされたあげく拒否されました。報復として部下が樺太・国後の日本人を襲撃する事件を起こしました。</span></span></span>が長崎に来航しましたが、半年も待たされたあげく通商を断られました。こうした事件が続いたため、幕府は1825年に<span class="blank" data-id="C">異国船打払令</span>を出し、外国船を砲撃して追い払う強硬策をとりました。</p>
+  <div class="why-box"><span class="label">❓ なぜ方針が転換されたのか？</span>1840年のアヘン戦争で大国・清がイギリスに完敗したという情報が江戸に届きました。「清が負けた—同じ運命になる」という危機感から、老中<span class="blank person-pop" data-id="D">水野忠邦<span class="pop-box"><span class="pop-name">水野忠邦（1794〜1851）</span><span class="pop-desc">江戸幕府の老中。天保の改革を主導しました。アヘン戦争での清の敗北を受けて1842年に薪水給与令を出し、外国船に穏便に食料・水を与えて帰らせる方針に転換しました。</span></span></span>は1842年に<span class="blank" data-id="E">薪水給与令</span>を出し、外国船に食料・水を与えて穏便に帰らせる方針に転換しました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label label-open">② ペリー来航と日米和親条約（1853〜1854年）</span>
+  <h2>なぜアメリカは日本を開国させようとしたのか？</h2>
+  <p>1853年、アメリカ東インド艦隊司令長官<span class="blank person-pop" data-id="F">ペリー<span class="pop-box"><span class="pop-name">ペリー（1794〜1858）</span><span class="pop-desc">アメリカ海軍提督。1853年に4隻の黒船を率いて浦賀に来航し、フィルモア大統領の国書を渡して開国を要求しました。翌1854年に再来航し日米和親条約を締結させました。</span></span></span>が<span class="blank" data-id="G">浦賀</span>に4隻の黒船で来航し、開港を迫りました。老中首座<span class="blank person-pop" data-id="H">阿部正弘<span class="pop-box"><span class="pop-name">阿部正弘（1819〜1857）</span><span class="pop-desc">江戸幕府の老中首座。ペリー来航に際し、先例を破って朝廷に報告し各藩に意見を求める異例の対応をとりました。これ以降、雄藩が幕政に関わるようになりました。</span></span></span>は返答を翌年に先送りし、1854年のペリー再来航後に<span class="blank" data-id="I">日米和親条約</span>を締結し、下田・箱館の2港を開港しました。アメリカに<span class="blank person-pop" data-id="J">最恵国待遇<span class="pop-box"><span class="pop-name">最恵国待遇とは</span><span class="pop-desc">ある国が他の国に与えた最も有利な待遇を自動的に受ける権利。日米和親条約でアメリカに認められたため、他の国に利権を与えると自動的にアメリカにも同じ権利が生まれました。</span></span></span>を認めました。</p>
+  <div class="why-box"><span class="label">❓ なぜアメリカは日本を開国させたかったのか？</span>アメリカは太平洋を渡って中国と貿易するための補給基地が必要でした。また太平洋での捕鯨業が盛んで、難破した場合に日本の港を使えるよう保証が欲しかったのです。</div>
+</div>
+
+<div class="section">
+  <span class="section-label label-treaty">③ 日米修好通商条約（1858年）と不平等条約</span>
+  <h2>なぜ日本は不平等な条約を結ばされたのか？</h2>
+  <p>下田のアメリカ領事<span class="blank person-pop" data-id="K">ハリス<span class="pop-box"><span class="pop-name">ハリス（1804〜1878）</span><span class="pop-desc">アメリカの初代駐日総領事。アロー戦争で英仏が清に勝ったことを材料に「今すぐアメリカと条約を結ばなければ英仏が日本を狙う」と幕府を脅し、通商条約締結を迫りました。</span></span></span>は「アロー戦争に勝ったイギリス・フランスが次に日本を狙っている。今すぐアメリカと条約を結べば守れる」と幕府を説得しました。老中<span class="blank person-pop" data-id="L">堀田正睦<span class="pop-box"><span class="pop-name">堀田正睦（1810〜1864）</span><span class="pop-desc">江戸幕府の老中。日米修好通商条約の締結交渉を進めましたが、反対派を抑えるため孝明天皇の勅許を求めたところ拒否されました。</span></span></span>は交渉を進めましたが、<span class="blank person-pop" data-id="M">孝明天皇<span class="pop-box"><span class="pop-name">孝明天皇（在位1846〜1867）</span><span class="pop-desc">攘夷派の天皇。日米修好通商条約への勅許を拒否しました。外国との通商に強く反対しましたが、1867年に急死しました。</span></span></span>は攘夷派だったため勅許を拒否しました。大老<span class="blank person-pop" data-id="N">井伊直弼<span class="pop-box"><span class="pop-name">井伊直弼（1815〜1860）</span><span class="pop-desc">江戸幕府の大老。天皇の勅許なしに日米修好通商条約を締結し、反対派を安政の大獄で弾圧しました。1860年に桜田門外の変で水戸藩浪士らに暗殺されました。</span></span></span>は勅許なしに強引に<span class="blank" data-id="O">日米修好通商条約</span>を締結しました。</p>
+  <div class="why-box"><span class="label">❓ どこが「不平等」なのか？</span>①<span class="blank person-pop" data-id="P">治外法権<span class="pop-box"><span class="pop-name">治外法権とは</span><span class="pop-desc">外国人が日本国内で犯した犯罪を、日本の裁判所ではなく外国の裁判所で裁く権利。日米修好通商条約でイギリスなどに認められた不平等な特権で、後の明治政府が約40年かけて撤廃しました（1894年、陸奥宗光が日英通商航海条約で撤廃）。</span></span></span>（外国人の犯罪を日本で裁けない）②<span class="blank person-pop" data-id="Q">関税自主権<span class="pop-box"><span class="pop-name">関税自主権とは</span><span class="pop-desc">自国に輸入される商品に自由に関税をかける権利。日米修好通商条約でこれが認められず、外国製品が安く日本に流入し続けました。1911年に外相・小村寿太郎がようやく回復させました。</span></span></span>がない（輸入品の関税を自分で決められない）—この2点が最大の問題でした。</div>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>幕府はさらにオランダ・ロシア・イギリス・フランスとも同様の通商条約を結びました（<span class="blank person-pop" data-id="R">安政の五か国条約<span class="pop-box"><span class="pop-name">安政の五か国条約（1858年）</span><span class="pop-desc">日米修好通商条約に続き、オランダ・ロシア・イギリス・フランスとも締結された不平等な通商条約。治外法権・関税自主権なしという共通の不平等な内容でした。</span></span></span>）。開国後、主要輸出品は<span class="blank person-pop" data-id="S">生糸<span class="pop-box"><span class="pop-name">生糸（きいと）</span><span class="pop-desc">絹糸の原料。幕末の日本の最大輸出品。ヨーロッパで蚕の病気が蔓延していたため飛ぶように売れました。輸出急増で品不足となり国内物価が高騰し経済混乱の原因になりました。</span></span></span>と<span class="blank person-pop" data-id="T">茶<span class="pop-box"><span class="pop-name">茶</span><span class="pop-desc">幕末の日本の主要輸出品の一つ。イギリスのアフタヌーンティーブームで需要が高まりました。生糸とともに幕末の重要な輸出品でした。</span></span></span>となりましたが、物価高騰と金の流出で経済が混乱しました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label label-bakumatsu">④ 幕末の動乱と薩長同盟</span>
+  <h2>なぜ江戸幕府は倒れていったのか？</h2>
+  <p>勅許なしの条約締結に怒った尊王攘夷派を、井伊直弼は1858年の<span class="blank person-pop" data-id="U">安政の大獄<span class="pop-box"><span class="pop-name">安政の大獄（1858年）</span><span class="pop-desc">大老・井伊直弼が尊王攘夷派や一橋派（慶喜を将軍にしようとした派閥）を弾圧した政治弾圧。吉田松陰・橋本左内ら約100人を処刑・流罪にしました。これが桜田門外の変の遠因となりました。</span></span></span>で弾圧しました。松下村塾の<span class="blank person-pop" data-id="V">吉田松陰<span class="pop-box"><span class="pop-name">吉田松陰（1830〜1859）</span><span class="pop-desc">長州藩の思想家・教育者。松下村塾で高杉晋作・伊藤博文・山縣有朋ら後の明治維新の立役者を育てました。安政の大獄で処刑されましたが、その思想は明治維新の精神的支柱となりました。</span></span></span>らが処刑されました。1860年、水戸藩浪士らが江戸城桜田門で井伊直弼を暗殺しました（<span class="blank person-pop" data-id="W">桜田門外の変<span class="pop-box"><span class="pop-name">桜田門外の変（1860年）</span><span class="pop-desc">水戸藩浪士17名と薩摩藩士1名が雪の中、江戸城桜田門外で大老・井伊直弼を暗殺した事件。幕府の権威は大きく傷つき、「幕府に逆らっても許される」という空気が生まれました。</span></span></span>）。</p>
+  <p>薩摩藩では薩英戦争後、長州藩では四国連合艦隊砲撃事件後、ともに攘夷の不可能を悟り倒幕運動へ転じました。長州藩の<span class="blank person-pop" data-id="X">高杉晋作<span class="pop-box"><span class="pop-name">高杉晋作（1839〜1867）</span><span class="pop-desc">長州藩の志士。四国連合艦隊砲撃事件でのイギリス軍との戦いを経て西洋式軍隊の必要性を実感し、武士・農民・商人からなる近代的軍隊「奇兵隊」を組織しました。維新前夜に結核で病死しました。</span></span></span>が武士・農民からなる<span class="blank person-pop" data-id="Y">奇兵隊<span class="pop-box"><span class="pop-name">奇兵隊（1863年結成）</span><span class="pop-desc">高杉晋作が長州藩で組織した身分を問わない新式軍隊。武士だけでなく農民・商人・町人も参加できる近代的な軍隊でした。のちの日本軍（徴兵制）の先駆けとなりました。</span></span></span>を組織し、1866年には土佐藩出身の<span class="blank person-pop" data-id="Z">坂本龍馬<span class="pop-box"><span class="pop-name">坂本龍馬（1836〜1867）</span><span class="pop-desc">土佐藩出身の志士。犬猿の仲だった薩摩藩と長州藩の仲介に成功し薩長同盟を成立させました。「船中八策」で近代国家の構想も示しましたが、維新前夜の1867年に京都で暗殺されました。</span></span></span>と中岡慎太郎の仲介で<span class="blank person-pop" data-id="AA">薩長同盟<span class="pop-box"><span class="pop-name">薩長同盟（1866年）</span><span class="pop-desc">坂本龍馬・中岡慎太郎の仲介で成立した薩摩藩と長州藩の軍事同盟。それまで犬猿の仲だった両藩が手を結んだことで、江戸幕府打倒の流れが決定的になりました。</span></span></span>が結ばれました。</p>
+  <div class="key-point">⭐ <strong>幕末の流れ</strong>：ペリー来航(1853)→日米和親(1854)→日米修好通商(1858)→安政の大獄→桜田門外の変(1860)→薩英戦争・四国艦隊砲撃(1863)→薩長同盟(1866)→大政奉還(1867)</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai18_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai18_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①ラクスマン(1792)→レザノフ(1804)→異国船打払令(1825)→薪水給与令(1842・水野忠邦)<br>
+      ②ペリー来航・浦賀(1853)→日米和親条約・阿部正弘(1854)：下田・箱館開港・最恵国待遇<br>
+      ③ハリス→堀田正睦→孝明天皇が勅許拒否→井伊直弼が強行→日米修好通商条約(1858)：治外法権・関税自主権なし→安政の五か国条約→生糸・茶が輸出品<br>
+      ④安政の大獄(1858)→吉田松陰処刑→桜田門外の変(1860)→高杉晋作・奇兵隊→薩長同盟(1866・坂本龍馬)
+    </div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={"ラクスマン":"ロシアの使節（1766〜不明）。1792年に漂流民・大黒屋光太夫を連れて根室に来航し通商を求めました。","レザノフ":"ロシアの外交官（1764〜1807）。1804年に長崎に来航し通商を求めましたが半年後に拒否されました。","異国船打払令":"1825年に江戸幕府が出した命令。外国船が日本に近づいたら砲撃して追い払えという強硬策でした。","水野忠邦":"江戸幕府の老中（1794〜1851）。天保の改革を主導。1842年に薪水給与令を出して方針転換しました。","薪水給与令":"1842年に江戸幕府が出した命令。外国船に穏便に食料・薪・水を与えて帰らせる方針に転換しました。","ペリー":"アメリカ海軍提督（1794〜1858）。1853年に浦賀に黒船4隻で来航し開国を要求しました。","浦賀":"神奈川県の港。1853年にペリーが黒船4隻で来航した場所です。","阿部正弘":"江戸幕府の老中首座（1819〜1857）。ペリー来航時に朝廷への報告・各藩への意見聴取という異例の対応をとりました。","日米和親条約":"1854年締結。下田・箱館の2港開港、最恵国待遇を定めた日本最初の開国条約です。","最恵国待遇":"ある国が他の国に与えた最も有利な待遇を自動的に受ける権利。日米和親条約でアメリカに与えられました。","ハリス":"アメリカの初代駐日総領事（1804〜1878）。アロー戦争の脅威を使って幕府に通商条約締結を迫りました。","堀田正睦":"江戸幕府の老中（1810〜1864）。日米修好通商条約の交渉を進めましたが孝明天皇の勅許を得られませんでした。","孝明天皇":"攘夷派の天皇（在位1846〜1867）。日米修好通商条約への勅許を拒否しました。","井伊直弼":"江戸幕府の大老（1815〜1860）。勅許なしに日米修好通商条約を締結し、安政の大獄で反対派を弾圧。桜田門外の変で暗殺されました。","日米修好通商条約":"1858年締結の不平等条約。治外法権・関税自主権なしという不平等な内容で5港の開港も定めました。","治外法権":"外国人が日本国内で犯した犯罪を日本の裁判所で裁けない権利。1894年に陸奥宗光が撤廃しました。","関税自主権":"自国に輸入される商品に自由に関税をかける権利。日米修好通商条約で失われ1911年に回復しました。","安政の五か国条約":"1858年に米・蘭・露・英・仏と結んだ不平等な通商条約の総称です。","生糸":"幕末の日本の最大輸出品。ヨーロッパで蚕の病気が蔓延し不足していたため飛ぶように売れました。","茶":"幕末の日本の主要輸出品の一つ。イギリスのアフタヌーンティーブームで需要が高まりました。","安政の大獄":"1858年に大老井伊直弼が尊王攘夷派を弾圧した政治弾圧。吉田松陰らが処刑されました。","吉田松陰":"長州藩の思想家・教育者（1830〜1859）。松下村塾で高杉晋作・伊藤博文らを育てましたが安政の大獄で処刑されました。","桜田門外の変":"1860年に水戸藩浪士らが大老井伊直弼を江戸城桜田門で暗殺した事件です。","高杉晋作":"長州藩の志士（1839〜1867）。武士・農民からなる近代的軍隊「奇兵隊」を組織しました。","奇兵隊":"高杉晋作が組織した身分を問わない長州藩の新式軍隊。近代的な徴兵制の先駆けとなりました。","坂本龍馬":"土佐藩出身の志士（1836〜1867）。薩摩藩と長州藩を仲介して薩長同盟を成立させました。","薩長同盟":"1866年に坂本龍馬・中岡慎太郎の仲介で成立した薩摩藩と長州藩の同盟。倒幕運動の原動力となりました。"};
+const answers={"A":"ラクスマン","B":"レザノフ","C":"異国船打払令","D":"水野忠邦","E":"薪水給与令","F":"ペリー","G":"浦賀","H":"阿部正弘","I":"日米和親条約","J":"最恵国待遇","K":"ハリス","L":"堀田正睦","M":"孝明天皇","N":"井伊直弼","O":"日米修好通商条約","P":"治外法権","Q":"関税自主権","R":"安政の五か国条約","S":"生糸","T":"茶","U":"安政の大獄","V":"吉田松陰","W":"桜田門外の変","X":"高杉晋作","Y":"奇兵隊","Z":"坂本龍馬","AA":"薩長同盟"};
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display='flex';bank.innerHTML='';[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener('click',e=>{e.stopPropagation();if(chip.classList.contains('used'))return;if(chip===selectedChip){chip.classList.remove('selected-chip');selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove('selected-chip');selectedChip=chip;chip.classList.add('selected-chip');chip.classList.remove('tip-active');return;}if(tip&&!chip.classList.contains('tip-active')){document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));chip.classList.add('tip-active');}else{chip.classList.remove('tip-active');document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');}}); bank.appendChild(chip);});};
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent='';}}else{b.textContent='';}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}}});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent='経過時間：---';}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai18']=p['kindai18']||{};p['kindai18'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

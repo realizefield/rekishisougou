@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：世界恐慌・ファシズムの台頭・日本の軍国主義化</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #7a1a00;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #7a1a00;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #7a1a00;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#7a1a00}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #7a1a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#7a1a00;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #7a1a00;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#7a1a00}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#7a1a00;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #4a0e00}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #7a1a00;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #7a1a00;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #7a1a00;cursor:pointer;color:#4a0e00;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #7a1a00;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#4a0e00;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#7a1a00}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🔥 世界恐慌・ファシズムの台頭・日本の軍国主義化</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#7a1a00">① 世界恐慌（1929年）とその影響</span>
+  <h2>なぜアメリカの株価暴落が世界を巻き込んだのか？</h2>
+  <p>1929年10月24日（「暗黒の木曜日」）、<span class="blank" data-id="A">ニューヨーク</span>のウォール街で株価が大暴落し<span class="blank" data-id="B">世界恐慌</span>が起きました。アメリカの失業者は1,300万人以上に達し、世界中に波及しました。アメリカ大統領<span class="blank person-pop" data-id="C">フランクリン＝ローズヴェルト<span class="pop-box"><span class="pop-name">フランクリン＝ローズヴェルト（1882〜1945）</span><span class="pop-desc">アメリカ第32代大統領。世界恐慌に対してニューディール政策で対応しました。第二次世界大戦ではチャーチル・スターリンと連携して連合国を指導しました。</span></span></span>は<span class="blank" data-id="D">ニューディール政策</span>（公共事業による雇用創出）を実施しました。イギリス・フランスは本国と植民地を囲い込む<span class="blank" data-id="E">ブロック経済</span>を採用しました。植民地を持たないドイツ・イタリア・日本はこれで大きな打撃を受けました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#7a1a00">② ファシズムの台頭</span>
+  <h2>なぜ民主主義の国々でファシズムが台頭したのか？</h2>
+  <p>イタリアでは第一次大戦後の不満を背景に1922年、<span class="blank person-pop" data-id="F">ムッソリーニ<span class="pop-box"><span class="pop-name">ムッソリーニ（1883〜1945）</span><span class="pop-desc">イタリアのファシスト党指導者。「ローマ進軍」でクーデターを起こし政権を掌握しました。「ドゥーチェ（総統）」を名乗りファシズム独裁体制を確立しました。</span></span></span>率いる<span class="blank" data-id="G">ファシスト党</span>が政権を掌握し<span class="blank" data-id="H">ファシズム</span>体制を確立しました。</p>
+  <p>ドイツでは世界恐慌で600万人の失業者が生まれる中、<span class="blank person-pop" data-id="I">ヒトラー<span class="pop-box"><span class="pop-name">ヒトラー（1889〜1945）</span><span class="pop-desc">ナチ党（国家社会主義ドイツ労働者党）指導者。1933年に首相に就任しナチス独裁体制を確立しました。ユダヤ人迫害・ホロコーストを主導し第二次世界大戦を引き起こしました。</span></span></span>率いる<span class="blank" data-id="J">ナチ党</span>が台頭しました。1933年にヒトラーは首相に就任し<span class="blank" data-id="K">ナチズム</span>（国家社会主義）の一党独裁を確立しました。ユダヤ人への組織的迫害が国家政策となり、やがて<span class="blank" data-id="L">ホロコースト</span>（ユダヤ人600万人の大量虐殺）につながりました。</p>
+  <p>1936〜37年、ドイツ・イタリア・日本は<span class="blank" data-id="M">日独伊三国防共協定</span>を結び枢軸を形成しました。</p>
+  <div class="key-point">⭐ <strong>ファシズムの特徴</strong>：強力な独裁指導者・議会民主主義の否定・反共産主義・超国家主義・対外侵略</div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#7a1a00">③ 日本の軍国主義化と中国侵略</span>
+  <h2>なぜ日本は軍国主義の道を歩んだのか？</h2>
+  <p>第一次大戦後の日本では<span class="blank" data-id="N">大正デモクラシー</span>が盛んになり1925年に<span class="blank" data-id="O">普通選挙法</span>（満25歳以上男子）と<span class="blank" data-id="P">治安維持法</span>が成立しました。しかし世界恐慌による<span class="blank" data-id="Q">昭和恐慌</span>で農村が疲弊し軍部の発言力が増しました。</p>
+  <p>1931年、関東軍は南満洲鉄道の線路を自ら爆破した<span class="blank" data-id="R">柳条湖事件</span>をきっかけに<span class="blank" data-id="S">満洲事変</span>を起こし、翌年傀儡国家<span class="blank" data-id="T">満洲国</span>を建国しました。国際連盟の撤退勧告を受け日本は1933年に<span class="blank" data-id="U">国際連盟を脱退</span>しました。1936年の<span class="blank" data-id="V">二・二六事件</span>（陸軍青年将校によるクーデター未遂）後、軍部の政治支配が強まりました。1937年7月の<span class="blank" data-id="W">盧溝橋事件</span>をきっかけに全面的な<span class="blank" data-id="X">日中戦争</span>が始まりました。中国では<span class="blank person-pop" data-id="Y">蒋介石<span class="pop-box"><span class="pop-name">蒋介石（1887〜1975）</span><span class="pop-desc">中国国民党の指導者。日中戦争では日本に対して毛沢東の共産党と協力（国共合作）しました。</span></span></span>の国民党と<span class="blank person-pop" data-id="Z">毛沢東<span class="pop-box"><span class="pop-name">毛沢東（1893〜1976）</span><span class="pop-desc">中国共産党の指導者。日中戦争後の内戦で国民党に勝利し1949年に中華人民共和国を建国しました。</span></span></span>の共産党が<span class="blank" data-id="AA">国共合作</span>で日本と戦いました。</p>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai24_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai24_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①世界恐慌(1929・ニューヨーク)→F.ルーズヴェルト・ニューディール政策→英仏：ブロック経済<br>②イタリア：ムッソリーニ・ファシスト党(1922)→ファシズム。ドイツ：ヒトラー・ナチ党(1933)→ナチズム・ホロコースト。日独伊三国防共協定(1937)<br>③大正デモクラシー→普通選挙法・治安維持法(1925)→昭和恐慌→柳条湖事件・満洲事変(1931)→満洲国建国(1932)→国際連盟脱退(1933)→二・二六事件(1936)→盧溝橋事件・日中戦争(1937)→蒋介石・毛沢東・国共合作</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={
+  'ニューヨーク':'アメリカの経済・金融の中心地。ウォール街の株式市場で1929年の株価暴落が起きました。',
+  '世界恐慌':'1929年に始まった世界規模の経済危機。失業者が急増し各国の政治に深刻な影響を与えました。',
+  'フランクリン＝ローズヴェルト':'アメリカ第32代大統領（1882〜1945）。ニューディール政策で恐慌に対応し、第二次大戦を指導しました。',
+  'ニューディール政策':'1933年からF.ルーズヴェルト大統領が実施した経済回復策。公共事業による雇用創出が中心でした。',
+  'ブロック経済':'本国と植民地を囲い込んで高関税で他国を排除する経済政策。植民地を持たない国には打撃でした。',
+  'ムッソリーニ':'イタリアのファシスト党指導者（1883〜1945）。1922年に政権を掌握しファシズム体制を確立しました。',
+  'ファシスト党':'ムッソリーニが率いたイタリアの超国家主義政党。黒シャツ隊を組織し「ローマ進軍」で政権を握りました。',
+  'ファシズム':'強力な独裁指導者・民主主義否定・超国家主義を特徴とする政治思想・体制。ムッソリーニが創始しました。',
+  'ヒトラー':'ナチ党指導者（1889〜1945）。1933年に首相就任後ナチス独裁体制を確立し第二次世界大戦を引き起こしました。',
+  'ナチ党':'国家社会主義ドイツ労働者党。ヒトラーが率いてドイツの一党独裁体制を確立しました。',
+  'ナチズム':'ヒトラーとナチ党の政治思想（国家社会主義）。ユダヤ人差別・超国家主義・反共産主義が特徴です。',
+  'ホロコースト':'ナチス・ドイツによるユダヤ人の組織的大量虐殺。約600万人のユダヤ人が殺されたとされます。',
+  '日独伊三国防共協定':'1937年に日本・ドイツ・イタリアが結んだ協定。後の枢軸国形成の基礎となりました。',
+  '大正デモクラシー':'第一次大戦後の日本で起きた民主主義運動。普通選挙・言論の自由などを求めました。',
+  '普通選挙法':'1925年に成立した法律。満25歳以上のすべての男子に選挙権を与えました（女性は除く）。',
+  '治安維持法':'1925年に制定された法律。社会主義・共産主義運動を取り締まるための弾圧法でした。',
+  '昭和恐慌':'1930年前後の日本を直撃した深刻な経済危機。農村の困窮・失業増大が軍国主義台頭の背景となりました。',
+  '柳条湖事件':'1931年に関東軍が南満洲鉄道の線路を自ら爆破し中国軍の仕業として満洲侵略を開始した事件。',
+  '満洲事変':'1931年に関東軍が引き起こした満洲（中国東北部）への軍事侵攻。',
+  '満洲国':'1932年に満洲に建国された日本の傀儡国家。清朝最後の皇帝溥儀が名目上の皇帝とされました。',
+  '国際連盟を脱退':'1933年、国際連盟が満洲国を認めず日本軍の撤退を勧告したため、日本が国際連盟を脱退しました。',
+  '二・二六事件':'1936年2月26日に陸軍青年将校が起こしたクーデター未遂事件。高橋是清蔵相らが殺傷されました。',
+  '盧溝橋事件':'1937年7月、北京郊外の盧溝橋での日中両軍衝突。全面的な日中戦争のきっかけになりました。',
+  '日中戦争':'1937年から始まった日本と中国の全面戦争。長期化して日本は「泥沼」にはまりました。',
+  '蒋介石':'中国国民党指導者（1887〜1975）。日中戦争中は共産党と国共合作して日本に抵抗しました。',
+  '毛沢東':'中国共産党指導者（1893〜1976）。内戦で国民党に勝利し1949年に中華人民共和国を建国しました。',
+  '国共合作':'国民党（蒋介石）と共産党（毛沢東）が日本に対抗するため協力した運動。'
+};
+const answers={
+  'A':'ニューヨーク',
+  'B':'世界恐慌',
+  'C':'フランクリン＝ローズヴェルト',
+  'D':'ニューディール政策',
+  'E':'ブロック経済',
+  'F':'ムッソリーニ',
+  'G':'ファシスト党',
+  'H':'ファシズム',
+  'I':'ヒトラー',
+  'J':'ナチ党',
+  'K':'ナチズム',
+  'L':'ホロコースト',
+  'M':'日独伊三国防共協定',
+  'N':'大正デモクラシー',
+  'O':'普通選挙法',
+  'P':'治安維持法',
+  'Q':'昭和恐慌',
+  'R':'柳条湖事件',
+  'S':'満洲事変',
+  'T':'満洲国',
+  'U':'国際連盟を脱退',
+  'V':'二・二六事件',
+  'W':'盧溝橋事件',
+  'X':'日中戦争',
+  'Y':'蒋介石',
+  'Z':'毛沢東',
+  'AA':'国共合作'
+};
+document.querySelectorAll(".person-pop").forEach(el=>{el.addEventListener("click",e=>{e.stopPropagation();const a=el.classList.contains("active");document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));if(!a)el.classList.add("active");});});
+document.addEventListener("click",()=>{document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById("word-bank");bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement("div");chip.className="word-chip";const label=document.createElement("span");label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement("div");pop.className="chip-pop";pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener("click",e=>{e.stopPropagation();if(chip.classList.contains("used"))return;if(chip===selectedChip){chip.classList.remove("selected-chip");selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove("selected-chip");selectedChip=chip;chip.classList.add("selected-chip");chip.classList.remove("tip-active");return;}if(tip&&!chip.classList.contains("tip-active")){document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));chip.classList.add("tip-active");}else{chip.classList.remove("tip-active");document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("selected-chip"));selectedChip=chip;chip.classList.add("selected-chip");}}); bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains("person-pop")){const c=b.cloneNode(true);const p=c.querySelector(".pop-box");if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector("span")?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll(".blank").forEach(b=>{clearBlankText(b);b.classList.remove("correct");});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById("timer-display").textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll(".blank").forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===old)c.classList.remove("used");});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add("used");selectedChip.classList.remove("selected-chip");selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===txt)c.classList.remove("used");});clearBlankText(blank);}}}});
+function checkAnswers(){let ok=true;document.querySelectorAll(".blank").forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add("correct");else{ok=false;b.classList.remove("correct");}});if(ok){clearInterval(timerId);document.getElementById("next-btn").disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById("timer-display").textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById("explain-box");box.style.display=(box.style.display==="block")?"none":"block";}
+(function(){try{var p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p["kindai24"]=p["kindai24"]||{};p["kindai24"].studyDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

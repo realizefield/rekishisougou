@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：明治維新</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#4a1a6b;border-left:4px solid #4a1a6b;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.8;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #4a1a6b;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#4a1a6b;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#e0c8f8;color:#2d0a40;border-color:#4a1a6b}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f5eeff;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#4a1a6b;background:#e8d8ff}
+  .word-chip.selected{border-color:#4a1a6b;background:#c090e8;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#4a1a6b;color:#fff;box-shadow:0 3px 0 #2d0a40}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#4a1a6b;color:#4a1a6b;background:#e8d8ff}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑲ 明治維新</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🌸 大政奉還・王政復古・戊辰戦争</div>
+  <div class="question-text">1867年、15代将軍<span class="blank" data-ans="徳川慶喜">徳川慶喜</span>が<span class="blank" data-ans="大政奉還">大政奉還</span>を行いました。倒幕派が<span class="blank" data-ans="王政復古">王政復古</span>の大号令を出し、<span class="blank" data-ans="鳥羽伏見">鳥羽伏見</span>の戦いをきっかけに<span class="blank" data-ans="戊辰戦争">戊辰戦争</span>が起きました。明治政府は<span class="blank" data-ans="五箇条の御誓文">五箇条の御誓文</span>を公布しました。</div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🏛️ 廃藩置県・四民平等</div>
+  <div class="question-text">1869年の<span class="blank" data-ans="版籍奉還">版籍奉還</span>後、1871年に<span class="blank" data-ans="廃藩置県">廃藩置県</span>が断行されました。身分制度は<span class="blank" data-ans="四民平等">四民平等</span>となり、旧藩士・公家は<span class="blank" data-ans="華族">華族</span>、武士は<span class="blank" data-ans="士族">士族</span>、その他は<span class="blank" data-ans="平民">平民</span>となりました。</div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🏭 富国強兵・殖産興業</div>
+  <div class="question-text">明治政府は<span class="blank" data-ans="富国強兵">富国強兵</span>を掲げ、欧米の技術者（<span class="blank" data-ans="お雇い外国人">お雇い外国人</span>）を招いて<span class="blank" data-ans="殖産興業">殖産興業</span>を推進しました。1873年の<span class="blank" data-ans="地租改正">地租改正</span>で<span class="blank" data-ans="地価">地価</span>の3%を現金で納める税制となりました。群馬県に<span class="blank" data-ans="富岡製糸工場">富岡製糸工場</span>が開設され、<span class="blank" data-ans="福沢諭吉">福沢諭吉</span>が学問ノススメを著しました。1876年には<span class="blank" data-ans="廃刀令">廃刀令</span>が出されました。</div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai19.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai19_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID="kindai19";let sel=null;
+function startChallenge(){
+  document.querySelectorAll(".blank").forEach(b=>{b.textContent="？";b.classList.add("waiting");b.classList.remove("correct","wrong");b.onclick=()=>fillBlank(b);});
+  buildBank("bank0",["徳川慶喜","大政奉還","王政復古","鳥羽伏見","戊辰戦争","五箇条の御誓文"]);
+  buildBank("bank1",["版籍奉還","廃藩置県","四民平等","華族","士族","平民"]);
+  buildBank("bank2",["富国強兵","お雇い外国人","殖産興業","地租改正","地価","富岡製糸工場","福沢諭吉","廃刀令"]);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML="";[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement("div");c.className="word-chip";c.textContent=w;c.onclick=()=>{if(c.classList.contains("used"))return;document.querySelectorAll(".word-chip.selected").forEach(x=>x.classList.remove("selected"));sel=c;c.classList.add("selected");};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=="？"){const old=b.textContent;document.querySelectorAll(".word-chip").forEach(c=>{if(c.classList.contains("used")&&c.textContent===old)c.classList.remove("used");});}b.textContent=sel.textContent;b.classList.remove("waiting");sel.classList.add("used");sel.classList.remove("selected");sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll(".blank").forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add("correct");b.classList.remove("wrong");ok++;}else{b.classList.remove("correct");b.classList.add("wrong");}b.onclick=null;b.style.cursor="default";});const bar=document.getElementById("result-bar");bar.style.display="block";if(ok===total){bar.className="result-bar pass";bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}else{bar.className="result-bar fail";bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

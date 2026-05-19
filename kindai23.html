@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：自由民権運動・大日本帝国憲法・条約改正</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #4a1a6b;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #4a1a6b;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #4a1a6b;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#4a1a6b}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #4a1a6b;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#4a1a6b;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #4a1a6b;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#4a1a6b}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#4a1a6b;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #2d0a40}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #4a1a6b;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #4a1a6b;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #4a1a6b;cursor:pointer;color:#2d0a40;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #4a1a6b;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#2d0a40;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#4a1a6b}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🌸 自由民権運動・大日本帝国憲法・条約改正</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#4a1a6b">① 自由民権運動</span>
+  <h2>なぜ国会開設を求める運動が広がったのか？</h2>
+  <p>1873年の<span class="person-pop">明治六年の政変<span class="pop-box"><span class="pop-name">明治六年の政変（1873年）</span><span class="pop-desc">征韓論争に敗れた西郷隆盛・板垣退助らが政府を去った事件。板垣は土佐に戻り自由民権運動を始めました。</span></span></span>で下野した<span class="blank person-pop" data-id="A">板垣退助<span class="pop-box"><span class="pop-name">板垣退助（1837〜1919）</span><span class="pop-desc">土佐藩出身の政治家。自由民権運動の中心人物。「板垣死すとも自由は死せず」の言葉で有名です。自由党を結成し初代党首となりました。</span></span></span>は1874年に政府へ<span class="blank" data-id="B">民撰議員設立建白書</span>を提出しましたが却下されました。1874年に<span class="blank" data-id="C">立志社</span>、1875年に<span class="blank" data-id="D">愛国社</span>、1880年には<span class="blank" data-id="E">国会期成同盟</span>を結成し、8万7千人の署名で国会開設を要求しました。</p>
+  <div class="why-box"><span class="label">📌 1881年の三大事件</span>①<span class="blank" data-id="F">開拓使官有物払い下げ事件</span>（北海道官有物を薩摩出身の政商に格安で払い下げ）②<span class="blank" data-id="G">明治14年の政変</span>（<span class="blank person-pop" data-id="H">大隈重信<span class="pop-box"><span class="pop-name">大隈重信（1838〜1922）</span><span class="pop-desc">肥前佐賀藩出身。国会早期開設・議院内閣制を主張しましたが岩倉具視らに追放されました。後に立憲改進党・早稲田大学を設立しました。</span></span></span>を追放）③<span class="blank" data-id="I">国会開設の勅諭</span>（1890年国会開設を約束）</div>
+  <p>1881年に<span class="blank" data-id="J">自由党</span>（板垣退助・主権在民・フランス流）、1882年に<span class="blank" data-id="K">立憲改進党</span>（大隈重信・立憲君主制・イギリス流）が結成されました。1881年に大蔵卿<span class="blank person-pop" data-id="L">松方正義<span class="pop-box"><span class="pop-name">松方正義（1835〜1900）</span><span class="pop-desc">大蔵卿として松方財政を実施。緊縮財政・日本銀行設立でインフレを収束させましたが、デフレーションによる農村困窮を招きました。</span></span></span>は<span class="blank" data-id="M">松方財政</span>（緊縮財政・<span class="blank" data-id="N">日本銀行</span>設立）を実施しましたが<span class="blank" data-id="O">デフレーション</span>が起きました。1884年には農民反乱<span class="blank" data-id="P">秩父事件</span>が起きました。</p>
+  <div class="result-box"><span class="label">✅ 運動の弾圧</span>1887年に<span class="blank" data-id="Q">保安条例</span>が制定され民権派を皇居3里以内から追放。自由民権運動は鎮静化しました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#4a1a6b">② 大日本帝国憲法の制定</span>
+  <h2>なぜドイツ（プロイセン）の憲法を手本にしたのか？</h2>
+  <p><span class="blank person-pop" data-id="R">伊藤博文<span class="pop-box"><span class="pop-name">伊藤博文（1841〜1909）</span><span class="pop-desc">長州藩出身。初代内閣総理大臣。1882年にヨーロッパに渡りプロイセン憲法を研究し、大日本帝国憲法を起草しました。</span></span></span>は1882年にヨーロッパへ渡りプロイセン（ドイツ）憲法を研究しました。「天皇の権限が強く軍部の独立を認めるプロイセン型が日本に合う」という判断からです。1885年に<span class="blank" data-id="S">内閣制度</span>が創設され伊藤博文が初代内閣総理大臣に就任しました。</p>
+  <p>1889年2月11日、天皇が国民に与える<span class="blank" data-id="T">欽定憲法</span>の形式で<span class="blank" data-id="U">大日本帝国憲法</span>が公布されました。天皇には<span class="blank" data-id="V">統帥権</span>（軍の指揮権）・緊急勅令・戒厳令の権限がありました。1890年に<span class="blank" data-id="W">第一回帝国議会</span>が開かれましたが、選挙権は直接国税<span class="blank" data-id="X">15</span>円以上・満<span class="blank" data-id="Y">25</span>歳以上の男子のみで全人口の約<span class="blank" data-id="Z">1.1</span>%でした。</p>
+  <div class="key-point">⭐ <strong>大日本帝国憲法の特徴</strong>：欽定憲法（天皇が与える）・天皇主権・統帥権の独立・臣民の権利は「法律の範囲内」</div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#4a1a6b">③ 条約改正の交渉</span>
+  <h2>なぜ条約改正に50年以上かかったのか？</h2>
+  <p>1858年の不平等条約の問題は①<span class="blank" data-id="AA">治外法権</span>（外国人を日本で裁けない）②<span class="blank" data-id="AB">関税自主権</span>の欠如でした。外相<span class="blank person-pop" data-id="AC">井上馨<span class="pop-box"><span class="pop-name">井上馨（1836〜1915）</span><span class="pop-desc">長州藩出身の外相。鹿鳴館での舞踏会など欧化主義政策を進めましたが、外国人判事任用案への批判で失敗し辞職しました。</span></span></span>は<span class="blank" data-id="AD">欧化主義政策</span>（鹿鳴館での舞踏会）で文明国をアピールしようとしましたが失敗しました。1886年の<span class="blank" data-id="AE">ノルマントン号事件</span>でイギリス人船長が日本人乗客を見殺しにして軽微な処罰で済んだことへの怒りが国民に条約改正の必要性を強く認識させました。1894年に外相<span class="blank person-pop" data-id="AF">陸奥宗光<span class="pop-box"><span class="pop-name">陸奥宗光（1844〜1897）</span><span class="pop-desc">「カミソリ大臣」の異名を持つ外交家。日英通商航海条約締結で幕末以来の治外法権を撤廃しました。</span></span></span>が<span class="blank" data-id="AG">日英通商航海条約</span>を締結して<span class="blank" data-id="AA">治外法権</span>を撤廃しました。1911年に外相<span class="blank person-pop" data-id="AH">小村寿太郎<span class="pop-box"><span class="pop-name">小村寿太郎（1855〜1911）</span><span class="pop-desc">明治期の外相。日英同盟締結・ポーツマス条約交渉に続き、1911年に関税自主権の完全回復を達成しました。</span></span></span>が<span class="blank" data-id="AB">関税自主権</span>を完全回復し、幕末以来の課題がすべて解決されました。</p>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai23_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai23_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①板垣退助→民撰議員設立建白書(1874)→立志社→愛国社→国会期成同盟(1880)→1881年：開拓使払い下げ事件・明治14年の政変（大隈重信追放）・国会開設の勅諭→自由党・立憲改進党→松方財政・日本銀行・デフレ・秩父事件→保安条例(1887)<br>②伊藤博文がプロイセン憲法研究→内閣制度(1885)→大日本帝国憲法公布(1889)：欽定憲法・統帥権独立→第一回帝国議会(1890)：選挙権15円以上・25歳以上・1.1%<br>③治外法権・関税自主権→ノルマントン号事件(1886)→陸奥宗光・日英通商航海条約(1894)：治外法権撤廃→小村寿太郎：関税自主権回復(1911)</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={
+  '板垣退助':'土佐藩出身の政治家（1837〜1919）。自由民権運動の中心人物・自由党初代党首。',
+  '民撰議員設立建白書':'1874年に板垣退助が政府に提出した国会開設要請書。自由民権運動の始まりとなりました。',
+  '立志社':'1874年に板垣退助が土佐で設立した政治結社。自由民権運動の拠点となりました。',
+  '愛国社':'1875年に大阪で設立された全国的な民権運動の組織。後に国会期成同盟に改称されました。',
+  '国会期成同盟':'1880年に愛国社が改称した組織。8万7千人の署名で国会開設を要求しました。',
+  '開拓使官有物払い下げ事件':'1881年、北海道開拓使の官有物を薩摩出身の政商に格安で払い下げようとした事件。政府批判が高まりました。',
+  '明治14年の政変':'1881年、大隈重信が国会早期開設・議院内閣制を主張したため政府から追放された事件。',
+  '大隈重信':'肥前佐賀藩出身の政治家（1838〜1922）。立憲改進党・早稲田大学設立、後に内閣総理大臣も務めました。',
+  '国会開設の勅諭':'1881年に明治政府が発表した1890年の国会開設約束。民権運動を一時沈静化させました。',
+  '自由党':'1881年に板垣退助が結成した政党。主権在民・フランス流の急進派でした。',
+  '立憲改進党':'1882年に大隈重信が結成した政党。立憲君主制・イギリス流の穏健派でした。',
+  '松方正義':'大蔵卿（1835〜1900）。緊縮財政・日本銀行設立などの松方財政を実施しました。',
+  '松方財政':'松方正義の財政政策。緊縮財政・紙幣整理・日本銀行設立でインフレを収束させましたが、デフレを招きました。',
+  '日本銀行':'1882年に設立された中央銀行。松方財政の一環として設立されました。',
+  'デフレーション':'物価が継続的に下がる現象。松方財政の結果起き、農村が困窮して秩父事件などが起きました。',
+  '秩父事件':'1884年に埼玉県で起きた農民反乱。借金減免を求めた農民が自由党員とともに蜂起しました。',
+  '保安条例':'1887年に制定された民権運動弾圧法。民権派を皇居3里以内から追放しました。',
+  '伊藤博文':'初代内閣総理大臣（1841〜1909）。大日本帝国憲法の起草者。1909年に安重根に暗殺されました。',
+  '内閣制度':'1885年に創設された近代的な行政組織。太政官制に代わり伊藤博文が初代総理大臣となりました。',
+  '欽定憲法':'君主（天皇）が臣民（国民）に与えるという形式の憲法。大日本帝国憲法はこの形式でした。',
+  '大日本帝国憲法':'1889年2月11日公布の明治憲法。天皇主権・統帥権独立が特徴でした。',
+  '統帥権':'天皇が持つ軍の最高指揮権。内閣・議会から独立していたため、軍部の暴走を招く原因となりました。',
+  '第一回帝国議会':'1890年に開かれた日本最初の議会。衆議院と貴族院の二院制でした。',
+  '治外法権':'外国人が現地の法律で裁かれない特権。1894年に陸奥宗光が日英通商航海条約で撤廃しました。',
+  '関税自主権':'自国に輸入される商品への関税を自主的に決める権利。1911年に小村寿太郎が完全回復しました。',
+  '井上馨':'外相（1836〜1915）。鹿鳴館での欧化主義政策で条約改正を試みましたが失敗しました。',
+  '欧化主義政策':'井上馨外相が推進した日本の欧米化政策。鹿鳴館での舞踏会が象徴的です。',
+  'ノルマントン号事件':'1886年のイギリス船沈没事件。日本人乗客全員が見殺しにされたのにイギリス人船長は軽微な処罰で済み、条約改正の必要性への世論が高まりました。',
+  '陸奥宗光':'外相（1844〜1897）。「カミソリ大臣」。1894年に日英通商航海条約で治外法権を撤廃しました。',
+  '日英通商航海条約':'1894年に締結された条約。幕末以来の治外法権が撤廃されました。',
+  '小村寿太郎':'外相（1855〜1911）。日英同盟・ポーツマス条約・関税自主権回復（1911年）を達成しました。'
+};
+const answers={
+  'A':'板垣退助',
+  'B':'民撰議員設立建白書',
+  'C':'立志社',
+  'D':'愛国社',
+  'E':'国会期成同盟',
+  'F':'開拓使官有物払い下げ事件',
+  'G':'明治14年の政変',
+  'H':'大隈重信',
+  'I':'国会開設の勅諭',
+  'J':'自由党',
+  'K':'立憲改進党',
+  'L':'松方正義',
+  'M':'松方財政',
+  'N':'日本銀行',
+  'O':'デフレーション',
+  'P':'秩父事件',
+  'Q':'保安条例',
+  'R':'伊藤博文',
+  'S':'内閣制度',
+  'T':'欽定憲法',
+  'U':'大日本帝国憲法',
+  'V':'統帥権',
+  'W':'第一回帝国議会',
+  'X':'15',
+  'Y':'25',
+  'Z':'1.1',
+  'AA':'治外法権',
+  'AB':'関税自主権',
+  'AC':'井上馨',
+  'AD':'欧化主義政策',
+  'AE':'ノルマントン号事件',
+  'AF':'陸奥宗光',
+  'AG':'日英通商航海条約',
+  'AH':'小村寿太郎'
+};
+document.querySelectorAll(".person-pop").forEach(el=>{el.addEventListener("click",e=>{e.stopPropagation();const a=el.classList.contains("active");document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));if(!a)el.classList.add("active");});});
+document.addEventListener("click",()=>{document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById("word-bank");bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement("div");chip.className="word-chip";const label=document.createElement("span");label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement("div");pop.className="chip-pop";pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener("click",e=>{e.stopPropagation();if(chip.classList.contains("used"))return;if(chip===selectedChip){chip.classList.remove("selected-chip");selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove("selected-chip");selectedChip=chip;chip.classList.add("selected-chip");chip.classList.remove("tip-active");return;}if(tip&&!chip.classList.contains("tip-active")){document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));chip.classList.add("tip-active");}else{chip.classList.remove("tip-active");document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("selected-chip"));selectedChip=chip;chip.classList.add("selected-chip");}}); bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains("person-pop")){const c=b.cloneNode(true);const p=c.querySelector(".pop-box");if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector("span")?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll(".blank").forEach(b=>{clearBlankText(b);b.classList.remove("correct");});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById("timer-display").textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll(".blank").forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===old)c.classList.remove("used");});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add("used");selectedChip.classList.remove("selected-chip");selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===txt)c.classList.remove("used");});clearBlankText(blank);}}}});
+function checkAnswers(){let ok=true;document.querySelectorAll(".blank").forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add("correct");else{ok=false;b.classList.remove("correct");}});if(ok){clearInterval(timerId);document.getElementById("next-btn").disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById("timer-display").textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById("explain-box");box.style.display=(box.style.display==="block")?"none":"block";}
+(function(){try{var p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p["kindai23"]=p["kindai23"]||{};p["kindai23"].studyDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

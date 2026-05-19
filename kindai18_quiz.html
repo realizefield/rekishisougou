@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：日本の開国・幕末の動乱</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#1a3050;border-left:4px solid #1a3050;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.8;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a3050;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a3050;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#c8d8f8;color:#0d1a3e;border-color:#1a3050}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#eef2ff;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#1a3050;background:#dde8ff}
+  .word-chip.selected{border-color:#1a3050;background:#90b0e8;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a3050;color:#fff;box-shadow:0 3px 0 #0d1a30}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#1a3050;color:#1a3050;background:#d8e4ff}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑱ 日本の開国・幕末の動乱</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">⛵ 開国への道</div>
+  <div class="question-text">
+    1792年<span class="blank" data-ans="ラクスマン">ラクスマン</span>、1804年<span class="blank" data-ans="レザノフ">レザノフ</span>がロシアから通商を求めて来航しましたが拒否されました。幕府は1825年に<span class="blank" data-ans="異国船打払令">異国船打払令</span>を出しましたが、アヘン戦争後の1842年、老中<span class="blank" data-ans="水野忠邦">水野忠邦</span>が<span class="blank" data-ans="薪水給与令">薪水給与令</span>に転換しました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🚢 ペリー来航と日米和親条約</div>
+  <div class="question-text">
+    1853年、<span class="blank" data-ans="ペリー">ペリー</span>が<span class="blank" data-ans="浦賀">浦賀</span>に黒船で来航しました。老中首座<span class="blank" data-ans="阿部正弘">阿部正弘</span>は翌年再来航後に<span class="blank" data-ans="日米和親条約">日米和親条約</span>を締結し、アメリカに<span class="blank" data-ans="最恵国待遇">最恵国待遇</span>を認めました。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">📜 日米修好通商条約の不平等な内容</div>
+  <div class="question-text">
+    1858年、大老<span class="blank" data-ans="井伊直弼">井伊直弼</span>が<span class="blank" data-ans="孝明天皇">孝明天皇</span>の勅許なしに<span class="blank" data-ans="日米修好通商条約">日米修好通商条約</span>を締結しました。この条約は<span class="blank" data-ans="治外法権">治外法権</span>を認め<span class="blank" data-ans="関税自主権">関税自主権</span>のない不平等条約でした。開国後、<span class="blank" data-ans="生糸">生糸</span>と<span class="blank" data-ans="茶">茶</span>が主要輸出品となりました。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">⚔️ 幕末の動乱と薩長同盟</div>
+  <div class="question-text">
+    1858年の<span class="blank" data-ans="安政の大獄">安政の大獄</span>で<span class="blank" data-ans="吉田松陰">吉田松陰</span>らが処刑され、1860年の<span class="blank" data-ans="桜田門外の変">桜田門外の変</span>で井伊直弼が暗殺されました。長州藩では<span class="blank" data-ans="高杉晋作">高杉晋作</span>が<span class="blank" data-ans="奇兵隊">奇兵隊</span>を組織し、1866年に<span class="blank" data-ans="坂本龍馬">坂本龍馬</span>の仲介で<span class="blank" data-ans="薩長同盟">薩長同盟</span>が成立しました。
+  </div>
+  <div class="word-bank" id="bank3"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai18.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai18_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai18';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['ラクスマン','レザノフ','異国船打払令','水野忠邦','薪水給与令']);
+  buildBank('bank1',['ペリー','浦賀','阿部正弘','日米和親条約','最恵国待遇']);
+  buildBank('bank2',['井伊直弼','孝明天皇','日米修好通商条約','治外法権','関税自主権','生糸','茶']);
+  buildBank('bank3',['安政の大獄','吉田松陰','桜田門外の変','高杉晋作','奇兵隊','坂本龍馬','薩長同盟']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}b.onclick=null;b.style.cursor='default';});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

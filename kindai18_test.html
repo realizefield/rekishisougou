@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：日本の開国・幕末の動乱</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .q-num{font-size:12px;color:#1a3050;font-weight:bold;margin-bottom:8px}
+  .q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+  .choice:hover{border-color:#1a3050;background:#eef2ff}
+  .choice.selected{border-color:#1a3050;background:#c8d8f8;color:#0d1a3e;font-weight:bold}
+  .choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+  .choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+  .choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+  .footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a3050;color:#fff;box-shadow:0 3px 0 #0d1a30}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  #result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+  .result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+  .result-score{font-size:72px;font-weight:bold;margin:10px 0}
+  .result-score.pass{color:#1a3050}.result-score.fail{color:#e67e22}
+  .result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+  .result-detail{font-size:15px;color:#888;margin-bottom:30px}
+  .confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+  @keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑱ 日本の開国・幕末の動乱</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai18.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai18_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID='kindai18',PASS=70;
+const questions=[
+  {q:'1792年に漂流民・大黒屋光太夫を連れて根室に来航し、通商を求めたロシアの使節は誰ですか？',choices:['レザノフ','ラクスマン','ペリー','ハリス'],ans:1},
+  {q:'1825年に江戸幕府が出した、外国船が日本に近づいたら砲撃して追い払う命令を何といいますか？',choices:['薪水給与令','天保の改革','異国船打払令','鎖国令'],ans:2},
+  {q:'アヘン戦争での清の敗北を受けて1842年に薪水給与令を出した老中は誰ですか？',choices:['阿部正弘','水野忠邦','井伊直弼','堀田正睦'],ans:1},
+  {q:'1853年に浦賀に黒船で来航し、開国を求めたアメリカ海軍提督は誰ですか？',choices:['ハリス','マカートニー','ラクスマン','ペリー'],ans:3},
+  {q:'1854年に締結され、下田・箱館の2港開港を定めた条約を何といいますか？',choices:['日米修好通商条約','日米和親条約','安政の五か国条約','日米通商条約'],ans:1},
+  {q:'日米修好通商条約の不平等な内容として正しいものはどれですか？',choices:['日本が外国船を打ち払う権利を得た','幕府が外国人を自由に追放できた','治外法権を認め関税自主権がなかった','開港を1港だけに限定した'],ans:2},
+  {q:'孝明天皇の勅許なしに日米修好通商条約を締結した大老は誰ですか？',choices:['水野忠邦','阿部正弘','堀田正睦','井伊直弼'],ans:3},
+  {q:'1858年に尊王攘夷派を弾圧し吉田松陰らを処刑した政治弾圧を何といいますか？',choices:['桜田門外の変','安政の大獄','薩英戦争','長州征伐'],ans:1},
+  {q:'1860年に水戸藩浪士らが大老井伊直弼を暗殺した事件を何といいますか？',choices:['桜田門外の変','坂下門外の変','生麦事件','四国連合艦隊砲撃事件'],ans:0},
+  {q:'高杉晋作が長州藩で組織した、武士・農民からなる近代的軍隊を何といいますか？',choices:['親兵隊','奇兵隊','御親兵','討幕軍'],ans:1},
+  {q:'1866年に坂本龍馬の仲介で成立した、薩摩藩と長州藩の同盟を何といいますか？',choices:['薩英同盟','倒幕同盟','薩長同盟','日英同盟'],ans:2},
+  {q:'幕末の日本の主要輸出品はどれですか？',choices:['米と大豆','生糸と茶','綿織物と陶磁器','金と銀'],ans:1},
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById('questions-area');area.innerHTML='';questions.forEach((q,qi)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${['①','②','③','④'][ci]}</span>${c}</div>`).join('')}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle('selected',i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add('show-correct');if(ua===ci&&ci!==q.ans)el.classList.add('wrong');if(ua===ci&&ci===q.ans){el.classList.add('correct');correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}document.getElementById('quiz-screen').style.display='none';const rs=document.getElementById('result-screen');rs.style.display='block';const se=document.getElementById('result-score');se.textContent=score+'点';se.className='result-score '+(pass?'pass':'fail');document.getElementById('result-msg').textContent=pass?'🎉 合格！':'😅 おしい！';document.getElementById('result-detail').textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=['#f43f5e','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899'];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+'s';el.style.width=(6+Math.random()*8)+'px';el.style.height=(6+Math.random()*8)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

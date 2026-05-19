@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：アヘン戦争・三角貿易・アロー戦争</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .q-num{font-size:12px;color:#8b0000;font-weight:bold;margin-bottom:8px}
+  .q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+  .choice:hover{border-color:#8b0000;background:#fff8f8}
+  .choice.selected{border-color:#8b0000;background:#ffd0d0;color:#5a0000;font-weight:bold}
+  .choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+  .choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+  .choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+  .footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#8b0000;color:#fff;box-shadow:0 3px 0 #5a0000}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  #result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+  .result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+  .result-score{font-size:72px;font-weight:bold;margin:10px 0}
+  .result-score.pass{color:#8b0000}.result-score.fail{color:#e67e22}
+  .result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+  .result-detail{font-size:15px;color:#888;margin-bottom:30px}
+  .confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+  @keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑯ 中国の開港①　アヘン戦争・三角貿易・アロー戦争</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai16.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai16_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <a class="btn btn-secondary" href="kindai16_quiz.html">✏️ 確認問題へ</a>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID='kindai16',PASS=70;
+const questions=[
+  {q:'清がヨーロッパ船の来航を許可した唯一の港はどこですか？',choices:['上海','北京','広州','天津'],ans:2},
+  {q:'清が外国との貿易を独占的に管理させた特許商人グループを何といいますか？',choices:['コホン（公行）','東インド会社','朝貢商人','海禁商人'],ans:0},
+  {q:'1793年にイギリスが清の乾隆帝に派遣した自由貿易交渉の使節は誰ですか？',choices:['ディズレーリ','ペリー','マカートニー','ラッフルズ'],ans:2},
+  {q:'三角貿易でイギリスがインドに作らせ、中国に密売した麻薬は何ですか？',choices:['タバコ','アヘン','コカイン','茶'],ans:1},
+  {q:'三角貿易の流れとして正しいのはどれですか？',choices:['イギリス茶→インド→アヘン→清','清アヘン→インド→綿製品→イギリス','イギリス綿製品→インド→アヘン→清、清茶・銀→イギリス','インド銀→清→茶→イギリス'],ans:2},
+  {q:'清の官僚として広州に派遣されアヘンを没収・廃棄した人物は誰ですか？',choices:['李鴻章','曽国藩','林則徐','洪秀全'],ans:2},
+  {q:'林則徐のアヘン没収を口実にイギリスが起こした1840年の戦争は何ですか？',choices:['アロー戦争','アヘン戦争','清仏戦争','南京戦争'],ans:1},
+  {q:'1842年のアヘン戦争後に結ばれた不平等条約は何ですか？',choices:['南京条約','北京条約','天津条約','上海条約'],ans:0},
+  {q:'南京条約でイギリスに割譲された島はどこですか？',choices:['マカオ','台湾','香港','沖縄'],ans:2},
+  {q:'南京条約の不平等な内容として正しいものはどれですか？',choices:['清がイギリスの貿易を禁止','清は関税自主権を失いイギリスに治外法権を認めた','イギリスが清に賠償金を払った','清がインドを占領できた'],ans:1},
+  {q:'アヘン戦争での清の敗北を受けて江戸幕府が1842年に出した命令は何ですか？',choices:['異国船打ち払い令','鎖国令','薪水給与令','開国令'],ans:2},
+  {q:'1856年にイギリスとフランスが起こし、1860年の北京条約で終結した戦争は何ですか？',choices:['アヘン戦争','清仏戦争','アロー戦争','日清戦争'],ans:2},
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById('questions-area');area.innerHTML='';questions.forEach((q,qi)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${['①','②','③','④'][ci]}</span>${c}</div>`).join('')}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle('selected',i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add('show-correct');if(ua===ci&&ci!==q.ans)el.classList.add('wrong');if(ua===ci&&ci===q.ans){el.classList.add('correct');correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;p[UNIT_ID].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}document.getElementById('quiz-screen').style.display='none';const rs=document.getElementById('result-screen');rs.style.display='block';const se=document.getElementById('result-score');se.textContent=score+'点';se.className='result-score '+(pass?'pass':'fail');document.getElementById('result-msg').textContent=pass?'🎉 合格！':'😅 おしい！';document.getElementById('result-detail').textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=['#f43f5e','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899'];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+'s';el.style.width=(6+Math.random()*8)+'px';el.style.height=(6+Math.random()*8)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

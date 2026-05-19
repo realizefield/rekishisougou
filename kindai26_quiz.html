@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：近代㉖ 冷戦と戦後の世界・日本の戦後復興</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.section-title{font-size:16px;font-weight:bold;color:#1a4a3a;border-left:4px solid #1a4a3a;padding-left:12px;margin-bottom:16px}
+.question-text{font-size:16px;line-height:2.8;color:#222}
+.blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a4a3a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a3a;vertical-align:middle;min-height:26px;padding:0 4px}
+.blank.waiting{color:transparent;background:#eee;border-radius:4px}
+.blank.correct{background:#c8f0d8;border-color:#1a4a3a}
+.blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+.word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f8fff8;margin-top:14px}
+.word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+.word-chip:hover{border-color:#1a4a3a;background:#d0f0e0}
+.word-chip.selected{border-color:#1a4a3a;background:#70c090;font-weight:bold}
+.word-chip.used{opacity:0.3;pointer-events:none}
+.controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+.btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#1a4a3a;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+.btn-orange{background:#e67e22;color:#fff}
+.result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+.result-bar.pass{border-color:#1a4a3a;color:#1a4a3a;background:#d0f0e0}
+.result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代㉖ 冷戦と戦後の世界・日本の戦後復興</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🕊️ 国際連合と冷戦</div>
+  <div class="question-text">1945年に<span class="blank" data-ans="国際連合（国連・UN）">国際連合（国連・UN）</span>が<span class="blank" data-ans="ニューヨーク">ニューヨーク</span>を本部に設立された。米英仏ソ中の5大国が<span class="blank" data-ans="常任理事国">常任理事国</span>として<span class="blank" data-ans="拒否権">拒否権</span>を持つ<span class="blank" data-ans="安全保障理事会">安全保障理事会</span>が核心機関である。米ソ対立による<span class="blank" data-ans="冷戦（冷たい戦争）">冷戦（冷たい戦争）</span>が始まり、1947年に<span class="blank" data-ans="トルーマン">トルーマン</span>が<span class="blank" data-ans="トルーマン・ドクトリン">トルーマン・ドクトリン</span>を宣言し<span class="blank" data-ans="マーシャル・プラン">マーシャル・プラン</span>が発表された。西側は<span class="blank" data-ans="北大西洋条約機構（NATO）">北大西洋条約機構（NATO）</span>、東側は<span class="blank" data-ans="ワルシャワ条約機構">ワルシャワ条約機構</span>を結成した。1961年に<span class="blank" data-ans="ベルリンの壁">ベルリンの壁</span>が建設された。</div>
+  <div class="word-bank" id="b0"></div>
+</div>
+<div class="card">
+  <div class="section-title">🌏 アジアの動向</div>
+  <div class="question-text">1949年、<span class="blank" data-ans="毛沢東">毛沢東</span>率いる共産党が勝利して<span class="blank" data-ans="中華人民共和国">中華人民共和国</span>が成立した。1950年の<span class="blank" data-ans="朝鮮戦争">朝鮮戦争</span>は日本に<span class="blank" data-ans="朝鮮特需">朝鮮特需</span>をもたらし<span class="blank" data-ans="自衛隊">自衛隊</span>設立につながった。1965年からの<span class="blank" data-ans="ベトナム戦争">ベトナム戦争</span>は1975年に<span class="blank" data-ans="ベトナム社会主義共和国">ベトナム社会主義共和国</span>成立で終わった。</div>
+  <div class="word-bank" id="b1"></div>
+</div>
+<div class="card">
+  <div class="section-title">🇯🇵 日本の戦後復興</div>
+  <div class="question-text">GHQ最高司令官<span class="blank" data-ans="マッカーサー">マッカーサー</span>のもとで占領改革が行われた。1946年に<span class="blank" data-ans="日本国憲法">日本国憲法</span>が公布され主権在民・基本的人権・<span class="blank" data-ans="平和主義（戦争放棄）">平和主義（戦争放棄）</span>の三原則が定められた。<span class="blank" data-ans="農地改革">農地改革</span>・<span class="blank" data-ans="財閥解体">財閥解体</span>も行われた。1951年の<span class="blank" data-ans="サンフランシスコ平和条約">サンフランシスコ平和条約</span>で主権を回復し、同時に<span class="blank" data-ans="日米安全保障条約">日米安全保障条約</span>を締結した。1955〜73年の<span class="blank" data-ans="高度経済成長">高度経済成長</span>で1964年に<span class="blank" data-ans="東京オリンピック">東京オリンピック</span>が開催された。1973年の<span class="blank" data-ans="石油危機（オイルショック）">石油危機（オイルショック）</span>で高度成長が終わった。ソ連指導者<span class="blank" data-ans="ゴルバチョフ">ゴルバチョフ</span>の<span class="blank" data-ans="ペレストロイカ（改革）">ペレストロイカ（改革）</span>で冷戦が終結した。</div>
+  <div class="word-bank" id="b2"></div>
+</div>
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai26.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai26_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+<script>
+const UNIT_ID="kindai26";let sel=null;
+function startChallenge(){
+  document.querySelectorAll(".blank").forEach(b=>{b.textContent="？";b.classList.add("waiting");b.classList.remove("correct","wrong");b.onclick=()=>fillBlank(b);});
+  buildBank("b0",["国際連合（国連・UN）","ニューヨーク","常任理事国","拒否権","安全保障理事会","冷戦（冷たい戦争）","トルーマン","トルーマン・ドクトリン","マーシャル・プラン","北大西洋条約機構（NATO）","ワルシャワ条約機構","ベルリンの壁"]);
+  buildBank("b1",["毛沢東","中華人民共和国","朝鮮戦争","朝鮮特需","自衛隊","ベトナム戦争","ベトナム社会主義共和国"]);
+  buildBank("b2",["マッカーサー","日本国憲法","平和主義（戦争放棄）","農地改革","財閥解体","サンフランシスコ平和条約","日米安全保障条約","高度経済成長","東京オリンピック","石油危機（オイルショック）","ゴルバチョフ","ペレストロイカ（改革）"]);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML="";[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement("div");c.className="word-chip";c.textContent=w;c.onclick=()=>{if(c.classList.contains("used"))return;document.querySelectorAll(".word-chip.selected").forEach(x=>x.classList.remove("selected"));sel=c;c.classList.add("selected");};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=="？"){const old=b.textContent;document.querySelectorAll(".word-chip").forEach(c=>{if(c.classList.contains("used")&&c.textContent===old)c.classList.remove("used");});}b.textContent=sel.textContent;b.classList.remove("waiting");sel.classList.add("used");sel.classList.remove("selected");sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll(".blank").forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add("correct");b.classList.remove("wrong");ok++;}else{b.classList.remove("correct");b.classList.add("wrong");}b.onclick=null;b.style.cursor="default";});const bar=document.getElementById("result-bar");bar.style.display="block";if(ok===total){bar.className="result-bar pass";bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}else{bar.className="result-bar fail";bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

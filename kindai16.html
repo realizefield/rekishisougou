@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：中国の開港①アヘン戦争・三角貿易・アロー戦争</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #8b0000;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #8b0000;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #8b0000;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-trade{background:#8b0000}
+  .label-war{background:#1a3a6b}
+  .label-japan{background:#1a5a1a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #8b0000;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#8b0000;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#fff0f0;border-left:5px solid #8b0000;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#8b0000}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .trade-diagram{background:#fff8f0;border:2px solid #8b0000;border-radius:12px;padding:16px;margin:12px 0;text-align:center;font-size:15px;line-height:2.2}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#8b0000;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #5a0000}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #8b0000;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #8b0000;background-color:#fff0f0;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #8b0000;cursor:pointer;color:#5a0000;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #8b0000;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#5a0000;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#8b0000}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🐉 中国の開港①　アヘン戦争・三角貿易・アロー戦争</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 清の貿易管理とイギリスの不満 -->
+<div class="section">
+  <span class="section-label label-trade">① 清の貿易管理とイギリスの不満</span>
+  <h2>なぜ清とイギリスは対立したのか？</h2>
+  <p>18世紀の清（中国）は、ヨーロッパ船の来航を<span class="blank" data-id="A">広州</span>の一港だけに限り、<span class="blank" data-id="B">コホン（公行）</span>という特許商人にだけ貿易を管理させていました。「中国こそが世界の中心。他の国々は朝貢してくれば良い」という「中華思想」がその根底にありました。</p>
+  <p>1793年、イギリスは使節<span class="blank person-pop" data-id="C">マカートニー<span class="pop-box"><span class="pop-name">マカートニー（1737〜1806）</span><span class="pop-desc">イギリスの外交官。乾隆帝に直接面会して自由貿易を求めましたが、清皇帝は「中国にはすべてのものが揃っている。外国の製品は必要ない」と拒否しました。</span></span></span>を派遣して清の皇帝<span class="person-pop">乾隆帝<span class="pop-box"><span class="pop-name">乾隆帝（在位1735〜1795）</span><span class="pop-desc">清の第6代皇帝。清の最大版図を実現した名君ですが、マカートニーの自由貿易要求を「中国にはすべてがある、外国製品は不要」と一蹴しました。</span></span></span>に直接面談し自由貿易を求めましたが、交渉は失敗しました。</p>
+  <div class="why-box"><span class="label">❓ イギリスはなぜそれほど中国との貿易を求めたのか？</span>18世紀のイギリスでは紅茶を飲む習慣が爆発的に広まり、中国の茶の需要が急増していました。しかし清は限られた港・商人を通じてしか取引せず、イギリスは大量の銀を中国に支払うばかりで銀が国外に流出し続ける状態でした。「中国との自由貿易ができれば莫大な利益が得られる」—これがイギリスの焦りの根本でした。</div>
+</div>
+
+<!-- ② 三角貿易 -->
+<div class="section">
+  <span class="section-label label-trade">② 三角貿易とアヘン問題</span>
+  <h2>イギリスはどのようにして銀の流出を止めたのか？</h2>
+  <p>銀の流出に悩んだイギリスは、悪名高い「<span class="blank" data-id="D">三角貿易</span>」を始めました。その仕組みはこうです。</p>
+  <div class="trade-diagram">
+    🇬🇧 イギリス 🔄 綿製品 → 🇮🇳 インド<br>
+    🇮🇳 インド 🔄 <span style="color:#8b0000;font-weight:bold">アヘン（麻薬）</span> → 🇨🇳 清（中国）<br>
+    🇨🇳 清（中国）🔄 茶・銀 → 🇬🇧 イギリス
+  </div>
+  <p>イギリスはインドで<span class="blank" data-id="E">アヘン</span>（麻薬）を栽培させ、それを密貿易で中国に持ち込みました。アヘンは強い依存性があるため、一度使い始めると何度も買い続けなければなりません。こうして中国国内にアヘン中毒患者を意図的に増やし、アヘンを売って銀を取り返し、その銀で茶を購入するという構造を作り上げました。</p>
+  <div class="why-box"><span class="label">❓ これがどれほど非道なことだったのか？</span>アヘンは現代でいうヘロインに相当する強烈な麻薬です。中国国内では「アヘン患者が急増し、兵士まで中毒になっている」「銀がどんどん海外に流出している」という深刻な事態になりました。イギリスは国として、他国の民を麻薬中毒にして利益を得ていたのです。これは現代では絶対に許されない行為ですが、当時の列強には「非文明国への道徳は不要」という考えが蔓延していました。</div>
+  <p>危機感を抱いた清の皇帝は官僚<span class="blank person-pop" data-id="F">林則徐<span class="pop-box"><span class="pop-name">林則徐（1785〜1850）</span><span class="pop-desc">清の官僚。アヘンの害の深刻さを皇帝に訴え、広州に派遣されてイギリス商人からアヘンを没収・廃棄し、イギリスとの貿易を禁止しました。しかしこれがアヘン戦争のきっかけとなりました。</span></span></span>を広州に派遣しました。林則徐はイギリス商人から大量のアヘンを没収して廃棄し、イギリスとの交易を禁止しました。</p>
+</div>
+
+<!-- ③ アヘン戦争と南京条約 -->
+<div class="section">
+  <span class="section-label label-war">③ アヘン戦争と南京条約（1840〜1842年）</span>
+  <h2>なぜ「麻薬を取り締まった」清が負けたのか？</h2>
+  <p>林則徐のアヘン没収を「不当だ」として、イギリスは1840年に<span class="blank" data-id="G">アヘン戦争</span>を起こしました。道義的には明らかに清の方が正しかったのですが、軍事力では全く比べ物になりませんでした。</p>
+  <div class="why-box"><span class="label">❓ なぜ軍事力にこれほどの差があったのか？</span>イギリスはすでに産業革命を達成し、蒸気船・機関銃などの近代的兵器を持っていました。一方、清の軍隊はまだ旧式の火縄銃と弓矢が中心でした。「大国・清」のイメージがありましたが、軍事技術の面では完全に時代遅れになっていたのです。この戦争で清は「自分たちが世界の中心どころか、軍事的には全く立ち遅れている」という現実を思い知らされました。</div>
+  <p>1842年の<span class="blank" data-id="H">南京条約</span>でイギリスは清に次の条件を認めさせました。</p>
+  <ul style="margin:0 0 12px 28px;line-height:2.4">
+    <li><span class="blank" data-id="I">香港</span>島をイギリスに譲渡する</li>
+    <li>上海など5つの港を開港する</li>
+    <li>イギリスに賠償金を支払う</li>
+    <li>イギリスに<span class="blank" data-id="J">治外法権</span>（イギリス人の犯罪はイギリスで裁く）を認める</li>
+    <li>清は<span class="blank" data-id="K">関税自主権</span>を持てない（関税を自分で決める権利がない）</li>
+    <li>コホン（特権商人）を廃止する</li>
+  </ul>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>南京条約は「不平等条約」の典型例として歴史に刻まれました。治外法権と関税自主権の喪失は国家主権の根幹を失うことを意味します。この後、アメリカ・フランスも追随して同様の不平等条約を清に結ばせました。「眠れる獅子」と恐れられた清の弱体化が世界に知れ渡り、列強のアジア進出が一気に加速します。</div>
+  <div class="key-point">⭐ <strong>南京条約の不平等な点</strong>：①香港割譲 ②5港開港 ③治外法権（イギリスに有利） ④関税自主権なし（清に不利） ⑤コホン廃止</div>
+</div>
+
+<!-- ④ 日本への影響 -->
+<div class="section">
+  <span class="section-label label-japan">④ アヘン戦争が日本に与えた衝撃</span>
+  <h2>なぜアヘン戦争は遠い日本を震え上がらせたのか？</h2>
+  <p>江戸幕府は1825年に<span class="blank" data-id="L">異国船打ち払い令</span>を出し、「外国船が日本に近づいたら砲撃して追い払え」という強硬な姿勢をとっていました。しかしアヘン戦争の結果を知って大きな衝撃を受けました。「あの大国・清が西洋に完敗した。日本も同じ運命になりかねない」—この恐怖から、幕府は1842年に方針を転換し<span class="blank" data-id="M">薪水給与令</span>（外国船が近づいてきたら穏便に食料・薪・水を渡して帰してもらう）を出しました。</p>
+  <div class="why-box"><span class="label">📌 なぜこれが重要なのか？</span>幕府の方針転換は「強がっていた江戸幕府が、西洋の軍事力を恐れて態度を軟化させた」ことを意味します。これは後の1853年のペリーの黒船来航・開国要求への対応にもつながる、日本近代化の重要な伏線です。</div>
+</div>
+
+<!-- ⑤ アロー戦争 -->
+<div class="section">
+  <span class="section-label label-war">⑤ アロー戦争と北京条約（1856〜1860年）</span>
+  <h2>なぜイギリスは再び戦争を起こしたのか？</h2>
+  <p>南京条約を結んだものの、イギリスは「5港だけでは物足りない。人口の多い北京で直接交渉したい」という不満を持ち続けていました。1856年、広州港に停泊中のイギリス船籍のアヘン密輸船<span class="blank" data-id="N">アロー号</span>に清の役人が立ち入り、船員を逮捕しました。その際にイギリス国旗が引きずり下ろされたことを「イギリスへの侮辱だ」と口実にして、イギリスはフランスのナポレオン3世とともに<span class="blank" data-id="O">アロー戦争</span>を起こしました。</p>
+  <div class="why-box"><span class="label">❓ なぜこれが「言いがかり」なのか？</span>アロー号はそもそもアヘンを密輸していた船でした。清の役人が密輸船を取り締まるのは当然のことです。しかしイギリスはそれを「国旗への侮辱」という口実にしました。本当の目的は「もっと多くの港を開かせ、北京での交渉権を得ること」でした。</div>
+  <p>1860年の<span class="blank" data-id="P">北京条約</span>で天津など11港の開港が認められ、清はさらに多くの権益を失いました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>アロー戦争の敗北で清への列強の侵略はさらに深まりました。戦争の最中には英仏連合軍が北京郊外の円明園（皇帝の離宮）を略奪・破壊するという出来事もあり、清の権威は地に落ちました。国内では物価上昇・増税への不満が高まり、これが太平天国の乱（次の単元）の背景となっていきます。</div>
+  <div class="key-point">⭐ <strong>アヘン戦争→アロー戦争の流れ</strong>：三角貿易→アヘン戦争(1840)→南京条約(1842)→5港開港・香港割譲 → アロー戦争(1856)→北京条約(1860)→11港開港</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai16_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai16_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①清：広州一港・コホン管理→マカートニーの交渉失敗(1793)<br>
+      ②三角貿易：イギリス綿製品→インド→アヘン→清→茶・銀→イギリス。林則徐がアヘン没収<br>
+      ③アヘン戦争(1840)→南京条約(1842)：香港割譲・5港開港・治外法権・関税自主権なし<br>
+      ④日本への影響：異国船打ち払い令→薪水給与令(1842)に転換<br>
+      ⑤アロー戦争(1856)→北京条約(1860)：11港開港
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "広州":"清（中国）が唯一の貿易港として指定した南部の港町。ヨーロッパ船はここだけで取引を許可されていました。",
+  "コホン（公行）":"清が指定した特許商人グループ。外国との貿易を独占的に管理していました。南京条約で廃止されました。",
+  "マカートニー":"イギリスの外交官（1737〜1806）。1793年に清の乾隆帝に会い自由貿易を求めましたが拒否されました。",
+  "三角貿易":"イギリス・インド・清の3国間で行われた貿易。イギリスは綿製品をインドに輸出し、インドでアヘンを作らせて清に密売し、清から茶と銀を得るという仕組みです。",
+  "アヘン":"麻薬。強い依存性を持ちます。イギリスはインドでアヘンを生産させ中国に密売しました。現在の国際法では厳しく規制されています。",
+  "林則徐":"清の官僚（1785〜1850）。アヘンの危険性を訴え、広州でイギリス商人のアヘンを没収・廃棄しました。これがアヘン戦争のきっかけとなりました。",
+  "アヘン戦争":"1840〜42年のイギリス対清の戦争。圧倒的なイギリスの勝利で終わり、南京条約が結ばれました。",
+  "南京条約":"1842年にアヘン戦争後に結ばれた不平等条約。香港割譲・5港開港・治外法権・関税自主権なし・コホン廃止が主な内容です。",
+  "香港":"南京条約でイギリスに割譲された島。1997年まで155年間イギリスの植民地でした。",
+  "治外法権":"外国人が現地の法律ではなく自国の法律で裁かれる権利。南京条約でイギリスに与えられた不平等な特権です。",
+  "関税自主権":"自国に輸入される商品に自由に関税をかける権利。南京条約で清はこれを失い、外国製品が安く流入して国内産業が打撃を受けました。",
+  "異国船打ち払い令":"1825年に江戸幕府が出した命令。外国船が日本に近づいたら砲撃して追い払うという強硬策でした。",
+  "薪水給与令":"1842年に江戸幕府が出した命令。アヘン戦争での清の敗北に衝撃を受け、外国船に穏便に食料・薪・水を与えて帰国させる方針に転換しました。",
+  "アロー号":"広州港停泊中のイギリス船籍のアヘン密輸船。清の役人に立ち入られ国旗を引き下ろされたことをイギリスがアロー戦争の口実にしました。",
+  "アロー戦争":"1856〜60年にイギリス・フランスが清を攻撃した戦争（第二次アヘン戦争）。北京条約で11港の開港が認められました。",
+  "北京条約":"1860年にアロー戦争後に結ばれた条約。天津など11港の開港・北京での外交権などが認められました。",
+};
+
+const answers={
+  "A":"広州","B":"コホン（公行）","C":"マカートニー",
+  "D":"三角貿易","E":"アヘン","F":"林則徐",
+  "G":"アヘン戦争","H":"南京条約","I":"香港","J":"治外法権","K":"関税自主権",
+  "L":"異国船打ち払い令","M":"薪水給与令",
+  "N":"アロー号","O":"アロー戦争","P":"北京条約"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai16']=p['kindai16']||{};p['kindai16'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

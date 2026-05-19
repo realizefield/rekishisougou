@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：19世紀のアジア①インド・オスマン・エジプト・イラン</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #7a2d00;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #7a2d00;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #7a2d00;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-india{background:#7a2d00}
+  .label-ottoman{background:#1a3a6b}
+  .label-egypt{background:#1a5a1a}
+  .label-iran{background:#5a1a5a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #7a2d00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#7a2d00;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#fff3e0;border-left:5px solid #7a2d00;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#7a2d00}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#7a2d00;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #4a1a00}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #7a2d00;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #7a2d00;background-color:#fff3e0;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #7a2d00;cursor:pointer;color:#4a1a00;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #7a2d00;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#4a1a00;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#7a2d00}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🌏 19世紀のアジア①　インド・オスマン・エジプト・イランの変容</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① インドの支配 -->
+<div class="section">
+  <span class="section-label label-india">① インドの支配</span>
+  <h2>なぜイギリスはインドを支配できたのか？</h2>
+  <p>産業革命を達成したイギリスにとって、インドは２つの意味で欠かせない場所でした。一つは大量生産した綿製品を売る「市場」、もう一つは綿花などの「原料調達地」です。そのためイギリス東インド会社は少しずつインドへの支配領域を広げていきました。</p>
+  <p>同じくインドのベンガル地方に進出してきたフランスと衝突したのが1757年の<span class="blank person-pop" data-id="A">プラッシーの戦い<span class="pop-box"><span class="pop-name">プラッシーの戦い（1757年）</span><span class="pop-desc">インドのベンガル地方で起きたイギリス東インド会社とフランス・ベンガル太守連合軍の戦い。イギリスが勝利し、フランスはインドから後退しました。これによりイギリスのインド支配が本格化しました。</span></span></span>です。イギリスが勝利してフランスを追い出し、インド支配を本格化させました。</p>
+  <div class="why-box"><span class="label">❓ なぜ「インド製綿布」がイギリスに壊された？</span>インドは古くから手織りの高品質な綿布で知られていました。しかし産業革命で機械化されたイギリスの工場は、人件費ゼロに近い大量の安価な綿布を生産します。「機械 vs 手作り」の戦いでインドの伝統的な綿織物産業は壊滅的な打撃を受けました。これがシパーヒーの反乱の大きな背景の一つです。</div>
+  <h2>シパーヒーの反乱（1857〜58年）</h2>
+  <p>広大なインドを少ない人員で支配するためイギリスは、インド人傭兵<span class="blank person-pop" data-id="B">シパーヒー<span class="pop-box"><span class="pop-name">シパーヒー（セポイ）</span><span class="pop-desc">インド人によって構成されたイギリス東インド会社の傭兵。イギリスの植民地支配を支える軍事力でしたが、宗教的侮辱をきっかけに大反乱を起こしました。</span></span></span>を雇っていました。1857年、イギリスが新式の銃の弾薬包に牛と豚の脂を使ったことが問題になりました。牛を神聖とするヒンドゥー教徒も、豚を不浄とするイスラーム教徒も、これを口で噛みちぎることを強制されたため、シパーヒーたちは激怒して<span class="blank" data-id="C">シパーヒーの反乱</span>を起こしました。</p>
+  <p>一時はインド全土に広がりましたが、1858年にイギリス軍が鎮圧し、300年続いた<span class="blank" data-id="D">ムガル帝国</span>は滅亡しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>反乱鎮圧後の1877年、イギリス国王<span class="blank person-pop" data-id="E">ヴィクトリア女王<span class="pop-box"><span class="pop-name">ヴィクトリア女王（在位1837〜1901）</span><span class="pop-desc">イギリス女王。「大英帝国の女王」として帝国主義の全盛期に君臨しました。1877年にインド皇帝も兼ねました。ディズレーリ首相が「インド帝国の冠」を捧げる風刺画で有名です。</span></span></span>がインド皇帝を兼ねる<span class="blank" data-id="F">イギリス領インド帝国</span>が成立し、インドはイギリスの直接支配下に置かれました。このときの首相が<span class="blank person-pop" data-id="G">ディズレーリ<span class="pop-box"><span class="pop-name">ディズレーリ（1804〜1881）</span><span class="pop-desc">イギリスの保守党首相。積極的な帝国主義政策を推進しました。ヴィクトリア女王にインド帝国の冠を捧げる風刺画で知られます。スエズ運河株式の買収も彼の業績です。</span></span></span>です。</div>
+  <div class="key-point">⭐ <strong>流れ</strong>：プラッシーの戦い(1757)→インド綿工業の破壊→シパーヒーの反乱(1857〜58)→ムガル帝国滅亡→イギリス領インド帝国成立(1877)</div>
+</div>
+
+<!-- ② オスマン帝国の衰退と改革 -->
+<div class="section">
+  <span class="section-label label-ottoman">② オスマン帝国の衰退と改革</span>
+  <h2>なぜオスマン帝国はこれほど弱体化したのか？</h2>
+  <p>かつてウィーンを2度包囲し（1529年・1683年）ヨーロッパを震え上がらせたオスマン帝国でしたが、近代的な軍事技術・産業で先行するヨーロッパ列強に次第に押されていきました。1853年、ロシアが不凍港確保のため南下を図り、ギリシア正教徒保護を口実に<span class="blank" data-id="H">クリミア戦争</span>が起きました。イギリス・フランスの支援でこの戦争には勝ちましたが、国力の消耗が続きました。</p>
+  <h2>タンジマートとミドハト憲法</h2>
+  <p>危機を乗り越えようと、1839年からオスマン帝国は<span class="blank" data-id="I">タンジマート</span>（恩恵改革）と呼ばれる近代化改革を行いました。行政・軍事・法制度などの整備を進めました。さらに1876年には宰相<span class="blank person-pop" data-id="J">ミドハト＝パシャ<span class="pop-box"><span class="pop-name">ミドハト＝パシャ（1822〜1884）</span><span class="pop-desc">オスマン帝国の政治家・宰相。1876年にアジア初の近代憲法「ミドハト憲法」を制定しました。二院制議会と責任内閣制を定めた進歩的な憲法でしたが、露土戦争を口実に停止させられました。</span></span></span>によってアジア初の近代憲法<span class="blank" data-id="K">ミドハト憲法</span>が制定されました。</p>
+  <div class="why-box"><span class="label">❓ なぜ憲法が停止されたのか？</span>1877年に<span class="blank" data-id="L">露土戦争</span>が起きると、皇帝アブデュルハミト2世は「戦争で戦うために議会の束縛は邪魔だ」としてミドハト憲法を停止し、ミドハト＝パシャを追放してしまいました。せっかくの民主化の動きが戦争を口実に押しつぶされてしまったのです。</div>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>露土戦争後の1878年、ビスマルクが主宰した<span class="blank" data-id="M">ベルリン会議</span>でオスマン帝国はヨーロッパの領土のほとんどを失いました。イギリス・フランスなどは、アジアで起きているこうした問題を「<span class="blank" data-id="N">東方問題</span>」と称して、その解決のための出兵を口実に植民地獲得を正当化しました。</div>
+</div>
+
+<!-- ③ エジプトの改革 -->
+<div class="section">
+  <span class="section-label label-egypt">③ エジプトの改革と保護国化</span>
+  <h2>なぜエジプトはイギリスの植民地になってしまったのか？</h2>
+  <p>ナポレオンのエジプト遠征後、オスマン帝国の傭兵隊長として活躍した<span class="blank person-pop" data-id="O">ムハンマド＝アリー<span class="pop-box"><span class="pop-name">ムハンマド＝アリー（1769〜1849）</span><span class="pop-desc">エジプトの近代化を推進した指導者。フランスの技術を取り入れ軍・行政を整備してオスマン帝国から独立。しかし急速な近代化がエジプトの財政を圧迫し、列強の干渉を招くことになりました。</span></span></span>はエジプトで実権を握り、1839〜40年の<span class="blank" data-id="P">エジプト＝トルコ戦争</span>でオスマン帝国から独立を勝ち取りました。</p>
+  <p>その後のエジプトはフランス外交官レセップスの提案を受け、1869年に<span class="blank" data-id="Q">スエズ運河</span>を開通させました。しかし工事費用のために莫大な借金をしたエジプトは財政難に陥り、運河の株式を売却せざるを得なくなりました。</p>
+  <div class="why-box"><span class="label">❓ これがどれほど「罠」だったのか？</span>スエズ運河の建設費を借りた相手はイギリスとフランスでした。返済できなくなると「借金があるから内政に口を出す権利がある」と干渉してきます。さらに株式を買ったイギリスの首相<span class="blank" data-id="R">ディズレーリ</span>は運河の支配権まで手に入れました。「借金→財政破綻→支配権喪失」という植民地化の典型的なパターンです。</div>
+  <p>1881年、外国の内政干渉に怒ったエジプト軍の将校<span class="blank person-pop" data-id="S">ウラービー＝パシャ<span class="pop-box"><span class="pop-name">ウラービー＝パシャ（1841〜1911）</span><span class="pop-desc">「エジプト人のためのエジプト」を掲げた民族主義者。1881年に反乱を起こしましたが、1882年のイギリス軍の爆撃・進軍により鎮圧され、セイロン島に流刑となりました。</span></span></span>が「エジプト人のためのエジプト」を掲げて反乱を起こしました（<span class="blank" data-id="T">ウラービー＝パシャの乱</span>）。しかしイギリス軍に鎮圧され、エジプトは<span class="blank" data-id="U">イギリス</span>の保護国となりました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>エジプトの保護国化はアフリカ植民地化の重要な足がかりとなりました。また「借金→財政破綻→内政干渉→植民地化」というパターンは、アジア・アフリカの多くの国々でくり返されていきます。ウラービーの「エジプト人のためのエジプト」というスローガンは、後のエジプト民族主義運動の先駆けとなりました。</div>
+</div>
+
+<!-- ④ イランの動向 -->
+<div class="section">
+  <span class="section-label label-iran">④ イランの動向とパン＝イスラーム主義</span>
+  <h2>なぜイランは「イスラーム世界の危機」と呼ばれる状態になったのか？</h2>
+  <p>イランでは1501年から繁栄したサファヴィー朝が1736年に滅亡した後、1796年に<span class="blank" data-id="V">カジャール朝</span>が建国されました。しかしこの新王朝はロシアとの戦争に敗れ、治外法権などの不平等条約を結ばされてしまいます。外国に権利を次々と奪われ、専制的な国内政治が続く中で、人々は「救世主が現れてこの国を救ってほしい」と切に願うようになりました。これが「イスラーム世界の危機」と呼ばれた時代です。</p>
+  <div class="why-box"><span class="label">❓ パン＝イスラーム主義とは何か？</span>思想家<span class="blank person-pop" data-id="W">アフガーニー<span class="pop-box"><span class="pop-name">アフガーニー（1838〜1897）</span><span class="pop-desc">イスラーム世界の思想家・改革運動家。「ヨーロッパの帝国主義に対抗するには、シーア派・スンニー派という宗派の違いを超えてイスラーム教徒が団結するべきだ」と主張しました。パン＝イスラーム主義の父と呼ばれます。</span></span></span>は「宗派の違い（シーア派・スンニー派）を超えてイスラーム教徒が団結し、ヨーロッパ帝国主義に立ち向かおう」と訴えました。これを<span class="blank" data-id="X">パン＝イスラーム主義</span>といいます。「バラバラに各個撃破されるのではなく、一致団結して対抗しよう」という考え方です。</div>
+  <p>1891年、アフガーニーはイギリス商人にタバコの全ての権利が与えられたことに対して、イランの人々に「タバコを買うな、売るな」と呼びかける<span class="blank" data-id="Y">タバコ＝ボイコット運動</span>を指導しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>タバコ＝ボイコット運動は、イスラーム世界初の大規模な反帝国主義運動の一つです。聖職者・商人・一般市民が団結し、最終的にイギリスにタバコの権利を返還させることに成功しました。「民衆が団結すれば帝国主義に勝てる」という成功体験を示したこの運動は、イランだけでなくアジア・アフリカの民族運動に大きな励みを与えました。</div>
+  <div class="key-point">⭐ <strong>パン＝イスラーム主義のポイント</strong>：宗派を超えた団結 → ヨーロッパ帝国主義への対抗 → タバコ＝ボイコット運動で実践</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai14_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai14_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①インド：プラッシーの戦い(1757)→シパーヒーの反乱(1857〜58)→ムガル帝国滅亡→イギリス領インド帝国(1877)・ヴィクトリア女王・ディズレーリ首相<br>
+      ②オスマン：クリミア戦争(1853〜56)→タンジマート→ミドハト憲法(1876)→露土戦争→憲法停止→ベルリン会議→東方問題<br>
+      ③エジプト：ムハンマド＝アリー独立→スエズ運河(1869)→財政破綻→株売却→ウラービー＝パシャの乱(1881)→イギリス保護国化<br>
+      ④イラン：カジャール朝建国(1796)→アフガーニー・パン＝イスラーム主義→タバコ＝ボイコット運動(1891)
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "プラッシーの戦い":"1757年にインドのベンガル地方で起きたイギリスとフランスの戦い。イギリスが勝利し、フランスはインドから後退。イギリスのインド支配が本格化しました。",
+  "シパーヒー":"インド人によるイギリス東インド会社の傭兵。弾薬包への牛・豚の脂使用をきっかけに1857年に大反乱を起こしました。",
+  "シパーヒーの反乱":"1857〜58年のインド大反乱。弾薬包問題をきっかけにシパーヒーが蜂起しインド全土に広がりましたが、イギリス軍に鎮圧されムガル帝国が滅亡しました。",
+  "ムガル帝国":"インドのイスラーム王朝（1526〜1858）。シパーヒーの反乱鎮圧後に滅亡しました。",
+  "ヴィクトリア女王":"イギリス女王（在位1837〜1901）。1877年にインド皇帝も兼ねるイギリス領インド帝国が成立しました。大英帝国全盛期の象徴的存在です。",
+  "イギリス領インド帝国":"1877年に成立したインドの植民地国家。ヴィクトリア女王がインド皇帝を兼ね、インドは完全にイギリスの直接支配下に置かれました。",
+  "ディズレーリ":"イギリスの保守党首相（1804〜1881）。イギリス領インド帝国成立時の首相。スエズ運河株式の買収でも知られます。",
+  "クリミア戦争":"1853〜56年のロシア対オスマン帝国・英仏の戦争。ロシアが敗北し南下政策が挫折しました。",
+  "タンジマート":"1839年からのオスマン帝国の近代化改革（恩恵改革）。行政・軍事・法制度の整備を進めました。",
+  "ミドハト＝パシャ":"オスマン帝国の宰相（1822〜1884）。1876年にアジア初の近代憲法「ミドハト憲法」を制定しましたが、露土戦争後に追放されました。",
+  "ミドハト憲法":"1876年にミドハト＝パシャが制定したアジア初の近代憲法。二院制議会と責任内閣制を定めましたが、露土戦争を口実に1877年に停止されました。",
+  "露土戦争":"1877〜78年のロシアとオスマン帝国の戦争。ロシアが勝利しましたが、ベルリン会議でその成果は縮小されました。",
+  "ベルリン会議":"1878年にビスマルクが主宰した国際会議。サン＝ステファノ条約を修正し、オスマン帝国はヨーロッパの領土のほとんどを失いました。",
+  "東方問題":"イギリス・フランスなどの列強がアジアでの問題をそう呼んで、植民地獲得のための出兵を正当化しました。",
+  "ムハンマド＝アリー":"エジプトの近代化を推進した指導者（1769〜1849）。エジプト＝トルコ戦争でオスマン帝国から独立し、フランスの技術を取り入れて近代化を進めました。",
+  "エジプト＝トルコ戦争":"1839〜40年のエジプトとオスマン帝国の戦争。ムハンマド＝アリーが勝利しエジプトは独立しましたが、列強の干渉を招くことになりました。",
+  "スエズ運河":"1869年開通。地中海と紅海を結ぶ運河。建設費用でエジプトが財政難に陥り、株式をイギリスに売却する事態となりました。",
+  "ディズレーリ":"イギリスの首相。1875年にスエズ運河の株式を購入してイギリスの支配権を確立しました。",
+  "ウラービー＝パシャ":"「エジプト人のためのエジプト」を掲げて1881年に反乱を起こしたエジプトの民族主義者。イギリス軍に鎮圧されました。",
+  "ウラービー＝パシャの乱":"1881年のエジプト民族主義運動。外国の内政干渉に反発しましたが、イギリス軍に鎮圧されエジプトは保護国化されました。",
+  "イギリス":"エジプトのスエズ運河株を買収し、ウラービーの乱鎮圧後にエジプトを保護国化した列強。",
+  "カジャール朝":"1796年に建国されたイランの王朝。ロシアとの戦争に敗れ不平等条約を結ばされました。",
+  "アフガーニー":"イスラーム世界の思想家・改革運動家（1838〜1897）。パン＝イスラーム主義を唱えタバコ＝ボイコット運動を指導しました。",
+  "パン＝イスラーム主義":"アフガーニーが唱えた、宗派を超えたイスラーム教徒の団結を求める思想。ヨーロッパ帝国主義への対抗手段として広まりました。",
+  "タバコ＝ボイコット運動":"1891年にアフガーニーが指導したイランの民族運動。イギリス商人へのタバコ権利付与に反対して不買運動を展開し、最終的に権利を返還させることに成功しました。",
+};
+
+const answers={
+  "A":"プラッシーの戦い","B":"シパーヒー","C":"シパーヒーの反乱","D":"ムガル帝国",
+  "E":"ヴィクトリア女王","F":"イギリス領インド帝国","G":"ディズレーリ",
+  "H":"クリミア戦争","I":"タンジマート","J":"ミドハト＝パシャ","K":"ミドハト憲法",
+  "L":"露土戦争","M":"ベルリン会議","N":"東方問題",
+  "O":"ムハンマド＝アリー","P":"エジプト＝トルコ戦争","Q":"スエズ運河","R":"ディズレーリ",
+  "S":"ウラービー＝パシャ","T":"ウラービー＝パシャの乱","U":"イギリス",
+  "V":"カジャール朝","W":"アフガーニー","X":"パン＝イスラーム主義","Y":"タバコ＝ボイコット運動"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai14']=p['kindai14']||{};p['kindai14'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

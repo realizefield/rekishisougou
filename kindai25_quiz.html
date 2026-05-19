@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：近代㉕ 第二次世界大戦・太平洋戦争</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.section-title{font-size:16px;font-weight:bold;color:#5a1a00;border-left:4px solid #5a1a00;padding-left:12px;margin-bottom:16px}
+.question-text{font-size:16px;line-height:2.8;color:#222}
+.blank{display:inline-block;min-width:90px;border-bottom:2px solid #5a1a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#5a1a00;vertical-align:middle;min-height:26px;padding:0 4px}
+.blank.waiting{color:transparent;background:#eee;border-radius:4px}
+.blank.correct{background:#c8f0d8;border-color:#5a1a00}
+.blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+.word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f8fff8;margin-top:14px}
+.word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+.word-chip:hover{border-color:#5a1a00;background:#d0f0e0}
+.word-chip.selected{border-color:#5a1a00;background:#70c090;font-weight:bold}
+.word-chip.used{opacity:0.3;pointer-events:none}
+.controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+.btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#5a1a00;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+.btn-orange{background:#e67e22;color:#fff}
+.result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+.result-bar.pass{border-color:#5a1a00;color:#5a1a00;background:#d0f0e0}
+.result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代㉕ 第二次世界大戦・太平洋戦争</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🌍 第二次世界大戦の勃発</div>
+  <div class="question-text">1938年の<span class="blank" data-ans="ミュンヘン会談">ミュンヘン会談</span>でイギリス首相<span class="blank" data-ans="チェンバレン">チェンバレン</span>は<span class="blank" data-ans="宥和政策">宥和政策</span>をとった。1939年8月に<span class="blank" data-ans="独ソ不可侵条約">独ソ不可侵条約</span>が締結され、9月1日に<span class="blank" data-ans="ポーランド">ポーランド</span>侵攻で<span class="blank" data-ans="第二次世界大戦">第二次世界大戦</span>が始まった。イギリス首相<span class="blank" data-ans="チャーチル">チャーチル</span>は徹底抗戦を宣言した。1941年6月の<span class="blank" data-ans="バルバロッサ作戦">バルバロッサ作戦</span>でドイツはソ連に侵攻したが1942〜43年の<span class="blank" data-ans="スターリングラードの戦い">スターリングラードの戦い</span>で大敗した。ナチスは<span class="blank" data-ans="ホロコースト">ホロコースト</span>でユダヤ人約600万人を殺害した。</div>
+  <div class="word-bank" id="b0"></div>
+</div>
+<div class="card">
+  <div class="section-title">🌏 太平洋戦争と終戦</div>
+  <div class="question-text">1941年12月8日、日本が<span class="blank" data-ans="真珠湾">真珠湾</span>を奇襲して<span class="blank" data-ans="太平洋戦争">太平洋戦争</span>が始まった。1942年6月の<span class="blank" data-ans="ミッドウェー海戦">ミッドウェー海戦</span>で日本は大敗した。7月の<span class="blank" data-ans="ポツダム宣言">ポツダム宣言</span>を黙殺すると8月6日に<span class="blank" data-ans="広島">広島</span>・8月9日に<span class="blank" data-ans="長崎">長崎</span>に<span class="blank" data-ans="原子爆弾">原子爆弾</span>が投下された。8月15日の<span class="blank" data-ans="玉音放送">玉音放送</span>で降伏が伝えられ9月2日に<span class="blank" data-ans="降伏文書">降伏文書</span>に調印した。連合国外交では<span class="blank" data-ans="大西洋憲章">大西洋憲章</span>・<span class="blank" data-ans="カイロ宣言">カイロ宣言</span>・<span class="blank" data-ans="ヤルタ協定">ヤルタ協定</span>が締結された。</div>
+  <div class="word-bank" id="b1"></div>
+</div>
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai25.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai25_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+<script>
+const UNIT_ID="kindai25";let sel=null;
+function startChallenge(){
+  document.querySelectorAll(".blank").forEach(b=>{b.textContent="？";b.classList.add("waiting");b.classList.remove("correct","wrong");b.onclick=()=>fillBlank(b);});
+  buildBank("b0",["ミュンヘン会談","チェンバレン","宥和政策","独ソ不可侵条約","ポーランド","第二次世界大戦","チャーチル","バルバロッサ作戦","スターリングラードの戦い","ホロコースト"]);
+  buildBank("b1",["真珠湾","太平洋戦争","ミッドウェー海戦","ポツダム宣言","広島","長崎","原子爆弾","玉音放送","降伏文書","大西洋憲章","カイロ宣言","ヤルタ協定"]);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML="";[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement("div");c.className="word-chip";c.textContent=w;c.onclick=()=>{if(c.classList.contains("used"))return;document.querySelectorAll(".word-chip.selected").forEach(x=>x.classList.remove("selected"));sel=c;c.classList.add("selected");};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=="？"){const old=b.textContent;document.querySelectorAll(".word-chip").forEach(c=>{if(c.classList.contains("used")&&c.textContent===old)c.classList.remove("used");});}b.textContent=sel.textContent;b.classList.remove("waiting");sel.classList.add("used");sel.classList.remove("selected");sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll(".blank").forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add("correct");b.classList.remove("wrong");ok++;}else{b.classList.remove("correct");b.classList.add("wrong");}b.onclick=null;b.style.cursor="default";});const bar=document.getElementById("result-bar");bar.style.display="block";if(ok===total){bar.className="result-bar pass";bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}else{bar.className="result-bar fail";bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

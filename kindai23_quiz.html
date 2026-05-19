@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：近代㉓ 自由民権運動・大日本帝国憲法・条約改正</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.section-title{font-size:16px;font-weight:bold;color:#4a1a6b;border-left:4px solid #4a1a6b;padding-left:12px;margin-bottom:16px}
+.question-text{font-size:16px;line-height:2.8;color:#222}
+.blank{display:inline-block;min-width:90px;border-bottom:2px solid #4a1a6b;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#4a1a6b;vertical-align:middle;min-height:26px;padding:0 4px}
+.blank.waiting{color:transparent;background:#eee;border-radius:4px}
+.blank.correct{background:#c8f0d8;border-color:#4a1a6b}
+.blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+.word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f8fff8;margin-top:14px}
+.word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+.word-chip:hover{border-color:#4a1a6b;background:#d0f0e0}
+.word-chip.selected{border-color:#4a1a6b;background:#70c090;font-weight:bold}
+.word-chip.used{opacity:0.3;pointer-events:none}
+.controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+.btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#4a1a6b;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+.btn-orange{background:#e67e22;color:#fff}
+.result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+.result-bar.pass{border-color:#4a1a6b;color:#4a1a6b;background:#d0f0e0}
+.result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代㉓ 自由民権運動・大日本帝国憲法・条約改正</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🗳️ 自由民権運動</div>
+  <div class="question-text">1874年、<span class="blank" data-ans="板垣退助">板垣退助</span>は<span class="blank" data-ans="民撰議員設立建白書">民撰議員設立建白書</span>を政府に提出した。1880年に<span class="blank" data-ans="国会期成同盟">国会期成同盟</span>が結成された。1881年の3大事件は<span class="blank" data-ans="開拓使官有物払い下げ事件">開拓使官有物払い下げ事件</span>・<span class="blank" data-ans="明治14年の政変">明治14年の政変</span>（<span class="blank" data-ans="大隈重信">大隈重信</span>追放）・<span class="blank" data-ans="国会開設の勅諭">国会開設の勅諭</span>。1881年に<span class="blank" data-ans="自由党">自由党</span>・1882年に<span class="blank" data-ans="立憲改進党">立憲改進党</span>が結成された。<span class="blank" data-ans="松方正義">松方正義</span>の<span class="blank" data-ans="松方財政">松方財政</span>で<span class="blank" data-ans="日本銀行">日本銀行</span>が設立されたが<span class="blank" data-ans="デフレーション">デフレーション</span>が起きた。</div>
+  <div class="word-bank" id="b0"></div>
+</div>
+<div class="card">
+  <div class="section-title">📜 大日本帝国憲法</div>
+  <div class="question-text"><span class="blank" data-ans="伊藤博文">伊藤博文</span>がプロイセン憲法を研究し1885年に<span class="blank" data-ans="内閣制度">内閣制度</span>を創設した。1889年に<span class="blank" data-ans="欽定憲法">欽定憲法</span>形式の<span class="blank" data-ans="大日本帝国憲法">大日本帝国憲法</span>が公布された。天皇には<span class="blank" data-ans="統帥権">統帥権</span>（軍の指揮権）があった。1890年の衆議院選挙権は直接国税<span class="blank" data-ans="15">15</span>円以上・満<span class="blank" data-ans="25">25</span>歳以上の男子のみで全人口の約<span class="blank" data-ans="1.1">1.1</span>%だった。</div>
+  <div class="word-bank" id="b1"></div>
+</div>
+<div class="card">
+  <div class="section-title">📋 条約改正</div>
+  <div class="question-text">不平等条約の問題は<span class="blank" data-ans="治外法権">治外法権</span>と<span class="blank" data-ans="関税自主権">関税自主権</span>の欠如。1886年の<span class="blank" data-ans="ノルマントン号事件">ノルマントン号事件</span>で世論が高まった。1894年に外相<span class="blank" data-ans="陸奥宗光">陸奥宗光</span>が<span class="blank" data-ans="日英通商航海条約">日英通商航海条約</span>で治外法権を撤廃した。1911年に外相<span class="blank" data-ans="小村寿太郎">小村寿太郎</span>が関税自主権を完全回復した。</div>
+  <div class="word-bank" id="b2"></div>
+</div>
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai23.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai23_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+<script>
+const UNIT_ID="kindai23";let sel=null;
+function startChallenge(){
+  document.querySelectorAll(".blank").forEach(b=>{b.textContent="？";b.classList.add("waiting");b.classList.remove("correct","wrong");b.onclick=()=>fillBlank(b);});
+  buildBank("b0",["板垣退助","民撰議員設立建白書","国会期成同盟","開拓使官有物払い下げ事件","明治14年の政変","大隈重信","国会開設の勅諭","自由党","立憲改進党","松方正義","松方財政","日本銀行","デフレーション"]);
+  buildBank("b1",["伊藤博文","内閣制度","欽定憲法","大日本帝国憲法","統帥権","15","25","1.1"]);
+  buildBank("b2",["治外法権","関税自主権","ノルマントン号事件","陸奥宗光","日英通商航海条約","小村寿太郎"]);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML="";[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement("div");c.className="word-chip";c.textContent=w;c.onclick=()=>{if(c.classList.contains("used"))return;document.querySelectorAll(".word-chip.selected").forEach(x=>x.classList.remove("selected"));sel=c;c.classList.add("selected");};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=="？"){const old=b.textContent;document.querySelectorAll(".word-chip").forEach(c=>{if(c.classList.contains("used")&&c.textContent===old)c.classList.remove("used");});}b.textContent=sel.textContent;b.classList.remove("waiting");sel.classList.add("used");sel.classList.remove("selected");sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll(".blank").forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add("correct");b.classList.remove("wrong");ok++;}else{b.classList.remove("correct");b.classList.add("wrong");}b.onclick=null;b.style.cursor="default";});const bar=document.getElementById("result-bar");bar.style.display="block";if(ok===total){bar.className="result-bar pass";bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}else{bar.className="result-bar fail";bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：イギリスの膨張・ロシアの南下政策と改革</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a4a1a;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a4a1a;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a4a1a;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-britain{background:#1a4a1a}
+  .label-russia{background:#5a1a1a}
+  .label-reform{background:#1a2a5e}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a4a1a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a1a;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#efffea;border-left:5px solid #1a4a1a;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a4a1a}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#1a4a1a;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f0fff0}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a4a1a;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d2d0d}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a4a1a;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a4a1a;background-color:#efffea;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a4a1a;cursor:pointer;color:#0d2d0d;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a4a1a;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d2d0d;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a4a1a}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🌍 イギリスの膨張・ロシアの南下政策と改革</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① スエズ運河とイギリスのエジプト進出 -->
+<div class="section">
+  <span class="section-label label-britain">① スエズ運河とイギリスのエジプト進出</span>
+  <h2>なぜスエズ運河はイギリスにとって「命綱」だったのか？</h2>
+  <p>1869年、フランス人外交官レセップスの提唱でエジプトに<span class="blank person-pop" data-id="A">スエズ運河<span class="pop-box"><span class="pop-name">スエズ運河（1869年開通）</span><span class="pop-desc">エジプトのスエズ地峡を掘削した運河。地中海と紅海を結び、ヨーロッパ〜インド・アジア間の航路を大幅に短縮しました。開通前はアフリカ南端の喜望峰を回る必要がありました。</span></span></span>が開通しました。建設費はフランスから借り入れ、当初はエジプトが株式を保有していましたが、資金難に陥ったエジプト政府はやむなく株式を売却しなければなりませんでした。</p>
+  <div class="why-box"><span class="label">❓ なぜイギリスはすぐに動いたのか？</span>イギリスにとってスエズ運河は「インドへの最短ルート」でした。当時インドはイギリスの最重要植民地であり、運河なしではアフリカ南端の喜望峰を回る長い航路を使うしかありませんでした。「この運河をフランスだけに握らせてはならない」というイギリスの焦りが急速な行動につながりました。</div>
+  <p>1875年、イギリスの首相<span class="blank person-pop" data-id="B">ディズレーリ<span class="pop-box"><span class="pop-name">ディズレーリ（1804〜1881）</span><span class="pop-desc">イギリスの保守党首相。積極的な帝国主義政策を推進しました。1875年にロスチャイルド家から40万ポンドを借り、エジプトのスエズ運河株式を電撃的に購入してイギリスの支配権を確立しました。</span></span></span>は銀行家<span class="blank person-pop" data-id="C">ロスチャイルド<span class="pop-box"><span class="pop-name">ロスチャイルド家</span><span class="pop-desc">ヨーロッパ最大の金融財閥。ディズレーリがスエズ運河株式を購入する際に必要な巨額の資金を即座に融資しました。政府の動きは議会承認を待たず、翌日には取引が完了したといわれています。</span></span></span>家から資金を借りてスエズ運河の株式を購入し、イギリスが運河の支配権を握りました。</p>
+  <h2>ウラービーの革命とエジプト保護国化</h2>
+  <p>しかしスエズ運河の売却でエジプトの財政はさらに悪化し、イギリスとフランスが内政に干渉するようになりました。これに激怒したエジプト軍の将校<span class="blank person-pop" data-id="D">ウラービー＝パシャ<span class="pop-box"><span class="pop-name">ウラービー＝パシャ（1841〜1911）</span><span class="pop-desc">エジプトの軍人・民族主義者。「エジプト人のためのエジプト」を掲げ1882年にクーデター（ウラービーの革命）を起こしました。しかしイギリス軍に鎮圧され、セイロン島に流刑となりました。</span></span></span>は1882年、「エジプト人のためのエジプトを取り戻せ」と叫びクーデターを起こしました。これを<span class="blank" data-id="E">ウラービーの革命</span>といいます。</p>
+  <div class="why-box"><span class="label">❓ ウラービーの主張はなぜ正しかったのか？</span>もともとスエズ運河はエジプトの土地に、エジプト人労働者の手で、エジプト政府が資金を借りて建設されたものです。「自分たちのものを外国に奪われた」というウラービーの怒りは当然のことでした。しかし当時の「力の論理」がエジプトの正当な主張を踏みにじりました。</div>
+  <p>イギリス軍はこれを鎮圧し、1882年からエジプトを事実上の保護国としました。こうして<span class="blank" data-id="F">イギリス</span>はスエズ運河の支配権とエジプトを手に入れました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>エジプト保護国化によりイギリスはインドへの最短ルートを完全に支配しました。これは後の帝国主義時代にアフリカ縦断政策（カイロ〜ケープタウン）の出発点ともなります。しかしエジプトの民族主義運動はその後も続き、20世紀に入ってエジプト独立運動へとつながっていきます。</div>
+  <div class="key-point">⭐ <strong>流れ</strong>：スエズ運河開通(1869) → エジプト財政悪化 → ディズレーリが株を購入(1875) → ウラービーの革命(1882) → イギリスが鎮圧・エジプト保護国化</div>
+</div>
+
+<!-- ② ロシアの南下政策とクリミア戦争 -->
+<div class="section">
+  <span class="section-label label-russia">② ロシアの南下政策とクリミア戦争（1853年）</span>
+  <h2>なぜロシアは「南へ」向かったのか？</h2>
+  <p>ロシアは広大な国土を持ちながら、北部の港は冬に凍ってしまうため船が出せませんでした。そこで「一年中使える暖かい港（不凍港）を地中海や太平洋に確保したい」というのがロシアの一貫した目標でした。これが<strong>南下政策</strong>です。地中海に出るには、オスマン帝国が支配するボスポラス海峡・ダーダネルス海峡を通る必要がありました。</p>
+  <div class="why-box"><span class="label">❓ なぜイギリス・フランスはロシアの南下を阻止しようとしたのか？</span>ロシアが地中海に出てくると、インドへの航路やヨーロッパの貿易ルートが脅かされます。「強大なロシアが地中海を支配する前に止めなければ」という危機感がイギリス・フランスをオスマン帝国側につかせた理由です。</div>
+  <p>1853年、ロシアはオスマン帝国内のギリシア正教徒保護を名目に軍を動かし、<span class="blank person-pop" data-id="G">クリミア戦争<span class="pop-box"><span class="pop-name">クリミア戦争（1853〜1856年）</span><span class="pop-desc">ロシア対オスマン帝国・イギリス・フランス・サルデーニャの戦争。クリミア半島が主な戦場。ロシアが敗北し南下政策が阻まれました。近代的兵器を持つイギリス・フランスに旧式のロシア軍が歯が立ちませんでした。</span></span></span>が始まりました。ロシアはトルコ（オスマン帝国）と戦いましたが、イギリス・フランスが近代的な兵器を持ってオスマン帝国側で参戦し、ロシアは敗れました。</p>
+  <p>この戦争では、イギリスの看護師<span class="blank person-pop" data-id="H">ナイチンゲール<span class="pop-box"><span class="pop-name">ナイチンゲール（1820〜1910）</span><span class="pop-desc">イギリスの看護師。クリミア戦争の野戦病院で献身的に看護を行い、死亡率を大幅に下げることに成功しました。「ランプを持つ貴婦人」と呼ばれ、近代看護制度の確立者となりました。</span></span></span>が野戦病院で献身的に看護を行い、近代看護制度の確立者となりました。</p>
+  <p>1856年の<span class="blank person-pop" data-id="I">パリ条約<span class="pop-box"><span class="pop-name">パリ条約（1856年）</span><span class="pop-desc">クリミア戦争を終結させた条約。ロシアの南下政策は失敗に終わりました。ロシアはオスマン帝国の領土保全を認め、黒海の中立化を受け入れさせられました。</span></span></span>でロシアの南下政策は完全に失敗し、ロシアは大きな屈辱を味わいました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>クリミア戦争の敗北はロシアに「このままでは西欧列強に勝てない」という強烈な危機感を与えました。この敗北が、農奴解放令など後のロシア近代化改革の直接のきっかけとなります。</div>
+</div>
+
+<!-- ③ アレクサンドル2世の改革と農奴解放 -->
+<div class="section">
+  <span class="section-label label-reform">③ アレクサンドル2世の改革と農奴解放令（1861年）</span>
+  <h2>なぜロシアは農奴を解放しなければならなかったのか？</h2>
+  <p>クリミア戦争でイギリス・フランスに圧倒されたロシアは、「近代化に遅れた原因」を深く反省しました。皇帝<span class="blank person-pop" data-id="J">アレクサンドル2世<span class="pop-box"><span class="pop-name">アレクサンドル2世（在位1855〜1881）</span><span class="pop-desc">ロシア皇帝。クリミア戦争の敗北を受けて1861年に農奴解放令を発布しました。ロシアの近代化を推進しましたが、改革が不十分として急進派（ナロードニキ）に暗殺されました。</span></span></span>は1861年に<span class="blank" data-id="K">農奴解放令</span>を発布しました。</p>
+  <div class="why-box"><span class="label">❓ なぜ農奴制が近代化の妨げになっていたのか？</span>農奴とは「土地に縛り付けられた農民」で、人格的な自由も土地の所有権もありませんでした。農奴制のもとでは農民が工場労働者として都市に移動できず、産業が発展しません。また農奴は主人のために働くだけなので、生産性向上の意欲もわきません。近代工業国家を作るには、自由な労働者と消費者が必要だったのです。</div>
+  <p>農奴解放令によって農民は人格的な自由を得ました。しかし土地を得るには高額の「身代金」を分割払いしなければならず、多くの農民は自由になっても経済的には苦しいままでした。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>農奴解放により農民が自由に移動できるようになり、都市への人口流入と工場労働者の増加が始まりました。産業革命への道が開かれ、ロシアの資本主義的発展が始まりました。しかし改革が不十分として急進的な改革を求める「ナロードニキ（人民主義者）」運動が起き、アレクサンドル2世は1881年に暗殺されてしまいます。</div>
+</div>
+
+<!-- ④ 露土戦争とベルリン会議 -->
+<div class="section">
+  <span class="section-label label-russia">④ 露土戦争（1877〜78年）とベルリン会議</span>
+  <h2>なぜロシアはまたオスマン帝国と戦ったのか？</h2>
+  <p>クリミア戦争に敗れたロシアでしたが、南下政策を諦めてはいませんでした。1870年代、オスマン帝国支配下のバルカン半島でスラブ系民族（セルビア・ブルガリアなど）の独立運動が活発になりました。ロシアは「同じスラブ民族・ギリシア正教の兄弟を守れ」という「<span class="blank" data-id="L">パン＝スラブ主義</span>」を掲げ、これを口実に1877年<span class="blank" data-id="M">露土（ろと）戦争</span>を起こしてオスマン帝国と戦いました。</p>
+  <div class="why-box"><span class="label">❓「パン＝スラブ主義」は本当に民族愛だったのか？</span>スラブ民族の保護を叫ぶ「パン＝スラブ主義」は確かにロシア国内で盛んでしたが、ロシア政府にとっては地中海への出口を確保するための「都合のよい口実」でもありました。バルカン半島に親ロシア国家を作れば、黒海〜地中海ルートの確保に近づけます。</div>
+  <p>1878年、ロシアはオスマン帝国を破り有利な<span class="blank person-pop" data-id="N">サン＝ステファノ条約<span class="pop-box"><span class="pop-name">サン＝ステファノ条約（1878年）</span><span class="pop-desc">露土戦争後にロシアがオスマン帝国と結んだ条約。大ブルガリア（ロシアの保護国）の建設・ルーマニア・セルビア・モンテネグロの独立承認など、ロシアに極めて有利な内容でした。</span></span></span>を結び、大ブルガリアをロシアの保護国としました。しかしこれに驚いたイギリス・オーストリアが猛反発しました。</p>
+  <p>そこでドイツ首相<span class="blank person-pop" data-id="O">ビスマルク<span class="pop-box"><span class="pop-name">ビスマルク（1815〜1898）</span><span class="pop-desc">ドイツ帝国の首相。ベルリン会議を主催し「誠実な仲介人」として欧州各国の利害調整を行いました。ロシアの南下を阻止することでオーストリアとの同盟関係を保ちました。</span></span></span>が「誠実な仲介人」として1878年の<span class="blank" data-id="P">ベルリン会議</span>を主催しました。この会議でサン＝ステファノ条約は大幅に修正され、ロシアが保護国化しようとした大ブルガリアは縮小されました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>ロシアの南下政策はベルリン会議によってまたも挫折しました。この結果ロシアの不満はくすぶり続け、バルカン半島は「ヨーロッパの火薬庫」と呼ばれる不安定な地域となります。後の第一次世界大戦の遠因はここに始まります。一方、シベリア鉄道を建設して太平洋への進出を求めるようになり、日本との対立（日露戦争）へとつながっていきます。</div>
+  <div class="key-point">⭐ <strong>ロシア南下政策の流れ</strong>：クリミア戦争敗北(1856) → 農奴解放令(1861) → 露土戦争(1877〜78) → サン＝ステファノ条約 → ベルリン会議で修正 → 南下失敗・太平洋へ</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai13_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai13_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①スエズ運河：開通(1869)→ディズレーリが株購入(1875)→ウラービーの革命(1882)→イギリスが鎮圧・エジプト保護国化<br>
+      ②クリミア戦争(1853〜56)：ロシアの南下→英仏がオスマン側で参戦→ロシア敗北→パリ条約(1856)・ナイチンゲール活躍<br>
+      ③農奴解放令(1861)：アレクサンドル2世→近代化の起点→産業発展→ナロードニキ運動→皇帝暗殺(1881)<br>
+      ④露土戦争(1877〜78)→サン＝ステファノ条約→ベルリン会議(ビスマルク)→南下再び阻まれる
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "スエズ運河":"1869年にエジプトに開通した運河。地中海と紅海を結び、ヨーロッパ〜インド間の航路を大幅に短縮しました。イギリスのインド支配にとって不可欠な「命綱」でした。",
+  "ディズレーリ":"イギリスの保守党首相（1804〜1881）。1875年にロスチャイルド家から借金してスエズ運河株式を購入し、イギリスの支配権を確立しました。",
+  "ロスチャイルド":"ヨーロッパ最大の金融財閥。ディズレーリのスエズ運河株購入に巨額の資金を融資しました。",
+  "ウラービー＝パシャ":"エジプトの軍人・民族主義者（1841〜1911）。「エジプト人のためのエジプト」を掲げ1882年にクーデターを起こしましたがイギリス軍に鎮圧されました。",
+  "ウラービーの革命":"1882年にエジプトの軍人ウラービー＝パシャが起こしたクーデター。外国（イギリス・フランス）の内政干渉に反発した民族主義運動でしたが、イギリス軍に鎮圧されました。",
+  "イギリス":"19世紀に「世界の工場」として繁栄したヨーロッパ最大の帝国。インドを最重要植民地として支配し、スエズ運河を通じてアジアとの交易を支配しました。",
+  "クリミア戦争":"1853〜56年のロシア対オスマン帝国・イギリス・フランスの戦争。ロシアが敗北し南下政策が挫折しました。ナイチンゲールが看護師として活躍しました。",
+  "ナイチンゲール":"イギリスの看護師（1820〜1910）。クリミア戦争の野戦病院で献身的に看護し、近代看護制度の創始者となりました。「ランプを持つ貴婦人」と呼ばれます。",
+  "パリ条約":"1856年にクリミア戦争を終結させた条約。ロシアの南下政策が失敗に終わり、黒海の中立化が定められました。",
+  "アレクサンドル2世":"ロシア皇帝（在位1855〜1881）。クリミア戦争の敗北を受けて1861年に農奴解放令を発布し、ロシアの近代化を推進しました。",
+  "農奴解放令":"1861年にアレクサンドル2世が発布した法令。農民が土地に縛り付けられた「農奴」の身分から解放され、人格的自由を得ました。ロシア近代化の出発点です。",
+  "パン＝スラブ主義":"スラブ民族の連帯・統一を主張する思想。ロシアはこれを掲げてバルカン半島のスラブ系民族の独立運動を支援しました。",
+  "露土（ろと）戦争":"1877〜78年のロシアとオスマン帝国の戦争。ロシアが勝利しサン＝ステファノ条約を結びましたが、ベルリン会議で成果を大幅に縮小されました。",
+  "サン＝ステファノ条約":"1878年の露土戦争後にロシアがオスマン帝国と結んだ条約。ロシアに極めて有利な内容でしたが、英墺の反発を受けてベルリン会議で修正されました。",
+  "ビスマルク":"ドイツ帝国の首相（1815〜1898）。ベルリン会議を主催し「誠実な仲介人」としてヨーロッパ諸国の利害調整を行いました。",
+  "ベルリン会議":"1878年にドイツのビスマルクが主催した国際会議。サン＝ステファノ条約を修正し、ロシアの南下政策を再び阻みました。",
+};
+
+const answers={
+  "A":"スエズ運河","B":"ディズレーリ","C":"ロスチャイルド",
+  "D":"ウラービー＝パシャ","E":"ウラービーの革命","F":"イギリス",
+  "G":"クリミア戦争","H":"ナイチンゲール","I":"パリ条約",
+  "J":"アレクサンドル2世","K":"農奴解放令",
+  "L":"パン＝スラブ主義","M":"露土（ろと）戦争","N":"サン＝ステファノ条約","O":"ビスマルク","P":"ベルリン会議"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai13']=p['kindai13']||{};p['kindai13'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

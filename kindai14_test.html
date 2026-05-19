@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：19世紀のアジア①</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .q-num{font-size:12px;color:#7a2d00;font-weight:bold;margin-bottom:8px}
+  .q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+  .choices{display:flex;flex-direction:column;gap:10px}
+  .choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+  .choice:hover{border-color:#7a2d00;background:#fff8f0}
+  .choice.selected{border-color:#7a2d00;background:#ffd0a0;color:#4a1a00;font-weight:bold}
+  .choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+  .choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+  .choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+  .footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#7a2d00;color:#fff;box-shadow:0 3px 0 #4a1a00}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  #result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+  .result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+  .result-score{font-size:72px;font-weight:bold;margin:10px 0}
+  .result-score.pass{color:#7a2d00}.result-score.fail{color:#e67e22}
+  .result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+  .result-detail{font-size:15px;color:#888;margin-bottom:30px}
+  .confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+  @keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑭ 19世紀のアジア①　インド・オスマン・エジプト・イラン</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai14.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai14_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <a class="btn btn-secondary" href="kindai14_quiz.html">✏️ 確認問題へ</a>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID='kindai14',PASS=70;
+const questions=[
+  {q:'1757年にイギリスとフランスがインドのベンガル地方で衝突した戦いを何といいますか？',choices:['パニーパットの戦い','プラッシーの戦い','セポイの乱','コンウォリスの戦い'],ans:1},
+  {q:'シパーヒーの反乱（1857〜58年）が起きた直接のきっかけは何ですか？',choices:['重い税の取り立て','インドの綿工業の破壊','新式銃の弾薬包に牛と豚の脂が使われた','インド人への参政権否定'],ans:2},
+  {q:'シパーヒーの反乱鎮圧後に滅亡したインドの王朝は何ですか？',choices:['サファヴィー朝','マラータ同盟','ムガル帝国','デリー・スルタン朝'],ans:2},
+  {q:'1877年に成立した、ヴィクトリア女王がインド皇帝を兼ねた植民地国家を何といいますか？',choices:['イギリス領インド','イギリス領インド帝国','東インド会社帝国','イギリス＝インド連邦'],ans:1},
+  {q:'1876年にオスマン帝国でアジア初の近代憲法を制定した宰相は誰ですか？',choices:['アブデュルハミト2世','タンジマートパシャ','ミドハト＝パシャ','スレイマン1世'],ans:2},
+  {q:'ミドハト憲法が停止された理由として正しいのはどれですか？',choices:['国民が反対したから','露土戦争を戦うため皇帝が停止した','イギリスが停止を要求したから','財政難のため'],ans:1},
+  {q:'エジプトのムハンマド＝アリーが近代化を進めた後、1869年に開通した運河は何ですか？',choices:['パナマ運河','キール運河','スエズ運河','コリント運河'],ans:2},
+  {q:'「エジプト人のためのエジプト」を掲げて1881年に反乱を起こしたエジプトの軍将校は誰ですか？',choices:['ムハンマド＝アリー','ナセル','ウラービー＝パシャ','サダト'],ans:2},
+  {q:'1796年に建国されたイランの王朝で、ロシアとの戦争に敗れ不平等条約を結ばされたのはどれですか？',choices:['サファヴィー朝','カジャール朝','ガージャール朝','ムガル朝'],ans:1},
+  {q:'アフガーニーが唱えた、宗派を超えたイスラーム教徒の団結を求める思想を何といいますか？',choices:['パン＝スラブ主義','パン＝ゲルマン主義','パン＝イスラーム主義','ナショナリズム'],ans:2},
+  {q:'1891年にアフガーニーが指導した、イギリス商人へのタバコ権利付与に反対した運動を何といいますか？',choices:['タバコ＝ボイコット運動','アヘン戦争','塩の行進','三一独立運動'],ans:0},
+  {q:'イギリス・フランスなどの列強がアジアの問題を何と呼び、植民地獲得のための出兵を正当化しましたか？',choices:['西方問題','アジア問題','東方問題','帝国主義問題'],ans:2},
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById('questions-area');area.innerHTML='';questions.forEach((q,qi)=>{const card=document.createElement('div');card.className='card';card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${['①','②','③','④'][ci]}</span>${c}</div>`).join('')}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle('selected',i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add('show-correct');if(ua===ci&&ci!==q.ans)el.classList.add('wrong');if(ua===ci&&ci===q.ans){el.classList.add('correct');correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;p[UNIT_ID].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}document.getElementById('quiz-screen').style.display='none';const rs=document.getElementById('result-screen');rs.style.display='block';const se=document.getElementById('result-score');se.textContent=score+'点';se.className='result-score '+(pass?'pass':'fail');document.getElementById('result-msg').textContent=pass?'🎉 合格！':'😅 おしい！';document.getElementById('result-detail').textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById('result-screen').style.display='none';document.getElementById('quiz-screen').style.display='block';renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=['#f43f5e','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899'];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+'s';el.style.width=(6+Math.random()*8)+'px';el.style.height=(6+Math.random()*8)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

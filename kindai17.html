@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：中国の開港②太平天国の乱・洋務運動</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #5a3a00;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #5a3a00;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #5a3a00;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-taihe{background:#5a3a00}
+  .label-reform{background:#1a4a3a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #5a3a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#5a3a00;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#fff8e0;border-left:5px solid #5a3a00;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#5a3a00}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .compare-box{background:#f8f0ff;border-left:5px solid #6a1a8a;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .compare-box .label{font-weight:bold;color:#6a1a8a;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#5a3a00;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #3a2200}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #5a3a00;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #5a3a00;background-color:#fff8e0;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #5a3a00;cursor:pointer;color:#3a2200;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #5a3a00;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#3a2200;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#5a3a00}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🐉 中国の開港②　太平天国の乱・洋務運動</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 太平天国の乱 -->
+<div class="section">
+  <span class="section-label label-taihe">① 太平天国の乱（1851〜1864年）</span>
+  <h2>なぜこれほど大規模な反乱が起きたのか？</h2>
+  <p>アヘン戦争・アロー戦争と続く敗北で清政府への不満は高まっていました。さらに戦争の賠償金や軍事費を賄うための増税が重なり、物価も上昇し、農民たちの生活は苦しくなる一方でした。「清（満州人の政府）は我々漢民族を守ってくれない」という怒りが社会に充満していました。</p>
+  <div class="why-box"><span class="label">❓ なぜキリスト教が反乱の旗印になったのか？</span><span class="blank person-pop" data-id="A">洪秀全<span class="pop-box"><span class="pop-name">洪秀全（1814〜1864）</span><span class="pop-desc">太平天国の創設者・指導者。科挙に失敗した後にキリスト教に接触し、自分をイエス・キリストの弟と称しました。平等思想と「滅満興漢」を掲げて農民層を組織し、14年間にわたる大反乱を起こしました。</span></span></span>はキリスト教の影響を受けた宗教結社「拝上帝会」を組織しました。「神の前では人は平等だ」という考えは、科挙に失敗した知識人や重税に苦しむ農民の心に深く刺さりました。</div>
+  <p>1851年、洪秀全は武装蜂起し「<span class="blank" data-id="B">太平天国</span>」の国号で独立国家を樹立しました。「<strong>滅満興漢</strong>（満州人の清を倒し、漢民族の政府を作る）」を掲げ、以下の革命的な政策を打ち出しました。</p>
+  <ul style="margin:0 0 12px 28px;line-height:2.2">
+    <li><strong>男女平等</strong>を実現する</li>
+    <li>土地は公有とし、地主の土地を奪って農民に平等に分配する</li>
+    <li>厳しい軍の規律を保ち、農民から支持を得る</li>
+  </ul>
+  <div class="why-box"><span class="label">📌 なぜ農民はこれほど太平天国を支持したのか？</span>当時の農民は土地を持てず、地主に搾取される「小作農」がほとんどでした。「土地を農民に与える」という訴えは、土地を渇望する数億の農民の心を強く動かしました。最盛期には数千万人が太平天国の支配下に入りました。</div>
+  <h2>なぜ太平天国は最終的に敗れたのか？</h2>
+  <p>しかし指導者の洪秀全が1864年に亡くなると、内部分裂が起きました。同時に<span class="blank" data-id="C">郷勇（きょうゆう）</span>と呼ばれる大地主・清政府の官僚だった<span class="blank person-pop" data-id="D">曽国藩<span class="pop-box"><span class="pop-name">曽国藩（1811〜1872）</span><span class="pop-desc">清の官僚・軍人。大地主層を率いた義勇軍「湘軍」を組織し、太平天国の乱の鎮圧に中心的な役割を果たしました。洋務運動の推進者でもあります。</span></span></span>と<span class="blank person-pop" data-id="E">李鴻章<span class="pop-box"><span class="pop-name">李鴻章（1823〜1901）</span><span class="pop-desc">清の官僚・軍人。曽国藩の部下として太平天国の乱の鎮圧に活躍。後に洋務運動を推進しました。日清戦争後の下関条約にも清の代表として調印しました。</span></span></span>の義勇軍が、イギリス・フランス軍と協力して太平天国の乱を鎮圧しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>太平天国の乱は約14年間続き、数千万人が犠牲になったといわれます。清政府は生き残りましたが、この乱の鎮圧で地方の大地主・軍人（曽国藩・李鴻章ら）が大きな実権を持つようになりました。「中央政府の力が弱まり、地方の実力者が台頭する」という構造の変化が、後の清の滅亡の遠因となります。</div>
+</div>
+
+<!-- ② 洋務運動 -->
+<div class="section">
+  <span class="section-label label-reform">② 洋務運動（1860年代〜）</span>
+  <h2>なぜ洋務運動は「不十分な改革」だったのか？</h2>
+  <p>太平天国の乱を鎮圧した曽国藩・李鴻章らは、「西洋の軍事・技術力なしに清は生き残れない」と痛感しました。そこで彼らは近代的な軍隊・工場・造船所を建設する<span class="blank" data-id="F">洋務運動</span>を推進しました。</p>
+  <div class="why-box"><span class="label">❓「中体西用（ちゅうたいせいよう）」とはどういう意味か？</span>洋務運動の基本方針が「<span class="blank" data-id="G">中体西用</span>」という考え方です。「中（中国の）体（根本・政治体制）・西（西洋の）用（技術だけ）を用いる」という意味で、つまり「政治の仕組みや社会の体制は変えずに、西洋の便利な技術だけをつまみ食いする」という発想です。</div>
+  <p>具体的には、近代的な軍艦・大砲の製造、鉄道・電信の整備、工場の建設などが行われました。しかし科挙制度・皇帝専制・官僚制度といった政治の根本は何一つ変えませんでした。</p>
+  <div class="compare-box"><span class="label">🔄 日本の明治維新との比較</span>同じ時期、日本では「政治体制まで根本から変える」明治維新が行われました。「廃藩置県で封建制度を廃止」「四民平等」「憲法制定・議会設立」—日本は西洋の「技術」だけでなく「制度・政治体制」まで取り込もうとしました。洋務運動は「技術の近代化」にとどまり、「政治・社会の近代化」を避けたため、最終的に限界を迎えることになります。</div>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>洋務運動によって清の軍事力はある程度強化されましたが、不十分でした。1894〜95年の日清戦争で、近代化が進んだ日本に完敗したことで洋務運動の限界が明らかになりました。「技術だけでなく制度まで変えなければならない」という認識が高まり、より根本的な改革を求める「変法自強運動」へとつながっていきます。</div>
+  <div class="key-point">⭐ <strong>洋務運動のポイント</strong>：技術は西洋化・政治体制は旧来のまま（中体西用）→ 日清戦争敗北で限界露呈 → 根本的改革の必要性へ</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai17_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai17_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①太平天国の乱(1851〜64)：アヘン戦争後の不満→洪秀全が拝上帝会→滅満興漢・男女平等・土地公有→農民支持→洪秀全死後に内部分裂→曽国藩・李鴻章・英仏軍が鎮圧<br>
+      ②洋務運動(1860年代〜)：曽国藩・李鴻章→近代的軍事・工場建設→中体西用（技術だけ・政治体制は変えず）→日清戦争敗北で限界露呈
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "洪秀全":"太平天国の創設者（1814〜1864）。科挙に失敗した後キリスト教に接触し、拝上帝会を組織しました。「滅満興漢」「男女平等」「土地公有」を掲げて大反乱を起こしました。",
+  "太平天国":"洪秀全が1851年に樹立した独立国家。「滅満興漢」「男女平等」「土地公有」を掲げ、最盛期には数千万人が支配下に入りました。",
+  "郷勇（きょうゆう）":"太平天国の乱を鎮圧した大地主・清官僚による義勇軍。曽国藩・李鴻章らが率いました。",
+  "曽国藩":"清の官僚・軍人（1811〜1872）。湘軍を組織して太平天国の乱を鎮圧しました。洋務運動の推進者でもあります。",
+  "李鴻章":"清の官僚・軍人（1823〜1901）。太平天国の乱鎮圧と洋務運動で活躍しました。日清戦争後の下関条約にも調印しました。",
+  "洋務運動":"1860年代から曽国藩・李鴻章らが推進した近代化政策。軍艦・工場・鉄道などを整備しましたが「中体西用」の考えで政治体制は変えませんでした。",
+  "中体西用":"洋務運動の基本方針。「中国の政治体制（根本）は守り、西洋の技術だけを取り入れる」という考え方。日本の明治維新のような根本的な政治改革は行いませんでした。",
+};
+
+const answers={
+  "A":"洪秀全","B":"太平天国","C":"郷勇（きょうゆう）","D":"曽国藩","E":"李鴻章",
+  "F":"洋務運動","G":"中体西用"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai17']=p['kindai17']||{};p['kindai17'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

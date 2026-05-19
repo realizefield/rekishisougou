@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：第二次世界大戦・太平洋戦争</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #5a1a00;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #5a1a00;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #5a1a00;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#5a1a00}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #5a1a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#5a1a00;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #5a1a00;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#5a1a00}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#5a1a00;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #3a0e00}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #5a1a00;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #5a1a00;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #5a1a00;cursor:pointer;color:#3a0e00;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #5a1a00;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#3a0e00;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#5a1a00}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>💣 第二次世界大戦・太平洋戦争</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#5a1a00">① 第二次世界大戦の勃発（1939年）</span>
+  <h2>なぜ宥和政策はヒトラーの侵略を止められなかったのか？</h2>
+  <p>ヒトラーはヴェルサイユ条約を破棄して軍備を拡張し、1938年にオーストリアを併合しました（<span class="blank" data-id="A">アンシュルス</span>）。イギリス首相<span class="blank person-pop" data-id="B">チェンバレン<span class="pop-box"><span class="pop-name">チェンバレン（1869〜1940）</span><span class="pop-desc">イギリス首相。ミュンヘン会談でヒトラーの要求を認める宥和政策をとりましたが、ドイツは翌年チェコ全土を占領し失敗に終わりました。「平和を手に入れた」と帰国しましたが歴史的な失敗例として語り継がれます。</span></span></span>は1938年の<span class="blank" data-id="C">ミュンヘン会談</span>でヒトラーの要求を認める<span class="blank" data-id="D">宥和政策</span>をとりましたが、ドイツはチェコ全土を占領しました。</p>
+  <p>1939年8月、ドイツとソ連は電撃的に<span class="blank" data-id="E">独ソ不可侵条約</span>を締結しました。9月1日、ドイツが<span class="blank" data-id="F">ポーランド</span>に侵攻し<span class="blank" data-id="G">第二次世界大戦</span>が始まりました。ドイツは電撃戦で1940年にフランスも占領しました。フランスには親独の<span class="blank" data-id="H">ヴィシー政府</span>が成立しました。イギリス首相<span class="blank person-pop" data-id="I">チャーチル<span class="pop-box"><span class="pop-name">チャーチル（1874〜1965）</span><span class="pop-desc">イギリス首相。「我々は決して降伏しない」と演説し国民を鼓舞しました。ルーズヴェルト・スターリンとともに連合国を指導しました。</span></span></span>は徹底抗戦を宣言しました。</p>
+  <p>1941年6月、ヒトラーは独ソ不可侵条約を破棄してソ連に侵攻（<span class="blank" data-id="J">バルバロッサ作戦</span>）しましたが、1942〜43年の<span class="blank" data-id="K">スターリングラードの戦い</span>で大敗し劣勢となりました。ナチスは占領地でユダヤ人を強制収容所で組織的に殺害する<span class="blank" data-id="L">ホロコースト</span>を実行し、約600万人が犠牲になりました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#5a1a00">② 太平洋戦争（1941〜1945年）</span>
+  <h2>なぜ日本はアメリカという大国と戦争したのか？</h2>
+  <p>日本は東南アジアへの進出を強め、アメリカは石油・鉄鋼の禁輸などの経済制裁で対抗しました。アメリカの要求（<span class="blank" data-id="M">ハル・ノート</span>）を受け入れられない日本は開戦を決意し、1941年12月8日、ハワイの<span class="blank" data-id="N">真珠湾</span>を奇襲攻撃しました。<span class="blank" data-id="O">太平洋戦争</span>が始まりました。</p>
+  <p>緒戦では日本が東南アジア・太平洋を急速に占領しましたが、1942年6月の<span class="blank" data-id="P">ミッドウェー海戦</span>で主力空母4隻を失い劣勢に転じました。1945年3月の東京大空襲・4〜6月の<span class="blank" data-id="Q">沖縄戦</span>（約20万人犠牲）で敗色が濃くなりました。</p>
+  <p>7月の<span class="blank" data-id="R">ポツダム宣言</span>（無条件降伏要求）を日本が黙殺すると、8月6日に<span class="blank" data-id="S">広島</span>、8月9日に<span class="blank" data-id="T">長崎</span>に<span class="blank" data-id="U">原子爆弾</span>が投下されました。8月8日にはソ連が宣戦布告し満洲に侵攻しました。8月15日、<span class="blank" data-id="V">玉音放送</span>で天皇が降伏を国民に伝え、9月2日に<span class="blank" data-id="W">降伏文書</span>に調印して第二次世界大戦が終結しました。</p>
+  <div class="why-box"><span class="label">📌 戦時中の連合国外交</span><span class="blank" data-id="X">大西洋憲章</span>（1941年・米英）→<span class="blank" data-id="Y">カイロ宣言</span>（1943年・米英中）→<span class="blank" data-id="Z">ヤルタ協定</span>（1945年・米英ソ三巨頭：ソ連の対日参戦を秘密合意）</div>
+  <div class="key-point">⭐ <strong>流れ</strong>：独ソ不可侵条約(1939.8)→ポーランド侵攻・第二次世界大戦(1939.9)→フランス降伏→バルバロッサ作戦(1941.6)→スターリングラードの敗北(1942〜43)→真珠湾攻撃・太平洋戦争(1941.12)→ミッドウェー(1942.6)→広島・長崎・ソ連参戦→玉音放送・終戦(1945.8)</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai25_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai25_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①アンシュルス(1938)→ミュンヘン会談・宥和政策（チェンバレン）→独ソ不可侵条約(1939.8)→ポーランド侵攻・第二次世界大戦勃発(1939.9)→フランス降伏・ヴィシー政府→チャーチル徹底抗戦→バルバロッサ作戦(1941.6)→スターリングラードの敗北(1942〜43)→ホロコースト<br>②ハル・ノート→真珠湾奇襲・太平洋戦争(1941.12.8)→ミッドウェー海戦大敗(1942.6)→沖縄戦(1945.4〜6)→ポツダム宣言黙殺→広島(8.6)・ソ連参戦(8.8)・長崎(8.9)→玉音放送(8.15)・降伏文書調印(9.2)<br>③連合国外交：大西洋憲章→カイロ宣言→ヤルタ協定</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={
+  'アンシュルス':'1938年のドイツによるオーストリア併合。ヴェルサイユ条約で禁止されていましたがヒトラーは強行しました。',
+  'チェンバレン':'イギリス首相（1869〜1940）。ミュンヘン会談でヒトラーに譲歩する宥和政策をとり失敗しました。',
+  'ミュンヘン会談':'1938年にドイツ・英・仏・伊が参加した会議。英仏がヒトラーの要求を認める宥和政策をとりました。',
+  '宥和政策':'強国の要求を受け入れて戦争を避けようとする外交政策。チェンバレンが採用しましたが失敗しました。',
+  '独ソ不可侵条約':'1939年8月にドイツとソ連が締結した不可侵条約。世界を驚かせましたが、1941年にドイツが破棄しました。',
+  'ポーランド':'1939年9月1日にドイツが侵攻した国。これをきっかけに英仏がドイツに宣戦布告し第二次世界大戦が始まりました。',
+  '第二次世界大戦':'1939〜1945年の世界大戦。枢軸国（独・伊・日）vs連合国（英・仏・ソ・米など）。',
+  'ヴィシー政府':'1940年のフランス降伏後に成立した親ドイツの政府。南部フランスを支配しました。',
+  'チャーチル':'イギリス首相（1874〜1965）。「我々は決して降伏しない」と演説し連合国を指導しました。',
+  'バルバロッサ作戦':'1941年6月にドイツがソ連に侵攻した大作戦。独ソ不可侵条約を破棄して電撃侵攻しましたが失敗しました。',
+  'スターリングラードの戦い':'1942〜43年の独ソ決戦。ドイツ軍が壊滅的打撃を受け東部戦線の転換点となりました。',
+  'ホロコースト':'ナチス・ドイツによるユダヤ人等の組織的大量虐殺。アウシュヴィッツ等の絶滅収容所で約600万人が殺されました。',
+  'ハル・ノート':'1941年11月にアメリカが日本に提示した要求書。中国・インドシナからの完全撤退を求める日本には受け入れがたい内容でした。',
+  '真珠湾':'ハワイにあるアメリカ太平洋艦隊の基地。1941年12月8日に日本海軍が奇襲攻撃しました。',
+  '太平洋戦争':'1941〜1945年の日本vsアメリカを中心とする戦争。1941年12月8日の真珠湾攻撃で始まりました。',
+  'ミッドウェー海戦':'1942年6月の日米決戦。日本海軍が主力空母4隻を失う大敗を喫し太平洋戦争の転換点となりました。',
+  '沖縄戦':'1945年4〜6月の地上戦。日米合わせて約20万人が犠牲になり民間人も多数巻き込まれました。',
+  'ポツダム宣言':'1945年7月に米英中が日本に無条件降伏を求めた宣言。日本が黙殺したため原爆投下につながりました。',
+  '広島':'1945年8月6日に世界初の原子爆弾（ウラン型）が投下された都市。死者は約14万人とされます。',
+  '長崎':'1945年8月9日に原子爆弾（プルトニウム型）が投下された都市。死者は約7万人とされます。',
+  '原子爆弾':'核分裂反応を利用した大量破壊兵器。1945年8月に広島・長崎に投下され甚大な被害をもたらしました。',
+  '玉音放送':'1945年8月15日の昭和天皇によるラジオ放送。ポツダム宣言受諾（降伏）を国民に伝えました。',
+  '降伏文書':'1945年9月2日に東京湾上の戦艦ミズーリ号上で調印された文書。第二次世界大戦の正式な終結を意味します。',
+  '大西洋憲章':'1941年8月に米大統領ルーズヴェルトと英首相チャーチルが発表した宣言。領土不拡大・民族自決・国際平和機構設立を唱えました。',
+  'カイロ宣言':'1943年11月に米英中（蒋介石）が発表した宣言。日本の植民地返還（朝鮮独立・満洲・台湾の中国返還）を決定しました。',
+  'ヤルタ協定':'1945年2月に米英ソ三巨頭（ルーズヴェルト・チャーチル・スターリン）が結んだ協定。ドイツの戦後処理・国連設立・ソ連の対日参戦（秘密）を決定しました。'
+};
+const answers={
+  'A':'アンシュルス',
+  'B':'チェンバレン',
+  'C':'ミュンヘン会談',
+  'D':'宥和政策',
+  'E':'独ソ不可侵条約',
+  'F':'ポーランド',
+  'G':'第二次世界大戦',
+  'H':'ヴィシー政府',
+  'I':'チャーチル',
+  'J':'バルバロッサ作戦',
+  'K':'スターリングラードの戦い',
+  'L':'ホロコースト',
+  'M':'ハル・ノート',
+  'N':'真珠湾',
+  'O':'太平洋戦争',
+  'P':'ミッドウェー海戦',
+  'Q':'沖縄戦',
+  'R':'ポツダム宣言',
+  'S':'広島',
+  'T':'長崎',
+  'U':'原子爆弾',
+  'V':'玉音放送',
+  'W':'降伏文書',
+  'X':'大西洋憲章',
+  'Y':'カイロ宣言',
+  'Z':'ヤルタ協定'
+};
+document.querySelectorAll(".person-pop").forEach(el=>{el.addEventListener("click",e=>{e.stopPropagation();const a=el.classList.contains("active");document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));if(!a)el.classList.add("active");});});
+document.addEventListener("click",()=>{document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById("word-bank");bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement("div");chip.className="word-chip";const label=document.createElement("span");label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement("div");pop.className="chip-pop";pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener("click",e=>{e.stopPropagation();if(chip.classList.contains("used"))return;if(chip===selectedChip){chip.classList.remove("selected-chip");selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove("selected-chip");selectedChip=chip;chip.classList.add("selected-chip");chip.classList.remove("tip-active");return;}if(tip&&!chip.classList.contains("tip-active")){document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));chip.classList.add("tip-active");}else{chip.classList.remove("tip-active");document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("selected-chip"));selectedChip=chip;chip.classList.add("selected-chip");}}); bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains("person-pop")){const c=b.cloneNode(true);const p=c.querySelector(".pop-box");if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector("span")?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll(".blank").forEach(b=>{clearBlankText(b);b.classList.remove("correct");});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById("timer-display").textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll(".blank").forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===old)c.classList.remove("used");});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add("used");selectedChip.classList.remove("selected-chip");selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===txt)c.classList.remove("used");});clearBlankText(blank);}}}});
+function checkAnswers(){let ok=true;document.querySelectorAll(".blank").forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add("correct");else{ok=false;b.classList.remove("correct");}});if(ok){clearInterval(timerId);document.getElementById("next-btn").disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById("timer-display").textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById("explain-box");box.style.display=(box.style.display==="block")?"none":"block";}
+(function(){try{var p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p["kindai25"]=p["kindai25"]||{};p["kindai25"].studyDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

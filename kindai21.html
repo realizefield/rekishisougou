@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：帝国主義・韓国併合・辛亥革命</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a4a3a;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a4a3a;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a4a3a;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#1a4a3a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a4a3a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a3a;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#efffea;border-left:5px solid #1a4a3a;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a4a3a}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a4a3a;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d2d22}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a4a3a;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a4a3a;background-color:#efffea;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a4a3a;cursor:pointer;color:#0d2d22;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a4a3a;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d2d22;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a4a3a}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🌏 帝国主義・韓国併合・辛亥革命</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label">① 列強の中国進出・義和団戦争・変法自強運動</span>
+  <h2>なぜ清は列強に次々と租借地を奪われたのか？</h2>
+  <p>日清戦争での敗北で弱体化した清に、イギリス・フランス・ドイツ・ロシアが租借地を求めました。出遅れたアメリカは1899年、国務長官<span class="blank person-pop" data-id="A">ジョン＝ヘイ<span class="pop-box"><span class="pop-name">ジョン＝ヘイ（1838〜1905）</span><span class="pop-desc">アメリカの国務長官。1899年に門戸開放宣言を行い、清への列強の参入機会均等を求めました。アメリカが帝国主義の舞台に参加したことを世界に示しました。</span></span></span>が<span class="blank" data-id="B">門戸開放宣言</span>を行い清への参入を求めました。清は半植民地化しました。</p>
+  <p>清の官僚<span class="blank person-pop" data-id="C">康有為<span class="pop-box"><span class="pop-name">康有為（1858〜1927）</span><span class="pop-desc">清の学者・官僚。日本の明治維新を手本に立憲君主制への移行を目指す変法自強運動を推進しました。しかし西太后のクーデター（戊戌の政変）で日本に亡命しました。</span></span></span>は光緒帝を動かして<span class="blank" data-id="D">変法自強運動</span>を推進しましたが、実権を握る<span class="blank person-pop" data-id="E">西太后<span class="pop-box"><span class="pop-name">西太后（1835〜1908）</span><span class="pop-desc">清の実権を握った皇太后。「東洋の魔女」ともいわれました。変法自強運動を潰す戊戌の政変を起こしましたが、義和団戦争後は自ら改革（光緒新政）を推進しました。</span></span></span>が軍人<span class="blank person-pop" data-id="F">袁世凱<span class="pop-box"><span class="pop-name">袁世凱（1859〜1916）</span><span class="pop-desc">清の軍人・政治家。戊戌の政変で西太后に協力し、辛亥革命後に孫文から実権を奪いました。皇帝になろうとしましたが失敗し、1916年に病死しました。</span></span></span>とともに<span class="blank" data-id="G">戊戌の政変</span>を起こして潰しました。</p>
+  <p>1899年、「扶清滅洋」をスローガンにした<span class="blank" data-id="H">義和団戦争</span>が起きましたが8か国連合軍に鎮圧され、1901年の<span class="blank person-pop" data-id="I">北京議定書<span class="pop-box"><span class="pop-name">北京議定書（1901年）</span><span class="pop-desc">義和団戦争後に清と列強が締結した条約。清は巨額の賠償金支払いと北京への列強軍駐屯を認めました。これにより清は完全に列強の半植民地となりました。</span></span></span>で清は巨額の賠償金支払いを認めました。義和団戦争後も<span class="person-pop">ロシア<span class="pop-box"><span class="pop-name">ロシアの満洲占領</span><span class="pop-desc">義和団戦争を口実に満洲に軍を駐留し続けたロシアへの対抗が、日英同盟・日露戦争の大きな原因となりました。</span></span></span>は満洲に軍を駐留し続けました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label">② 日本の韓国併合</span>
+  <h2>なぜ韓国は日本の植民地となったのか？</h2>
+  <p>ポーツマス条約締結後、日本は1905年に<span class="blank person-pop" data-id="J">第2次日韓協約<span class="pop-box"><span class="pop-name">第2次日韓協約（1905年）</span><span class="pop-desc">ポーツマス条約後に締結された日韓条約。韓国の外交権を日本が奪い保護国化しました。韓国が自ら外交を行う権利を完全に失った条約です。</span></span></span>を結んで韓国の外交権を奪い保護国化しました。漢城（現ソウル）に<span class="blank person-pop" data-id="K">統監府<span class="pop-box"><span class="pop-name">統監府（1906年設置）</span><span class="pop-desc">漢城（現ソウル）に設置された韓国支配機関。初代統監には伊藤博文が就任しました。1910年の韓国併合後は朝鮮総督府に改組されました。</span></span></span>を置き、初代統監に<span class="blank person-pop" data-id="L">伊藤博文<span class="pop-box"><span class="pop-name">伊藤博文（1841〜1909）</span><span class="pop-desc">初代統監として韓国の内政・外交を支配しました。1909年に満洲のハルビン駅で安重根に暗殺されました。</span></span></span>が就任しました。</p>
+  <p>1907年、韓国の<span class="blank person-pop" data-id="M">高宗<span class="pop-box"><span class="pop-name">高宗（在位1863〜1907）</span><span class="pop-desc">朝鮮・大韓帝国の国王。1907年のハーグ密使事件を理由に日本によって退位させられました。</span></span></span>はハーグの万国平和会議に密使を派遣して日本の侵略を訴えましたが黙殺されました（<span class="blank person-pop" data-id="N">ハーグ密使事件<span class="pop-box"><span class="pop-name">ハーグ密使事件（1907年）</span><span class="pop-desc">韓国の高宗がオランダのハーグで開かれた万国平和会議に密使を派遣した事件。韓国に外交権がないため会議への参加を拒否されました。この件を口実に日本は高宗を退位させました。</span></span></span>）。1909年、民族主義者の<span class="blank person-pop" data-id="O">安重根<span class="pop-box"><span class="pop-name">安重根（1879〜1910）</span><span class="pop-desc">朝鮮の民族主義者・独立運動家。1909年に満洲のハルビン駅で伊藤博文を銃撃・暗殺しました。中国・韓国では英雄として讃えられています。</span></span></span>により<span class="person-pop">伊藤博文<span class="pop-box"><span class="pop-name">伊藤博文の暗殺（1909年）</span><span class="pop-desc">ハルビン駅で安重根に暗殺されました。この事件が韓国併合を加速させたともいわれています。</span></span></span>が暗殺されました。1910年に<span class="blank person-pop" data-id="P">韓国併合条約<span class="pop-box"><span class="pop-name">韓国併合条約（1910年）</span><span class="pop-desc">日韓合併を定めた条約。韓国は日本の植民地「朝鮮」となり35年間日本の統治下に置かれました。土地調査事業・創氏改名・日本語教育の強制など様々な支配政策が行われました。</span></span></span>が締結され、<span class="blank person-pop" data-id="Q">朝鮮総督府<span class="pop-box"><span class="pop-name">朝鮮総督府（1910年設置）</span><span class="pop-desc">韓国併合後に設置された朝鮮統治機関。初代総督は寺内正毅。軍人が総督を務め武断政治（軍事力による強制支配）を行いました。</span></span></span>が置かれました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label">③ 辛亥革命・中華民国の成立</span>
+  <h2>なぜ300年の清王朝が崩壊したのか？</h2>
+  <p>義和団戦争後、西太后は<span class="blank" data-id="R">光緒新政</span>として科挙廃止・新軍設置などの改革を実施しましたが、増税への不満から革命の動きが広がりました。医師で政治家の<span class="blank person-pop" data-id="S">孫文<span class="pop-box"><span class="pop-name">孫文（1866〜1925）</span><span class="pop-desc">中国の革命家・政治家。「中国国父」と呼ばれます。1905年に東京で中国同盟会を組織し三民主義を唱えました。辛亥革命後に中華民国の臨時大総統となりましたが袁世凱に実権を奪われました。</span></span></span>は東京で<span class="blank person-pop" data-id="T">中国同盟会<span class="pop-box"><span class="pop-name">中国同盟会（1905年結成）</span><span class="pop-desc">孫文が東京で組織した革命団体。中国各地の革命派を統合しました。三民主義を掲げ辛亥革命を主導しました。</span></span></span>を組織し、民族・民権・民生という<span class="blank person-pop" data-id="U">三民主義<span class="pop-box"><span class="pop-name">三民主義</span><span class="pop-desc">孫文が唱えた革命の理念。①民族主義（満州人王朝の打倒・民族の独立）②民権主義（人民の権利・民主主義の実現）③民生主義（民衆の生活安定・土地問題の解決）の3つからなります。</span></span></span>を唱えました。</p>
+  <p>1911年、清が民間鉄道を国有化しようとしたことへの反発から<span class="blank" data-id="V">辛亥革命</span>が起きました。1912年、孫文を臨時大総統とする<span class="blank" data-id="W">中華民国</span>の建国が宣言されました。しかし軍の実権を握る<span class="blank person-pop" data-id="X">袁世凱<span class="pop-box"><span class="pop-name">袁世凱（1859〜1916）</span><span class="pop-desc">辛亥革命で孫文から臨時大総統の地位を奪いました。清朝最後の皇帝・宣統帝を退位させ中華民国の実権を握りましたが、帝政復活の試みは失敗しました。</span></span></span>に臨時大総統の地位を譲り、清の最後の皇帝<span class="blank person-pop" data-id="Y">宣統帝（溥儀）<span class="pop-box"><span class="pop-name">宣統帝・溥儀（在位1908〜1912）</span><span class="pop-desc">清朝最後の皇帝。3歳で即位しましたが辛亥革命後に袁世凱との交渉で退位しました。後に満洲国の皇帝となり、第二次大戦後は中国に収監されました。</span></span></span>が退位しました。</p>
+  <div class="key-point">⭐ <strong>辛亥革命の流れ</strong>：孫文・中国同盟会(1905)→三民主義→辛亥革命(1911)→中華民国建国(1912・孫文)→袁世凱が実権→清朝滅亡・宣統帝退位</div>
+</div>
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai21_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai21_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①義和団戦争(1899)→北京議定書(1901)→ジョン＝ヘイ・門戸開放宣言→康有為・変法自強→西太后・袁世凱・戊戌の政変で潰れる<br>②第2次日韓協約(1905)→統監府・伊藤博文→ハーグ密使事件・高宗(1907)→安重根が伊藤博文暗殺(1909)→韓国併合条約・朝鮮総督府(1910)<br>③辛亥革命：孫文・中国同盟会(1905)・三民主義→辛亥革命(1911)→中華民国・孫文(1912)→袁世凱が実権→宣統帝（溥儀）退位</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={"ジョン＝ヘイ":"アメリカの国務長官（1838〜1905）。1899年に門戸開放宣言を行いました。","門戸開放宣言":"1899年にアメリカが清への門戸開放・機会均等を求めた外交方針です。","康有為":"清の官僚・学者（1858〜1927）。変法自強運動を推進しましたが西太后に潰されました。","変法自強運動":"1898年に康有為らが推進した清の近代化改革。西太后の戊戌の政変で3か月で潰されました。","西太后":"清の実権を握った皇太后（1835〜1908）。変法自強運動を潰しましたが後に光緒新政を推進しました。","袁世凱":"清の軍人・政治家（1859〜1916）。戊戌の政変で西太后に協力し、後に辛亥革命で孫文から実権を奪いました。","戊戌の政変":"1898年に西太后が変法自強運動を潰したクーデターです。","義和団戦争":"1899年の反外国運動。8か国連合軍に鎮圧され北京議定書が締結されました。","北京議定書":"1901年に清と列強が締結。清は巨額の賠償金と列強の北京駐屯を認めました。","第2次日韓協約":"1905年に締結。韓国の外交権を日本が奪い保護国化しました。","統監府":"1906年設置の韓国支配機関。初代統監は伊藤博文です。","伊藤博文":"初代統監（1841〜1909）。1909年にハルビンで安重根に暗殺されました。","高宗":"韓国の国王。1907年のハーグ密使事件後に退位させられました。","ハーグ密使事件":"1907年に高宗がハーグ平和会議に密使を派遣した事件。黙殺されました。","安重根":"朝鮮の独立運動家（1879〜1910）。1909年にハルビンで伊藤博文を暗殺しました。","韓国併合条約":"1910年締結。韓国が日本の植民地となりました。","朝鮮総督府":"韓国併合後の朝鮮統治機関。初代総督は寺内正毅です。","光緒新政":"義和団戦争後に西太后が推進した清の改革。科挙廃止・新軍設置などを実施しました。","孫文":"中国の革命家（1866〜1925）。中国国父。中国同盟会を組織し三民主義を唱えました。","中国同盟会":"1905年に孫文が東京で組織した革命団体。辛亥革命を主導しました。","三民主義":"孫文が唱えた民族・民権・民生の3つの理念からなる革命の方針です。","辛亥革命":"1911年に起きた清朝打倒の革命。翌年の中華民国建国につながりました。","中華民国":"1912年に建国された共和国。孫文が臨時大総統となりましたが袁世凱に実権を奪われました。","袁世凱":"辛亥革命で孫文から実権を奪い、宣統帝を退位させました（1859〜1916）。","宣統帝（溥儀）":"清朝最後の皇帝（在位1908〜1912）。辛亥革命後に退位しました。"};
+const answers={"A":"ジョン＝ヘイ","B":"門戸開放宣言","C":"康有為","D":"変法自強運動","E":"西太后","F":"袁世凱","G":"戊戌の政変","H":"義和団戦争","I":"北京議定書","J":"第2次日韓協約","K":"統監府","L":"伊藤博文","M":"高宗","N":"ハーグ密使事件","O":"安重根","P":"韓国併合条約","Q":"朝鮮総督府","R":"光緒新政","S":"孫文","T":"中国同盟会","U":"三民主義","V":"辛亥革命","W":"中華民国","X":"袁世凱","Y":"宣統帝（溥儀）"};
+
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display='flex';bank.innerHTML='';[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener('click',e=>{e.stopPropagation();if(chip.classList.contains('used'))return;if(chip===selectedChip){chip.classList.remove('selected-chip');selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove('selected-chip');selectedChip=chip;chip.classList.add('selected-chip');chip.classList.remove('tip-active');return;}if(tip&&!chip.classList.contains('tip-active')){document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));chip.classList.add('tip-active');}else{chip.classList.remove('tip-active');document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');}});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent='';}}else{b.textContent='';}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent='経過時間：---';}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai21']=p['kindai21']||{};p['kindai21'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

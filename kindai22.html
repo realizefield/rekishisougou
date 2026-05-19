@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：第一次世界大戦・ロシア革命・ヴェルサイユ体制</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a3050;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a3050;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a3050;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#1a3050}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a3050;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a3050;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #1a3050;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a3050}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a3050;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d1a30}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a3050;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a3050;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a3050;cursor:pointer;color:#0d1a30;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a3050;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d1a30;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a3050}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>⚔️ 第一次世界大戦・ロシア革命・ヴェルサイユ体制</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label">① 三国同盟・三国協商・バルカン半島</span>
+  <h2>なぜヨーロッパは2つの陣営に分かれたのか？</h2>
+  <p>ドイツ帝国の宰相<span class="person-pop">ビスマルク<span class="pop-box"><span class="pop-name">ビスマルク（1815〜1898）</span><span class="pop-desc">ドイツ帝国の宰相。「鉄血宰相」の異名を持ちます。普仏戦争後はフランスを孤立させてドイツの安全を守ろうとしました。</span></span></span>は普仏戦争の報復を恐れ、フランスを孤立化しようとしました。1882年、ドイツ・オーストリア・イタリアは<span class="blank" data-id="A">三国同盟</span>を結びました。ドイツはベルリン・ビザンティウム・バグダッドの頭文字をとった<span class="blank" data-id="B">3B政策</span>を展開しました。</p>
+  <p>これに対しイギリス・フランス・ロシアは1907年に<span class="blank" data-id="C">三国協商</span>を結びました。イギリスのカイロ・カルカッタ・ケープタウンを結ぶ<span class="blank" data-id="D">3C政策</span>は3B政策と真っ向からぶつかりました。</p>
+  <div class="why-box"><span class="label">❓ バルカン半島はなぜ「世界の火薬庫」と呼ばれたのか？</span>バルカン半島では①ドイツを中心にゲルマン民族統一を目指す<span class="blank" data-id="E">パン＝ゲルマン主義</span>と②ロシアを中心にスラヴ民族統一を目指す<span class="blank" data-id="F">パン＝スラヴ主義</span>が激しく対立し、いつ戦争が起こってもおかしくない状態でした。バルカン半島は「世界の<span class="blank" data-id="G">火薬庫</span>」と呼ばれました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label">② サライェヴォ事件・第一次世界大戦の勃発（1914年）</span>
+  <h2>なぜ一発の銃声が世界大戦につながったのか？</h2>
+  <p>1914年、ボスニアの首都<span class="blank person-pop" data-id="H">サライェヴォ<span class="pop-box"><span class="pop-name">サライェヴォ（現ボスニア・ヘルツェゴビナの首都）</span><span class="pop-desc">オーストリア皇太子フランツ＝フェルディナントがセルビアの青年に射殺された場所。この事件が第一次世界大戦の直接のきっかけになりました。</span></span></span>でオーストリア皇太子がセルビアの青年に射殺されました（<span class="blank" data-id="H">サライェヴォ</span>事件）。オーストリアが<span class="blank person-pop" data-id="I">セルビア<span class="pop-box"><span class="pop-name">セルビア</span><span class="pop-desc">スラヴ系民族が多いバルカン半島の国。オーストリアとは民族的に対立していました。ロシアはセルビアを支援しました。</span></span></span>に宣戦布告し、約1週間で<span class="blank" data-id="J">第一次世界大戦</span>（1914〜1918年）が始まりました。日本は<span class="blank" data-id="K">日英同盟</span>を理由に連合国側で参戦しました。</p>
+  <p>第一次世界大戦では<span class="blank" data-id="L">戦車・飛行機・毒ガス</span>などの新兵器が使われ、長期の消耗戦（<span class="blank" data-id="M">総力戦</span>）となりました。1917年、ドイツの<span class="blank" data-id="N">無制限潜水艦作戦</span>をきっかけに<span class="person-pop">アメリカ<span class="pop-box"><span class="pop-name">アメリカの参戦（1917年）</span><span class="pop-desc">ドイツの無制限潜水艦作戦で中立国の船舶も攻撃されたため、アメリカが連合国側で参戦しました。これがドイツの敗北を決定的にしました。</span></span></span>が参戦し、ドイツは1918年に降伏しました。</p>
+  <div class="result-box"><span class="label">✅ 結果</span>ドイツでは<span class="blank person-pop" data-id="O">キール<span class="pop-box"><span class="pop-name">キール軍港</span><span class="pop-desc">北ドイツの海軍基地。1918年に水兵が反乱を起こしてドイツ革命の発端となりました。</span></span></span>軍港の水兵反乱（<span class="blank" data-id="P">ドイツ革命</span>）が起き、皇帝ヴィルヘルム2世は亡命し第一次世界大戦が終結しました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label">③ ロシア革命（1917年）</span>
+  <h2>なぜロシアで社会主義革命が起きたのか？</h2>
+  <p>1905年、日露戦争中に民衆が宮殿へ行進し砲撃された<span class="blank" data-id="Q">血の日曜日事件</span>が起きました。第一次世界大戦の長期化で国民生活が破綻し、1917年3月に皇帝<span class="blank person-pop" data-id="R">ニコライ2世<span class="pop-box"><span class="pop-name">ニコライ2世（在位1894〜1917）</span><span class="pop-desc">ロシア最後の皇帝。三月革命で退位し、その後革命中に家族とともに処刑されました。</span></span></span>が退位して<span class="blank person-pop" data-id="S">ケレンスキー<span class="pop-box"><span class="pop-name">ケレンスキー（1881〜1970）</span><span class="pop-desc">三月革命後の臨時政府の首相。戦争継続を決定したため民衆の支持を失いました。</span></span></span>首相の臨時政府が成立しました（<span class="blank" data-id="T">三月革命</span>）。</p>
+  <p>臨時政府が戦争継続を決定すると、ボリシェヴィキ指導者<span class="blank person-pop" data-id="U">レーニン<span class="pop-box"><span class="pop-name">レーニン（1870〜1924）</span><span class="pop-desc">ボリシェヴィキの指導者。「四月テーゼ」で「すべての権力をソヴィエトへ」と訴え、十一月革命を指導しました。ソヴィエト政府の初代最高指導者となりました。</span></span></span>が帰国し「すべての権力をソヴィエトへ」と訴えました。1917年11月に<span class="blank" data-id="V">十一月革命</span>（十月革命）が起き、ボリシェヴィキが政権を掌握しました。</p>
+  <p>ソヴィエト政府はドイツと<span class="blank" data-id="W">ブレスト＝リトフスク条約</span>を結んで大戦から離脱し、1922年に<span class="blank" data-id="X">ソヴィエト社会主義共和国連邦（ソ連）</span>が成立しました。レーニンは経済を回復させるため<span class="blank" data-id="Y">新経済政策（ネップ）</span>を実施しました。レーニン死後は<span class="blank person-pop" data-id="Z">スターリン<span class="pop-box"><span class="pop-name">スターリン（1878〜1953）</span><span class="pop-desc">レーニン死後にソ連の独裁者となりました。五ヵ年計画で重工業を発展させましたが、反対派を大量粛清しました。</span></span></span>が独裁体制を確立し<span class="blank" data-id="AA">五ヵ年計画</span>を実行しました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label">④ ヴェルサイユ体制・国際連盟・ワシントン会議</span>
+  <h2>戦後の国際秩序はどのように作られたのか？</h2>
+  <p>1919年の<span class="blank" data-id="AB">パリ講和会議</span>の中心はアメリカ大統領<span class="blank person-pop" data-id="AC">ウィルソン<span class="pop-box"><span class="pop-name">ウィルソン（1856〜1924）</span><span class="pop-desc">アメリカ第28代大統領。「平和に関する十四カ条」を発表し①軍備縮小②民族自決③国際連盟設立を提唱しました。しかし皮肉にもアメリカは上院の反対で国際連盟に参加できませんでした。</span></span></span>でした。ドイツへの講和条約<span class="blank" data-id="AD">ヴェルサイユ条約</span>では植民地喪失・領土割譲・巨額賠償金が課されました。</p>
+  <p>1920年に<span class="blank" data-id="AE">国際連盟</span>が設立されました（本部：スイスの<span class="blank" data-id="AF">ジュネーブ</span>）。しかし提唱国の<span class="blank" data-id="AG">アメリカ</span>が不参加・軍事力を持たないなどの欠陥がありました。1921〜22年の<span class="blank" data-id="AH">ワシントン会議</span>では主力艦の保有比率制限・<span class="blank" data-id="AI">九カ国条約</span>（中国主権尊重）・<span class="blank" data-id="AJ">四カ国条約</span>（日英同盟廃止）が決められました。</p>
+  <div class="key-point">⭐ <strong>流れ</strong>：三国同盟(1882)→三国協商(1907)→サライェヴォ事件(1914)→第一次世界大戦→ロシア革命(1917)→終戦(1918)→パリ講和会議・ヴェルサイユ条約・国際連盟(1919〜20)→ワシントン会議(1921〜22)</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai22_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai22_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①三国同盟(1882)・3B政策 vs 三国協商(1907)・3C政策→バルカン半島：パン＝ゲルマン vs パン＝スラヴ→火薬庫<br>②サライェヴォ事件(1914)→第一次世界大戦→新兵器(戦車・飛行機・毒ガス)・総力戦→無制限潜水艦作戦→アメリカ参戦→キール軍港・ドイツ革命→終戦(1918)<br>③血の日曜日事件(1905)→三月革命(1917・ニコライ2世退位・ケレンスキー)→レーニン帰国→十一月革命→ブレスト＝リトフスク条約→ソ連成立(1922)→ネップ→スターリン・五ヵ年計画<br>④パリ講和会議・ウィルソン→ヴェルサイユ条約→国際連盟(ジュネーブ・アメリカ不参加)→ワシントン会議(1921〜22)：九カ国条約・四カ国条約</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={
+  '三国同盟':'1882年にドイツ・オーストリア・イタリアが結んだ同盟。第一次世界大戦ではイタリアは脱退し連合国側につきました。',
+  '3B政策':'ドイツがベルリン・ビザンティウム・バグダッドを鉄道で結ぼうとした帝国主義政策。イギリスの3C政策と衝突しました。',
+  '三国協商':'1907年にイギリス・フランス・ロシアが結んだ協商（同盟）。三国同盟への対抗として形成されました。',
+  '3C政策':'イギリスがカイロ・カルカッタ・ケープタウンを結んで支配しようとした帝国主義政策。ドイツの3B政策とぶつかりました。',
+  'パン＝ゲルマン主義':'ドイツを中心にゲルマン民族統一を目指す民族主義運動。バルカン半島でパン＝スラヴ主義と対立しました。',
+  'パン＝スラヴ主義':'ロシアを中心にスラヴ系民族統一を目指す民族主義運動。バルカン半島でパン＝ゲルマン主義と対立しました。',
+  '火薬庫':'バルカン半島の異名。民族対立が激しく、いつ戦争が起きてもおかしくない状況でした。',
+  'サライェヴォ':'ボスニアの首都。1914年にオーストリア皇太子が暗殺されたサライェヴォ事件が第一次世界大戦の引き金になりました。',
+  'セルビア':'スラヴ系民族の国。サライェヴォ事件後にオーストリアから宣戦布告を受け、第一次世界大戦が始まりました。',
+  '第一次世界大戦':'1914〜1918年の世界大戦。三国同盟側（ドイツ・オーストリア）vs三国協商側（英・仏・露・日など）。',
+  '日英同盟':'1902年にイギリスと日本が結んだ軍事同盟。日本は日英同盟を理由に第一次大戦に参戦しました。',
+  '戦車・飛行機・毒ガス':'第一次世界大戦で初めて大規模に使用された新兵器。戦争の残虐性が格段に上がりました。',
+  '総力戦':'国の人的・物的資源をすべて動員して戦う戦争形態。第一次世界大戦はその典型でした。',
+  '無制限潜水艦作戦':'ドイツが中立国の船舶も含めて無差別に潜水艦攻撃した作戦。アメリカの参戦を招きました。',
+  'キール':'北ドイツの海軍基地。1918年に水兵が反乱を起こし（キール軍港事件）、ドイツ革命の発端となりました。',
+  'ドイツ革命':'1918年にキール軍港の水兵反乱をきっかけに起きた革命。皇帝ヴィルヘルム2世が亡命し、ドイツは敗戦しました。',
+  '血の日曜日事件':'1905年に日露戦争中のロシアで起きた事件。民衆が宮殿へ行進したところ皇帝の警備軍が砲撃し約1000人が犠牲になりました。',
+  'ニコライ2世':'ロシア最後の皇帝。三月革命で退位し、1918年に家族とともに処刑されました。',
+  'ケレンスキー':'三月革命後の臨時政府首相（1881〜1970）。戦争継続を決定したため民衆の支持を失いました。',
+  '三月革命':'1917年3月にロシアで起きた革命。ニコライ2世が退位し臨時政府が成立しました（ロシア暦2月革命）。',
+  'レーニン':'ボリシェヴィキ指導者（1870〜1924）。十一月革命を指導し初代ソ連最高指導者となりました。',
+  '十一月革命':'1917年11月にレーニン率いるボリシェヴィキが臨時政府を打倒した革命（ロシア暦10月革命）。',
+  'ブレスト＝リトフスク条約':'1918年にソヴィエト政府がドイツと結んだ単独講和条約。ポーランド・バルト地方を割譲し大戦から離脱しました。',
+  'ソヴィエト社会主義共和国連邦（ソ連）':'1922年に成立した世界初の社会主義国家連邦。ロシアを中心に15の共和国から構成されました。',
+  '新経済政策（ネップ）':'レーニンが1921年に実施した経済政策。食料強制徴発をやめ中小企業の私的経営を認め経済を回復させました。',
+  'スターリン':'レーニン死後にソ連の独裁者（1878〜1953）。五ヵ年計画で重工業を発展させましたが反対派を大量に粛清しました。',
+  '五ヵ年計画':'スターリンが1928年から実施した計画経済。農業の集団化と重工業の急速発展を目指しました。',
+  'パリ講和会議':'1919年にドイツの降伏後に開かれた講和会議。アメリカ大統領ウィルソンが中心となりヴェルサイユ条約が締結されました。',
+  'ウィルソン':'アメリカ大統領（1856〜1924）。「十四カ条」で民族自決・国際連盟設立を提唱しましたが、アメリカは上院の反対で国際連盟に参加できませんでした。',
+  'ヴェルサイユ条約':'1919年に締結されたドイツへの講和条約。植民地喪失・領土割譲・巨額賠償金を課しました。これへの不満がのちのナチスの台頭につながりました。',
+  '国際連盟':'1920年に設立された世界平和のための国際機関。本部はジュネーブ。しかしアメリカが不参加・軍事力なしなどの欠陥を抱えていました。',
+  'ジュネーブ':'スイスの都市。国際連盟の本部が置かれました。現在も多くの国際機関が置かれています。',
+  'アメリカ':'国際連盟の提唱国でありながら上院の反対で参加できませんでした。ウィルソン大統領にとって大きな挫折でした。',
+  'ワシントン会議':'1921〜22年にアメリカが主催した国際会議。海軍軍縮・九カ国条約・四カ国条約が締結されました。',
+  '九カ国条約':'ワシントン会議で締結された条約。中国の主権尊重・領土保全を約束しました。日本は山東半島の権益を中国に返還しました。',
+  '四カ国条約':'ワシントン会議で米英日仏が結んだ条約。太平洋諸島の現状維持と日英同盟の廃止を定めました。'
+};
+const answers={
+  'A':'三国同盟',
+  'B':'3B政策',
+  'C':'三国協商',
+  'D':'3C政策',
+  'E':'パン＝ゲルマン主義',
+  'F':'パン＝スラヴ主義',
+  'G':'火薬庫',
+  'H':'サライェヴォ',
+  'I':'セルビア',
+  'J':'第一次世界大戦',
+  'K':'日英同盟',
+  'L':'戦車・飛行機・毒ガス',
+  'M':'総力戦',
+  'N':'無制限潜水艦作戦',
+  'O':'キール',
+  'P':'ドイツ革命',
+  'Q':'血の日曜日事件',
+  'R':'ニコライ2世',
+  'S':'ケレンスキー',
+  'T':'三月革命',
+  'U':'レーニン',
+  'V':'十一月革命',
+  'W':'ブレスト＝リトフスク条約',
+  'X':'ソヴィエト社会主義共和国連邦（ソ連）',
+  'Y':'新経済政策（ネップ）',
+  'Z':'スターリン',
+  'AA':'五ヵ年計画',
+  'AB':'パリ講和会議',
+  'AC':'ウィルソン',
+  'AD':'ヴェルサイユ条約',
+  'AE':'国際連盟',
+  'AF':'ジュネーブ',
+  'AG':'アメリカ',
+  'AH':'ワシントン会議',
+  'AI':'九カ国条約',
+  'AJ':'四カ国条約'
+};
+document.querySelectorAll(".person-pop").forEach(el=>{el.addEventListener("click",e=>{e.stopPropagation();const a=el.classList.contains("active");document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));if(!a)el.classList.add("active");});});
+document.addEventListener("click",()=>{document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById("word-bank");bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement("div");chip.className="word-chip";const label=document.createElement("span");label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement("div");pop.className="chip-pop";pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener("click",e=>{e.stopPropagation();if(chip.classList.contains("used"))return;if(chip===selectedChip){chip.classList.remove("selected-chip");selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove("selected-chip");selectedChip=chip;chip.classList.add("selected-chip");chip.classList.remove("tip-active");return;}if(tip&&!chip.classList.contains("tip-active")){document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));chip.classList.add("tip-active");}else{chip.classList.remove("tip-active");document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("selected-chip"));selectedChip=chip;chip.classList.add("selected-chip");}}); bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains("person-pop")){const c=b.cloneNode(true);const p=c.querySelector(".pop-box");if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector("span")?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll(".blank").forEach(b=>{clearBlankText(b);b.classList.remove("correct");});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById("timer-display").textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll(".blank").forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===old)c.classList.remove("used");});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add("used");selectedChip.classList.remove("selected-chip");selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===txt)c.classList.remove("used");});clearBlankText(blank);}}}});
+function checkAnswers(){let ok=true;document.querySelectorAll(".blank").forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add("correct");else{ok=false;b.classList.remove("correct");}});if(ok){clearInterval(timerId);document.getElementById("next-btn").disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById("timer-display").textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById("explain-box");box.style.display=(box.style.display==="block")?"none":"block";}
+(function(){try{var p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p["kindai22"]=p["kindai22"]||{};p["kindai22"].studyDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：冷戦と戦後の世界・日本の戦後復興</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a4a3a;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a4a3a;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a4a3a;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#1a4a3a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a4a3a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a3a;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #1a4a3a;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a4a3a}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a4a3a;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d2d22}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a4a3a;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a4a3a;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a4a3a;cursor:pointer;color:#0d2d22;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a4a3a;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d2d22;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a4a3a}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🕊️ 冷戦と戦後の世界・日本の戦後復興</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#1a4a3a">① 国際連合と冷戦の始まり</span>
+  <h2>なぜ国際連合は国際連盟の失敗を繰り返さなかったのか？</h2>
+  <p>1945年10月、世界平和のために<span class="blank" data-id="A">国際連合（国連・UN）</span>が設立されました（本部：<span class="blank" data-id="B">ニューヨーク</span>）。米・英・ソ・仏・中の5大国が<span class="blank" data-id="C">常任理事国</span>となり、反対すれば決議を無効にできる<span class="blank" data-id="D">拒否権</span>を持つ<span class="blank" data-id="E">安全保障理事会</span>が核心機関です。国際連盟にはなかった軍事的制裁力（<span class="blank" data-id="F">国連軍</span>）も規定されました。</p>
+  <p>第二次世界大戦後、<span class="blank" data-id="G">アメリカ（資本主義・西側）</span>とソ連（社会主義・東側）が直接戦わずに激しく対立する<span class="blank" data-id="H">冷戦（冷たい戦争）</span>が始まりました。アメリカ大統領<span class="blank person-pop" data-id="I">トルーマン<span class="pop-box"><span class="pop-name">トルーマン（1884〜1972）</span><span class="pop-desc">アメリカ第33代大統領。広島・長崎への原爆投下を決定し、冷戦開始期にトルーマン・ドクトリンを宣言しました。</span></span></span>は1947年に<span class="blank" data-id="J">トルーマン・ドクトリン</span>（共産主義封じ込め宣言）を発表し、国務長官<span class="person-pop">マーシャル<span class="pop-box"><span class="pop-name">マーシャル（1880〜1959）</span><span class="pop-desc">アメリカの国務長官。ヨーロッパ経済復興を支援するマーシャル・プランを提唱しました。</span></span></span>はヨーロッパ経済復興を支援する<span class="blank" data-id="K">マーシャル・プラン</span>を発表しました。1949年に西側は<span class="blank" data-id="L">北大西洋条約機構（NATO）</span>を、1955年に東側は<span class="blank" data-id="M">ワルシャワ条約機構</span>を結成しました。</p>
+  <p>戦後ドイツは東西に分断され、1961年にソ連・東ドイツが<span class="blank" data-id="N">ベルリンの壁</span>を建設しました。この壁は1989年に崩壊しました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#1a4a3a">② アジアの動向</span>
+  <h2>朝鮮戦争はなぜ日本の経済復興のきっかけになったのか？</h2>
+  <p>1949年、中国で<span class="blank person-pop" data-id="O">毛沢東<span class="pop-box"><span class="pop-name">毛沢東（1893〜1976）</span><span class="pop-desc">中国共産党指導者。1949年に国共内戦で国民党に勝利し中華人民共和国を建国しました。社会主義国家の指導者として長年統治しました。</span></span></span>率いる共産党が国共内戦に勝利し<span class="blank" data-id="P">中華人民共和国</span>が成立しました。<span class="person-pop">蒋介石<span class="pop-box"><span class="pop-name">蒋介石（1887〜1975）</span><span class="pop-desc">中国国民党指導者。内戦に敗れ台湾に逃れ、台湾で中華民国政府を維持しました。</span></span></span>の国民党は台湾に退きました。</p>
+  <p>1950年6月、北朝鮮が韓国に侵攻して<span class="blank" data-id="Q">朝鮮戦争</span>が始まりました。国連軍（実質アメリカ軍）と中国義勇軍が参戦して激しい戦いとなり、1953年に休戦協定が結ばれました。今も南北朝鮮は分断が続いています。朝鮮戦争はアメリカ軍への物資供給（<span class="blank" data-id="R">朝鮮特需</span>）で日本経済を復興させ、また日本の再軍備要請から<span class="blank" data-id="S">自衛隊</span>の前身の警察予備隊が創設されました。</p>
+  <p>1965年にアメリカが本格介入した<span class="blank" data-id="T">ベトナム戦争</span>は1973年にアメリカが撤退、1975年に<span class="blank" data-id="U">ベトナム社会主義共和国</span>が成立しました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label" style="background:#1a4a3a">③ 日本の戦後復興と高度経済成長</span>
+  <h2>なぜ敗戦から20年足らずで日本は経済大国になれたのか？</h2>
+  <p>日本はGHQ（最高司令官：<span class="blank person-pop" data-id="V">マッカーサー<span class="pop-box"><span class="pop-name">マッカーサー（1880〜1964）</span><span class="pop-desc">GHQ（連合国軍最高司令官総司令部）の最高司令官。日本の民主化・非軍事化を主導しました。</span></span></span>）の占領下で民主化改革が行われました。1946年に<span class="blank" data-id="W">日本国憲法</span>が公布され（1947年施行）、主権在民・基本的人権・<span class="blank" data-id="X">平和主義（戦争放棄）</span>の三原則が定められました。また<span class="blank" data-id="Y">農地改革</span>・<span class="blank" data-id="Z">財閥解体</span>・<span class="blank" data-id="AA">教育基本法</span>（6・3・3・4制）などの改革も実施されました。</p>
+  <p>1951年に<span class="blank" data-id="AB">サンフランシスコ平和条約</span>で主権を回復し（1952年発効）、同時に<span class="blank" data-id="AC">日米安全保障条約</span>を締結しました。1955年頃から年平均10%前後の<span class="blank" data-id="AD">高度経済成長</span>が始まりました。1964年には<span class="blank" data-id="AE">東京オリンピック</span>が開催されました。1973年の<span class="blank" data-id="AF">石油危機（オイルショック）</span>で高度経済成長は終わりました。</p>
+  <p>1985年、ソ連指導者<span class="blank person-pop" data-id="AG">ゴルバチョフ<span class="pop-box"><span class="pop-name">ゴルバチョフ（1931〜2022）</span><span class="pop-desc">ソ連最後の指導者。ペレストロイカ（改革）・グラスノスチ（情報公開）政策で冷戦終結を主導しました。</span></span></span>が<span class="blank" data-id="AH">ペレストロイカ（改革）</span>を推進し、1989年に<span class="blank" data-id="N">ベルリンの壁</span>が崩壊して冷戦が終結しました。1991年にソ連が解体しました。</p>
+  <div class="key-point">⭐ <strong>戦後日本の流れ</strong>：GHQ占領改革（憲法・農地改革・財閥解体）→サンフランシスコ平和条約(1951)→高度経済成長(1955〜73)→東京オリンピック(1964)→オイルショック(1973)→冷戦終結(1989〜91)</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai26_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai26_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①国際連合(1945・ニューヨーク)：安保理・常任理事国5大国・拒否権→冷戦：アメリカvs ソ連→トルーマン・ドクトリン・マーシャル・プラン(1947)→NATO(1949)・ワルシャワ条約機構(1955)→ベルリンの壁(1961)<br>②中華人民共和国成立(1949・毛沢東)→朝鮮戦争(1950〜53・朝鮮特需・自衛隊設立へ)→ベトナム戦争(1965〜75)<br>③GHQ・マッカーサー→日本国憲法(1946公布・1947施行)：主権在民・基本的人権・平和主義→農地改革・財閥解体・教育基本法→サンフランシスコ平和条約・日米安保(1951)→高度経済成長(1955〜73)→東京オリンピック(1964)→オイルショック(1973)→ゴルバチョフ・ペレストロイカ→ベルリンの壁崩壊(1989)→冷戦終結・ソ連解体(1991)</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={
+  '国際連合（国連・UN）':'1945年10月設立の国際平和機関。本部はニューヨーク。国際連盟の失敗を踏まえて安保理の拒否権・軍事的制裁力を備えました。',
+  'ニューヨーク':'アメリカ最大の都市。国際連合の本部が置かれています。',
+  '常任理事国':'国連安全保障理事会の5大国（米・英・仏・ロ・中）。拒否権を持ち国際秩序に大きな影響力を持ちます。',
+  '拒否権':'常任理事国の1か国でも反対すれば安保理決議を無効にできる権利。冷戦中は米ソが互いに拒否権を使い機能不全に陥りました。',
+  '安全保障理事会':'国連の主要機関。5常任理事国と10非常任理事国で構成されます。',
+  '国連軍':'国際連合が平和維持のために派遣できる軍事力。国際連盟にはなかった仕組みです。',
+  'アメリカ（資本主義・西側）':'冷戦の西側陣営の中心。民主主義・資本主義を掲げてソ連の社会主義と対立しました。',
+  '冷戦（冷たい戦争）':'第二次世界大戦後の米ソ対立。直接の軍事衝突はしないが経済・政治・軍事的に激しく競い合いました。',
+  'トルーマン':'アメリカ第33代大統領（1884〜1972）。広島・長崎への原爆投下を決定し、トルーマン・ドクトリンで共産主義封じ込め政策を宣言しました。',
+  'トルーマン・ドクトリン':'1947年にトルーマン大統領が宣言した共産主義封じ込め政策。ギリシャ・トルコへの軍事・経済支援が出発点でした。',
+  'マーシャル・プラン':'1947年に国務長官マーシャルが提唱したヨーロッパ経済復興援助計画。西欧諸国の経済を立て直し共産主義の拡大を防ぎました。',
+  '北大西洋条約機構（NATO）':'1949年に西側諸国が結成した集団的自衛機構。現在も欧米の軍事同盟として機能しています。',
+  'ワルシャワ条約機構':'1955年にソ連・東欧諸国が結成した軍事同盟。NATOへの対抗として形成されましたが、1991年に解体しました。',
+  'ベルリンの壁':'1961年に東西ベルリンの境界に建設された壁。1989年11月9日に崩壊し、冷戦終結の象徴となりました。',
+  '毛沢東':'中国共産党指導者（1893〜1976）。1949年に中華人民共和国を建国し長年統治しました。',
+  '中華人民共和国':'1949年に毛沢東が建国した社会主義国家。現在も中国本土を支配する国家です。',
+  '朝鮮戦争':'1950〜53年に北朝鮮が韓国に侵攻した戦争。国連軍・中国義勇軍が参戦し休戦協定で現在も分断が続きます。',
+  '朝鮮特需':'朝鮮戦争中にアメリカ軍が日本に発注した大量の物資・サービス。これが日本経済復興の大きな弾みとなりました。',
+  '自衛隊':'1954年に設立された日本の実質的な軍事組織。朝鮮戦争中の1950年に設立された警察予備隊が前身です。',
+  'ベトナム戦争':'1965〜75年のアメリカが介入した戦争。アメリカが撤退し1975年に北ベトナムが統一しました。',
+  'ベトナム社会主義共和国':'1975年に南北統一後に成立したベトナムの国家名称。現在も社会主義体制が続いています。',
+  'マッカーサー':'GHQ最高司令官（1880〜1964）。日本の民主化・非軍事化を主導し戦後日本の基盤を作りました。',
+  '日本国憲法':'1946年公布・1947年施行。主権在民・基本的人権・平和主義の三原則を定めました。',
+  '平和主義（戦争放棄）':'日本国憲法第9条の原則。戦争と武力による威嚇・行使を永久に放棄することを宣言しています。',
+  '農地改革':'GHQの指導のもと実施された土地制度改革。地主から農地を買い上げ小作農に安く売却し自作農が増加しました。',
+  '財閥解体':'GHQが命じた三菱・三井・住友などの財閥の解体。経済の民主化・独占の解消を図りました。',
+  '教育基本法':'1947年制定。6・3・3・4制の学校制度・男女共学・義務教育9年間などを定めました。',
+  'サンフランシスコ平和条約':'1951年9月に連合国48か国と締結した講和条約。1952年4月発効で日本は主権を回復しました（ソ連は署名せず）。',
+  '日米安全保障条約':'1951年にサンフランシスコ平和条約と同時に締結された条約。アメリカ軍の日本駐留を認めました。',
+  '高度経済成長':'1955〜73年の年平均10%前後の急激な経済成長。日本が経済大国となる基礎を作りました。',
+  '東京オリンピック':'1964年開催。東海道新幹線開通・首都高速道路整備など日本の復興と近代化を世界にアピールしました。',
+  '石油危機（オイルショック）':'1973年に中東産油国が石油供給を削減・価格を大幅引き上げした出来事。日本の高度経済成長が終わりを告げました。',
+  'ゴルバチョフ':'ソ連最後の指導者（1931〜2022）。ペレストロイカ・グラスノスチ政策で冷戦終結を主導しました。',
+  'ペレストロイカ（改革）':'ゴルバチョフが1985年から推進したソ連の政治・経済改革。冷戦終結・ソ連解体につながりました。'
+};
+const answers={
+  'A':'国際連合（国連・UN）',
+  'B':'ニューヨーク',
+  'C':'常任理事国',
+  'D':'拒否権',
+  'E':'安全保障理事会',
+  'F':'国連軍',
+  'G':'アメリカ（資本主義・西側）',
+  'H':'冷戦（冷たい戦争）',
+  'I':'トルーマン',
+  'J':'トルーマン・ドクトリン',
+  'K':'マーシャル・プラン',
+  'L':'北大西洋条約機構（NATO）',
+  'M':'ワルシャワ条約機構',
+  'N':'ベルリンの壁',
+  'O':'毛沢東',
+  'P':'中華人民共和国',
+  'Q':'朝鮮戦争',
+  'R':'朝鮮特需',
+  'S':'自衛隊',
+  'T':'ベトナム戦争',
+  'U':'ベトナム社会主義共和国',
+  'V':'マッカーサー',
+  'W':'日本国憲法',
+  'X':'平和主義（戦争放棄）',
+  'Y':'農地改革',
+  'Z':'財閥解体',
+  'AA':'教育基本法',
+  'AB':'サンフランシスコ平和条約',
+  'AC':'日米安全保障条約',
+  'AD':'高度経済成長',
+  'AE':'東京オリンピック',
+  'AF':'石油危機（オイルショック）',
+  'AG':'ゴルバチョフ',
+  'AH':'ペレストロイカ（改革）'
+};
+document.querySelectorAll(".person-pop").forEach(el=>{el.addEventListener("click",e=>{e.stopPropagation();const a=el.classList.contains("active");document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));if(!a)el.classList.add("active");});});
+document.addEventListener("click",()=>{document.querySelectorAll(".person-pop.active").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById("word-bank");bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement("div");chip.className="word-chip";const label=document.createElement("span");label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement("div");pop.className="chip-pop";pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener("click",e=>{e.stopPropagation();if(chip.classList.contains("used"))return;if(chip===selectedChip){chip.classList.remove("selected-chip");selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove("selected-chip");selectedChip=chip;chip.classList.add("selected-chip");chip.classList.remove("tip-active");return;}if(tip&&!chip.classList.contains("tip-active")){document.querySelectorAll(".word-chip.tip-active").forEach(x=>x.classList.remove("tip-active"));chip.classList.add("tip-active");}else{chip.classList.remove("tip-active");document.querySelectorAll(".word-chip").forEach(c=>c.classList.remove("selected-chip"));selectedChip=chip;chip.classList.add("selected-chip");}}); bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains("person-pop")){const c=b.cloneNode(true);const p=c.querySelector(".pop-box");if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains("person-pop")){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector("span")?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll(".blank").forEach(b=>{clearBlankText(b);b.classList.remove("correct");});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById("timer-display").textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll(".blank").forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===old)c.classList.remove("used");});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add("used");selectedChip.classList.remove("selected-chip");selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll(".word-chip").forEach(c=>{if(getChipWord(c)===txt)c.classList.remove("used");});clearBlankText(blank);}}}});
+function checkAnswers(){let ok=true;document.querySelectorAll(".blank").forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add("correct");else{ok=false;b.classList.remove("correct");}});if(ok){clearInterval(timerId);document.getElementById("next-btn").disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById("timer-display").textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById("explain-box");box.style.display=(box.style.display==="block")?"none":"block";}
+(function(){try{var p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p["kindai26"]=p["kindai26"]||{};p["kindai26"].studyDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

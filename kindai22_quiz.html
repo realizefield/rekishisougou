@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：近代㉒ 第一次世界大戦・ロシア革命・ヴェルサイユ体制</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.section-title{font-size:16px;font-weight:bold;color:#1a3050;border-left:4px solid #1a3050;padding-left:12px;margin-bottom:16px}
+.question-text{font-size:16px;line-height:2.8;color:#222}
+.blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a3050;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a3050;vertical-align:middle;min-height:26px;padding:0 4px}
+.blank.waiting{color:transparent;background:#eee;border-radius:4px}
+.blank.correct{background:#c8f0d8;border-color:#1a3050}
+.blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+.word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#f8fff8;margin-top:14px}
+.word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+.word-chip:hover{border-color:#1a3050;background:#d0f0e0}
+.word-chip.selected{border-color:#1a3050;background:#70c090;font-weight:bold}
+.word-chip.used{opacity:0.3;pointer-events:none}
+.controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+.btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#1a3050;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+.btn-orange{background:#e67e22;color:#fff}
+.result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+.result-bar.pass{border-color:#1a3050;color:#1a3050;background:#d0f0e0}
+.result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代㉒ 第一次世界大戦・ロシア革命・ヴェルサイユ体制</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">⚔️ 列強の対立と同盟体制</div>
+  <div class="question-text">1882年にドイツ・オーストリア・イタリアが結んだ<span class="blank" data-ans="三国同盟">三国同盟</span>に対し、1907年に英仏露が<span class="blank" data-ans="三国協商">三国協商</span>を結んだ。ドイツの<span class="blank" data-ans="3B政策">3B政策</span>とイギリスの<span class="blank" data-ans="3C政策">3C政策</span>が衝突した。バルカン半島では<span class="blank" data-ans="パン＝ゲルマン主義">パン＝ゲルマン主義</span>と<span class="blank" data-ans="パン＝スラヴ主義">パン＝スラヴ主義</span>が対立し、バルカン半島は「世界の<span class="blank" data-ans="火薬庫">火薬庫</span>」と呼ばれた。</div>
+  <div class="word-bank" id="b0"></div>
+</div>
+<div class="card">
+  <div class="section-title">💥 第一次世界大戦の勃発と終結</div>
+  <div class="question-text">1914年、<span class="blank" data-ans="サライェヴォ">サライェヴォ</span>事件をきっかけに<span class="blank" data-ans="第一次世界大戦">第一次世界大戦</span>が始まった。新兵器として<span class="blank" data-ans="戦車・飛行機・毒ガス">戦車・飛行機・毒ガス</span>が使われた。1917年、ドイツの<span class="blank" data-ans="無制限潜水艦作戦">無制限潜水艦作戦</span>でアメリカが参戦した。1918年、<span class="blank" data-ans="キール">キール</span>軍港の水兵反乱（<span class="blank" data-ans="ドイツ革命">ドイツ革命</span>）で戦争が終結した。</div>
+  <div class="word-bank" id="b1"></div>
+</div>
+<div class="card">
+  <div class="section-title">🔴 ロシア革命</div>
+  <div class="question-text">1917年3月、皇帝<span class="blank" data-ans="ニコライ2世">ニコライ2世</span>が退位して<span class="blank" data-ans="ケレンスキー">ケレンスキー</span>首相の臨時政府が成立した（<span class="blank" data-ans="三月革命">三月革命</span>）。ボリシェヴィキの<span class="blank" data-ans="レーニン">レーニン</span>が帰国し1917年11月に<span class="blank" data-ans="十一月革命">十一月革命</span>が起きた。1922年に<span class="blank" data-ans="ソヴィエト社会主義共和国連邦（ソ連）">ソヴィエト社会主義共和国連邦（ソ連）</span>が成立し、レーニンは<span class="blank" data-ans="新経済政策（ネップ）">新経済政策（ネップ）</span>を実施した。レーニン死後は<span class="blank" data-ans="スターリン">スターリン</span>が<span class="blank" data-ans="五ヵ年計画">五ヵ年計画</span>を実行した。</div>
+  <div class="word-bank" id="b2"></div>
+</div>
+<div class="card">
+  <div class="section-title">🌏 ヴェルサイユ体制・国際連盟・ワシントン会議</div>
+  <div class="question-text">1919年の<span class="blank" data-ans="パリ講和会議">パリ講和会議</span>の中心はアメリカ大統領<span class="blank" data-ans="ウィルソン">ウィルソン</span>で、ドイツへの<span class="blank" data-ans="ヴェルサイユ条約">ヴェルサイユ条約</span>が締結された。1920年に<span class="blank" data-ans="国際連盟">国際連盟</span>（本部：<span class="blank" data-ans="ジュネーブ">ジュネーブ</span>）が設立されたが提唱国の<span class="blank" data-ans="アメリカ">アメリカ</span>は不参加だった。1921〜22年の<span class="blank" data-ans="ワシントン会議">ワシントン会議</span>で<span class="blank" data-ans="九カ国条約">九カ国条約</span>・<span class="blank" data-ans="四カ国条約">四カ国条約</span>が結ばれた。</div>
+  <div class="word-bank" id="b3"></div>
+</div>
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai22.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai22_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+<script>
+const UNIT_ID="kindai22";let sel=null;
+function startChallenge(){
+  document.querySelectorAll(".blank").forEach(b=>{b.textContent="？";b.classList.add("waiting");b.classList.remove("correct","wrong");b.onclick=()=>fillBlank(b);});
+  buildBank("b0",["三国同盟","三国協商","3B政策","3C政策","パン＝ゲルマン主義","パン＝スラヴ主義","火薬庫"]);
+  buildBank("b1",["サライェヴォ","第一次世界大戦","戦車・飛行機・毒ガス","無制限潜水艦作戦","キール","ドイツ革命"]);
+  buildBank("b2",["ニコライ2世","ケレンスキー","三月革命","レーニン","十一月革命","ソヴィエト社会主義共和国連邦（ソ連）","新経済政策（ネップ）","スターリン","五ヵ年計画"]);
+  buildBank("b3",["パリ講和会議","ウィルソン","ヴェルサイユ条約","国際連盟","ジュネーブ","アメリカ","ワシントン会議","九カ国条約","四カ国条約"]);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML="";[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement("div");c.className="word-chip";c.textContent=w;c.onclick=()=>{if(c.classList.contains("used"))return;document.querySelectorAll(".word-chip.selected").forEach(x=>x.classList.remove("selected"));sel=c;c.classList.add("selected");};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=="？"){const old=b.textContent;document.querySelectorAll(".word-chip").forEach(c=>{if(c.classList.contains("used")&&c.textContent===old)c.classList.remove("used");});}b.textContent=sel.textContent;b.classList.remove("waiting");sel.classList.add("used");sel.classList.remove("selected");sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll(".blank").forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add("correct");b.classList.remove("wrong");ok++;}else{b.classList.remove("correct");b.classList.add("wrong");}b.onclick=null;b.style.cursor="default";});const bar=document.getElementById("result-bar");bar.style.display="block";if(ok===total){bar.className="result-bar pass";bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}else{bar.className="result-bar fail";bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

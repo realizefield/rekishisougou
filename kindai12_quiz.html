@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：アメリカの発展・19世紀のヨーロッパ文化</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#1a2a5e;border-left:4px solid #1a2a5e;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.8;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a2a5e;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a2a5e;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#c8d8f8;color:#0d1a3e;border-color:#1a2a5e}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#eef2ff;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#1a2a5e;background:#dde8ff}
+  .word-chip.selected{border-color:#1a2a5e;background:#90b0e8;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a2a5e;color:#fff;box-shadow:0 3px 0 #0d1a3e}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#1a2a5e;color:#1a2a5e;background:#d8e4ff}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑫ アメリカの発展・19世紀のヨーロッパ文化</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🦅 米英戦争・モンロー宣言</div>
+  <div class="question-text">
+    1812年、アメリカはイギリスとの<span class="blank" data-ans="米英戦争">米英戦争</span>を戦いました。その後1823年、大統領<span class="blank" data-ans="モンロー">モンロー</span>が「ヨーロッパとアメリカ大陸の相互不干渉」を宣言する<span class="blank" data-ans="モンロー宣言">モンロー宣言</span>を発表し、ラテンアメリカの独立運動を間接的に支援しました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🌟 西部拡大・ゴールドラッシュ・奴隷制問題</div>
+  <div class="question-text">
+    1848年の<span class="blank" data-ans="アメリカ＝メキシコ戦争">アメリカ＝メキシコ戦争</span>でメキシコを破り<span class="blank" data-ans="カリフォルニア">カリフォルニア</span>を獲得しました。同年、カリフォルニアで金が発見されると<span class="blank" data-ans="ゴールドラッシュ">ゴールドラッシュ</span>が起きました。一方で北部と南部の<span class="blank" data-ans="奴隷">奴隷</span>制をめぐる対立が深刻化していきました。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">⚔️ 南北戦争とその後</div>
+  <div class="question-text">
+    1860年に<span class="blank" data-ans="リンカーン">リンカーン</span>が大統領に当選すると南部が離脱し<span class="blank" data-ans="南北戦争">南北戦争</span>（1861年）が始まりました。リンカーンは1863年に<span class="blank" data-ans="奴隷解放宣言">奴隷解放宣言</span>を発表し、北部が勝利しました。1869年には<span class="blank" data-ans="大陸横断鉄道">大陸横断鉄道</span>が開通し、1890年代に西部の<span class="blank" data-ans="フロンティア">フロンティア</span>が消滅しました。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🎨 19世紀のヨーロッパ文化</div>
+  <div class="question-text">
+    フランスの画家<span class="blank" data-ans="ミレー">ミレー</span>は「落ち穂拾い」で農民の姿を描き、オランダ出身の<span class="blank" data-ans="ゴッホ">ゴッホ</span>は「ひまわり」などの作品を残しました。ロシアの<span class="blank" data-ans="トルストイ">トルストイ</span>は「戦争と平和」を著し、<span class="blank" data-ans="キュリー夫人">キュリー夫人</span>はラジウムを発見してノーベル賞を受賞しました。ダーウィンは「種の起源」で<span class="blank" data-ans="進化論">進化論</span>を発表しました。
+  </div>
+  <div class="word-bank" id="bank3"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai12.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai12_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai12';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['米英戦争','モンロー','モンロー宣言']);
+  buildBank('bank1',['アメリカ＝メキシコ戦争','カリフォルニア','ゴールドラッシュ','奴隷']);
+  buildBank('bank2',['リンカーン','南北戦争','奴隷解放宣言','大陸横断鉄道','フロンティア']);
+  buildBank('bank3',['ミレー','ゴッホ','トルストイ','キュリー夫人','進化論']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}b.onclick=null;b.style.cursor='default';});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>

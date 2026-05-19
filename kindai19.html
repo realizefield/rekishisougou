@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：明治維新</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #4a1a6b;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #4a1a6b;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #4a1a6b;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#4a1a6b}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #4a1a6b;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#4a1a6b;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#f5eeff;border-left:5px solid #4a1a6b;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#4a1a6b}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#4a1a6b;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #2d0a40}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #4a1a6b;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #4a1a6b;background-color:#f5eeff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #4a1a6b;cursor:pointer;color:#2d0a40;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #4a1a6b;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#2d0a40;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#4a1a6b}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🌸 明治維新</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label">① 大政奉還・王政復古・戊辰戦争</span>
+  <h2>なぜ15代将軍・徳川慶喜は政権を返上したのか？</h2>
+  <p>1866年の薩長同盟成立で倒幕の機運が高まる中、15代将軍<span class="blank person-pop" data-id="A">徳川慶喜<span class="pop-box"><span class="pop-name">徳川慶喜（1837〜1913）</span><span class="pop-desc">江戸幕府第15代将軍。「聡明な将軍」として知られましたが、政治的に追い詰められ1867年に大政奉還を行いました。維新後は静岡に隠居し、明治政府に従いながら1913年まで生き延びました。</span></span></span>は1867年に朝廷に政権を返上する<span class="blank" data-id="B">大政奉還</span>を行いました。「政権を返せば倒幕の対象から外れる」という計算からでしたが、倒幕派の<span class="person-pop">岩倉具視<span class="pop-box"><span class="pop-name">岩倉具視（1825〜1883）</span><span class="pop-desc">公家の政治家。薩摩・長州と組んで明治維新を主導しました。廃藩置県・岩倉使節団など明治政府の重要政策を推進しました。</span></span></span>・<span class="person-pop">西郷隆盛<span class="pop-box"><span class="pop-name">西郷隆盛（1828〜1877）</span><span class="pop-desc">薩摩藩の武将・政治家。倒幕運動を主導し明治政府の参議となりました。しかし政府の近代化路線と対立し、1877年の西南戦争で敗れて自刃しました。</span></span></span>らは<span class="blank" data-id="C">王政復古</span>の大号令を出し天皇中心の新政府樹立を宣言しました。</p>
+  <p>旧幕府軍はこれに反発し<span class="blank person-pop" data-id="D">鳥羽伏見<span class="pop-box"><span class="pop-name">鳥羽伏見の戦い（1868年）</span><span class="pop-desc">京都南郊の鳥羽・伏見で起きた旧幕府軍vs新政府軍の最初の大規模衝突。「錦の御旗（天皇の旗）」を持つ新政府軍に旧幕府軍が敗れ、戊辰戦争の開幕となりました。</span></span></span>の戦いをきっかけに<span class="blank" data-id="E">戊辰戦争</span>が起きましたが、明治新政府軍が勝利しました。1868年に政府は政治方針として<span class="blank person-pop" data-id="F">五箇条の御誓文<span class="pop-box"><span class="pop-name">五箇条の御誓文（1868年）</span><span class="pop-desc">明治政府が発布した5つの政治方針。「広く会議をおこし万機公論に決すべし」が有名です。民主主義・開国・旧来の悪習打破などを宣言しました。</span></span></span>を公布しました。</p>
+</div>
+
+<div class="section">
+  <span class="section-label">② 廃藩置県・四民平等</span>
+  <h2>なぜ廃藩置県はほとんど抵抗なく実行できたのか？</h2>
+  <p>1869年の<span class="blank person-pop" data-id="G">版籍奉還<span class="pop-box"><span class="pop-name">版籍奉還（1869年）</span><span class="pop-desc">藩主が土地（版図）と人民（戸籍）を天皇に返還した措置。しかし藩主がそのまま「知藩事」となり実質は変わりませんでした。そのため翌1871年に廃藩置県が断行されました。</span></span></span>で藩主が土地・人民を天皇に返還しましたが、実質は変わりませんでした。そこで1871年、薩摩・長州・土佐の御親兵に囲まれた中で<span class="blank person-pop" data-id="H">廃藩置県<span class="pop-box"><span class="pop-name">廃藩置県（1871年）</span><span class="pop-desc">明治政府が藩を廃止して県を置いた大改革。各藩主（知藩事）を突然東京に集め有無を言わさず断行しました。260年以上続いた藩による地方統治が終わり、中央集権国家が誕生しました。</span></span></span>を断行しました。</p>
+  <p>1872年、士農工商の身分制度が廃止されて旧公家・藩主は<span class="blank person-pop" data-id="I">華族<span class="pop-box"><span class="pop-name">華族</span><span class="pop-desc">廃藩置県後に設けられた上流身分。旧公家・旧藩主が該当し、後に爵位（公・侯・伯・子・男）が与えられました。</span></span></span>、武士は<span class="blank person-pop" data-id="J">士族<span class="pop-box"><span class="pop-name">士族</span><span class="pop-desc">廃藩置県後の武士の身分。1876年の秩禄処分・廃刀令で俸給と刀が取り上げられ特権を失いました。</span></span></span>、その他は<span class="blank person-pop" data-id="K">平民<span class="pop-box"><span class="pop-name">平民</span><span class="pop-desc">廃藩置県後の農工商の身分。名字を持つことが許され、居住・職業選択の自由が与えられました。</span></span></span>となりました（<span class="blank" data-id="L">四民平等</span>）。</p>
+</div>
+
+<div class="section">
+  <span class="section-label">③ 富国強兵・殖産興業・文明開化</span>
+  <h2>なぜ明治政府は急いで近代化を進めたのか？</h2>
+  <p>「欧米列強に追いつかなければ清のように植民地にされる」という危機感から、明治政府は<span class="blank person-pop" data-id="M">富国強兵<span class="pop-box"><span class="pop-name">富国強兵</span><span class="pop-desc">明治政府の基本国策。「経済を豊かにして強い軍隊を作る」という方針。欧米列強に対抗するため、産業・軍事の両面で近代化を急ぎました。</span></span></span>を掲げ、欧米の技術者・教師（<span class="blank person-pop" data-id="N">お雇い外国人<span class="pop-box"><span class="pop-name">お雇い外国人</span><span class="pop-desc">明治政府が欧米から招いた専門家・技術者・教師の総称。最盛期には3000人以上がいたといわれます。医学・法律・鉄道・工業など様々な分野で日本の近代化を支えました。</span></span></span>）を招いて産業育成を図る<span class="blank" data-id="O">殖産興業</span>政策を推進しました。</p>
+  <p>1872年には<span class="blank person-pop" data-id="P">徴兵告諭<span class="pop-box"><span class="pop-name">徴兵告諭（1872年）</span><span class="pop-desc">国民に兵役義務を課すことを告げた文書。翌1873年に徴兵令が公布されました。「血税（命という税）」という言葉に農民が反発し、各地で徴兵反対一揆（血税一揆）が起きました。</span></span></span>が出され、1873年には年貢に代わり<span class="blank person-pop" data-id="Q">地価<span class="pop-box"><span class="pop-name">地価（ちか）</span><span class="pop-desc">土地の値段。地租改正では地価の3%を現金で納めることが定められました。従来の現物（お米）納付から現金納付に変わりましたが、農民の税負担は実質ほとんど変わりませんでした。</span></span></span>の3%を現金で納める<span class="blank" data-id="R">地租改正</span>が行われました。</p>
+  <p>産業面では1872年に<span class="blank person-pop" data-id="S">新橋<span class="pop-box"><span class="pop-name">新橋〜横浜鉄道（1872年）</span><span class="pop-desc">日本初の鉄道。新橋〜横浜間29km、所要時間約53分でした。お雇い外国人のモレルの設計で建設されました。蒸気機関車の煙と速さに人々は驚嘆しました。</span></span></span>〜横浜間に鉄道が開通し、群馬県に官営模範工場<span class="blank person-pop" data-id="T">富岡製糸工場<span class="pop-box"><span class="pop-name">富岡製糸工場（1872年開設）</span><span class="pop-desc">群馬県富岡市に建設された官営の生糸工場。フランス人技師ブリューナの指導で建設されました。2014年にユネスコ世界文化遺産に登録されています。</span></span></span>が開設されました。思想家<span class="blank person-pop" data-id="U">福沢諭吉<span class="pop-box"><span class="pop-name">福沢諭吉（1835〜1901）</span><span class="pop-desc">明治の啓蒙思想家。「学問ノススメ」で「天は人の上に人を造らず」と説き、学問・自立の重要性を訴えました。慶應義塾大学の創設者でもあります。</span></span></span>は「学問ノススメ」を著しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>1876年に士族の俸給を廃止する<span class="blank person-pop" data-id="V">秩禄処分<span class="pop-box"><span class="pop-name">秩禄処分（1876年）</span><span class="pop-desc">華族・士族に支払われていた俸給（秩禄）を廃止した措置。一時金として家禄公債が交付されましたが、多くの士族は生活に困窮しました。</span></span></span>と<span class="blank person-pop" data-id="W">廃刀令<span class="pop-box"><span class="pop-name">廃刀令（1876年）</span><span class="pop-desc">軍人・警察官以外の刀の帯刀を禁じた命令。武士のアイデンティティそのものを奪う措置として士族の激しい反発を招きました。</span></span></span>が出され、特権を失った士族の不満が高まりました。1877年には<span class="person-pop">西郷隆盛<span class="pop-box"><span class="pop-name">西郷隆盛（1828〜1877）</span><span class="pop-desc">薩摩藩の英雄。不満を持つ士族に担がれて西南戦争を起こしましたが、徴兵軍（政府軍）に敗れ城山で自刃しました。「最後の武士」とも呼ばれます。</span></span></span>を担いだ西南戦争が起きましたが徴兵軍に敗れて鎮圧されました。</div>
+  <div class="key-point">⭐ <strong>明治維新の流れ</strong>：大政奉還(1867)→王政復古→戊辰戦争→明治政府発足→版籍奉還→廃藩置県→四民平等→富国強兵・殖産興業・地租改正・文明開化</div>
+</div>
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai19_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai19_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①大政奉還(1867・徳川慶喜)→王政復古(岩倉具視・西郷隆盛)→鳥羽伏見の戦い→戊辰戦争→五箇条の御誓文<br>②版籍奉還(1869)→廃藩置県(1871)→四民平等：華族・士族・平民<br>③富国強兵・お雇い外国人・殖産興業→徴兵告諭→地租改正(地価の3%)→新橋〜横浜鉄道→富岡製糸工場→福沢諭吉・学問ノススメ→秩禄処分・廃刀令(1876)→西南戦争(1877)</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={"徳川慶喜":"15代将軍（1837〜1913）。大政奉還を行い、維新後は静岡に隠居しました。","大政奉還":"1867年に15代将軍・慶喜が朝廷に政権を返上した出来事です。","王政復古":"1867年に岩倉具視・西郷隆盛らが宣言した天皇中心の新政府樹立の宣言です。","鳥羽伏見":"1868年の旧幕府軍vs新政府軍の最初の衝突。新政府軍の勝利で戊辰戦争が始まりました。","戊辰戦争":"1868〜69年の内戦。明治新政府軍が勝利し明治政府が確立されました。","五箇条の御誓文":"1868年に明治政府が発布した5つの政治方針です。","版籍奉還":"1869年に藩主が土地・人民を天皇に返還した措置。知藩事となり実質は変わりませんでした。","廃藩置県":"1871年に藩を廃止して県を置いた大改革。中央集権国家が誕生しました。","四民平等":"士農工商の身分制度廃止。華族・士族・平民の新身分制度が設けられました。","華族":"廃藩置県後の旧公家・旧藩主の身分です。","士族":"廃藩置県後の武士の身分。後に秩禄処分・廃刀令で特権を失いました。","平民":"廃藩置県後の農工商の身分です。","富国強兵":"明治政府の基本国策。経済を豊かにして強い軍隊を作る方針です。","お雇い外国人":"明治政府が欧米から招いた専門家・技術者・教師の総称です。","殖産興業":"明治政府が推進した産業育成政策。官営工場・鉄道整備などを行いました。","徴兵告諭":"1872年に国民への兵役義務を告げた文書。各地で血税一揆が起きました。","地価":"土地の値段。地租改正で地価の3%の現金納付が定められました。","地租改正":"1873年の税制改革。年貢から地価3%の現金納付へ変わりました。","新橋":"1872年に新橋〜横浜間に開通した日本初の鉄道の東京側ターミナルです。","富岡製糸工場":"1872年に群馬県に開設された官営模範工場。2014年に世界遺産登録されました。","福沢諭吉":"啓蒙思想家（1835〜1901）。学問ノススメを著し慶應義塾大学を創設しました。","秩禄処分":"1876年に華族・士族への俸給を廃止した措置です。","廃刀令":"1876年に軍人・警察官以外の帯刀を禁じた命令です。"};
+const answers={"A":"徳川慶喜","B":"大政奉還","C":"王政復古","D":"鳥羽伏見","E":"戊辰戦争","F":"五箇条の御誓文","G":"版籍奉還","H":"廃藩置県","I":"華族","J":"士族","K":"平民","L":"四民平等","M":"富国強兵","N":"お雇い外国人","O":"殖産興業","P":"徴兵告諭","Q":"地価","R":"地租改正","S":"新橋","T":"富岡製糸工場","U":"福沢諭吉","V":"秩禄処分","W":"廃刀令"};
+
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display='flex';bank.innerHTML='';[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener('click',e=>{e.stopPropagation();if(chip.classList.contains('used'))return;if(chip===selectedChip){chip.classList.remove('selected-chip');selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove('selected-chip');selectedChip=chip;chip.classList.add('selected-chip');chip.classList.remove('tip-active');return;}if(tip&&!chip.classList.contains('tip-active')){document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));chip.classList.add('tip-active');}else{chip.classList.remove('tip-active');document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');}});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent='';}}else{b.textContent='';}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent='経過時間：---';}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai19']=p['kindai19']||{};p['kindai19'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

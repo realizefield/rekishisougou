@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：アメリカの発展・19世紀のヨーロッパ文化</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a2a5e;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a2a5e;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a2a5e;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-america{background:#1a2a5e}
+  .label-civil{background:#7a1a1a}
+  .label-culture{background:#1a5a3a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a2a5e;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a2a5e;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eef2ff;border-left:5px solid #1a2a5e;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a2a5e}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#1a2a5e;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f0f4ff}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a2a5e;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d1a3e}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a2a5e;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a2a5e;background-color:#eef2ff;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a2a5e;cursor:pointer;color:#0d1a3e;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #1a2a5e;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#0d1a3e;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a2a5e}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>🦅 アメリカの発展・19世紀のヨーロッパ文化</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<!-- ① 米英戦争・モンロー宣言・ラテンアメリカ独立 -->
+<div class="section">
+  <span class="section-label label-america">① 米英戦争・モンロー宣言・ラテンアメリカの独立</span>
+  <h2>なぜアメリカはイギリスとまた戦ったのか？</h2>
+  <p>1812年、アメリカはイギリスと再び戦争に入りました（<span class="blank person-pop" data-id="A">米英戦争<span class="pop-box"><span class="pop-name">米英戦争（1812〜1814年）</span><span class="pop-desc">アメリカとイギリスの間の戦争。ナポレオン戦争のさなか、イギリスがアメリカの貿易船を妨害したことや、アメリカ人船員を強制徴用したことが主な原因でした。勝敗はつかず講和となりましたが、アメリカの国民意識が高まりました。</span></span></span>）。ナポレオン戦争のさなか、イギリスがアメリカの貿易船を妨害し船員を強制徴用したことが原因でした。勝敗はつきませんでしたが、この戦争を通じてアメリカ人の「独立国家としての誇り」がさらに強まりました。</p>
+  <div class="why-box"><span class="label">❓ なぜ独立から30年もたってまた戦ったのか？</span>独立直後のアメリカはまだ弱く、ヨーロッパの列強に対して自国の権利を主張できませんでした。しかし人口・経済が成長するにつれて「もうヨーロッパに舐められてたまるか」という自信が生まれ、イギリスへの強硬姿勢につながったのです。</div>
+  <h2>モンロー宣言とラテンアメリカの独立</h2>
+  <p>米英戦争後の1823年、アメリカ大統領<span class="blank person-pop" data-id="B">モンロー<span class="pop-box"><span class="pop-name">モンロー（1758〜1831）</span><span class="pop-desc">アメリカ第5代大統領。「ヨーロッパとアメリカ大陸の相互不干渉」を宣言し、ラテンアメリカの独立運動を間接的に支援しました。</span></span></span>は有名な<span class="blank" data-id="C">モンロー宣言</span>を発表しました。「ヨーロッパはアメリカ大陸の問題に干渉するな、アメリカもヨーロッパの問題には口を出さない」という孤立主義の原則です。</p>
+  <p>この後ろ盾を得て、ナポレオン戦争でスペインが弱体化したのを機に、ラテンアメリカ各国の独立運動が一気に加速しました。フランス革命の自由・平等の理念と欧米の革命の影響を受けた<span class="blank person-pop" data-id="D">ウィーン体制<span class="pop-box"><span class="pop-name">ラテンアメリカ独立運動</span><span class="pop-desc">ウィーン体制のヨーロッパがラテンアメリカへの再植民地化を検討していましたが、モンロー宣言とイギリスの牽制によって阻止されました。これにより各国の独立が保たれました。</span></span></span>のヨーロッパが再植民地化しようとしましたが、モンロー宣言がそれを阻みました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>モンロー宣言はアメリカが「西半球の守護者」として君臨する姿勢を示したものです。後に「アメリカの裏庭」と呼ばれるラテンアメリカへの支配的影響力の原点となりました。一方ラテンアメリカでは1820〜30年代に次々と独立国家が誕生しました。</div>
+</div>
+
+<!-- ② アメリカ＝メキシコ戦争・ゴールドラッシュ・奴隷制 -->
+<div class="section">
+  <span class="section-label label-america">② 西部開拓・ゴールドラッシュと奴隷制問題</span>
+  <h2>なぜアメリカは西へ西へと拡大したのか？</h2>
+  <p>建国当初は東部13州だったアメリカは、「<span class="blank" data-id="E">フロンティア</span>（開拓前線）」を西へと押し広げながら領土を拡大し続けました。1848年の<span class="blank person-pop" data-id="F">アメリカ＝メキシコ戦争<span class="pop-box"><span class="pop-name">アメリカ＝メキシコ戦争（1846〜1848年）</span><span class="pop-desc">テキサス併合をめぐるアメリカとメキシコの戦争。アメリカが勝利し、カリフォルニア・ニューメキシコなど現在のアメリカ西部の広大な領土を獲得しました。</span></span></span>でメキシコを破り、<span class="blank" data-id="G">カリフォルニア</span>を含む広大な西部を獲得しました。</p>
+  <div class="why-box"><span class="label">❓「明白な使命（マニフェスト・デスティニー）」とは？</span>当時のアメリカ人は「神がアメリカに太平洋まで広がることを定めた」という「明白な使命」という考えを持ち、西部への拡大を正当化しました。しかし実際には先住民（インディアン）が土地を奪われ、強制移住させられるという悲惨な歴史でもありました。</div>
+  <p>1848年、カリフォルニアで金が発見されると翌年から全米・全世界から採掘者が殺到する<span class="blank" data-id="H">ゴールドラッシュ</span>が起きました。これにより西部の人口が急増し、<span class="blank" data-id="I">大陸横断鉄道</span>の建設が急がれることになります。1869年にアメリカ初の大陸横断鉄道が開通し、東西が一つに結ばれました。</p>
+  <h2>深刻化する奴隷制問題</h2>
+  <p>アメリカが拡大する中で、北部と南部の対立が深まっていきました。</p>
+  <div class="why-box"><span class="label">❓ なぜ北部と南部で意見が分かれたのか？</span>北部は工業が発達しており、工場で働く自由な労働者が必要でした。一方、南部はタバコ・綿花のプランテーション（大農園）農業が中心で、コストの安い<span class="blank" data-id="J">奴隷</span>労働に依存していました。経済の仕組みが根本から違ったため、「奴隷制度は廃止すべきか」という問題が北部と南部の激烈な対立につながったのです。</div>
+  <p>1852年には<span class="blank person-pop" data-id="K">ストウ夫人<span class="pop-box"><span class="pop-name">ストウ夫人（1811〜1896）</span><span class="pop-desc">アメリカの作家。小説「アンクル・トムの小屋」で黒人奴隷の悲惨な生活をリアルに描き、北部の人々の奴隷制反対の感情を大いに高めました。リンカーンは「この小さな婦人が大きな戦争を起こした」と言ったといわれています。</span></span></span>の小説「アンクル・トムの小屋」が出版され、奴隷の悲惨な現実を描いたこの作品が北部の人々の奴隷制反対の感情を大きく高めました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>西部への急速な拡大と奴隷制問題の深刻化が重なり、アメリカは深刻な国家分裂の危機に向かっていきます。どの新しい州を「奴隷州」にするか「自由州」にするかが毎回激しい政治対立を生み、やがて南北戦争へと発展していきます。</div>
+</div>
+
+<!-- ③ 南北戦争とその後 -->
+<div class="section">
+  <span class="section-label label-civil">③ 南北戦争（1861〜1865年）とフロンティアの消滅</span>
+  <h2>なぜアメリカは南北に分かれて戦ったのか？</h2>
+  <p>1860年の大統領選挙で奴隷制反対を掲げる共和党の<span class="blank person-pop" data-id="L">リンカーン<span class="pop-box"><span class="pop-name">リンカーン（1809〜1865）</span><span class="pop-desc">アメリカ第16代大統領。「人民の、人民による、人民のための政治」という言葉で有名。南北戦争中に奴隷解放宣言を発表し、北部を勝利に導きました。1865年に暗殺されました。</span></span></span>が当選すると、南部11州が連邦（国）を離脱して「<span class="blank" data-id="M">アメリカ連合国</span>」を結成しました。これに対し北部が武力で阻止しようとして<span class="blank" data-id="N">南北戦争</span>（1861年）が始まりました。</p>
+  <div class="why-box"><span class="label">❓ 南部はなぜ「離脱」という行動に出たのか？</span>南部の人々は「奴隷制度はわれわれの経済・生活を支える柱だ。連邦政府に禁止される前に独立するしかない」と考えました。これは単なる経済的利害だけでなく、「州の権利」つまり「連邦政府より州の方が権限を持つべきだ」という政治的信念も絡んでいました。</div>
+  <p>当初は軍備に優れた南部が優勢でしたが、リンカーンは1863年に<span class="blank" data-id="O">奴隷解放宣言</span>を発表しました。これにより黒人兵士が北部軍に加わるとともに、ヨーロッパ各国が「奴隷制度を守る南部」を支持できなくなり、国際的な世論も北部に有利に働きました。1865年、北部が勝利して南北戦争は終結しました。</p>
+  <p>戦後、リンカーンは暗殺されましたが、1865年に憲法修正第13条で奴隷制度が正式に廃止されました。また1869年には<span class="blank" data-id="P">大陸横断鉄道</span>が開通し、1890年代には西部の<span class="blank" data-id="Q">フロンティア</span>が消滅したと宣言されました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>南北戦争の勝利によってアメリカは国家の統一を保ち、奴隷制度を廃止しました。しかし黒人差別は「法律上の奴隷制廃止」後も長く続きました。南北戦争後、アメリカの工業化は急速に進み、20世紀初頭には世界最大の工業国へと成長します。</div>
+  <div class="key-point">⭐ <strong>南北戦争の流れ</strong>：リンカーン当選(1860) → 南部離脱・南北戦争開始(1861) → 奴隷解放宣言(1863) → 北部勝利・奴隷制廃止(1865) → 大陸横断鉄道(1869) → フロンティア消滅(1890年代)</div>
+</div>
+
+<!-- ④ 19世紀のヨーロッパ文化 -->
+<div class="section">
+  <span class="section-label label-culture">④ 19世紀のヨーロッパ文化</span>
+  <h2>産業革命・革命の時代はどんな文化を生んだのか？</h2>
+  <p>産業革命・市民革命が続いた19世紀のヨーロッパでは、時代の変化を反映した新しい文化が花開きました。</p>
+  <h2>美術：自然と民衆を描く</h2>
+  <p>フランスでは農民の働く姿を写実的に描いた<span class="blank person-pop" data-id="R">ミレー<span class="pop-box"><span class="pop-name">ミレー（1814〜1875）</span><span class="pop-desc">フランスの画家。「落ち穂拾い」「晩鐘」など、農民の日常を厳かに描いた作品で知られます。産業革命で変わりゆく社会の中で、土に根ざした人々の姿を残しました。</span></span></span>が「落ち穂拾い」「晩鐘」などで農民の姿を描きました。オランダ出身の<span class="blank person-pop" data-id="S">ゴッホ<span class="pop-box"><span class="pop-name">ゴッホ（1853〜1890）</span><span class="pop-desc">オランダ出身の画家。「ひまわり」「星月夜」などの作品で知られます。独特の筆致と鮮烈な色彩で知られますが、生前はほとんど評価されませんでした。死後に世界最高の画家の一人として認められました。</span></span></span>は「ひまわり」「星月夜」などの鮮烈な作品を残しました。</p>
+  <div class="why-box"><span class="label">❓ なぜ「農民」や「庶民」を絵の題材にしたのか？</span>それまでの西洋絵画は貴族・王族・宗教をテーマにするものでした。しかし市民革命・産業革命で「普通の人々」が歴史の主役になってきた19世紀には、農民・労働者の生活を描くことに意味が生まれました。ミレーはその先駆けです。</div>
+  <h2>文学・科学でも大きな変革が</h2>
+  <p>ロシアでは農奴制の矛盾や人間の内面を深く描いた<span class="blank person-pop" data-id="T">トルストイ<span class="pop-box"><span class="pop-name">トルストイ（1828〜1910）</span><span class="pop-desc">ロシアの文豪。「戦争と平和」「アンナ・カレーニナ」など、ロシア社会の矛盾や人間の内面を深く描いた作品で世界的に知られます。晩年はキリスト教的な平和主義・非暴力を説きました。</span></span></span>が「戦争と平和」などを著し、フランスでは<span class="blank person-pop" data-id="U">キュリー夫人<span class="pop-box"><span class="pop-name">キュリー夫人（1867〜1934）</span><span class="pop-desc">ポーランド出身の物理学者・化学者。夫ピエールとともに放射線の研究を行い、ラジウム・ポロニウムを発見しました。ノーベル賞を2回（物理学賞・化学賞）受賞した史上初の女性科学者です。</span></span></span>が放射線の研究でラジウムを発見しノーベル賞を受賞しました。</p>
+  <p>また、イギリスのダーウィンは「種の起源」（1859年）で<span class="blank" data-id="V">進化論</span>を発表し、「生物は自然選択によって進化する」と主張しました。「人間も猿から進化した」という考えは当時の社会に大きな衝撃を与えました。</p>
+  <table class="person-table">
+    <tr><th>分野</th><th>人物</th><th>代表作・業績</th></tr>
+    <tr><td>美術</td><td>ミレー（フランス）</td><td>「落ち穂拾い」「晩鐘」—農民の姿を写実的に描写</td></tr>
+    <tr><td>美術</td><td>ゴッホ（オランダ）</td><td>「ひまわり」「星月夜」—独特の色彩・筆致</td></tr>
+    <tr><td>文学</td><td>トルストイ（ロシア）</td><td>「戦争と平和」—ロシア社会の矛盾・人間の内面</td></tr>
+    <tr><td>科学</td><td>キュリー夫人（ポーランド→仏）</td><td>ラジウム発見・ノーベル賞2回受賞</td></tr>
+    <tr><td>科学</td><td>ダーウィン（イギリス）</td><td>「種の起源」—進化論を発表</td></tr>
+  </table>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>19世紀の文化・科学の発展は、それまで「神が決めた秩序」を当然とした世界観を大きく揺さぶりました。進化論・放射線の発見は20世紀の科学技術の基礎となり、リアリズム文学・印象派絵画は現代芸術の出発点となっています。</div>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai12_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai12_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①米英戦争(1812)→モンロー宣言(1823)→ラテンアメリカ独立を支援<br>
+      ②西部拡大：アメリカ＝メキシコ戦争(1848)→カリフォルニア獲得→ゴールドラッシュ→奴隷制問題深刻化<br>
+      ③南北戦争(1861〜65)：リンカーン→奴隷解放宣言(1863)→北部勝利→大陸横断鉄道(1869)→フロンティア消滅<br>
+      ④19世紀文化：ミレー・ゴッホ（美術）・トルストイ（文学）・キュリー夫人（科学）・ダーウィン（進化論）
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "米英戦争":"1812〜14年のアメリカとイギリスの戦争。イギリスの貿易妨害・船員強制徴用が原因。勝敗はつかず講和となりましたが、アメリカの国民意識が高まりました。",
+  "モンロー":"アメリカ第5代大統領（1758〜1831）。1823年に「ヨーロッパとアメリカ大陸の相互不干渉」を宣言しました。",
+  "モンロー宣言":"1823年にモンロー大統領が発表した外交方針。「ヨーロッパはアメリカ大陸に干渉するな、アメリカもヨーロッパの問題には口を出さない」という孤立主義の原則です。",
+  "ウィーン体制":"ナポレオン後のヨーロッパの旧体制回復政策。ラテンアメリカへの再植民地化も検討されましたが、モンロー宣言とイギリスの牽制で阻まれました。",
+  "フロンティア":"アメリカの未開拓地の境界線。西部開拓が進むにつれ西へと移動し、1890年代に「消滅した」と宣言されました。",
+  "アメリカ＝メキシコ戦争":"1846〜48年の戦争。アメリカが勝利し、カリフォルニア・ニューメキシコなど広大な西部領土を獲得しました。",
+  "カリフォルニア":"アメリカ西海岸の州。メキシコ戦争で獲得後、1848年に金が発見されゴールドラッシュが起き人口が急増しました。",
+  "ゴールドラッシュ":"1849年にカリフォルニアで金が発見されたことで世界中から採掘者が殺到した出来事。西部の人口増加と大陸横断鉄道建設を促しました。",
+  "大陸横断鉄道":"1869年に開通したアメリカ東西をつなぐ鉄道。アメリカの経済統合・西部開発を大きく加速させました。",
+  "奴隷":"アフリカから連れてこられた黒人奴隷。南部のプランテーション農業を支えましたが、北部との対立の原因となりました。",
+  "ストウ夫人":"アメリカの作家（1811〜1896）。「アンクル・トムの小屋」で奴隷の悲惨な生活を描き、北部の奴隷制反対の感情を高めました。",
+  "リンカーン":"アメリカ第16代大統領（1809〜1865）。「人民の、人民による、人民のための政治」が有名。南北戦争中に奴隷解放宣言を発表し北部を勝利に導きました。",
+  "アメリカ連合国":"南北戦争時に南部11州が連邦を離脱して結成した国家。リッチモンドを首都とし、北部との戦争に敗れ1865年に消滅しました。",
+  "南北戦争":"1861〜65年のアメリカの内戦。奴隷制をめぐる北部（連邦）対南部（連合国）の戦争。北部が勝利し奴隷制が廃止されました。",
+  "奴隷解放宣言":"1863年にリンカーンが発表した宣言。南部の奴隷を解放するとしたもので、黒人兵士が北部に加わるきっかけとなりました。",
+  "ミレー":"フランスの画家（1814〜1875）。「落ち穂拾い」「晩鐘」など農民の姿をリアルに描きました。",
+  "ゴッホ":"オランダ出身の画家（1853〜1890）。「ひまわり」「星月夜」などの作品で知られます。生前はほとんど評価されませんでした。",
+  "トルストイ":"ロシアの文豪（1828〜1910）。「戦争と平和」「アンナ・カレーニナ」などの大作でロシア社会を描きました。",
+  "キュリー夫人":"ポーランド出身の科学者（1867〜1934）。ラジウム・ポロニウムを発見しノーベル賞を物理学賞・化学賞の2回受賞しました。",
+  "進化論":"ダーウィンが「種の起源」（1859年）で発表した理論。生物は自然選択によって環境に適した形に進化するという考え方で、当時の社会に大きな衝撃を与えました。",
+};
+
+const answers={
+  "A":"米英戦争","B":"モンロー","C":"モンロー宣言","D":"ウィーン体制",
+  "E":"フロンティア","F":"アメリカ＝メキシコ戦争","G":"カリフォルニア","H":"ゴールドラッシュ","I":"大陸横断鉄道","J":"奴隷","K":"ストウ夫人",
+  "L":"リンカーン","M":"アメリカ連合国","N":"南北戦争","O":"奴隷解放宣言","P":"大陸横断鉄道","Q":"フロンティア",
+  "R":"ミレー","S":"ゴッホ","T":"トルストイ","U":"キュリー夫人","V":"進化論"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai12']=p['kindai12']||{};p['kindai12'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+</body>
+</html>

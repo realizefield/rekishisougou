@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：日清戦争・日露戦争・朝鮮問題</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #7a1a00;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #7a1a00;padding-left:10px;color:#1a1a2e}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #7a1a00;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px;background:#7a1a00}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #7a1a00;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#7a1a00;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#fff0e8;border-left:5px solid #7a1a00;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#7a1a00}
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#7a1a00;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #4a0e00}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #7a1a00;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #7a1a00;background-color:#fff0e8;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #7a1a00;cursor:pointer;color:#4a0e00;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:240px;background:#fff;border:2px solid #7a1a00;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none}
+  .person-pop .pop-box .pop-name{font-weight:bold;font-size:15px;color:#4a0e00;margin-bottom:6px;display:block}
+  .person-pop .pop-box .pop-desc{font-size:12px;color:#444;line-height:1.7;text-align:left;display:block}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#7a1a00}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:220px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+</style>
+</head>
+<body>
+<a class="back-to-index" href="index.html">← 単元一覧に戻る</a>
+<h1>⚔️ 日清戦争・日露戦争・朝鮮問題</h1>
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句をタップすると説明、もう一度タップで選択</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+<div class="section">
+  <span class="section-label">① 朝鮮問題〜日清戦争・下関条約</span>
+  <h2>なぜ日本と清は朝鮮問題で対立したのか？</h2>
+  <p>朝鮮では清支持派と日本支持派が対立していました。1882年、<span class="blank person-pop" data-id="A">閔妃<span class="pop-box"><span class="pop-name">閔妃（？〜1895）</span><span class="pop-desc">朝鮮の高宗の妃。当初は日本の明治維新を手本に開化政策を進めましたが、壬午軍乱後に清に接近しました。1895年に日本政府の関与のもとで暗殺されました。</span></span></span>支持派への不満から<span class="blank person-pop" data-id="B">壬午軍乱<span class="pop-box"><span class="pop-name">壬午軍乱（1882年）</span><span class="pop-desc">朝鮮の軍人反乱。閔妃の開化政策への不満を背景に起きました。清が鎮圧し、朝鮮が清の影響下に置かれるきっかけになりました。</span></span></span>が起き、清が鎮圧して朝鮮への影響力を強めました。1884年には日本支持の官僚<span class="blank person-pop" data-id="C">金玉均<span class="pop-box"><span class="pop-name">金玉均（1851〜1894）</span><span class="pop-desc">朝鮮の開化派官僚。1884年に日本公使館の支援を受けてクーデター（甲申事変）を起こしましたが、清の袁世凱軍に鎮圧されました。上海で暗殺されました。</span></span></span>がクーデター（<span class="blank person-pop" data-id="D">甲申事変<span class="pop-box"><span class="pop-name">甲申事変（1884年）</span><span class="pop-desc">朝鮮の金玉均らが日本公使館の支援を受けて起こしたクーデター。清の袁世凱軍に3日で鎮圧されました。日清関係が悪化し翌年の天津条約につながりました。</span></span></span>）を起こしましたが清に鎮圧されました。</p>
+  <p>1885年、日清間で朝鮮出兵時は互いに事前通告するという<span class="blank person-pop" data-id="E">天津条約<span class="pop-box"><span class="pop-name">天津条約（1885年）</span><span class="pop-desc">日本全権・伊藤博文と清全権・李鴻章が締結した条約。朝鮮への出兵時は相手国に事前通告することを定めました。この条約が後に日清両国の出兵と日清戦争の原因になりました。</span></span></span>が締結されました（日本全権：<span class="blank person-pop" data-id="F">伊藤博文<span class="pop-box"><span class="pop-name">伊藤博文（1841〜1909）</span><span class="pop-desc">初代内閣総理大臣。天津条約・下関条約の日本全権を務めました。朝鮮統監府の初代統監として赴任後、1909年にハルビンで安重根に暗殺されました。</span></span></span>・清全権：<span class="blank person-pop" data-id="G">李鴻章<span class="pop-box"><span class="pop-name">李鴻章（1823〜1901）</span><span class="pop-desc">清の大官僚・軍人。天津条約・下関条約の清全権。洋務運動の推進者でもありましたが、日清戦争の敗北で失脚しました。</span></span></span>）。</p>
+  <p>1894年に朝鮮で<span class="blank person-pop" data-id="H">甲午農民戦争<span class="pop-box"><span class="pop-name">甲午農民戦争（1894年）</span><span class="pop-desc">東学という宗教を信仰する農民が起こした大規模反乱（東学の乱）。朝鮮政府の要請で日清両国が出兵し、鎮圧後の撤兵問題から日清戦争が起きました。</span></span></span>が起きると日清両国が出兵し、外相<span class="blank person-pop" data-id="I">陸奥宗光<span class="pop-box"><span class="pop-name">陸奥宗光（1844〜1897）</span><span class="pop-desc">明治期の外務大臣。日英通商航海条約を締結して治外法権撤廃を実現しました。「カミソリ大臣」の異名を持ちました。</span></span></span>が<span class="blank person-pop" data-id="J">日英通商航海条約<span class="pop-box"><span class="pop-name">日英通商航海条約（1894年）</span><span class="pop-desc">外相・陸奥宗光がイギリスと締結した条約。幕末以来の不平等条約の一つ「治外法権」を撤廃することに成功しました。日清戦争直前に締結されました。</span></span></span>を締結して<span class="blank" data-id="K">治外法権</span>を撤廃した後、<span class="blank" data-id="L">日清戦争</span>が起きました（1894年）。日本が勝利しました。</p>
+  <div class="result-box"><span class="label">✅ 下関条約（1895年）</span>日本全権：<span class="person-pop">伊藤博文<span class="pop-box"><span class="pop-name">伊藤博文</span><span class="pop-desc">日清戦争後の下関条約でも日本全権を務めました。</span></span></span>・清全権：李鴻章。①清は朝鮮の独立を認める ②<span class="blank person-pop" data-id="M">リャオトン半島<span class="pop-box"><span class="pop-name">リャオトン半島（遼東半島）</span><span class="pop-desc">満洲南部に突き出た半島。下関条約で日本に割譲されましたが、三国干渉でロシアに返還させられました。その後ロシア自身が清から租借しました。</span></span></span>・台湾・澎湖諸島を日本に割譲 ③清は賠償金2億両を支払う。しかし<span class="blank person-pop" data-id="N">三国干渉<span class="pop-box"><span class="pop-name">三国干渉（1895年）</span><span class="pop-desc">ロシア・フランス・ドイツが日本にリャオトン半島の返還を要求した外交圧力。「臥薪嘗胆（がしんしょうたん）」という言葉が流行し、日本国民の対露感情が悪化しました。</span></span></span>（<span class="person-pop">ロシア<span class="pop-box"><span class="pop-name">ロシアの南下政策</span><span class="pop-desc">ロシアは三国干渉でリャオトン半島を日本に返還させ、その後自分たちが旅順・大連を清から租借しました。「やはりロシアが敵だ」という空気が日本で広まりました。</span></span></span>主導）でリャオトン半島を返還させられました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label">② 日露戦争・ポーツマス条約（1904〜1905年）</span>
+  <h2>なぜ日本はロシアと戦争したのか？</h2>
+  <p>三国干渉後、ロシアは満洲に軍を駐留し朝鮮・満洲への進出を続けました。1902年、外相<span class="blank person-pop" data-id="O">小村寿太郎<span class="pop-box"><span class="pop-name">小村寿太郎（1855〜1911）</span><span class="pop-desc">明治期の外務大臣。1902年の日英同盟締結、1905年のポーツマス条約交渉、1911年の関税自主権回復という3つの外交的偉業を達成しました。</span></span></span>の手腕で<span class="blank" data-id="P">日英同盟</span>を締結し、イギリスの後ろ盾を得た日本は1904年に<span class="blank" data-id="Q">日露戦争</span>を起こしました。</p>
+  <div class="why-box"><span class="label">📌 反戦の声もあった</span><span class="blank person-pop" data-id="R">内村鑑三<span class="pop-box"><span class="pop-name">内村鑑三（1861〜1930）</span><span class="pop-desc">キリスト教思想家。万朝報の記者として日露戦争に反対する非戦論を発表しました。「余は如何にして基督信徒となりし乎」が代表作です。</span></span></span>はキリスト教的立場から非戦論を発表し、<span class="blank person-pop" data-id="S">幸徳秋水<span class="pop-box"><span class="pop-name">幸徳秋水（1871〜1911）</span><span class="pop-desc">社会主義者。平民新聞を創刊し社会主義の立場から日露戦争に反対しました。1910年の大逆事件で処刑されました。</span></span></span>は平民新聞で反対し、詩人<span class="blank person-pop" data-id="T">与謝野晶子<span class="pop-box"><span class="pop-name">与謝野晶子（1878〜1942）</span><span class="pop-desc">歌人・詩人。日露戦争で出征した弟への詩「君死にたまふことなかれ」を発表しました。女性解放・自由恋愛も唱えた先駆的な存在です。</span></span></span>は「君死にたまふことなかれ」を発表しました。</div>
+  <p>日本は旅順占領・日本海海戦でロシアのバルチック艦隊を撃破しましたが戦費に苦しみました。1905年、アメリカ大統領<span class="blank person-pop" data-id="U">セオドア＝ローズヴェルト<span class="pop-box"><span class="pop-name">セオドア＝ローズヴェルト（1858〜1919）</span><span class="pop-desc">アメリカ第26代大統領。ポーツマス（アメリカ東部）で日露戦争の講和会議を主催しました。この仲介によりノーベル平和賞を受賞しました。</span></span></span>の仲介で<span class="blank person-pop" data-id="V">ポーツマス条約<span class="pop-box"><span class="pop-name">ポーツマス条約（1905年）</span><span class="pop-desc">日露戦争の講和条約。日本は韓国の支配権・樺太南部・南満洲鉄道敷設権などを獲得しましたが、賠償金は得られませんでした。</span></span></span>が締結されました。日本は韓国支配権・樺太南部・南満洲鉄道敷設権を獲得しましたが賠償金は得られず、民衆が<span class="blank person-pop" data-id="W">日比谷焼き討ち事件<span class="pop-box"><span class="pop-name">日比谷焼き討ち事件（1905年）</span><span class="pop-desc">ポーツマス条約に反発した民衆が日比谷公園での条約反対集会から暴動に発展した事件。警察署・新聞社・路面電車などが襲われ、戒厳令が出されました。</span></span></span>を起こしました。</p>
+  <div class="result-box"><span class="label">✅ 日本の産業革命</span>日清戦争の賠償金をもとに1897年に<span class="blank person-pop" data-id="X">金本位制<span class="pop-box"><span class="pop-name">金本位制</span><span class="pop-desc">通貨の価値を金によって裏付ける制度。日清戦争の賠償金（銀2億両）をポンドで受け取ったことで、金本位制に移行する資金が整いました。</span></span></span>に移行し、1901年に<span class="blank person-pop" data-id="Y">八幡製鉄所<span class="pop-box"><span class="pop-name">八幡製鉄所（1901年設立）</span><span class="pop-desc">福岡県北九州市に設立された官営製鉄所。日清戦争の賠償金・清からの技術援助をもとに建設されました。鉄鋼生産の拠点となり日本の重化学工業の発展の起点となりました。</span></span></span>が設立されて重化学工業中心の産業革命が進みました。</div>
+  <div class="key-point">⭐ <strong>流れ</strong>：閔妃→壬午軍乱→甲申事変→天津条約→甲午農民戦争→日清戦争(1894)→下関条約→三国干渉→日英同盟(1902)→日露戦争(1904〜05)→ポーツマス条約→韓国併合へ</div>
+</div>
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='kindai20_quiz.html'" disabled>確認問題へ ▶</button>
+      <button onclick="location.href='kindai20_test.html'" style="background:#e67e22;box-shadow:0 3px 0 #c96a10">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">①閔妃→壬午軍乱(1882)→金玉均・甲申事変(1884)→天津条約(1885・伊藤博文・李鴻章)→甲午農民戦争(1894)→陸奥宗光・日英通商航海条約・治外法権撤廃→日清戦争(1894)→下関条約：リャオトン半島割譲・賠償金2億両→三国干渉(ロシア主導)<br>②日英同盟(1902・小村寿太郎)→日露戦争(1904〜05)→反戦：内村鑑三・幸徳秋水・与謝野晶子→ポーツマス条約(セオドア=ローズヴェルト仲介)→賠償金なし→日比谷焼き討ち→産業革命：金本位制・八幡製鉄所</div>
+  </div>
+</div>
+<script>
+const WORD_TIPS={"閔妃":"朝鮮の高宗の妃（？〜1895）。開化政策推進後、壬午軍乱を経て清に接近しました。1895年に暗殺されました。","壬午軍乱":"1882年に起きた朝鮮の軍人反乱。清が鎮圧しました。","金玉均":"朝鮮の開化派官僚（1851〜1894）。甲申事変を起こしましたが清軍に鎮圧されました。","甲申事変":"1884年に金玉均らが起こしたクーデター。清軍に鎮圧されました。","天津条約":"1885年に日清間で締結された条約。朝鮮出兵時の事前通告を定めました。全権は伊藤博文と李鴻章です。","伊藤博文":"初代総理大臣（1841〜1909）。天津条約・下関条約の日本全権。朝鮮統監として1909年に暗殺されました。","李鴻章":"清の大官僚（1823〜1901）。天津条約・下関条約の清全権。洋務運動の推進者でもありました。","甲午農民戦争":"1894年に東学信者の農民が起こした反乱。日清戦争の直接のきっかけとなりました。","陸奥宗光":"明治期の外務大臣（1844〜1897）。日英通商航海条約で治外法権を撤廃しました。","日英通商航海条約":"1894年に締結された条約。治外法権の撤廃を実現しました。","治外法権":"外国人が現地法律で裁かれない特権。1894年に陸奥宗光が撤廃を実現しました。","日清戦争":"1894〜95年の日本vs清の戦争。日本が勝利し下関条約が締結されました。","リャオトン半島":"遼東半島。下関条約で日本に割譲されましたが三国干渉で返還させられました。","三国干渉":"1895年にロシア・フランス・ドイツが日本にリャオトン半島返還を要求した出来事です。","小村寿太郎":"明治期の外相（1855〜1911）。日英同盟締結・ポーツマス条約・関税自主権回復を達成しました。","日英同盟":"1902年締結の日英軍事同盟。日露戦争の背景となりました。","日露戦争":"1904〜05年の日本vsロシアの戦争。日本が勝利しポーツマス条約が締結されました。","内村鑑三":"キリスト教思想家（1861〜1930）。日露戦争に反対する非戦論を発表しました。","幸徳秋水":"社会主義者（1871〜1911）。平民新聞で日露戦争に反対しました。","与謝野晶子":"歌人・詩人（1878〜1942）。反戦詩「君死にたまふことなかれ」を発表しました。","セオドア＝ローズヴェルト":"アメリカ第26代大統領。ポーツマス条約を仲介しノーベル平和賞を受賞しました。","ポーツマス条約":"1905年に締結された日露戦争の講和条約。賠償金は得られませんでした。","日比谷焼き討ち事件":"1905年のポーツマス条約に反発した民衆暴動です。","金本位制":"通貨を金で裏付ける制度。日清戦争の賠償金をもとに1897年に移行しました。","八幡製鉄所":"1901年設立の官営製鉄所。日本の重化学工業の起点となりました。"};
+const answers={"A":"閔妃","B":"壬午軍乱","C":"金玉均","D":"甲申事変","E":"天津条約","F":"伊藤博文","G":"李鴻章","H":"甲午農民戦争","I":"陸奥宗光","J":"日英通商航海条約","K":"治外法権","L":"日清戦争","M":"リャオトン半島","N":"三国干渉","O":"小村寿太郎","P":"日英同盟","Q":"日露戦争","R":"内村鑑三","S":"幸徳秋水","T":"与謝野晶子","U":"セオドア＝ローズヴェルト","V":"ポーツマス条約","W":"日比谷焼き討ち事件","X":"金本位制","Y":"八幡製鉄所"};
+
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display='flex';bank.innerHTML='';[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);}chip.addEventListener('click',e=>{e.stopPropagation();if(chip.classList.contains('used'))return;if(chip===selectedChip){chip.classList.remove('selected-chip');selectedChip=null;return;}if(selectedChip){selectedChip.classList.remove('selected-chip');selectedChip=chip;chip.classList.add('selected-chip');chip.classList.remove('tip-active');return;}if(tip&&!chip.classList.contains('tip-active')){document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));chip.classList.add('tip-active');}else{chip.classList.remove('tip-active');document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');}});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent='';}}else{b.textContent='';}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent='経過時間：---';}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai20']=p['kindai20']||{};p['kindai20'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}());
+</script>
+</body>
+</html>

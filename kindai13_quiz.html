@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：イギリスの膨張・ロシアの南下政策と改革</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+  .back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+  h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+  .unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+  .card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+  .section-title{font-size:16px;font-weight:bold;color:#1a4a1a;border-left:4px solid #1a4a1a;padding-left:12px;margin-bottom:16px}
+  .question-text{font-size:16px;line-height:2.8;color:#222}
+  .blank{display:inline-block;min-width:90px;border-bottom:2px solid #1a4a1a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a1a;vertical-align:middle;min-height:26px;padding:0 4px}
+  .blank.waiting{color:transparent;background:#eee;border-radius:4px}
+  .blank.correct{background:#c8f0c8;color:#0d2d0d;border-color:#1a4a1a}
+  .blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+  .word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#efffea;margin-top:14px}
+  .word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+  .word-chip:hover{border-color:#1a4a1a;background:#d0f0d0}
+  .word-chip.selected{border-color:#1a4a1a;background:#90d090;font-weight:bold}
+  .word-chip.used{opacity:0.3;pointer-events:none}
+  .controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+  .btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .btn-primary{background:#1a4a1a;color:#fff;box-shadow:0 3px 0 #0d2d0d}
+  .btn-secondary{background:#6c757d;color:#fff;box-shadow:0 3px 0 #495057}
+  .btn-orange{background:#e67e22;color:#fff;box-shadow:0 3px 0 #c96a10}
+  .result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+  .result-bar.pass{border-color:#1a4a1a;color:#1a4a1a;background:#d0f0d0}
+  .result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑬ イギリスの膨張・ロシアの南下政策と改革</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🇬🇧 スエズ運河とイギリスのエジプト進出</div>
+  <div class="question-text">
+    1869年に<span class="blank" data-ans="スエズ運河">スエズ運河</span>が開通しました。1875年、イギリス首相<span class="blank" data-ans="ディズレーリ">ディズレーリ</span>は<span class="blank" data-ans="ロスチャイルド">ロスチャイルド</span>家から資金を借りてエジプトの株式を購入しました。1882年、エジプト軍将校<span class="blank" data-ans="ウラービー＝パシャ">ウラービー＝パシャ</span>が<span class="blank" data-ans="ウラービーの革命">ウラービーの革命</span>を起こしましたが、<span class="blank" data-ans="イギリス">イギリス</span>軍が鎮圧してエジプトを保護国化しました。
+  </div>
+  <div class="word-bank" id="bank0"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">🏔️ クリミア戦争と農奴解放令</div>
+  <div class="question-text">
+    1853年、ロシアの南下政策によって<span class="blank" data-ans="クリミア戦争">クリミア戦争</span>が起きました。この戦争でイギリスの看護師<span class="blank" data-ans="ナイチンゲール">ナイチンゲール</span>が野戦病院で活躍しました。ロシアは敗北して1856年の<span class="blank" data-ans="パリ条約">パリ条約</span>を結びました。敗北に衝撃を受けた皇帝<span class="blank" data-ans="アレクサンドル2世">アレクサンドル2世</span>は1861年に<span class="blank" data-ans="農奴解放令">農奴解放令</span>を発布し、近代化を推進しました。
+  </div>
+  <div class="word-bank" id="bank1"></div>
+</div>
+
+<div class="card">
+  <div class="section-title">⚔️ 露土戦争とベルリン会議</div>
+  <div class="question-text">
+    1877年、ロシアは<span class="blank" data-ans="パン＝スラブ主義">パン＝スラブ主義</span>を掲げ<span class="blank" data-ans="露土（ろと）戦争">露土（ろと）戦争</span>を起こしました。勝利したロシアは有利な<span class="blank" data-ans="サン＝ステファノ条約">サン＝ステファノ条約</span>を結びましたが、英墺が反発したため、<span class="blank" data-ans="ビスマルク">ビスマルク</span>が仲介する<span class="blank" data-ans="ベルリン会議">ベルリン会議</span>（1878年）で条約が修正され、ロシアの南下は再び阻まれました。
+  </div>
+  <div class="word-bank" id="bank2"></div>
+</div>
+
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai13.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <button class="btn btn-secondary" onclick="location.reload()">やり直す</button>
+  <a class="btn btn-orange" href="kindai13_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+
+<script>
+const UNIT_ID='kindai13';let sel=null;
+function startChallenge(){
+  document.querySelectorAll('.blank').forEach(b=>{b.textContent='？';b.classList.add('waiting');b.classList.remove('correct','wrong');b.onclick=()=>fillBlank(b);});
+  buildBank('bank0',['スエズ運河','ディズレーリ','ロスチャイルド','ウラービー＝パシャ','ウラービーの革命','イギリス']);
+  buildBank('bank1',['クリミア戦争','ナイチンゲール','パリ条約','アレクサンドル2世','農奴解放令']);
+  buildBank('bank2',['パン＝スラブ主義','露土（ろと）戦争','サン＝ステファノ条約','ビスマルク','ベルリン会議']);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML='';[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement('div');c.className='word-chip';c.textContent=w;c.onclick=()=>{if(c.classList.contains('used'))return;document.querySelectorAll('.word-chip.selected').forEach(x=>x.classList.remove('selected'));sel=c;c.classList.add('selected');};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textContent;document.querySelectorAll('.word-chip').forEach(c=>{if(c.classList.contains('used')&&c.textContent===old)c.classList.remove('used');});}b.textContent=sel.textContent;b.classList.remove('waiting');sel.classList.add('used');sel.classList.remove('selected');sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}b.onclick=null;b.style.cursor='default';});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>
