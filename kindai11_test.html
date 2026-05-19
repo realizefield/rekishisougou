@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：近代⑪ オスマン帝国の弱体化</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.q-num{font-size:12px;color:#7a3800;font-weight:bold;margin-bottom:8px}
+.q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+.choice:hover{border-color:#7a3800;background:#fff8f0}
+.choice.selected{border-color:#7a3800;background:#f0d080;color:#4a2e00;font-weight:bold}
+.choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+.choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+.choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+.footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#7a3800;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+#result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+.result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.result-score{font-size:72px;font-weight:bold;margin:10px 0}
+.result-score.pass{color:#7a3800}.result-score.fail{color:#e67e22}
+.result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+.result-detail{font-size:15px;color:#888;margin-bottom:30px}
+.confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+@keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑪ オスマン帝国の弱体化</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai11.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai11_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID="kindai11",PASS=70;
+const questions=[
+  {q:'18世紀末にアラビアで起きた、純粋なイスラームへの回帰を主張する運動を何といいますか？',choices:['スーフィズム','シオニズム','ワッハーブ運動','パン＝イスラーム主義'],ans:2},
+  {q:'ワッハーブ派と結んでアラビアで勢力を拡大した王族は何家ですか？',choices:['ハシム家','サウード家','フサイン家','パフラヴィー家'],ans:1},
+  {q:'19世紀初頭にエジプトで近代化改革を推進しオスマン帝国から自立しようとした人物は誰ですか？',choices:['ムスタファ＝ケマル','ウラービー','ムハンマド＝アリー','アブドゥルハミト2世'],ans:2},
+  {q:'1821年にオスマン帝国に対して独立運動を起こした民族はどれですか？',choices:['セルビア人','ブルガリア人','ギリシャ人','ルーマニア人'],ans:2},
+  {q:'ギリシャ独立戦争を支援してギリシャで戦死したイギリスの詩人は誰ですか？',choices:['シェリー','キーツ','バイロン','ワーズワース'],ans:2},
+  {q:'1827年にギリシャ支援のためにオスマン帝国・エジプト連合艦隊を破った海戦は何ですか？',choices:['トラファルガー海戦','レパント海戦','ナヴァリノ海戦','日本海海戦'],ans:2},
+  {q:'1829年にギリシャの独立が正式に承認された条約はどれですか？',choices:['パリ条約','ベルリン条約','ロンドン条約','ウィーン条約'],ans:2},
+  {q:'19世紀にオスマン帝国が抱えた列強の干渉と民族問題の総称を何といいますか？',choices:['バルカン問題','東方問題','アジア問題','民族自決問題'],ans:1},
+  {q:'1839年から始まったオスマン帝国の近代化改革を何といいますか？',choices:['タンジマート','ペレストロイカ','変法自強','洋務運動'],ans:0},
+  {q:'1876年にアジア初の近代的憲法としてオスマン帝国で制定された憲法を何といいますか？',choices:['明治憲法','ミドハト憲法','大日本帝国憲法','ワイマール憲法'],ans:1}
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById("questions-area");area.innerHTML="";questions.forEach((q,qi)=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${["①","②","③","④"][ci]}</span>${c}</div>`).join("")}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle("selected",i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add("show-correct");if(ua===ci&&ci!==q.ans)el.classList.add("wrong");if(ua===ci&&ci===q.ans){el.classList.add("correct");correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}document.getElementById("quiz-screen").style.display="none";const rs=document.getElementById("result-screen");rs.style.display="block";const se=document.getElementById("result-score");se.textContent=score+"点";se.className="result-score "+(pass?"pass":"fail");document.getElementById("result-msg").textContent=pass?"🎉 合格！":"😅 おしい！";document.getElementById("result-detail").textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById("result-screen").style.display="none";document.getElementById("quiz-screen").style.display="block";renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=["#f43f5e","#f59e0b","#10b981","#3b82f6","#8b5cf6","#ec4899"];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement("div");el.className="confetti-piece";el.style.left=Math.random()*100+"vw";el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+"s";el.style.width=(6+Math.random()*8)+"px";el.style.height=(6+Math.random()*8)+"px";document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

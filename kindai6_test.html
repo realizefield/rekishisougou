@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：近代⑥ 江戸幕府の外交と鎖国</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.q-num{font-size:12px;color:#1a3d5c;font-weight:bold;margin-bottom:8px}
+.q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+.choice:hover{border-color:#1a3d5c;background:#fff8f0}
+.choice.selected{border-color:#1a3d5c;background:#f0d080;color:#4a2e00;font-weight:bold}
+.choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+.choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+.choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+.footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#1a3d5c;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+#result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+.result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.result-score{font-size:72px;font-weight:bold;margin:10px 0}
+.result-score.pass{color:#1a3d5c}.result-score.fail{color:#e67e22}
+.result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+.result-detail{font-size:15px;color:#888;margin-bottom:30px}
+.confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+@keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑥ 江戸幕府の外交と鎖国</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai6.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai6_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID="kindai6",PASS=70;
+const questions=[
+  {q:'1600年の関ヶ原の戦いに勝利して1603年に江戸幕府を開いたのは誰ですか？',choices:['豊臣秀吉','織田信長','徳川家康','徳川秀忠'],ans:2},
+  {q:'将軍・大名・藩の主従関係を基盤とする江戸時代の政治体制を何といいますか？',choices:['律令体制','幕藩体制','封建制度','大宝律令'],ans:1},
+  {q:'江戸幕府が発行した渡航許可証を持つ船が行う貿易を何といいますか？',choices:['勘合貿易','朱印船貿易','南蛮貿易','密貿易'],ans:1},
+  {q:'1637〜38年にキリスト教弾圧に対して起きた反乱を何といいますか？',choices:['秋月の乱','島原の乱','天草の乱','有馬の乱'],ans:1},
+  {q:'鎖国後に長崎の出島で唯一西洋の国として貿易を続けた国はどこですか？',choices:['スペイン','ポルトガル','イギリス','オランダ'],ans:3},
+  {q:'キリスト教の弾圧のため、踏み絵を踏ませて信者を発見しようとした行為を何といいますか？',choices:['寺請制度','絵踏','キリシタン禁制','踏み絵検査'],ans:1},
+  {q:'江戸時代に朝鮮との外交を仲介した藩はどこですか？',choices:['薩摩藩','松前藩','対馬藩','長崎奉行所'],ans:2},
+  {q:'15世紀初頭に三山を統一して琉球王国を作った人物は誰ですか？',choices:['察度','尚巴志','尚真','護佐丸'],ans:1},
+  {q:'1609年に琉球を征服した薩摩藩の藩主の氏族は何ですか？',choices:['毛利氏','島津氏','伊達氏','前田氏'],ans:1},
+  {q:'江戸時代の北海道（蝦夷地）の交易を独占した藩はどこですか？',choices:['仙台藩','秋田藩','南部藩','松前藩'],ans:3},
+  {q:'江戸幕府の鎖国体制で唯一、西洋諸国との交易が許可されていた場所はどこですか？',choices:['対馬','薩摩','長崎の出島','平戸'],ans:2},
+  {q:'幕府がキリスト教の信者でないことを証明させた制度で、寺の檀家であることを証明させたものを何といいますか？',choices:['絵踏','五人組','寺請制度','人別帳'],ans:2}
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById("questions-area");area.innerHTML="";questions.forEach((q,qi)=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${["①","②","③","④"][ci]}</span>${c}</div>`).join("")}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle("selected",i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add("show-correct");if(ua===ci&&ci!==q.ans)el.classList.add("wrong");if(ua===ci&&ci===q.ans){el.classList.add("correct");correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}document.getElementById("quiz-screen").style.display="none";const rs=document.getElementById("result-screen");rs.style.display="block";const se=document.getElementById("result-score");se.textContent=score+"点";se.className="result-score "+(pass?"pass":"fail");document.getElementById("result-msg").textContent=pass?"🎉 合格！":"😅 おしい！";document.getElementById("result-detail").textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById("result-screen").style.display="none";document.getElementById("quiz-screen").style.display="block";renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=["#f43f5e","#f59e0b","#10b981","#3b82f6","#8b5cf6","#ec4899"];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement("div");el.className="confetti-piece";el.style.left=Math.random()*100+"vw";el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+"s";el.style.width=(6+Math.random()*8)+"px";el.style.height=(6+Math.random()*8)+"px";document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

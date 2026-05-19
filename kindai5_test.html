@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>テスト：近代⑤ 中国の明・清</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.q-num{font-size:12px;color:#8b0000;font-weight:bold;margin-bottom:8px}
+.q-text{font-size:17px;color:#1a1a2e;line-height:1.7;margin-bottom:18px}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choice{padding:12px 16px;border:2px solid #dde;border-radius:8px;cursor:pointer;font-size:15px;color:#333;transition:all 0.15s;background:#fafafa}
+.choice:hover{border-color:#8b0000;background:#fff8f0}
+.choice.selected{border-color:#8b0000;background:#f0d080;color:#4a2e00;font-weight:bold}
+.choice.correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d;font-weight:bold}
+.choice.wrong{border-color:#e74c3c;background:#fff0ef;color:#c0392b}
+.choice.show-correct{border-color:#27ae60;background:#e8fff2;color:#1e8a4d}
+.footer{max-width:720px;margin:0 auto;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{padding:12px 28px;border-radius:10px;border:none;font-size:16px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#8b0000;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+#result-screen{display:none;max-width:720px;margin:0 auto;text-align:center}
+.result-card{background:#fff;border-radius:16px;padding:40px 24px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
+.result-score{font-size:72px;font-weight:bold;margin:10px 0}
+.result-score.pass{color:#8b0000}.result-score.fail{color:#e67e22}
+.result-msg{font-size:22px;font-weight:bold;margin-bottom:8px}
+.result-detail{font-size:15px;color:#888;margin-bottom:30px}
+.confetti-piece{position:fixed;width:10px;height:10px;top:-10px;opacity:0;animation:fall linear forwards;border-radius:2px;pointer-events:none;z-index:9999}
+@keyframes fall{0%{top:-10px;opacity:1;transform:rotate(0deg)}100%{top:110vh;opacity:0.3;transform:rotate(720deg)}}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>🎯 テスト</h1>
+<p class="unit-label">近代⑤ 中国の明・清</p>
+<div id="quiz-screen">
+  <div id="questions-area"></div>
+  <div class="footer">
+    <a class="btn btn-secondary" href="kindai5.html">📖 学習ページへ</a>
+    <a class="btn btn-secondary" href="kindai5_quiz.html">✏️ 確認問題へ</a>
+    <button class="btn btn-primary" onclick="submitTest()">採点する</button>
+  </div>
+</div>
+<div id="result-screen">
+  <div class="result-card">
+    <div id="result-msg" class="result-msg"></div>
+    <div id="result-score" class="result-score"></div>
+    <div id="result-detail" class="result-detail"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-secondary" onclick="retryTest()">もう一度挑戦</button>
+      <button class="btn btn-primary" onclick="location.href='index.html'">🏠 単元一覧へ</button>
+    </div>
+  </div>
+</div>
+<script>
+const UNIT_ID="kindai5",PASS=70;
+const questions=[
+  {q:'元末の農民反乱で明の建国者・朱元璋が頭角を現したきっかけとなった反乱を何といいますか？',choices:['太平天国の乱','紅巾の乱','黄巾の乱','義和団戦争'],ans:1},
+  {q:'明を建国した朱元璋の皇帝としての称号は何ですか？',choices:['永楽帝','成祖','洪武帝','宣宗'],ans:2},
+  {q:'明が朝貢貿易以外の貿易を禁じた政策を何といいますか？',choices:['開国政策','自由貿易','海禁政策','関税政策'],ans:2},
+  {q:'永楽帝の命を受けて南海遠征を行い東南アジア・インド・アフリカまで航海した人物は誰ですか？',choices:['鄭成功','鄭和','鄭芝龍','陳和'],ans:1},
+  {q:'海外に移住した中国人のことを何といいますか？',choices:['漢民族','倭寇','華僑・華人','客家'],ans:2},
+  {q:'北方の遊牧民族と南方の倭寇による二重の脅威を表した言葉は何ですか？',choices:['南蛮北狄','東夷西戎','北虜南倭','内憂外患'],ans:2},
+  {q:'日本の室町幕府・足利義満が明との間で始めた、正式の貿易船を証明する符を用いた貿易を何といいますか？',choices:['朱印船貿易','南蛮貿易','勘合貿易','朝貢貿易'],ans:2},
+  {q:'清が漢民族に強制した、満州人の習慣である髪型を何といいますか？',choices:['断髪','辮髪','月代','ちょんまげ'],ans:1},
+  {q:'清が満州人と漢人を共に高官に採用した制度を何といいますか？',choices:['科挙制','満漢分離制','満漢併用制','旗人制'],ans:2},
+  {q:'清の最盛期を築いた3人の皇帝の組み合わせとして正しいのはどれですか？',choices:['洪武帝・永楽帝・宣宗','康熙帝・雍正帝・乾隆帝','順治帝・康熙帝・乾隆帝','ヌルハチ・康熙帝・雍正帝'],ans:1},
+  {q:'清が外国との貿易を制限して許可した一港はどこですか？',choices:['上海','北京','広州','天津'],ans:2},
+  {q:'明の朝貢貿易に参加した際に日本側の代表として交渉した室町幕府の将軍は誰ですか？',choices:['足利尊氏','足利義満','足利義政','足利義昭'],ans:1}
+];
+let userAnswers=new Array(questions.length).fill(-1);
+function renderQuestions(){const area=document.getElementById("questions-area");area.innerHTML="";questions.forEach((q,qi)=>{const card=document.createElement("div");card.className="card";card.innerHTML=`<div class="q-num">問題 ${qi+1} / ${questions.length}</div><div class="q-text">${q.q}</div><div class="choices" id="ch-${qi}">${q.choices.map((c,ci)=>`<div class="choice" onclick="sel(${qi},${ci})"><span style="font-weight:bold;margin-right:8px">${["①","②","③","④"][ci]}</span>${c}</div>`).join("")}</div>`;area.appendChild(card);});}
+function sel(qi,ci){userAnswers[qi]=ci;document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,i)=>el.classList.toggle("selected",i===ci));}
+function submitTest(){let correct=0;questions.forEach((q,qi)=>{const ua=userAnswers[qi];document.querySelectorAll(`#ch-${qi} .choice`).forEach((el,ci)=>{if(ci===q.ans)el.classList.add("show-correct");if(ua===ci&&ci!==q.ans)el.classList.add("wrong");if(ua===ci&&ci===q.ans){el.classList.add("correct");correct++;}el.onclick=null;});});const score=Math.round(correct/questions.length*100),pass=score>=PASS;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].testScore=score;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}document.getElementById("quiz-screen").style.display="none";const rs=document.getElementById("result-screen");rs.style.display="block";const se=document.getElementById("result-score");se.textContent=score+"点";se.className="result-score "+(pass?"pass":"fail");document.getElementById("result-msg").textContent=pass?"🎉 合格！":"😅 おしい！";document.getElementById("result-detail").textContent=`${correct} / ${questions.length} 問正解（合格ライン：${PASS}点）`;if(pass)confetti();window.scrollTo(0,0);}
+function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.getElementById("result-screen").style.display="none";document.getElementById("quiz-screen").style.display="block";renderQuestions();window.scrollTo(0,0);}
+function confetti(){const col=["#f43f5e","#f59e0b","#10b981","#3b82f6","#8b5cf6","#ec4899"];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement("div");el.className="confetti-piece";el.style.left=Math.random()*100+"vw";el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+"s";el.style.width=(6+Math.random()*8)+"px";el.style.height=(6+Math.random()*8)+"px";document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
+renderQuestions();
+</script>
+</body>
+</html>

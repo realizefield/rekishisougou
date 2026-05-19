@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>確認問題：近代⑤ 中国の明・清</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Meiryo",sans-serif;background:#f0f2f5;min-height:100vh;padding:20px 16px 80px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:20px;text-decoration:none}
+h1{text-align:center;font-size:22px;color:#1a1a2e;margin-bottom:6px}
+.unit-label{text-align:center;color:#888;font-size:13px;margin-bottom:24px}
+.card{max-width:720px;margin:0 auto 20px;background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.07);border:1px solid #e5e8f0}
+.section-title{font-size:16px;font-weight:bold;color:#8b0000;border-left:4px solid #8b0000;padding-left:12px;margin-bottom:16px}
+.question-text{font-size:16px;line-height:2.8;color:#222}
+.blank{display:inline-block;min-width:90px;border-bottom:2px solid #8b0000;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#8b0000;vertical-align:middle;min-height:26px;padding:0 4px}
+.blank.waiting{color:transparent;background:#eee;border-radius:4px}
+.blank.correct{background:#ffd88a;border-color:#8b0000}
+.blank.wrong{background:#ffe8e8;border-color:#e74c3c}
+.word-bank{border:1px solid #dde;border-radius:8px;padding:12px;display:flex;flex-wrap:wrap;gap:8px;background:#fffbf0;margin-top:14px}
+.word-chip{padding:6px 13px;border-radius:20px;border:1.5px solid #aaa;background:#fff;cursor:pointer;font-size:14px;transition:0.15s}
+.word-chip:hover{border-color:#8b0000;background:#fff0d0}
+.word-chip.selected{border-color:#8b0000;background:#f0c060;font-weight:bold}
+.word-chip.used{opacity:0.3;pointer-events:none}
+.controls{max-width:720px;margin:0 auto;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:16px 0}
+.btn{padding:11px 24px;border-radius:10px;border:none;font-size:15px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:#8b0000;color:#fff}
+.btn-secondary{background:#6c757d;color:#fff}
+.btn-orange{background:#e67e22;color:#fff}
+.result-bar{max-width:720px;margin:0 auto 16px;background:#fff;border-radius:10px;padding:14px 20px;display:none;text-align:center;border:1px solid #dde;font-size:16px}
+.result-bar.pass{border-color:#8b0000;color:#8b0000;background:#fff0c8}
+.result-bar.fail{border-color:#e74c3c;color:#e74c3c;background:#fff5f5}
+</style>
+</head>
+<body>
+<a class="back-btn" href="index.html">← 単元一覧に戻る</a>
+<h1>✏️ 確認問題</h1>
+<p class="unit-label">近代⑤ 中国の明・清</p>
+<div id="result-bar" class="result-bar"></div>
+
+<div class="card">
+  <div class="section-title">🐉 明の成立と海禁政策</div>
+  <div class="question-text">元末の農民反乱<span class="blank" data-ans="紅巾の乱">紅巾の乱</span>から頭角を現した<span class="blank" data-ans="朱元璋">朱元璋</span>（<span class="blank" data-ans="洪武帝">洪武帝</span>）が1368年に<span class="blank" data-ans="明">明</span>を建国した。明は<span class="blank" data-ans="朝貢貿易">朝貢貿易</span>以外の貿易を禁じる<span class="blank" data-ans="海禁政策">海禁政策</span>をとった。永楽帝の命で<span class="blank" data-ans="鄭和">鄭和</span>が<span class="blank" data-ans="南海遠征">南海遠征</span>を行い、海外に移住した中国人を<span class="blank" data-ans="華僑・華人">華僑・華人</span>という。</div>
+  <div class="word-bank" id="b0"></div>
+</div>
+<div class="card">
+  <div class="section-title">🐉 北虜南倭と勘合貿易</div>
+  <div class="question-text">北方の遊牧民族（北虜）と南方の倭寇（南倭）による<span class="blank" data-ans="北虜南倭">北虜南倭</span>の脅威を受けた。日本と明の間では<span class="blank" data-ans="足利義満">足利義満</span>が<span class="blank" data-ans="勘合貿易">勘合貿易</span>を始め、<span class="blank" data-ans="勘合符">勘合符</span>で正式の貿易船を証明した。豊臣秀吉の<span class="blank" data-ans="豊臣秀吉">豊臣秀吉</span>の朝鮮侵略により日明関係は断絶した。</div>
+  <div class="word-bank" id="b1"></div>
+</div>
+<div class="card">
+  <div class="section-title">🐉 清の成立と支配体制</div>
+  <div class="question-text">ヌルハチが女真族を統一して建国した<span class="blank" data-ans="清">清</span>は満州人の王朝である。漢民族に<span class="blank" data-ans="辮髪">辮髪</span>を強制し、<span class="blank" data-ans="科挙">科挙</span>を継続し、満州人と漢人を共に採用する<span class="blank" data-ans="満漢併用制">満漢併用制</span>をとった。<span class="blank" data-ans="康熙帝">康熙帝</span>・<span class="blank" data-ans="雍正帝">雍正帝</span>・<span class="blank" data-ans="乾隆帝">乾隆帝</span>の三代で最大領土となった。外国との貿易を<span class="blank" data-ans="広州">広州</span>一港に限定した。</div>
+  <div class="word-bank" id="b2"></div>
+</div>
+<div class="controls">
+  <a class="btn btn-secondary" href="kindai5.html">📖 学習ページへ</a>
+  <button class="btn btn-secondary" onclick="startChallenge()">🔄 リセット</button>
+  <button class="btn btn-primary" onclick="checkAnswers()">採点する</button>
+  <a class="btn btn-orange" href="kindai5_test.html">🎯 テストに挑戦 ▶</a>
+</div>
+<script>
+const UNIT_ID="kindai5";let sel=null;
+function startChallenge(){
+  document.querySelectorAll(".blank").forEach(b=>{b.textContent="？";b.classList.add("waiting");b.classList.remove("correct","wrong");b.onclick=()=>fillBlank(b);});
+  buildBank("b0",["紅巾の乱","朱元璋","洪武帝","明","朝貢貿易","海禁政策","鄭和","南海遠征","華僑・華人"]);
+  buildBank("b1",["北虜南倭","足利義満","勘合貿易","勘合符","豊臣秀吉"]);
+  buildBank("b2",["清","辮髪","科挙","満漢併用制","康熙帝","雍正帝","乾隆帝","広州"]);
+}
+function buildBank(id,words){const b=document.getElementById(id);b.innerHTML="";[...words].sort(()=>Math.random()-0.5).forEach(w=>{const c=document.createElement("div");c.className="word-chip";c.textContent=w;c.onclick=()=>{if(c.classList.contains("used"))return;document.querySelectorAll(".word-chip.selected").forEach(x=>x.classList.remove("selected"));sel=c;c.classList.add("selected");};b.appendChild(c);});}
+function fillBlank(b){if(!sel)return;if(b.textContent!=="？"){const old=b.textContent;document.querySelectorAll(".word-chip").forEach(c=>{if(c.classList.contains("used")&&c.textContent===old)c.classList.remove("used");});}b.textContent=sel.textContent;b.classList.remove("waiting");sel.classList.add("used");sel.classList.remove("selected");sel=null;}
+function checkAnswers(){let ok=0,total=0;document.querySelectorAll(".blank").forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add("correct");b.classList.remove("wrong");ok++;}else{b.classList.remove("correct");b.classList.add("wrong");}b.onclick=null;b.style.cursor="default";});const bar=document.getElementById("result-bar");bar.style.display="block";if(ok===total){bar.className="result-bar pass";bar.textContent=`🎉 全問正解！(${ok}/${total})`;try{const p=JSON.parse(localStorage.getItem("gamba_progress")||"{}");p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem("gamba_progress",JSON.stringify(p));}catch(e){}}else{bar.className="result-bar fail";bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
+startChallenge();
+</script>
+</body>
+</html>
