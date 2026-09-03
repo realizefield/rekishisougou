@@ -82,5 +82,6 @@ function retryTest(){userAnswers=new Array(questions.length).fill(-1);document.g
 function confetti(){const col=['#f43f5e','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899'];for(let i=0;i<80;i++)setTimeout(()=>{const el=document.createElement('div');el.className='confetti-piece';el.style.left=Math.random()*100+'vw';el.style.background=col[Math.floor(Math.random()*col.length)];el.style.animationDuration=(1.5+Math.random()*2)+'s';el.style.width=(6+Math.random()*8)+'px';el.style.height=(6+Math.random()*8)+'px';document.body.appendChild(el);setTimeout(()=>el.remove(),4000);},i*30);}
 renderQuestions();
 </script>
+<script src="https://realizefield.github.io/gamba-kounin-seito/gamba-ai.js" defer></script>
 </body>
 </html>

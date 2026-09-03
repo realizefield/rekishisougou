@@ -92,5 +92,6 @@ function fillBlank(b){if(!sel)return;if(b.textContent!=='？'){const old=b.textC
 function checkAnswers(){let ok=0,total=0;document.querySelectorAll('.blank').forEach(b=>{total++;if(b.textContent===b.dataset.ans){b.classList.add('correct');b.classList.remove('wrong');ok++;}else{b.classList.remove('correct');b.classList.add('wrong');}b.onclick=null;b.style.cursor='default';});const bar=document.getElementById('result-bar');bar.style.display='block';if(ok===total){bar.className='result-bar pass';bar.textContent=`🎉 全問正解！(${ok}/${total}) テストにも挑戦しましょう！`;try{const p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p[UNIT_ID]=p[UNIT_ID]||{};p[UNIT_ID].quizDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}}else{bar.className='result-bar fail';bar.textContent=`${ok}/${total} 正解。赤い空欄を確認しましょう！`;}window.scrollTo(0,0);}
 startChallenge();
 </script>
+<script src="https://realizefield.github.io/gamba-kounin-seito/gamba-ai.js" defer></script>
 </body>
 </html>
