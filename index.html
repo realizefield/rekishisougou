@@ -53,7 +53,8 @@
 </style>
 <script>
 /* 未作成ページは「準備中」として押せないようにする（2026-09-03） */
-var GAMBA_SOON = ['kindai11.html'];
+/* kindai11.html（近代⑪ オスマン帝国の弱体化）は作成済み・公開済みのため2026-09-20に解除 */
+var GAMBA_SOON = [];
 function gambaLink(url, cls, label){
   if (GAMBA_SOON.indexOf(String(url).split('?')[0]) !== -1) {
     return '<span class="btn-s ' + cls + '" style="opacity:.45;cursor:default;">' + label + '（準備中）</span>';
