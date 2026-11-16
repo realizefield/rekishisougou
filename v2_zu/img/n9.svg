@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Meiryo',sans-serif">
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<rect width="1200" height="740" fill="#ffffff"/>
+<text x="40" y="38" font-size="24" font-weight="bold" fill="#222">冷戦の構図　世界は二つの陣営に分かれました</text>
+<text x="40" y="62" font-size="14" fill="#555">アメリカとソ連が直接戦わないまま続いた対立です。どちらにも入らない国々もありました。</text>
+<rect x="40" y="100" width="380" height="250" rx="10" fill="#e8f0fb" stroke="#2b5fa8" stroke-width="2"/>
+<text x="230.0" y="207.95" font-size="18" text-anchor="middle" fill="#222" font-weight="bold">西側（資本主義）の陣営</text>
+<text x="230.0" y="230.95" font-size="17" text-anchor="middle" fill="#222">アメリカ・イギリス・フランス</text>
+<text x="230.0" y="253.95" font-size="17" text-anchor="middle" fill="#222">西ドイツ・日本・韓国など</text>
+<rect x="780" y="100" width="380" height="250" rx="10" fill="#fdecea" stroke="#c0392b" stroke-width="2"/>
+<text x="970.0" y="207.95" font-size="18" text-anchor="middle" fill="#222" font-weight="bold">東側（社会主義）の陣営</text>
+<text x="970.0" y="230.95" font-size="17" text-anchor="middle" fill="#222">ソ連・東ドイツ・ポーランド</text>
+<text x="970.0" y="253.95" font-size="17" text-anchor="middle" fill="#222">中国（1949年〜）・北朝鮮など</text>
+<rect x="60" y="270" width="340" height="60" rx="10" fill="#fff" stroke="#2b5fa8" stroke-width="2"/>
+<text x="230.0" y="305.25" font-size="15" text-anchor="middle" fill="#222">NATO（1949年）</text>
+<rect x="800" y="270" width="340" height="60" rx="10" fill="#fff" stroke="#c0392b" stroke-width="2"/>
+<text x="970.0" y="305.25" font-size="15" text-anchor="middle" fill="#222">ワルシャワ条約機構（1955年）</text>
+<line x1="425" y1="200" x2="775" y2="200" stroke="#555" stroke-width="4" marker-end="url(#ar)"/>
+<line x1="775" y1="220" x2="425" y2="220" stroke="#555" stroke-width="4" marker-end="url(#ar)"/>
+<text x="600" y="180" font-size="22" text-anchor="middle" fill="#222" font-weight="bold">冷戦</text>
+<text x="600" y="252" font-size="14" text-anchor="middle" fill="#555">にらみ合い</text>
+<rect x="420" y="380" width="360" height="150" rx="10" fill="#e9f5ea" stroke="#2e7d32" stroke-width="2"/>
+<text x="600.0" y="428.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">どちらにも入らない国々</text>
+<text x="600.0" y="449.75" font-size="15" text-anchor="middle" fill="#222">インド・インドネシア</text>
+<text x="600.0" y="470.75" font-size="15" text-anchor="middle" fill="#222">エジプト・ユーゴスラビアなど</text>
+<text x="600.0" y="491.75" font-size="15" text-anchor="middle" fill="#222">（1955年 バンドン会議）</text>
+<line x1="300" y1="355" x2="440" y2="395" stroke="#999" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="900" y1="355" x2="760" y2="395" stroke="#999" stroke-width="2" marker-end="url(#ar)"/>
+<text x="40" y="570" font-size="18" text-anchor="start" fill="#222" font-weight="bold">対立が表に出た主な出来事</text>
+<rect x="40" y="590" width="260" height="62" rx="10" fill="#fff" stroke="#999" stroke-width="2"/>
+<text x="170.0" y="615.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">1948〜49</text>
+<text x="170.0" y="636.75" font-size="15" text-anchor="middle" fill="#222">ベルリン封鎖</text>
+<rect x="325" y="590" width="260" height="62" rx="10" fill="#fff" stroke="#999" stroke-width="2"/>
+<text x="455.0" y="615.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">1950〜53</text>
+<text x="455.0" y="636.75" font-size="15" text-anchor="middle" fill="#222">朝鮮戦争</text>
+<rect x="610" y="590" width="260" height="62" rx="10" fill="#fff" stroke="#999" stroke-width="2"/>
+<text x="740.0" y="615.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">1962</text>
+<text x="740.0" y="636.75" font-size="15" text-anchor="middle" fill="#222">キューバ危機</text>
+<rect x="895" y="590" width="260" height="62" rx="10" fill="#fff" stroke="#999" stroke-width="2"/>
+<text x="1025.0" y="615.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">1965〜75</text>
+<text x="1025.0" y="636.75" font-size="15" text-anchor="middle" fill="#222">ベトナム戦争</text>
+<rect x="20" y="670" width="1160" height="68" rx="8" fill="#fff8d6" stroke="#d9b800"/>
+<text x="36" y="694" font-size="14" text-anchor="start" fill="#7a5d00" font-weight="bold">ポイント</text>
+<text x="100" y="694" font-size="14" text-anchor="start" fill="#333">1989年のベルリンの壁崩壊、1991年のソ連解体で、冷戦は終わりました。</text>
+<text x="100" y="714" font-size="14" text-anchor="start" fill="#333">冷戦の時代に、アジア・アフリカでは独立があいつぎました（次の年表を見てください）。</text>
+</svg>

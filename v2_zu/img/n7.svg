@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Meiryo',sans-serif">
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<rect width="1200" height="800" fill="#ffffff"/>
+<text x="40" y="38" font-size="24" font-weight="bold" fill="#222">普通選挙の広がり　国ごとのちがい</text>
+<text x="40" y="62" font-size="14" fill="#555">女性が選挙権を得た時期を、国ごとに横にならべました。日本の男子普通選挙（1925年）もあわせて示します。</text>
+<line x1="200" y1="100" x2="200" y2="660" stroke="#ddd"/>
+<text x="200" y="92" font-size="13" text-anchor="middle" fill="#444">1910</text>
+<line x1="420" y1="100" x2="420" y2="660" stroke="#ddd"/>
+<text x="420" y="92" font-size="13" text-anchor="middle" fill="#444">1920</text>
+<line x1="640" y1="100" x2="640" y2="660" stroke="#ddd"/>
+<text x="640" y="92" font-size="13" text-anchor="middle" fill="#444">1930</text>
+<line x1="860" y1="100" x2="860" y2="660" stroke="#ddd"/>
+<text x="860" y="92" font-size="13" text-anchor="middle" fill="#444">1940</text>
+<line x1="1080" y1="100" x2="1080" y2="660" stroke="#ddd"/>
+<text x="1080" y="92" font-size="13" text-anchor="middle" fill="#444">1950</text>
+<text x="40" y="175" font-size="18" text-anchor="start" fill="#222" font-weight="bold">イギリス</text>
+<line x1="170" y1="170" x2="1100" y2="170" stroke="#bbb" stroke-width="2"/>
+<text x="40" y="275" font-size="18" text-anchor="start" fill="#222" font-weight="bold">ドイツ</text>
+<line x1="170" y1="270" x2="1100" y2="270" stroke="#bbb" stroke-width="2"/>
+<text x="40" y="375" font-size="18" text-anchor="start" fill="#222" font-weight="bold">アメリカ</text>
+<line x1="170" y1="370" x2="1100" y2="370" stroke="#bbb" stroke-width="2"/>
+<text x="40" y="475" font-size="18" text-anchor="start" fill="#222" font-weight="bold">フランス</text>
+<line x1="170" y1="470" x2="1100" y2="470" stroke="#bbb" stroke-width="2"/>
+<text x="40" y="575" font-size="18" text-anchor="start" fill="#222" font-weight="bold">日本</text>
+<line x1="170" y1="570" x2="1100" y2="570" stroke="#bbb" stroke-width="2"/>
+<circle cx="376" cy="170" r="9" fill="#c26a00" stroke="#fff" stroke-width="2"/>
+<text x="376" y="130" font-size="13" text-anchor="middle" fill="#222">男子21歳以上・</text>
+<text x="376" y="147" font-size="13" text-anchor="middle" fill="#222">女性30歳以上</text>
+<text x="376" y="198" font-size="13" text-anchor="middle" fill="#c26a00" font-weight="bold">1918</text>
+<circle cx="596" cy="170" r="9" fill="#c26a00" stroke="#fff" stroke-width="2"/>
+<text x="596" y="130" font-size="13" text-anchor="middle" fill="#222">男女とも</text>
+<text x="596" y="147" font-size="13" text-anchor="middle" fill="#222">21歳以上</text>
+<text x="596" y="198" font-size="13" text-anchor="middle" fill="#c26a00" font-weight="bold">1928</text>
+<circle cx="387.0" cy="270" r="9" fill="#c26a00" stroke="#fff" stroke-width="2"/>
+<text x="387.0" y="230" font-size="13" text-anchor="middle" fill="#222">女性にも選挙権</text>
+<text x="387.0" y="247" font-size="13" text-anchor="middle" fill="#222">（20歳以上）</text>
+<text x="387.0" y="298" font-size="13" text-anchor="middle" fill="#c26a00" font-weight="bold">1918〜1919</text>
+<circle cx="420" cy="370" r="9" fill="#c26a00" stroke="#fff" stroke-width="2"/>
+<text x="420" y="330" font-size="13" text-anchor="middle" fill="#222">女性に選挙権</text>
+<text x="420" y="347" font-size="13" text-anchor="middle" fill="#222">（憲法修正第19条）</text>
+<text x="420" y="398" font-size="13" text-anchor="middle" fill="#c26a00" font-weight="bold">1920</text>
+<circle cx="948" cy="470" r="9" fill="#c26a00" stroke="#fff" stroke-width="2"/>
+<text x="948" y="430" font-size="13" text-anchor="middle" fill="#222">女性に選挙権</text>
+<text x="948" y="447" font-size="13" text-anchor="middle" fill="#222">（1945年に初投票）</text>
+<text x="948" y="498" font-size="13" text-anchor="middle" fill="#c26a00" font-weight="bold">1944</text>
+<circle cx="530" cy="570" r="9" fill="#2b5fa8" stroke="#fff" stroke-width="2"/>
+<text x="530" y="530" font-size="13" text-anchor="middle" fill="#222">男子普通選挙</text>
+<text x="530" y="547" font-size="13" text-anchor="middle" fill="#222">（25歳以上の男子）</text>
+<text x="530" y="598" font-size="13" text-anchor="middle" fill="#2b5fa8" font-weight="bold">1925</text>
+<circle cx="970" cy="570" r="9" fill="#c26a00" stroke="#fff" stroke-width="2"/>
+<text x="970" y="530" font-size="13" text-anchor="middle" fill="#222">女性に選挙権</text>
+<text x="970" y="547" font-size="13" text-anchor="middle" fill="#222">（1946年に初投票）</text>
+<text x="970" y="598" font-size="13" text-anchor="middle" fill="#c26a00" font-weight="bold">1945</text>
+<circle cx="60" cy="700" r="8" fill="#c26a00"/>
+<text x="76" y="705" font-size="13" text-anchor="start" fill="#222">女性が選挙権を得た（一部を含む）</text>
+<circle cx="340" cy="700" r="8" fill="#2b5fa8"/>
+<text x="356" y="705" font-size="13" text-anchor="start" fill="#222">男子の普通選挙が実現した</text>
+<rect x="20" y="718" width="1160" height="68" rx="8" fill="#fff8d6" stroke="#d9b800"/>
+<text x="36" y="742" font-size="14" text-anchor="start" fill="#7a5d00" font-weight="bold">ポイント</text>
+<text x="100" y="742" font-size="14" text-anchor="start" fill="#333">ドイツやフランスでは、男子の選挙権は19世紀から広がっていました。アメリカには、人種による制限が長く残りました。</text>
+<text x="100" y="762" font-size="14" text-anchor="start" fill="#333">日本は、男子普通選挙（1925年）と女性の選挙権（1945年）の間が20年あります。国ごとに、広がりかたがちがいます。</text>
+</svg>

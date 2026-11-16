@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Meiryo',sans-serif">
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<rect width="1200" height="640" fill="#ffffff"/>
+<text x="40" y="38" font-size="24" font-weight="bold" fill="#222">資料の読み取り手順　5つのステップ</text>
+<text x="40" y="62" font-size="14" fill="#555">文章・写真・絵・グラフ・風刺画・地図など、どんな資料でも同じ順番で読みましょう。</text>
+<circle cx="130" cy="130" r="26" fill="#2b5fa8"/>
+<text x="130" y="139" font-size="26" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+<rect x="40" y="170" width="190" height="180" rx="10" fill="#fff" stroke="#2b5fa8" stroke-width="2"/>
+<text x="135.0" y="233.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">出典を見る</text>
+<text x="135.0" y="254.75" font-size="15" text-anchor="middle" fill="#222">いつ</text>
+<text x="135.0" y="275.75" font-size="15" text-anchor="middle" fill="#222">どこで</text>
+<text x="135.0" y="296.75" font-size="15" text-anchor="middle" fill="#222">だれが作った？</text>
+<line x1="234" y1="260" x2="264" y2="260" stroke="#555" stroke-width="3" marker-end="url(#ar)"/>
+<circle cx="358" cy="130" r="26" fill="#2b5fa8"/>
+<text x="358" y="139" font-size="26" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+<rect x="268" y="170" width="190" height="180" rx="10" fill="#fff" stroke="#2b5fa8" stroke-width="2"/>
+<text x="363.0" y="244.25" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">書いてあることを</text>
+<text x="363.0" y="265.25" font-size="15" text-anchor="middle" fill="#222">写す</text>
+<text x="363.0" y="286.25" font-size="15" text-anchor="middle" fill="#222">（事実だけを書き出す）</text>
+<line x1="462" y1="260" x2="492" y2="260" stroke="#555" stroke-width="3" marker-end="url(#ar)"/>
+<circle cx="586" cy="130" r="26" fill="#c26a00"/>
+<text x="586" y="139" font-size="26" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+<rect x="496" y="170" width="190" height="180" rx="10" fill="#fff" stroke="#c26a00" stroke-width="2"/>
+<text x="591.0" y="244.25" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">ねらいを考える</text>
+<text x="591.0" y="265.25" font-size="15" text-anchor="middle" fill="#222">なぜ作った？</text>
+<text x="591.0" y="286.25" font-size="15" text-anchor="middle" fill="#222">だれに見せたい？</text>
+<line x1="690" y1="260" x2="720" y2="260" stroke="#555" stroke-width="3" marker-end="url(#ar)"/>
+<circle cx="814" cy="130" r="26" fill="#c26a00"/>
+<text x="814" y="139" font-size="26" text-anchor="middle" fill="#fff" font-weight="bold">4</text>
+<rect x="724" y="170" width="190" height="180" rx="10" fill="#fff" stroke="#c26a00" stroke-width="2"/>
+<text x="819.0" y="244.25" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">ほかの資料と</text>
+<text x="819.0" y="265.25" font-size="15" text-anchor="middle" fill="#222">くらべる</text>
+<text x="819.0" y="286.25" font-size="15" text-anchor="middle" fill="#222">（同じ・ちがう）</text>
+<line x1="918" y1="260" x2="948" y2="260" stroke="#555" stroke-width="3" marker-end="url(#ar)"/>
+<circle cx="1042" cy="130" r="26" fill="#2e7d32"/>
+<text x="1042" y="139" font-size="26" text-anchor="middle" fill="#fff" font-weight="bold">5</text>
+<rect x="952" y="170" width="190" height="180" rx="10" fill="#fff" stroke="#2e7d32" stroke-width="2"/>
+<text x="1047.0" y="244.25" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">自分の言葉で</text>
+<text x="1047.0" y="265.25" font-size="15" text-anchor="middle" fill="#222">まとめる</text>
+<text x="1047.0" y="286.25" font-size="15" text-anchor="middle" fill="#222">（根拠をそえる）</text>
+<rect x="40" y="390" width="1120" height="100" rx="10" fill="#f3f3f3" stroke="#999" stroke-width="2"/>
+<text x="600.0" y="434.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">たとえば　グラフの資料なら</text>
+<text x="600.0" y="455.75" font-size="15" text-anchor="middle" fill="#222">①出典・年　②たて軸と横軸が何か　③ふえているか、へっているか　④いつ大きく変わったか　⑤その理由を考える</text>
+<rect x="20" y="520" width="1160" height="68" rx="8" fill="#fff8d6" stroke="#d9b800"/>
+<text x="36" y="544" font-size="14" text-anchor="start" fill="#7a5d00" font-weight="bold">ポイント</text>
+<text x="100" y="544" font-size="14" text-anchor="start" fill="#333">「事実（見えること）」と「考え（そこから言えること）」を分けて書くと、まちがいが少なくなります。</text>
+<text x="100" y="564" font-size="14" text-anchor="start" fill="#333">歴史総合では、このように資料から問いを立て、自分の言葉で説明する学習が中心になります。</text>
+</svg>

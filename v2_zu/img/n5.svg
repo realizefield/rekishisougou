@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Meiryo',sans-serif">
+<rect width="1200" height="740" fill="#ffffff"/>
+<text x="40" y="38" font-size="24" font-weight="bold" fill="#222">世界と日本の同時年表④ 1945年〜現在</text>
+<text x="40" y="62" font-size="14" fill="#555">冷戦からグローバル化の時代へ。世界の動きと日本の動きを横にならべて見ましょう。</text>
+<line x1="110.0" y1="86" x2="110.0" y2="92" stroke="#444"/>
+<text x="110.0" y="82" font-size="13" text-anchor="middle" fill="#444">1945</text>
+<line x1="332.0" y1="86" x2="332.0" y2="92" stroke="#444"/>
+<text x="332.0" y="82" font-size="13" text-anchor="middle" fill="#444">1960</text>
+<line x1="554.0" y1="86" x2="554.0" y2="92" stroke="#444"/>
+<text x="554.0" y="82" font-size="13" text-anchor="middle" fill="#444">1975</text>
+<line x1="776.0" y1="86" x2="776.0" y2="92" stroke="#444"/>
+<text x="776.0" y="82" font-size="13" text-anchor="middle" fill="#444">1990</text>
+<line x1="998.0" y1="86" x2="998.0" y2="92" stroke="#444"/>
+<text x="998.0" y="82" font-size="13" text-anchor="middle" fill="#444">2005</text>
+<line x1="1146.0" y1="86" x2="1146.0" y2="92" stroke="#444"/>
+<text x="1146.0" y="82" font-size="13" text-anchor="middle" fill="#444">2015</text>
+<line x1="110" y1="92" x2="1157" y2="92" stroke="#444"/>
+<rect x="20" y="110" width="1160" height="140" rx="8" fill="#e8f0fb"/>
+<text x="66" y="186" font-size="18" font-weight="bold" text-anchor="middle" fill="#2b5fa8">欧米</text>
+<line x1="110" y1="180" x2="1157" y2="180" stroke="#2b5fa8" stroke-width="2"/>
+<rect x="20" y="270" width="1160" height="140" rx="8" fill="#fdf0e0"/>
+<text x="66" y="346" font-size="18" font-weight="bold" text-anchor="middle" fill="#c26a00">アジア</text>
+<line x1="110" y1="340" x2="1157" y2="340" stroke="#c26a00" stroke-width="2"/>
+<rect x="20" y="430" width="1160" height="140" rx="8" fill="#e9f5ea"/>
+<text x="66" y="506" font-size="18" font-weight="bold" text-anchor="middle" fill="#2e7d32">日本</text>
+<line x1="110" y1="500" x2="1157" y2="500" stroke="#2e7d32" stroke-width="2"/>
+<line x1="110.0" y1="180" x2="110.0" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="110.0" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="48.0" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="110.0" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1945</text>
+<text x="110.0" y="224" font-size="13" text-anchor="middle" fill="#222">国際連合</text>
+<text x="110.0" y="239" font-size="13" text-anchor="middle" fill="#222">発足</text>
+<line x1="154.4" y1="180" x2="154.4" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="154.4" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="92.4" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="154.4" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1947〜49</text>
+<text x="154.4" y="144" font-size="13" text-anchor="middle" fill="#222">冷戦の始まり</text>
+<text x="154.4" y="159" font-size="13" text-anchor="middle" fill="#222">NATO発足</text>
+<line x1="346.8" y1="180" x2="346.8" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="346.8" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="284.8" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="346.8" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1961</text>
+<text x="346.8" y="224" font-size="13" text-anchor="middle" fill="#222">ベルリンの壁</text>
+<text x="346.8" y="239" font-size="13" text-anchor="middle" fill="#222">建設</text>
+<line x1="361.6" y1="180" x2="361.6" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="361.6" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="299.6" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="361.6" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1962</text>
+<text x="361.6" y="144" font-size="13" text-anchor="middle" fill="#222">キューバ危機</text>
+<line x1="768.6" y1="180" x2="768.6" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="768.6" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="706.6" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="768.6" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1989〜90</text>
+<text x="768.6" y="224" font-size="13" text-anchor="middle" fill="#222">ベルリンの壁</text>
+<text x="768.6" y="239" font-size="13" text-anchor="middle" fill="#222">崩壊・冷戦終結</text>
+<line x1="790.8000000000001" y1="180" x2="790.8000000000001" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="790.8000000000001" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="728.8000000000001" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="790.8000000000001" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1991</text>
+<text x="790.8000000000001" y="144" font-size="13" text-anchor="middle" fill="#222">ソ連解体</text>
+<line x1="820.4000000000001" y1="180" x2="895" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="820.4000000000001" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="833.0" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="895" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1993</text>
+<text x="895" y="224" font-size="13" text-anchor="middle" fill="#222">EU発足</text>
+<line x1="938.8000000000001" y1="180" x2="938.8000000000001" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="938.8000000000001" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="876.8000000000001" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="938.8000000000001" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">2001</text>
+<text x="938.8000000000001" y="144" font-size="13" text-anchor="middle" fill="#222">同時多発テロ</text>
+<text x="938.8000000000001" y="159" font-size="13" text-anchor="middle" fill="#222">（アメリカ）</text>
+<line x1="1042.4" y1="180" x2="1042.4" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="1042.4" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="980.4000000000001" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="1042.4" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">2008</text>
+<text x="1042.4" y="224" font-size="13" text-anchor="middle" fill="#222">リーマン・</text>
+<text x="1042.4" y="239" font-size="13" text-anchor="middle" fill="#222">ショック</text>
+<line x1="110.0" y1="340" x2="110.0" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="110.0" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="48.0" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="110.0" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1945</text>
+<text x="110.0" y="304" font-size="13" text-anchor="middle" fill="#222">インドネシア・</text>
+<text x="110.0" y="319" font-size="13" text-anchor="middle" fill="#222">ベトナム独立宣言</text>
+<line x1="139.6" y1="340" x2="155" y2="352" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="139.6" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="93.0" y="352" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="155" y="368" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1947</text>
+<text x="155" y="384" font-size="13" text-anchor="middle" fill="#222">インド・</text>
+<text x="155" y="399" font-size="13" text-anchor="middle" fill="#222">パキスタン独立</text>
+<line x1="169.2" y1="340" x2="245" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="169.2" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="183.0" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="245" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1949</text>
+<text x="245" y="304" font-size="13" text-anchor="middle" fill="#222">中華人民共和国</text>
+<text x="245" y="319" font-size="13" text-anchor="middle" fill="#222">成立</text>
+<line x1="206.2" y1="340" x2="300" y2="352" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="206.2" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="238.0" y="352" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="300" y="368" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1950〜53</text>
+<text x="300" y="384" font-size="13" text-anchor="middle" fill="#222">朝鮮戦争</text>
+<line x1="258.0" y1="340" x2="385" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="258.0" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="323.0" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="385" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1955</text>
+<text x="385" y="304" font-size="13" text-anchor="middle" fill="#222">バンドン会議</text>
+<text x="385" y="319" font-size="13" text-anchor="middle" fill="#222">（アジア・アフリカ）</text>
+<line x1="480.0" y1="340" x2="480.0" y2="352" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="480.0" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="418.0" y="352" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="480.0" y="368" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1965〜75</text>
+<text x="480.0" y="384" font-size="13" text-anchor="middle" fill="#222">ベトナム戦争</text>
+<line x1="509.6" y1="340" x2="520" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="509.6" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="458.0" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="520" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1972</text>
+<text x="520" y="304" font-size="13" text-anchor="middle" fill="#222">米中接近</text>
+<text x="520" y="319" font-size="13" text-anchor="middle" fill="#222">（ニクソン訪中）</text>
+<line x1="598.4000000000001" y1="340" x2="620" y2="352" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="598.4000000000001" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="558.0" y="352" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="620" y="368" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1978</text>
+<text x="620" y="384" font-size="13" text-anchor="middle" fill="#222">中国の</text>
+<text x="620" y="399" font-size="13" text-anchor="middle" fill="#222">改革開放</text>
+<line x1="879.6" y1="340" x2="879.6" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="879.6" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="817.6" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="879.6" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1997</text>
+<text x="879.6" y="304" font-size="13" text-anchor="middle" fill="#222">香港が中国に</text>
+<text x="879.6" y="319" font-size="13" text-anchor="middle" fill="#222">返還される</text>
+<line x1="110.0" y1="500" x2="110.0" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="110.0" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="48.0" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="110.0" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1945</text>
+<text x="110.0" y="464" font-size="13" text-anchor="middle" fill="#222">敗戦・</text>
+<text x="110.0" y="479" font-size="13" text-anchor="middle" fill="#222">占領開始</text>
+<line x1="132.2" y1="500" x2="132.2" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="132.2" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="70.19999999999999" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="132.2" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1946〜47</text>
+<text x="132.2" y="544" font-size="13" text-anchor="middle" fill="#222">日本国憲法</text>
+<text x="132.2" y="559" font-size="13" text-anchor="middle" fill="#222">公布・施行</text>
+<line x1="198.8" y1="500" x2="250" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="198.8" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="188.0" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="250" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1951</text>
+<text x="250" y="464" font-size="13" text-anchor="middle" fill="#222">サンフランシスコ</text>
+<text x="250" y="479" font-size="13" text-anchor="middle" fill="#222">平和条約</text>
+<line x1="265.4" y1="500" x2="290" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="265.4" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="228.0" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="290" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1955〜56</text>
+<text x="290" y="544" font-size="13" text-anchor="middle" fill="#222">55年体制・</text>
+<text x="290" y="559" font-size="13" text-anchor="middle" fill="#222">国連加盟</text>
+<line x1="332.0" y1="500" x2="390" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="332.0" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="328.0" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="390" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1960</text>
+<text x="390" y="464" font-size="13" text-anchor="middle" fill="#222">新安保条約</text>
+<line x1="391.2" y1="500" x2="430" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="391.2" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="368.0" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="430" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1964</text>
+<text x="430" y="544" font-size="13" text-anchor="middle" fill="#222">東京五輪・</text>
+<text x="430" y="559" font-size="13" text-anchor="middle" fill="#222">新幹線開通</text>
+<line x1="509.6" y1="500" x2="530" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="509.6" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="468.0" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="530" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1972</text>
+<text x="530" y="464" font-size="13" text-anchor="middle" fill="#222">沖縄返還・</text>
+<text x="530" y="479" font-size="13" text-anchor="middle" fill="#222">日中国交正常化</text>
+<line x1="524.4000000000001" y1="500" x2="570" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="524.4000000000001" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="508.0" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="570" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1973</text>
+<text x="570" y="544" font-size="13" text-anchor="middle" fill="#222">石油危機</text>
+<line x1="790.8000000000001" y1="500" x2="790.8000000000001" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="790.8000000000001" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="728.8000000000001" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="790.8000000000001" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1991〜</text>
+<text x="790.8000000000001" y="464" font-size="13" text-anchor="middle" fill="#222">バブル経済</text>
+<text x="790.8000000000001" y="479" font-size="13" text-anchor="middle" fill="#222">の崩壊</text>
+<line x1="850.0" y1="500" x2="850.0" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="850.0" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="788.0" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="850.0" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1995</text>
+<text x="850.0" y="544" font-size="13" text-anchor="middle" fill="#222">阪神・淡路</text>
+<text x="850.0" y="559" font-size="13" text-anchor="middle" fill="#222">大震災</text>
+<line x1="1086.8000000000002" y1="500" x2="1086.8000000000002" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="1086.8000000000002" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="1024.8000000000002" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="1086.8000000000002" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">2011</text>
+<text x="1086.8000000000002" y="464" font-size="13" text-anchor="middle" fill="#222">東日本大震災</text>
+<rect x="20" y="628" width="1160" height="76" rx="8" fill="#fff8d6" stroke="#d9b800"/>
+<text x="36" y="652" font-size="14" font-weight="bold" fill="#7a5d00">ポイント</text>
+<text x="100" y="652" font-size="14" fill="#333">戦後は、冷戦のなかで世界が二つの陣営に分かれ、アジア・アフリカでは独立があいつぎました。</text>
+<text x="100" y="672" font-size="14" fill="#333">1989年の冷戦終結のあと、人・モノ・情報・お金が国境をこえて動くグローバル化が進みました。</text>
+</svg>

@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Meiryo',sans-serif">
+<rect width="1200" height="740" fill="#ffffff"/>
+<text x="40" y="38" font-size="24" font-weight="bold" fill="#222">世界と日本の同時年表① 1750〜1870年</text>
+<text x="40" y="62" font-size="14" fill="#555">同じ時期に、欧米・アジア・日本でなにが起きていたかを、横にならべて見ましょう。</text>
+<line x1="110.0" y1="86" x2="110.0" y2="92" stroke="#444"/>
+<text x="110.0" y="82" font-size="13" text-anchor="middle" fill="#444">1750</text>
+<line x1="375.0" y1="86" x2="375.0" y2="92" stroke="#444"/>
+<text x="375.0" y="82" font-size="13" text-anchor="middle" fill="#444">1800</text>
+<line x1="587.0" y1="86" x2="587.0" y2="92" stroke="#444"/>
+<text x="587.0" y="82" font-size="13" text-anchor="middle" fill="#444">1840</text>
+<line x1="777" y1="86" x2="777" y2="92" stroke="#444"/>
+<text x="777" y="82" font-size="13" text-anchor="middle" fill="#444">1850</text>
+<line x1="967" y1="86" x2="967" y2="92" stroke="#444"/>
+<text x="967" y="82" font-size="13" text-anchor="middle" fill="#444">1860</text>
+<line x1="1157" y1="86" x2="1157" y2="92" stroke="#444"/>
+<text x="1157" y="82" font-size="13" text-anchor="middle" fill="#444">1870</text>
+<line x1="110" y1="92" x2="1157" y2="92" stroke="#444"/>
+<rect x="20" y="110" width="1160" height="140" rx="8" fill="#e8f0fb"/>
+<text x="66" y="186" font-size="18" font-weight="bold" text-anchor="middle" fill="#2b5fa8">欧米</text>
+<line x1="110" y1="180" x2="1157" y2="180" stroke="#2b5fa8" stroke-width="2"/>
+<rect x="20" y="270" width="1160" height="140" rx="8" fill="#fdf0e0"/>
+<text x="66" y="346" font-size="18" font-weight="bold" text-anchor="middle" fill="#c26a00">アジア</text>
+<line x1="110" y1="340" x2="1157" y2="340" stroke="#c26a00" stroke-width="2"/>
+<rect x="20" y="430" width="1160" height="140" rx="8" fill="#e9f5ea"/>
+<text x="66" y="506" font-size="18" font-weight="bold" text-anchor="middle" fill="#2e7d32">日本</text>
+<line x1="110" y1="500" x2="1157" y2="500" stroke="#2e7d32" stroke-width="2"/>
+<line x1="587.0" y1="96" x2="587.0" y2="650" stroke="#999" stroke-dasharray="5 4"/>
+<text x="593.0" y="104" font-size="12" fill="#777">ここから目盛りを広げています</text>
+<line x1="189.5" y1="180" x2="189.5" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="189.5" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="127.5" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="189.5" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1760年代〜</text>
+<text x="189.5" y="144" font-size="13" text-anchor="middle" fill="#222">産業革命</text>
+<text x="189.5" y="159" font-size="13" text-anchor="middle" fill="#222">（イギリス）</text>
+<line x1="247.79999999999998" y1="180" x2="247.79999999999998" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="247.79999999999998" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="185.79999999999998" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="247.79999999999998" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1776</text>
+<text x="247.79999999999998" y="224" font-size="13" text-anchor="middle" fill="#222">アメリカ</text>
+<text x="247.79999999999998" y="239" font-size="13" text-anchor="middle" fill="#222">独立宣言</text>
+<line x1="316.7" y1="180" x2="316.7" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="316.7" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="254.7" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="316.7" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1789</text>
+<text x="316.7" y="144" font-size="13" text-anchor="middle" fill="#222">フランス革命</text>
+<line x1="396.2" y1="180" x2="396.2" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="396.2" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="334.2" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="396.2" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1804</text>
+<text x="396.2" y="224" font-size="13" text-anchor="middle" fill="#222">ナポレオン</text>
+<text x="396.2" y="239" font-size="13" text-anchor="middle" fill="#222">皇帝になる</text>
+<line x1="454.5" y1="180" x2="454.5" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="454.5" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="392.5" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="454.5" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1814〜15</text>
+<text x="454.5" y="144" font-size="13" text-anchor="middle" fill="#222">ウィーン会議</text>
+<line x1="739" y1="180" x2="739" y2="168" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="739" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="677.0" y="112" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="739" y="128" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1848</text>
+<text x="739" y="144" font-size="13" text-anchor="middle" fill="#222">二月革命</text>
+<text x="739" y="159" font-size="13" text-anchor="middle" fill="#222">（フランス）</text>
+<line x1="986" y1="180" x2="986" y2="192" stroke="#2b5fa8" stroke-width="1.5"/>
+<circle cx="986" cy="180" r="4.5" fill="#2b5fa8"/>
+<rect x="924.0" y="192" width="124" height="56" rx="6" fill="#fff" stroke="#2b5fa8" stroke-width="1.5"/>
+<text x="986" y="208" font-size="12" font-weight="bold" text-anchor="middle" fill="#2b5fa8">1861</text>
+<text x="986" y="224" font-size="13" text-anchor="middle" fill="#222">南北戦争・</text>
+<text x="986" y="239" font-size="13" text-anchor="middle" fill="#222">イタリア王国</text>
+<line x1="147.1" y1="340" x2="147.1" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="147.1" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="85.1" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="147.1" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1757</text>
+<text x="147.1" y="304" font-size="13" text-anchor="middle" fill="#222">プラッシーの戦い</text>
+<text x="147.1" y="319" font-size="13" text-anchor="middle" fill="#222">英がベンガル支配</text>
+<line x1="587.0" y1="340" x2="587.0" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="587.0" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="525.0" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="587.0" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1840〜42</text>
+<text x="587.0" y="304" font-size="13" text-anchor="middle" fill="#222">アヘン戦争・</text>
+<text x="587.0" y="319" font-size="13" text-anchor="middle" fill="#222">南京条約</text>
+<line x1="796" y1="340" x2="796" y2="352" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="796" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="734.0" y="352" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="796" y="368" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1851〜64</text>
+<text x="796" y="384" font-size="13" text-anchor="middle" fill="#222">太平天国の乱</text>
+<text x="796" y="399" font-size="13" text-anchor="middle" fill="#222">（清）</text>
+<line x1="910" y1="340" x2="910" y2="328" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="910" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="848.0" y="272" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="910" y="288" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1857</text>
+<text x="910" y="304" font-size="13" text-anchor="middle" fill="#222">インド大反乱</text>
+<text x="910" y="319" font-size="13" text-anchor="middle" fill="#222">→ムガル帝国滅亡</text>
+<line x1="967" y1="340" x2="1000" y2="352" stroke="#c26a00" stroke-width="1.5"/>
+<circle cx="967" cy="340" r="4.5" fill="#c26a00"/>
+<rect x="938.0" y="352" width="124" height="56" rx="6" fill="#fff" stroke="#c26a00" stroke-width="1.5"/>
+<text x="1000" y="368" font-size="12" font-weight="bold" text-anchor="middle" fill="#c26a00">1860</text>
+<text x="1000" y="384" font-size="13" text-anchor="middle" fill="#222">北京条約</text>
+<text x="1000" y="399" font-size="13" text-anchor="middle" fill="#222">（アロー戦争）</text>
+<line x1="332.6" y1="500" x2="332.6" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="332.6" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="270.6" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="332.6" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1792</text>
+<text x="332.6" y="464" font-size="13" text-anchor="middle" fill="#222">ラクスマン</text>
+<text x="332.6" y="479" font-size="13" text-anchor="middle" fill="#222">根室に来航</text>
+<line x1="507.5" y1="500" x2="507.5" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="507.5" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="445.5" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="507.5" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1825</text>
+<text x="507.5" y="544" font-size="13" text-anchor="middle" fill="#222">異国船打払令</text>
+<line x1="843.5" y1="500" x2="843.5" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="843.5" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="781.5" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="843.5" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1853〜54</text>
+<text x="843.5" y="464" font-size="13" text-anchor="middle" fill="#222">ペリー来航・</text>
+<text x="843.5" y="479" font-size="13" text-anchor="middle" fill="#222">日米和親条約</text>
+<line x1="929" y1="500" x2="929" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="929" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="867.0" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="929" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1858</text>
+<text x="929" y="544" font-size="13" text-anchor="middle" fill="#222">日米修好</text>
+<text x="929" y="559" font-size="13" text-anchor="middle" fill="#222">通商条約</text>
+<line x1="967" y1="500" x2="980" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="967" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="918.0" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="980" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1860</text>
+<text x="980" y="464" font-size="13" text-anchor="middle" fill="#222">桜田門外の変</text>
+<line x1="1081" y1="500" x2="1060" y2="512" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="1081" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="998.0" y="512" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="1060" y="528" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1866</text>
+<text x="1060" y="544" font-size="13" text-anchor="middle" fill="#222">薩長同盟</text>
+<line x1="1109.5" y1="500" x2="1112" y2="488" stroke="#2e7d32" stroke-width="1.5"/>
+<circle cx="1109.5" cy="500" r="4.5" fill="#2e7d32"/>
+<rect x="1050.0" y="432" width="124" height="56" rx="6" fill="#fff" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="1112" y="448" font-size="12" font-weight="bold" text-anchor="middle" fill="#2e7d32">1867〜68</text>
+<text x="1112" y="464" font-size="13" text-anchor="middle" fill="#222">大政奉還・</text>
+<text x="1112" y="479" font-size="13" text-anchor="middle" fill="#222">明治維新</text>
+<rect x="20" y="668" width="1160" height="56" rx="8" fill="#fff8d6" stroke="#d9b800"/>
+<text x="36" y="692" font-size="14" font-weight="bold" fill="#7a5d00">ポイント</text>
+<text x="100" y="692" font-size="14" fill="#333">清がアヘン戦争（1840〜42年）で敗れたことは日本にも伝わり、幕府が外国船への対応を見直すきっかけになりました。</text>
+<text x="100" y="712" font-size="14" fill="#333">世界の動きと日本の動きは、つながっています。ペリー来航（1853年）の背景を、アジアの動きと合わせて考えましょう。</text>
+</svg>
