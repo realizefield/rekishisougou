@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>歴史学習GAMBA：ウィーン体制・イタリア・ドイツの統一</title>
+<style>
+  body{font-family:"Meiryo",sans-serif;max-width:960px;margin:20px auto;line-height:1.9;background-color:#f4f4f9;font-size:16px;padding-bottom:300px}
+  h1{border-bottom:3px solid #1a4a2a;padding-bottom:8px;font-size:24px;color:#1a1a2e}
+  h2{margin-top:20px;margin-bottom:8px;font-size:19px;border-left:5px solid #1a4a2a;padding-left:10px;color:#1a1a2e}
+  h3{margin-top:12px;margin-bottom:6px;font-size:16px;color:#0d2d18;font-weight:bold}
+  .back-to-index{display:inline-flex;align-items:center;gap:6px;background:#2c3e8c;color:#fff!important;border:none;border-radius:8px;padding:8px 16px;font-size:14px;font-weight:bold;cursor:pointer;margin-bottom:12px;text-decoration:none}
+  .back-to-index:hover{background:#1e2d6b}
+  .word-bank-sticky-container{position:sticky;top:0;z-index:1001;background-color:#f4f4f9;padding:10px 0;border-bottom:2px solid #ccc;overflow:visible}
+  .word-bank{border:2px solid #1a4a2a;border-radius:8px;padding:12px;min-height:60px;flex-wrap:wrap;gap:8px;background-color:#fff;display:none;overflow:visible}
+  .word-chip{padding:8px 12px;border-radius:18px;border:1px solid #888;background-color:#fff;cursor:pointer;font-size:14px;position:relative}
+  .word-chip.used{opacity:0.3}
+  .word-chip.selected-chip{border-color:#1976d2;background-color:#e3f2fd;box-shadow:0 0 0 2px #bbdefb}
+  .section{background-color:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  .section-label{display:inline-block;color:#fff;font-size:13px;font-weight:bold;padding:3px 14px;border-radius:12px;margin-bottom:10px}
+  .label-wien{background:#1a4a2a}.label-france2{background:#7b1a00}.label-italy{background:#1a3d6b}.label-germany{background:#4a3d1a}
+  .blank{display:inline-block;min-width:100px;min-height:26px;border-bottom:2px solid #1a4a2a;margin:0 4px;text-align:center;cursor:pointer;font-weight:bold;color:#1a4a2a;vertical-align:middle}
+  .blank.correct{background-color:#ffeb3b}
+  .key-point{background:#eaf5ee;border-left:5px solid #1a4a2a;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+  .key-point strong{color:#1a4a2a}
+  .person-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:15px}
+  .person-table th{background:#1a4a2a;color:#fff;padding:8px 10px;text-align:left}
+  .person-table td{border:1px solid #ddd;padding:8px 10px;vertical-align:top}
+  .person-table tr:nth-child(even) td{background:#f0fff4}
+  .fixed-footer-controls{position:fixed;bottom:0;left:0;width:100%;background-color:#fff;border-top:2px solid #ccc;padding:12px 0;z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.1)}
+  .footer-inner{max-width:960px;margin:0 auto;padding:0 20px;text-align:center}
+  .controls{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  button{padding:10px 20px;border-radius:8px;border:none;background-color:#1a4a2a;color:#fff;cursor:pointer;font-size:15px;font-weight:bold;box-shadow:0 3px 0 #0d2d18}
+  button.secondary{background-color:#6c757d;box-shadow:0 3px 0 #495057}
+  button#next-btn{background-color:#1976d2;box-shadow:0 3px 0 #0d5aa7}
+  button#next-btn:disabled{background-color:#90bef5;box-shadow:none}
+  button#test-btn{background:#e67e22;box-shadow:0 3px 0 #c96a10}
+  .timer-info{margin-top:10px;padding:6px 15px;font-size:16px;border:1px solid #1a4a2a;background-color:#fff;display:inline-block}
+  .explain-box{margin-top:12px;padding:14px;border-left:5px solid #1a4a2a;background-color:#eaf5ee;display:none;text-align:left;font-size:14px;line-height:1.8}
+  .img-thumb{display:inline-flex;align-items:center;gap:6px;background:#d0f0da;border:1.5px solid #1a4a2a;border-radius:8px;padding:4px 10px 4px 6px;cursor:pointer;font-size:13px;color:#0d2d18;font-weight:bold;vertical-align:middle;margin:0 4px;transition:background 0.15s}
+  .img-thumb:hover{background:#a0d8b0}
+  .img-thumb img{width:36px;height:36px;object-fit:cover;border-radius:4px}
+  .img-thumb .thumb-label{max-width:90px;line-height:1.3}
+  .person-pop{display:inline-block;position:relative;border-bottom:2px dashed #1a4a2a;cursor:pointer;color:#0d2d18;font-weight:bold}
+  .person-pop .pop-box{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:230px;background:#fff;border:2px solid #1a4a2a;border-radius:12px;padding:14px;box-shadow:0 6px 20px rgba(0,0,0,0.18);z-index:2000;text-align:center;font-weight:normal;font-size:13px;color:#222;pointer-events:none;white-space:normal}
+  .person-pop .pop-box img{width:80px;height:80px;max-width:80px;max-height:80px;object-fit:cover;border-radius:50%;margin-bottom:8px;border:3px solid #90d890;display:block;margin-left:auto;margin-right:auto}
+  .person-pop .pop-name{display:block;font-weight:bold;font-size:15px;color:#0d2d18;margin-bottom:6px}
+  .person-pop .pop-desc{display:block;font-size:12px;color:#444;line-height:1.7;text-align:left}
+  .person-pop .pop-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:#1a4a2a}
+  .person-pop:hover .pop-box,.person-pop.active .pop-box{display:block}
+  .blank.person-pop{border-bottom:2px solid #1a4a2a;color:#1a4a2a}
+  .chip-pop{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);width:210px;background:#1a1a2e;color:#fff;border-radius:8px;padding:9px 13px;font-size:12px;line-height:1.7;z-index:3000;pointer-events:none;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,0.35)}
+  .chip-pop::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a2e}
+  .word-chip:hover .chip-pop,.word-chip.tip-active .chip-pop{display:block}
+  #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px}
+  #img-modal.open{display:flex}
+  #img-modal img{max-width:90vw;max-height:75vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,0.5)}
+  #img-modal .modal-caption{color:#fff;font-size:16px;font-weight:bold;text-align:center;background:rgba(0,0,0,0.5);padding:6px 20px;border-radius:20px}
+  #img-modal .modal-close{position:fixed;top:18px;right:24px;font-size:36px;color:#fff;cursor:pointer;line-height:1;background:none;border:none;box-shadow:none;padding:0}
+  .tip-hint{font-size:11px;color:#888;margin-left:6px;font-weight:normal}
+
+  .why-box{background:#eaf4ff;border-left:5px solid #1a5276;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .why-box .label{font-weight:bold;color:#1a5276;margin-right:4px}
+  .result-box{background:#efffea;border-left:5px solid #1a6b22;padding:10px 16px;border-radius:0 8px 8px 0;margin:10px 0;font-size:14px;line-height:1.9}
+  .result-box .label{font-weight:bold;color:#1a6b22;margin-right:4px}
+
+  .zu-fig{margin:12px 0;padding:10px;background:#fffdf7;border:1px solid #d9cfc0;border-radius:8px;text-align:center}
+  .zu-fig img{max-width:100%;height:auto;border-radius:4px;cursor:zoom-in}
+  .zu-fig figcaption{font-size:13px;color:#555;margin-top:6px;line-height:1.6}
+  .zu-extra{background:#fff;border-radius:8px;padding:20px;border:1px solid #ccc;margin-bottom:16px}
+  #zu-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:5000;align-items:center;justify-content:center}
+  #zu-modal img{max-width:96vw;max-height:94vh;background:#fff}
+</style>
+</head>
+<body>
+<div id="img-modal" onclick="if(event.target===this)closeImgModal()">
+  <button class="modal-close" onclick="closeImgModal()">✕</button>
+  <img id="modal-img" src="" alt="">
+  <div id="modal-caption" class="modal-caption"></div>
+</div>
+
+<a class="back-to-index" href="../index.html">← 単元一覧に戻る</a>
+<h1>🌍 ウィーン体制・イタリア・ドイツの統一</h1>
+
+<div class="word-bank-sticky-container">
+  <div style="font-weight:bold;font-size:14px;margin-bottom:5px;">【語群】（チャレンジ開始を押すとここに語句が出ます）<span class="tip-hint">💡 語句にマウスを乗せると説明が出ます</span></div>
+  <div class="word-bank" id="word-bank"></div>
+</div>
+
+
+
+<div class="section">
+  <span class="section-label label-vienna">① ウィーン体制（1815〜1848年）</span>
+  <h2>なぜナポレオン後のヨーロッパは「昔に戻ろう」としたのか？</h2>
+  <p>ナポレオンが倒れた後、ヨーロッパの支配者たちは「革命前の秩序を取り戻したい」と考えました。「自由・平等・国民主権」というフランス革命の理念が広まると、自分たちの王権・貴族制度が脅かされるからです。そこでオーストリア外相<span class="blank person-pop" data-id="A">メッテルニヒ<span class="pop-box"><span class="pop-name">メッテルニヒ（1773〜1859）</span><span class="pop-desc">オーストリアの外務大臣・首相。ウィーン会議を主導し「ウィーン体制」を構築しました。革命運動を徹底的に弾圧しましたが、1848年の革命で失脚しました。</span></span></span>の主導で<span class="blank" data-id="B">ウィーン会議</span>が開かれました。</p>
+  <div class="why-box"><span class="label">❓「会議は踊る、されど進まず」とは？</span>各国が「自国の利益を最大化したい」と主張し合い、議論がなかなか進みませんでした。一方で代表たちは毎晩舞踏会を楽しんでいたため、「<span class="blank" data-id="C">会議は踊る、されど進まず</span>」と皮肉られました。結局は大国の利益調整で決着し、自由主義革命を弾圧する<span class="blank" data-id="D">ウィーン体制</span>が確立されました。</div>
+  <h2>なぜウィーン体制は崩壊したのか？</h2>
+  <p>しかし「昔に戻す」という強引な試みは長続きしませんでした。1830年フランスの<span class="blank" data-id="E">七月革命</span>でシャルル10世が追放され、オルレアン家の<span class="blank person-pop" data-id="F">ルイ＝フィリップ<span class="pop-box"><span class="pop-name">ルイ＝フィリップ（在位1830〜1848）</span><span class="pop-desc">七月革命後のフランス国王。最初は「市民の王」と呼ばれましたが「銀行家の王」と批判され、二月革命で退位しました。</span></span></span>が国王となりました。この影響で<span class="blank" data-id="G">ベルギー</span>もオランダから独立しました。</p>
+  <p>1848年フランスの<span class="blank" data-id="H">二月革命</span>では労働者・学生が蜂起してルイ＝フィリップが退位。その波及効果でオーストリアでも<span class="blank" data-id="I">ウィーン三月革命</span>が起き、メッテルニヒは失脚・亡命し、ウィーン体制はついに崩壊しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>ウィーン体制の崩壊後、「同じ民族・言語・文化で一つの国家を作ろう」というナショナリズムの波が各地で高まりました。その結果として起きるのがイタリア・ドイツの統一運動です。</div>
+</div>
+
+<div class="section">
+  <span class="section-label label-italy">② イタリアの統一（1861年）</span>
+  <h2>なぜイタリアは「外交」と「武力」の両方が必要だったのか？</h2>
+<figure class="zu-fig"><img src="img/j_ch16_4.jpg" alt="ドイツ・イタリアの統一" loading="lazy"><figcaption>ドイツ・イタリアの統一</figcaption></figure>
+  <p>当時のイタリアは多くの小国に分裂しており、北部はオーストリアが支配していました。統一を主導したのはサルデーニャ王国の首相<span class="blank person-pop" data-id="J">カヴール<span class="pop-box"><span class="pop-name">カヴール（1810〜1861）</span><span class="pop-desc">サルデーニャ王国の首相。外交手腕でナポレオン3世と同盟を結び、オーストリアとの戦争でイタリア北部を統一しました。「イタリア統一の父」と呼ばれます。</span></span></span>です。</p>
+  <div class="why-box"><span class="label">❓ なぜカヴールはフランスと手を結んだのか？</span>オーストリアはイタリア最強の敵でした。一国では勝てないため、カヴールはクリミア戦争（1853〜56年）に参加して外交的存在感を高め、ナポレオン3世を味方につけることに成功しました。1859年の<span class="blank" data-id="K">イタリア統一戦争</span>でオーストリアを破り、北部イタリアを統一しました。</div>
+  <p>一方、南部では革命家<span class="blank person-pop" data-id="L">ガリバルディ<span class="pop-box"><span class="pop-name">ガリバルディ（1807〜1882）</span><span class="pop-desc">イタリアの革命家・愛国者。「赤シャツ隊」約1000人を率いてシチリア島から上陸し、南イタリアを制圧しました。占領地を国王に献上した後、褒美を断り農民として生涯を終えました。</span></span></span>が「赤シャツ隊」約1000人でシチリア島に上陸し、南部を征服して国王に献上しました。こうして1861年に<span class="blank" data-id="M">イタリア王国</span>が成立しました。</p>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>約1400年ぶりにイタリアが統一されました。カヴールは「外交・経済」、ガリバルディは「民衆の武力」という異なる手段で統一に貢献しました。しかし南北の経済格差・ローマ問題など、統一後の課題も多く残りました。</div>
+</div>
+
+<div class="section">
+  <span class="section-label label-germany">③ ドイツの統一（1871年）とラテンアメリカの独立</span>
+  <h2>なぜビスマルクは「鉄血政策」を選んだのか？</h2>
+<figure class="zu-fig"><img src="img/j_kindai10_3.jpg" alt="普仏戦争とドイツ統一" loading="lazy"><figcaption>普仏戦争とドイツ統一</figcaption></figure>
+  <p>三十年戦争後に約300の小国に分裂していたドイツを統一するため、プロイセン王ヴィルヘルム1世は首相に<span class="blank person-pop" data-id="N">ビスマルク<span class="pop-box"><span class="pop-name">ビスマルク（1815〜1898）</span><span class="pop-desc">プロイセンの首相。「鉄血宰相」の異名を持ちます。「鉄（武器）と血（兵士）」による軍事力でドイツを統一し、外交の天才として普墺・普仏戦争を勝利に導きました。</span></span></span>を任命しました。ビスマルクは「ドイツの問題は演説や多数決では解決できない。鉄と血によってのみ解決される」と演説し、議会の反対を押し切って軍備を拡張する<span class="blank" data-id="O">鉄血政策</span>を断行しました。</p>
+  <div class="why-box"><span class="label">❓ なぜ「外交」だけでは無理だったのか？</span>イタリアのカヴールと同様、ドイツ統一の最大の障害はオーストリアでした。しかも各国が複雑な利害関係を持ちます。ビスマルクは「最後は軍事力が決め手だ」と判断し、まずオーストリア（<span class="blank" data-id="P">普墺（ふおう）戦争</span>・1866年）を、次にフランス（<span class="blank" data-id="Q">普仏（ふふつ）戦争</span>・1870年）を破り、1871年にヴェルサイユ宮殿の鏡の間で<span class="blank" data-id="R">ドイツ帝国</span>の成立を宣言しました。</div>
+  <div class="result-box"><span class="label">✅ 結果・影響</span>統一ドイツは急速に工業化を進めヨーロッパ最強の工業国となりましたが、フランスはアルザス＝ロレーヌを失ったことへの復讐心を抱き続けます。この対立が第一次世界大戦の遠因の一つとなっていきます。</div>
+  <h2>ラテンアメリカの独立とモンロー宣言</h2>
+  <p>1823年、アメリカ大統領<span class="blank person-pop" data-id="S">モンロー<span class="pop-box"><span class="pop-name">モンロー（1758〜1831）</span><span class="pop-desc">アメリカ第5代大統領。「ヨーロッパとアメリカ大陸の相互不干渉」を宣言しました。</span></span></span>が「ヨーロッパはアメリカ大陸に干渉するな」という<span class="blank" data-id="T">モンロー宣言</span>を発表しました。この後ろ盾を得てラテンアメリカ各国の独立運動が活発になり、「ラテンアメリカ独立の父」と呼ばれる<span class="blank person-pop" data-id="U">シモン＝ボリバル<span class="pop-box"><span class="pop-name">シモン＝ボリバル（1783〜1830）</span><span class="pop-desc">南米の独立運動の指導者。ベネズエラ・コロンビア・ボリビアの独立に貢献しました。「ボリビア」という国名は彼の名前に由来します。</span></span></span>がベネズエラ・コロンビア・ボリビアの独立に活躍しました。</p>
+</div>
+
+<div class="fixed-footer-controls">
+  <div class="footer-inner">
+    <div class="controls">
+      <button onclick="startChallenge()">チャレンジ開始</button>
+      <button onclick="checkAnswers()">判定</button>
+      <button class="secondary" onclick="location.reload()">やり直す</button>
+      <button class="secondary" onclick="resetTimer()">時間リセット</button>
+      <button id="next-btn" onclick="location.href='../kindai9_quiz.html'" disabled>確認問題へ ▶</button>
+      <button id="test-btn" onclick="location.href='../kindai9_test.html'">🎯 テストへ</button>
+      <button class="secondary" onclick="toggleExplain()">【解説】を見る</button>
+    </div>
+    <div class="timer-info" id="timer-display">経過時間：---</div>
+    <div class="explain-box" id="explain-box">
+      ①ウィーン体制：メッテルニヒ主導→七月革命(1830)→二月革命(1848)→崩壊<br>
+      ②イタリア統一：カヴール(北)+ガリバルディ(南)→イタリア王国(1861)<br>
+      ③ドイツ統一：ビスマルクの鉄血政策→普墺戦争(1866)→普仏戦争(1870)→ドイツ帝国(1871)
+    </div>
+  </div>
+</div>
+
+<script>
+const WORD_TIPS={
+  "メッテルニヒ":"オーストリアの外務大臣（1773〜1859）。ウィーン会議を主導しナポレオン後のヨーロッパを旧体制に戻しました。1848年の革命で失脚しました。",
+  "ウィーン会議":"1814〜15年にウィーンで開かれた国際会議。ナポレオン後のヨーロッパの秩序を再建するため開かれましたが、各国の利害が対立し「会議は踊る、されど進まず」と言われました。",
+  "会議は踊る、されど進まず":"ウィーン会議の様子を皮肉った言葉。各国代表が連日舞踏会を楽しみながら、議論が一向に進まない状況を表しました。",
+  "ウィーン体制":"ナポレオン没落後（1815〜1848年）にメッテルニヒが主導したヨーロッパの旧体制回復政策。自由主義・ナショナリズムを弾圧しましたが、七月革命・二月革命で崩壊しました。",
+  "七月革命":"1830年にフランスで起きた革命。シャルル10世の反動政治に対しパリ市民が蜂起し、国王を追放してオルレアン家のルイ＝フィリップを新国王に迎えました。",
+  "ルイ＝フィリップ":"七月革命後のフランス国王（在位1830〜1848）。最初は「市民の王」と呼ばれましたが、後に「銀行家の王」と批判され二月革命で退位しました。",
+  "ベルギー":"七月革命の影響を受け1830年にオランダから独立した国。現在もEUの中心的な国家のひとつです。",
+  "二月革命":"1848年にフランスで起きた革命。労働者の普通選挙要求などが背景で、ルイ＝フィリップが退位し第二共和政となりました。ヨーロッパ各地の革命に連鎖しました。",
+  "ウィーン三月革命":"1848年、フランスの二月革命の影響を受けたオーストリアでの民衆蜂起。メッテルニヒが失脚・亡命しウィーン体制が崩壊しました。",
+  "カヴール":"サルデーニャ王国の首相（1810〜1861）。外交・経済の近代化を進め、フランスと同盟してオーストリアを破り北イタリアを統一しました。「イタリア統一の父」。",
+  "イタリア統一戦争":"1859年にサルデーニャとフランスがオーストリアと戦った戦争。サルデーニャはロンバルディアを獲得し北イタリアを統一しました。",
+  "ガリバルディ":"イタリアの革命家（1807〜1882）。「赤シャツ隊」約1000人でシチリア島に上陸し南イタリアを征服、国王に献上してイタリア統一を完成させました。",
+  "イタリア王国":"1861年にサルデーニャを中心に成立したイタリアの統一国家。ヴィットーリオ＝エマヌエーレ2世が初代国王に。1870年にローマも統合し完全統一されました。",
+  "ビスマルク":"プロイセン（ドイツ）の首相（1815〜1898）。「鉄血宰相」の異名を持ち、軍事力でドイツを統一しました。三帝同盟など巧みな外交でドイツの地位を高めました。",
+  "鉄血政策":"ビスマルクがプロイセンで進めた軍備拡張政策。「鉄（武器）と血（兵士）によってのみ問題は解決される」という演説からこう呼ばれました。議会の反対を押し切りました。",
+  "普墺（ふおう）戦争":"1866年にプロイセンとオーストリアが起こした戦争。プロイセンが勝ちオーストリアをドイツ統一から排除しました。",
+  "普仏（ふふつ）戦争":"1870〜71年にプロイセンとフランスが起こした戦争。ビスマルクの挑発にナポレオン3世が乗り開戦しましたが、フランスが敗れナポレオン3世は捕虜となりました。",
+  "ドイツ帝国":"1871年にプロイセンを中心に成立したドイツ統一国家。ヴィルヘルム1世がフランスのヴェルサイユ宮殿で皇帝に即位しました。",
+  "モンロー":"アメリカ第5代大統領（1758〜1831）。1823年にヨーロッパとアメリカ大陸の相互不干渉を求めるモンロー宣言を発表しました。",
+  "モンロー宣言":"1823年にアメリカ大統領モンローが発表した外交方針。「ヨーロッパはアメリカ大陸に干渉するな」「アメリカもヨーロッパに干渉しない」という孤立主義の原則です。",
+  "シモン＝ボリバル":"南米の独立運動の指導者（1783〜1830）。ベネズエラ・コロンビア・ボリビアの独立に貢献し、「ラテンアメリカ独立の父」と呼ばれます。ボリビアという国名は彼の名前に由来します。",
+};
+
+const answers={
+  "A":"メッテルニヒ","B":"ウィーン会議","C":"会議は踊る、されど進まず","D":"ウィーン体制",
+  "E":"七月革命","F":"ルイ＝フィリップ","G":"ベルギー","H":"二月革命","I":"ウィーン三月革命",
+  "J":"カヴール","K":"イタリア統一戦争","L":"ガリバルディ","M":"イタリア王国",
+  "N":"ビスマルク","O":"鉄血政策","P":"普墺（ふおう）戦争","Q":"普仏（ふふつ）戦争","R":"ドイツ帝国",
+  "S":"モンロー","T":"モンロー宣言","U":"シモン＝ボリバル"
+};
+
+function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
+function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
+document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
+document.addEventListener('click',()=>{document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));});
+let startTime,timerId,selectedChip=null;
+function renderBank(){const bank=document.getElementById('word-bank');bank.style.display="flex";bank.innerHTML="";[...new Set(Object.values(answers))].sort(()=>Math.random()-0.5).forEach(word=>{const chip=document.createElement('div');chip.className='word-chip';const label=document.createElement('span');label.textContent=word;chip.appendChild(label);const tip=WORD_TIPS[word];if(tip){const pop=document.createElement('div');pop.className='chip-pop';pop.textContent=tip;chip.appendChild(pop);chip.addEventListener('click',e=>{if(selectedChip===chip)return;e.stopPropagation();const a=chip.classList.contains('tip-active');document.querySelectorAll('.word-chip.tip-active').forEach(x=>x.classList.remove('tip-active'));if(!a)chip.classList.add('tip-active');});}chip.addEventListener('click',()=>{document.querySelectorAll('.word-chip').forEach(c=>c.classList.remove('selected-chip'));selectedChip=chip;chip.classList.add('selected-chip');});bank.appendChild(chip);});}
+function getBlankText(b){if(b.classList.contains('person-pop')){const c=b.cloneNode(true);const p=c.querySelector('.pop-box');if(p)p.remove();return c.textContent.trim();}return b.textContent.trim();}
+function setBlankText(b,txt){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent=txt;}}else{b.textContent=txt;}}
+function clearBlankText(b){if(b.classList.contains('person-pop')){for(const n of [...b.childNodes]){if(n.nodeType===3)n.textContent="";}}else{b.textContent="";}}
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
+function startChallenge(){document.querySelectorAll('.blank').forEach(b=>{clearBlankText(b);b.classList.remove('correct');});renderBank();startTime=Date.now();if(timerId)clearInterval(timerId);timerId=setInterval(()=>{document.getElementById('timer-display').textContent=`経過時間：${Math.floor((Date.now()-startTime)/1000)}秒`;},1000);}
+document.querySelectorAll('.blank').forEach(blank=>{blank.onclick=()=>{if(selectedChip){const old=getBlankText(blank);if(old)document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===old)c.classList.remove('used');});setBlankText(blank,getChipWord(selectedChip));selectedChip.classList.add('used');selectedChip.classList.remove('selected-chip');selectedChip=null;}else{const txt=getBlankText(blank);if(txt){document.querySelectorAll('.word-chip').forEach(c=>{if(getChipWord(c)===txt)c.classList.remove('used');});clearBlankText(blank);}}};});
+function checkAnswers(){let ok=true;document.querySelectorAll('.blank').forEach(b=>{if(getBlankText(b)===answers[b.dataset.id])b.classList.add('correct');else{ok=false;b.classList.remove('correct');}});if(ok){clearInterval(timerId);document.getElementById('next-btn').disabled=false;}}
+function resetTimer(){clearInterval(timerId);document.getElementById('timer-display').textContent="経過時間：---";}
+function toggleExplain(){const box=document.getElementById('explain-box');box.style.display=(box.style.display==='block')?'none':'block';}
+(function(){try{var p=JSON.parse(localStorage.getItem('gamba_progress')||'{}');p['kindai9']=p['kindai9']||{};p['kindai9'].studyDone=true;localStorage.setItem('gamba_progress',JSON.stringify(p));}catch(e){}})();
+</script>
+<script src="https://realizefield.github.io/gamba-kounin-seito/gamba-ai.js" defer></script>
+<div id="zu-modal" onclick="this.style.display='none'"><img id="zu-big" alt=""></div>
+<script>
+document.querySelectorAll('.zu-fig img').forEach(function(i){i.addEventListener('click',function(){var m=document.getElementById('zu-modal');document.getElementById('zu-big').src=i.src;m.style.display='flex';});});
+</script>
+</body>
+</html>
