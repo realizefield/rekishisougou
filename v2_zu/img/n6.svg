@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" width="1200" height="690" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Meiryo',sans-serif">
+<defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<rect width="1200" height="690" fill="#ffffff"/>
+<text x="40" y="38" font-size="24" font-weight="bold" fill="#222">18世紀のアジアの交易　ものの流れ</text>
+<text x="40" y="62" font-size="14" fill="#555">近代より前から、アジアは世界の交易の中心の一つでした。矢印は、ものの動く向きです。</text>
+<rect x="50" y="100" width="190" height="70" rx="10" fill="#f3f3f3" stroke="#666" stroke-width="2"/>
+<text x="145.0" y="129.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">アメリカ大陸</text>
+<text x="145.0" y="150.75" font-size="15" text-anchor="middle" fill="#222">（銀の産地）</text>
+<rect x="50" y="300" width="190" height="90" rx="10" fill="#e8f0fb" stroke="#2b5fa8" stroke-width="2"/>
+<text x="145.0" y="339.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">ヨーロッパ</text>
+<text x="145.0" y="360.75" font-size="15" text-anchor="middle" fill="#222">（買い手）</text>
+<rect x="400" y="480" width="170" height="70" rx="10" fill="#fdf0e0" stroke="#c26a00" stroke-width="2"/>
+<text x="485.0" y="509.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">インド</text>
+<text x="485.0" y="530.75" font-size="15" text-anchor="middle" fill="#222">（綿織物）</text>
+<rect x="700" y="480" width="190" height="70" rx="10" fill="#fdf0e0" stroke="#c26a00" stroke-width="2"/>
+<text x="795.0" y="509.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">東南アジア</text>
+<text x="795.0" y="530.75" font-size="15" text-anchor="middle" fill="#222">（香辛料）</text>
+<rect x="620" y="230" width="200" height="100" rx="10" fill="#fdf0e0" stroke="#c26a00" stroke-width="2"/>
+<text x="720.0" y="274.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">中国（清）</text>
+<text x="720.0" y="295.75" font-size="15" text-anchor="middle" fill="#222">広州一港で貿易</text>
+<rect x="980" y="230" width="170" height="100" rx="10" fill="#e9f5ea" stroke="#2e7d32" stroke-width="2"/>
+<text x="1065.0" y="274.75" font-size="16" text-anchor="middle" fill="#222" font-weight="bold">日本</text>
+<text x="1065.0" y="295.75" font-size="15" text-anchor="middle" fill="#222">長崎で貿易</text>
+<line x1="145" y1="172" x2="145" y2="298" stroke="#666" stroke-width="3" marker-end="url(#ar)"/>
+<text x="165" y="240" font-size="15" text-anchor="start" fill="#222" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">銀</text>
+<line x1="242" y1="322" x2="618" y2="282" stroke="#2b5fa8" stroke-width="3" marker-end="url(#ar)"/>
+<text x="430" y="290" font-size="14" text-anchor="middle" fill="#2b5fa8" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">銀（代金）</text>
+<line x1="618" y1="312" x2="242" y2="362" stroke="#c26a00" stroke-width="3" marker-end="url(#ar)"/>
+<text x="430" y="356" font-size="14" text-anchor="middle" fill="#c26a00" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">茶・絹・陶磁器</text>
+<line x1="420" y1="478" x2="215" y2="392" stroke="#c26a00" stroke-width="3" marker-end="url(#ar)"/>
+<text x="262" y="450" font-size="14" text-anchor="middle" fill="#c26a00" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">綿織物</text>
+<line x1="572" y1="515" x2="698" y2="515" stroke="#c26a00" stroke-width="3" marker-end="url(#ar)"/>
+<text x="635" y="505" font-size="14" text-anchor="middle" fill="#c26a00" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">綿織物</text>
+<line x1="790" y1="478" x2="745" y2="332" stroke="#c26a00" stroke-width="3" marker-end="url(#ar)"/>
+<text x="830" y="410" font-size="14" text-anchor="middle" fill="#c26a00" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">香辛料など</text>
+<line x1="978" y1="262" x2="822" y2="262" stroke="#2e7d32" stroke-width="3" marker-end="url(#ar)"/>
+<text x="900" y="250" font-size="14" text-anchor="middle" fill="#2e7d32" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">銅・俵物</text>
+<line x1="822" y1="300" x2="978" y2="300" stroke="#c26a00" stroke-width="3" marker-end="url(#ar)"/>
+<text x="900" y="322" font-size="14" text-anchor="middle" fill="#c26a00" font-weight="bold" style="paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round">生糸・絹・薬種</text>
+<rect x="20" y="590" width="1160" height="68" rx="8" fill="#fff8d6" stroke="#d9b800"/>
+<text x="36" y="614" font-size="14" text-anchor="start" fill="#7a5d00" font-weight="bold">ポイント</text>
+<text x="100" y="614" font-size="14" text-anchor="start" fill="#333">ヨーロッパは、銀をはらって、茶・絹・綿織物などを買っていました。日本もオランダや中国と長崎で貿易をしていました。</text>
+<text x="100" y="634" font-size="14" text-anchor="start" fill="#333">このあと産業革命で綿織物をつくる力をつけたイギリスが、アジアとの関係を大きく変えていきます（アヘン戦争へ）。</text>
+</svg>
