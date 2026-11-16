@@ -60,7 +60,7 @@ function gambaLink(url, cls, label){
   if (GAMBA_SOON.indexOf(String(url).split('?')[0]) !== -1) {
     return '<span class="btn-s ' + cls + '" style="opacity:.45;cursor:default;">' + label + '（準備中）</span>';
   }
-  var m=/^kindai(\d+)\.html$/.exec(url);var n=m?+m[1]:0;if(!((n>=7&&n<=10)||(n>=12&&n<=16)||(n>=18&&n<=26)))url='../'+url;
+  var m=/^kindai(\d+)\.html$/.exec(url);var n=m?+m[1]:0;if(!((n===1||(n>=7&&n<=10))||(n>=12&&n<=16)||(n>=18&&n<=26)))url='../'+url;
   return '<a class="btn-s ' + cls + '" href="' + url + '">' + label + '</a>';
 }
 </script>
