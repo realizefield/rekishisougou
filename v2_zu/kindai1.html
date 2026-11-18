@@ -220,6 +220,7 @@ function renderBank(){
     bank.appendChild(chip);
   });
 }
+function getChipWord(c){return c.querySelector('span')?.textContent||c.textContent;}
 function getBlankText(b){
   // blank.person-pop の場合、pop-box の中身は除いてテキストだけ取得
   if(b.classList.contains('person-pop')){

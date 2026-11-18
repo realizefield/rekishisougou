@@ -164,7 +164,7 @@ const WORD_TIPS={
   "砂糖（サトウキビ）":"琉球（沖縄）が薩摩藩向けに輸出した主要産品。江戸時代、砂糖は高級品で重要な交易品でした。",
   "松前藩":"北海道南部（松前）を支配した藩。徳川家康から蝦夷地のアイヌとの貿易独占権を与えられました。アイヌとの不平等な交易が後の民族問題につながりました。",
 };
-const answers={"A":"関ヶ原の戦い","B":"徳川家康","C":"江戸幕府","D":"幕藩体制","E":"軍役","F":"朱印状","G":"朱印船貿易","H":"日本町","I":"徳川秀忠","J":"徳川家光","K":"鎖国令","L":"島原の乱","M":"ポルトガル","N":"出島","O":"オランダ","P":"鎖国","Q":"絵踏","R":"寺請制度","S":"対馬藩","T":"宗氏","U":"尚巴志","V":"薩摩藩","W":"島津氏","X":"砂糖（サトウキビ）","Y":"松前藩"};
+const answers = {"A":"関ヶ原の戦い","C":"江戸幕府","D":"幕藩体制","E":"軍役","F":"朱印状","G":"朱印船貿易","H":"日本町","K":"鎖国令","L":"島原の乱","M":"ポルトガル","N":"出島","P":"鎖国","Q":"絵踏","R":"寺請制度","O":"オランダ","S":"対馬藩","T":"宗氏","V":"薩摩藩","W":"島津氏","X":"砂糖（サトウキビ）","Y":"松前藩"};
 function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
 function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
 document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});

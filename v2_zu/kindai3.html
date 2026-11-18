@@ -174,7 +174,7 @@ const WORD_TIPS={
   "エンコミエンダ制":"スペインが征服地で行った制度。インディオへの強制労働・年貢取り立てを征服者に認めるもので、インディオへの苛酷な搾取が行われました。",
   "ラス＝カサス":"スペインの聖職者（1484〜1566）。インディオの人権を守るために戦い続けた人物。「インディオの使徒」と呼ばれます。",
 };
-const answers={"A":"マルコ＝ポーロ","B":"ジパング（日本）","C":"香辛料","D":"オスマン帝国","E":"羅針盤","F":"エンリケ航海王子","G":"バルトロメウ＝ディアス","H":"喜望峰","I":"ヴァスコ＝ダ＝ガマ","J":"カリカット","K":"マカオ","L":"コロンブス","M":"サンサルバドル島","N":"インディオ","O":"アメリゴ＝ヴェスプッチ","P":"トルデシリャス条約","Q":"マゼラン","R":"マゼラン海峡","S":"地球が球体","T":"カルロス1世","U":"コルテス","V":"アステカ王国","W":"ピサロ","X":"インカ帝国","Y":"コンキスタドール","Z":"エンコミエンダ制","AA":"ラス＝カサス","AB":"マゼラン","BB":"コロンブス","CB":"ヴァスコ＝ダ＝ガマ"};
+const answers = {"A":"マルコ＝ポーロ","B":"ジパング（日本）","C":"香辛料","D":"オスマン帝国","E":"羅針盤","F":"エンリケ航海王子","G":"バルトロメウ＝ディアス","H":"喜望峰","I":"ヴァスコ＝ダ＝ガマ","J":"カリカット","K":"マカオ","L":"コロンブス","M":"サンサルバドル島","N":"インディオ","O":"アメリゴ＝ヴェスプッチ","P":"トルデシリャス条約","Q":"マゼラン","R":"マゼラン海峡","S":"地球が球体","T":"カルロス1世","Y":"コンキスタドール","U":"コルテス","V":"アステカ王国","W":"ピサロ","X":"インカ帝国","Z":"エンコミエンダ制","AA":"ラス＝カサス"};
 function openImgModal(src,cap){document.getElementById('modal-img').src=src;document.getElementById('modal-caption').textContent=cap;document.getElementById('img-modal').classList.add('open');}
 function closeImgModal(){document.getElementById('img-modal').classList.remove('open');}
 document.querySelectorAll('.person-pop').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();const a=el.classList.contains('active');document.querySelectorAll('.person-pop.active').forEach(x=>x.classList.remove('active'));if(!a)el.classList.add('active');});});
